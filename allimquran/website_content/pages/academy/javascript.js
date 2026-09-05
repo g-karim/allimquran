@@ -7,6 +7,72 @@
     en:{skip:"Skip to content",cabinetNav:"Cabinet navigation",navOverview:"My path",navCourses:"My courses",navTeacher:"Teacher",navProgress:"Progress",duaMeaning:"O Allah, teach him the Book.",openCompanion:"Open Companion",studentCabinet:"STUDENT CABINET",pageTitle:"Your path with the Qur’an",deviceProgress:"On-device progress",changeLanguage:"Change language",signIn:"Sign in",basicAccess:"Basic access",salam:"As-salāmu ʿalaykum",welcomeText:"One clear step is enough today: recite, recall, understand and return on time.",editPlan:"Edit plan",todayPlan:"TODAY’S PLAN",minutes:"minutes of focus",recite:"Recite aloud",reciteHint:"Continue from the selected verse",memorize:"Recall without text",memorizeHint:"Strengthen a page in the heart",understand:"Understand the verse",understandHint:"Word, root and tafsir",review:"Return on time",ayahForReview:"verses to review",startLesson:"Start lesson",todaySessions:"Today",completedSessions:"completed sessions",streak:"Streak",days:"days",streakHint:"of regular return",myCourses:"My courses",courseHint:"active learning paths",heartBook:"HIFZ BOOK",heartTitle:"Qur’an in the heart",heartText:"Pages are revealed by accurate repetitions and kept alive through regular return.",continueHifz:"Continue building",acceptedRepeats:"accepted repetitions",securedAyat:"verses secured",dueForReview:"due for review",twoLevels:"TWO LEVELS, ONE PATH",basicTitle:"Basic cabinet",basicText:"Personal plan, Companion, hifz, reviews, courses and progress history.",included:"Included",guidedTitle:"With a teacher",guidedText:"Schedule, assignments, recitation review, feedback and study history.",notConnected:"Not connected",seeGuided:"See guided learning",learningPaths:"LEARNING PATHS",coursesTitle:"My courses and programs",coursesLead:"Only real enrollments and actual progress appear here.",browseCourses:"Browse programs",loadingCourses:"Checking your courses…",loadingCoursesText:"Basic learning in Companion is already available.",guidedAcademy:"GUIDED ACADEMY",teacherTitle:"Live guidance",teacherLead:"Teacher, schedule and feedback open only after a real cohort enrollment.",checkingAccess:"Checking access",yourTeacher:"YOUR TEACHER",teacherUnassigned:"Not assigned yet",teacherEmpty:"After enrollment, the teacher, program and in-Academy contact options will appear here.",findProgram:"Choose a program",nextLesson:"Next lesson",notScheduled:"Not scheduled",scheduleAppears:"Date and time appear after cohort confirmation.",latestAssignment:"Latest assignment",noAssignments:"No active assignments",assignmentAppears:"Assignments and reviewed results will be collected here.",feedback:"Feedback",noFeedback:"No new comments",feedbackHint:"Comments stay connected to a specific assignment or recitation.",humanTrust:"The teacher remains central.",humanTrustText:"Automated feedback supports practice between lessons, but does not replace live correction or grant ijazah.",evidenceTitle:"FACTUAL DATA ONLY",progressTitle:"Your progress",progressLead:"On-device Companion activity and enrolled-course progress are shown separately.",companionProgress:"Companion on this device",allSessions:"completed sessions in total",savedAyat:"saved verses",reviewQueue:"in review queue",reviewedWords:"reviewed words",fiveWeeks:"Last five weeks",activityHint:"Color represents completed sessions per day.",courseProgress:"Course progress",courseProgressEmpty:"Sign in to see server progress for enrolled courses.",personalPlan:"PERSONAL PLAN",planDialogTitle:"Set your learning rhythm",dailyTime:"Time per day",mainFocus:"Main focus",focusRecitation:"Recitation",focusMemorization:"Memorization",focusArabic:"Qur’anic Arabic",focusTafsir:"Tafsir",currentTarget:"Current goal",targetPlaceholder:"For example: strengthen Surah al-Mulk",planPrivacy:"Your plan stays private. Account sync will be shown separately.",cancel:"Cancel",savePlan:"Save plan",planSaved:"Plan saved",guestCourses:"Sign in to see your courses",guestCoursesText:"Your basic cabinet and Companion remain available without payment.",noCourses:"No course enrollments yet",noCoursesText:"Choose a published program when you are ready to add structured study.",openCourse:"Open course",inProgress:"IN PROGRESS",guidedActive:"Teacher access active",connected:"Connected",signedIn:"Account connected",serverUnavailable:"Course data is temporarily unavailable",serverUnavailableText:"The basic cabinet continues to work. Try refreshing this page later.",teacherAssigned:"Teacher assigned",openGroup:"Open group",starterBadge:"STARTING PATH",starterTitle:"From alif to Al-Fatihah",starterText:"An engaging path from first sounds and letters to independent reading of short Qur’anic passages.",starterAction:"View the curriculum"},
     ar:{skip:"انتقل إلى المحتوى",cabinetNav:"تنقل لوحة الطالب",navOverview:"مساري",navCourses:"دوراتي",navTeacher:"المعلّم",navProgress:"التقدم",duaMeaning:"اللهم علّمه الكتاب.",openCompanion:"افتح الرفيق",studentCabinet:"لوحة الطالب",pageTitle:"رحلتك مع القرآن",deviceProgress:"تقدم هذا الجهاز",changeLanguage:"تغيير اللغة",signIn:"تسجيل الدخول",basicAccess:"الوصول الأساسي",salam:"السلام عليكم",welcomeText:"تكفي اليوم خطوة واضحة: اقرأ واستحضر وافهم وعُد في وقتها.",editPlan:"ضبط الخطة",todayPlan:"خطة اليوم",minutes:"دقيقة من التركيز",recite:"التلاوة بصوت",reciteHint:"تابع من الآية المختارة",memorize:"استحضر بلا نص",memorizeHint:"ثبّت صفحة في القلب",understand:"افهم الآية",understandHint:"الكلمة والجذر والتفسير",review:"عُد في وقتها",ayahForReview:"آيات للمراجعة",startLesson:"ابدأ الدرس",todaySessions:"اليوم",completedSessions:"جلسات مكتملة",streak:"السلسلة",days:"أيام",streakHint:"من العودة المنتظمة",myCourses:"دوراتي",courseHint:"مسارات تعلم نشطة",heartBook:"كتاب الحفظ",heartTitle:"القرآن في القلب",heartText:"تظهر الصفحات بالتكرار الصحيح وتبقى حية بالمراجعة المنتظمة.",continueHifz:"تابع البناء",acceptedRepeats:"تكرارات مقبولة",securedAyat:"آيات مثبتة",dueForReview:"حان وقت مراجعتها",twoLevels:"مستويان لمسار واحد",basicTitle:"اللوحة الأساسية",basicText:"خطة شخصية ورفيق وحفظ ومراجعة ودورات وسجل تقدم.",included:"مشمول",guidedTitle:"مع معلّم",guidedText:"جدول وواجبات وتصحيح تلاوة وتغذية راجعة وسجل دراسة.",notConnected:"غير متصل",seeGuided:"عرض التعلم الموجّه",learningPaths:"مسارات التعلم",coursesTitle:"دوراتي وبرامجي",coursesLead:"تظهر هنا التسجيلات الحقيقية والتقدم الفعلي فقط.",browseCourses:"تصفح البرامج",loadingCourses:"جارٍ فحص دوراتك…",loadingCoursesText:"التعلم الأساسي في الرفيق متاح الآن.",guidedAcademy:"الأكاديمية الموجّهة",teacherTitle:"توجيه حي",teacherLead:"لا يظهر المعلّم والجدول والملاحظات إلا بعد تسجيل حقيقي في مجموعة.",checkingAccess:"جارٍ فحص الوصول",yourTeacher:"معلّمك",teacherUnassigned:"لم يُعيّن بعد",teacherEmpty:"بعد التسجيل يظهر اسم المعلّم والبرنامج ووسائل التواصل داخل الأكاديمية.",findProgram:"اختر برنامجًا",nextLesson:"الدرس القادم",notScheduled:"غير مجدول",scheduleAppears:"يظهر التاريخ والوقت بعد تأكيد المجموعة.",latestAssignment:"آخر واجب",noAssignments:"لا واجبات نشطة",assignmentAppears:"تُجمع الواجبات ونتائج التصحيح هنا.",feedback:"التغذية الراجعة",noFeedback:"لا تعليقات جديدة",feedbackHint:"ترتبط التعليقات بواجب أو تلاوة محددة.",humanTrust:"يبقى المعلّم في المركز.",humanTrustText:"يدعم التصحيح الآلي التدريب بين الدروس، ولا يستبدل التصحيح الحي ولا يمنح الإجازة.",evidenceTitle:"بيانات فعلية فقط",progressTitle:"تقدمك",progressLead:"يظهر تقدم الرفيق على هذا الجهاز وتقدم الدورات المسجلة بصورة منفصلة.",companionProgress:"الرفيق على هذا الجهاز",allSessions:"إجمالي الجلسات المكتملة",savedAyat:"آيات محفوظة",reviewQueue:"في قائمة المراجعة",reviewedWords:"كلمات روجعت",fiveWeeks:"آخر خمسة أسابيع",activityHint:"يمثل اللون عدد الجلسات المكتملة يوميًا.",courseProgress:"تقدم الدورات",courseProgressEmpty:"سجّل الدخول لرؤية تقدم الدورات المسجلة.",personalPlan:"الخطة الشخصية",planDialogTitle:"اضبط إيقاع تعلمك",dailyTime:"الوقت اليومي",mainFocus:"التركيز الرئيس",focusRecitation:"التلاوة",focusMemorization:"الحفظ",focusArabic:"العربية القرآنية",focusTafsir:"التفسير",currentTarget:"الهدف الحالي",targetPlaceholder:"مثال: تثبيت سورة الملك",planPrivacy:"تبقى خطتك خاصة. سيظهر خيار مزامنة الحساب بصورة منفصلة.",cancel:"إلغاء",savePlan:"حفظ الخطة",planSaved:"حُفظت الخطة",guestCourses:"سجّل الدخول لرؤية دوراتك",guestCoursesText:"تبقى اللوحة الأساسية والرفيق متاحين دون دفع.",noCourses:"لا تسجيلات في دورات بعد",noCoursesText:"اختر برنامجًا منشورًا حين تستعد للدراسة المنظمة.",openCourse:"افتح الدورة",inProgress:"قيد التقدم",guidedActive:"وصول المعلّم نشط",connected:"متصل",signedIn:"الحساب متصل",serverUnavailable:"بيانات الدورات غير متاحة مؤقتًا",serverUnavailableText:"تستمر اللوحة الأساسية بالعمل. حاول تحديث الصفحة لاحقًا.",teacherAssigned:"تم تعيين المعلّم",openGroup:"افتح المجموعة",starterBadge:"مسار البداية",starterTitle:"من الألف إلى الفاتحة",starterText:"مسار ممتع من الأصوات والحروف الأولى إلى قراءة مقاطع قرآنية قصيرة باستقلال.",starterAction:"شاهد المنهج"}
   };
+  Object.assign(copies.ru,{
+    threeLevels:"ТРИ УРОВНЯ ОДНОГО ПУТИ",
+    openTitle:"Открытый доступ",
+    openText:"Коран, чтение и базовая проверка слов — свободно, без регистрации.",
+    alwaysOpen:"Всегда открыт",
+    basicTitle:"Базовый кабинет",
+    basicText:"Личный план, первичное обучение, «Коран в сердце», курсы и история прогресса.",
+    guidedTitle:"ALLIM Academy с преподавателем",
+    guidedText:"Углублённая проверка страницы наизусть, живое исправление, задания, расписание и обратная связь.",
+    advancedRecallEyebrow:"ПРОДВИНУТАЯ ПРАКТИКА ХИФЗА",
+    advancedRecallTitle:"Проверка страницы наизусть",
+    advancedRecallText:"Настоящая геометрия мусхафа остаётся на экране, текст скрывается, а правильные слова проявляются по порядку. Результат можно разбирать вместе с преподавателем.",
+    advancedRecallPoint1:"Связное чтение всей страницы",
+    advancedRecallPoint2:"Остановка на ошибке до исправления",
+    advancedRecallPoint3:"Учебная проверка между живыми занятиями",
+    thirdAccessLocked:"Доступно после зачисления",
+    thirdAccessActive:"Третий доступ активен",
+    startPageRecall:"Начать проверку страницы",
+    chooseProgram:"Выбрать программу",
+    openAccess:"Открытый доступ",
+    levelThreeActive:"Третий доступ · преподаватель"
+  });
+  Object.assign(copies.en,{
+    threeLevels:"THREE LEVELS, ONE PATH",
+    openTitle:"Open access",
+    openText:"The Qur’an, reading and basic word checking are open to everyone without registration.",
+    alwaysOpen:"Always open",
+    basicTitle:"Basic cabinet",
+    basicText:"A personal plan, foundation learning, Qur’an in the Heart, courses and progress history.",
+    guidedTitle:"ALLIM Academy with a teacher",
+    guidedText:"Advanced full-page recall, live correction, assignments, schedule and teacher feedback.",
+    advancedRecallEyebrow:"ADVANCED HIFZ PRACTICE",
+    advancedRecallTitle:"Recall a full page from memory",
+    advancedRecallText:"The real Mushaf page geometry stays in place while the text is hidden and correctly recited words appear in order. The result can then be reviewed with a teacher.",
+    advancedRecallPoint1:"Continuous recitation of the full page",
+    advancedRecallPoint2:"Pause on an error until it is corrected",
+    advancedRecallPoint3:"Structured practice between live lessons",
+    thirdAccessLocked:"Available after enrollment",
+    thirdAccessActive:"Third-level access is active",
+    startPageRecall:"Start full-page recall",
+    chooseProgram:"Choose a program",
+    openAccess:"Open access",
+    levelThreeActive:"Third level · teacher-guided"
+  });
+  Object.assign(copies.ar,{
+    threeLevels:"ثلاثة مستويات لمسار واحد",
+    openTitle:"الوصول المفتوح",
+    openText:"المصحف والتلاوة والتحقق الأساسي من الكلمات متاحة للجميع بلا تسجيل.",
+    alwaysOpen:"مفتوح دائمًا",
+    basicTitle:"لوحة الطالب الأساسية",
+    basicText:"خطة شخصية وتعلّم تأسيسي و«القرآن في القلب» ودورات وسجل للتقدم.",
+    guidedTitle:"أكاديمية ALLIM مع معلّم",
+    guidedText:"اختبار متقدم لصفحة غيبًا، وتصحيح حي، وواجبات، وجدول، وتغذية راجعة.",
+    advancedRecallEyebrow:"تدريب متقدم للحفظ",
+    advancedRecallTitle:"اختبار الصفحة غيبًا",
+    advancedRecallText:"تبقى هيئة صفحة المصحف الحقيقية في مكانها، ويُخفى النص، ثم تظهر الكلمات الصحيحة بالترتيب. ويمكن مراجعة النتيجة مع المعلّم.",
+    advancedRecallPoint1:"تلاوة الصفحة كاملة بصورة متصلة",
+    advancedRecallPoint2:"التوقف عند الخطأ حتى تصحيحه",
+    advancedRecallPoint3:"تدريب منظم بين الدروس المباشرة",
+    thirdAccessLocked:"متاح بعد التسجيل في البرنامج",
+    thirdAccessActive:"المستوى الثالث مفعّل",
+    startPageRecall:"ابدأ اختبار الصفحة",
+    chooseProgram:"اختر برنامجًا",
+    openAccess:"وصول مفتوح",
+    levelThreeActive:"المستوى الثالث · مع معلّم"
+  });
   var defaultPlan={minutes:15,focus:"recitation",target:""};
   var appState=readStorage(appStorageKey,{});
   var plan=Object.assign({},defaultPlan,readStorage(planStorageKey,{}));
@@ -38,11 +104,92 @@
   function starterCard(){var card=document.createElement("article");card.className="course-card starter-course";var head=document.createElement("div");head.className="course-card-head";var badge=document.createElement("span");badge.textContent=t("starterBadge");var symbol=document.createElement("strong");symbol.lang="ar";symbol.dir="rtl";symbol.textContent="ا ← بِ ← رَبِّ";head.append(badge,symbol);var title=document.createElement("h3");title.textContent=t("starterTitle");var copy=document.createElement("p");copy.textContent=t("starterText");var link=document.createElement("a");link.className="text-link";link.href=language==="ar"?"/ar/blog/learn-quranic-alphabet":(language==="ru"?"/ru/blog/arabskij-alfavit-dlya-chteniya-korana":"/blog/learn-quranic-alphabet");var label=document.createElement("span");label.textContent=t("starterAction");var arrow=document.createElementNS("http://www.w3.org/2000/svg","svg");arrow.innerHTML='<use href="#i-arrow"/>';link.append(label,arrow);card.append(head,title,copy,link);return card}
   function renderCourses(){var list=document.getElementById("course-list");if(!list)return;list.textContent="";list.appendChild(starterCard());if(currentUser==="Guest"){list.appendChild(emptyCard(t("guestCourses"),t("guestCoursesText")));return}if(!enrollments.length){list.appendChild(emptyCard(t("noCourses"),t("noCoursesText")));return}enrollments.forEach(function(row){var detail=courseDetails[row.course]||{};var progress=Math.max(0,Math.min(100,Number(row.progress)||0));var card=document.createElement("article");card.className="course-card";var head=document.createElement("div");head.className="course-card-head";var badge=document.createElement("span");badge.textContent=t("inProgress");var percent=document.createElement("strong");percent.textContent=Math.round(progress)+"%";head.append(badge,percent);var title=document.createElement("h3");title.textContent=detail.title||row.course;var intro=document.createElement("p");intro.textContent=detail.short_introduction||detail.description&&String(detail.description).replace(/<[^>]*>/g,"").slice(0,160)||"";var track=document.createElement("div");track.className="progress-track";var fill=document.createElement("i");fill.style.width=progress+"%";track.appendChild(fill);var link=document.createElement("a");link.className="text-link";link.href="/lms/courses/"+encodeURIComponent(row.course);var text=document.createElement("span");text.textContent=t("openCourse");var arrow=document.createElementNS("http://www.w3.org/2000/svg","svg");arrow.innerHTML='<use href="#i-arrow"/>';link.append(text,arrow);card.append(head,title,intro,track,link);list.appendChild(card)})}
   function teacherNames(){var names=[];Object.keys(batchDetails).forEach(function(key){var rows=batchDetails[key].instructors||[];rows.forEach(function(row){var value=row.instructor_name||row.full_name||row.instructor||row.member;if(value&&names.indexOf(value)<0)names.push(value)})});return names}
-  async function renderGuided(){var active=batchEnrollments.length>0;var line=document.getElementById("guided-access-line");var status=document.getElementById("guided-status");var pill=document.getElementById("guided-pill");line.classList.toggle("is-active",active);status.textContent=active?t("connected"):t("notConnected");pill.querySelector("span").textContent=active?t("guidedActive"):(currentUser==="Guest"?t("signIn"):t("notConnected"));document.getElementById("access-pill").querySelector("span").textContent=active?t("guidedActive"):t("basicAccess");var names=teacherNames();if(names.length){document.getElementById("teacher-name").textContent=names.join(", ");document.getElementById("teacher-description").textContent=t("teacherAssigned");var first=batchEnrollments[0].batch;var action=document.getElementById("teacher-action");action.href="/lms/batches/"+encodeURIComponent(first);action.querySelector("span").textContent=t("openGroup")}if(!active)return;try{var batches=batchEnrollments.map(function(row){return row.batch});var live=await getList("LMS Live Class",[["batch_name","in",batches]],["name","title","date","time","duration","timezone","join_url","batch_name"]);live.sort(function(a,b){return String(a.date||"").localeCompare(String(b.date||""))});var next=live.find(function(item){return !item.date||new Date(item.date+"T"+(item.time||"00:00:00")).getTime()>=Date.now()})||live[0];if(next){document.getElementById("next-class").textContent=next.title||next.batch_name;document.getElementById("next-class-meta").textContent=[next.date,next.time,next.timezone].filter(Boolean).join(" · ")}var submissions=await getList("LMS Assignment Submission",[["member","=",currentUser]],["name","assignment_title","status","comments","modified"]);submissions.sort(function(a,b){return String(b.modified||"").localeCompare(String(a.modified||""))});if(submissions[0]){document.getElementById("latest-assignment").textContent=submissions[0].assignment_title||submissions[0].name;document.getElementById("latest-assignment-meta").textContent=submissions[0].status||"";if(submissions[0].comments)document.getElementById("feedback-status").textContent=t("noFeedback").replace(t("noFeedback"),String(submissions[0].comments).replace(/<[^>]*>/g,"").slice(0,100))}}catch(error){return}}
+  async function renderGuided(){
+    var active=batchEnrollments.length>0;
+    var isGuest=currentUser==="Guest";
+    var openLine=document.getElementById("open-access-line");
+    var basicLine=document.getElementById("basic-access-line");
+    var basicStatus=document.getElementById("basic-status");
+    var line=document.getElementById("guided-access-line");
+    var status=document.getElementById("guided-status");
+    var pill=document.getElementById("guided-pill");
+    var accessPill=document.getElementById("access-pill");
+    var recallCard=document.getElementById("advanced-recall-card");
+    var recallStatus=document.getElementById("advanced-recall-status");
+    var recallAction=document.getElementById("advanced-recall-action");
+
+    if(openLine)openLine.classList.toggle("is-current",isGuest);
+    if(basicLine)basicLine.classList.toggle("is-current",!isGuest&&!active);
+    if(basicStatus)basicStatus.textContent=isGuest?t("signIn"):t("included");
+    line.classList.toggle("is-active",active);
+    line.classList.toggle("is-current",active);
+    status.textContent=active?t("connected"):t("notConnected");
+    pill.classList.toggle("muted",!active);
+    pill.querySelector("span").textContent=active?t("thirdAccessActive"):(isGuest?t("signIn"):t("notConnected"));
+    accessPill.querySelector("span").textContent=active?t("levelThreeActive"):(isGuest?t("openAccess"):t("basicAccess"));
+
+    if(recallCard){
+      recallCard.dataset.accessState=active?"active":"locked";
+      recallStatus.classList.toggle("muted",!active);
+      recallStatus.querySelector("span").textContent=active?t("thirdAccessActive"):t("thirdAccessLocked");
+      recallAction.href=active?"/learn?view=memorize&academy=page-recall&lang="+encodeURIComponent(language):"/lms/courses";
+      recallAction.querySelector("span").textContent=active?t("startPageRecall"):t("chooseProgram");
+    }
+
+    var names=teacherNames();
+    if(names.length){
+      document.getElementById("teacher-name").textContent=names.join(", ");
+      document.getElementById("teacher-description").textContent=t("teacherAssigned");
+      var first=batchEnrollments[0].batch;
+      var action=document.getElementById("teacher-action");
+      action.href="/lms/batches/"+encodeURIComponent(first);
+      action.querySelector("span").textContent=t("openGroup");
+    }
+    if(!active)return;
+    try{
+      var batches=batchEnrollments.map(function(row){return row.batch});
+      var live=await getList("LMS Live Class",[["batch_name","in",batches]],["name","title","date","time","duration","timezone","join_url","batch_name"]);
+      live.sort(function(a,b){return String(a.date||"").localeCompare(String(b.date||""))});
+      var next=live.find(function(item){return !item.date||new Date(item.date+"T"+(item.time||"00:00:00")).getTime()>=Date.now()})||live[0];
+      if(next){
+        document.getElementById("next-class").textContent=next.title||next.batch_name;
+        document.getElementById("next-class-meta").textContent=[next.date,next.time,next.timezone].filter(Boolean).join(" · ");
+      }
+      var submissions=await getList("LMS Assignment Submission",[["member","=",currentUser]],["name","assignment_title","status","comments","modified"]);
+      submissions.sort(function(a,b){return String(b.modified||"").localeCompare(String(a.modified||""))});
+      if(submissions[0]){
+        document.getElementById("latest-assignment").textContent=submissions[0].assignment_title||submissions[0].name;
+        document.getElementById("latest-assignment-meta").textContent=submissions[0].status||"";
+        if(submissions[0].comments)document.getElementById("feedback-status").textContent=String(submissions[0].comments).replace(/<[^>]*>/g,"").slice(0,100);
+      }
+    }catch(error){return}
+  }
   function renderServerProgress(){var target=document.getElementById("server-course-progress");target.textContent="";if(!enrollments.length){var p=document.createElement("p");p.className="muted-copy";p.textContent=t("noCoursesText");target.appendChild(p);return}var list=document.createElement("div");list.className="server-progress-list";enrollments.forEach(function(row){var progress=Math.max(0,Math.min(100,Number(row.progress)||0));var item=document.createElement("div");item.className="server-progress-row";var title=document.createElement("strong");title.textContent=(courseDetails[row.course]||{}).title||row.course;var value=document.createElement("em");value.textContent=Math.round(progress)+"%";var track=document.createElement("div");track.className="progress-track";var fill=document.createElement("i");fill.style.width=progress+"%";track.appendChild(fill);item.append(title,value,track);list.appendChild(item)});target.appendChild(list)}
   function renderServerError(){var list=document.getElementById("course-list");list.textContent="";list.appendChild(emptyCard(t("serverUnavailable"),t("serverUnavailableText")));document.getElementById("sync-status").querySelector("span").textContent=t("serverUnavailable")}
   function initializePlan(){document.getElementById("plan-minutes-input").value=String(plan.minutes);document.getElementById("plan-focus-input").value=plan.focus;document.getElementById("plan-target-input").value=plan.target||""}
-  function initialize(){renderLocal();applyLanguage(language);initializePlan();document.querySelectorAll("[data-panel]").forEach(function(button){button.addEventListener("click",function(){selectPanel(button.getAttribute("data-panel"))})});document.querySelectorAll("[data-open-panel]").forEach(function(button){button.addEventListener("click",function(){selectPanel(button.getAttribute("data-open-panel"))})});document.getElementById("language-button").addEventListener("click",function(){var order=["ru","en","ar"];applyLanguage(order[(order.indexOf(language)+1)%order.length])});var dialog=document.getElementById("plan-dialog");document.getElementById("edit-plan").addEventListener("click",function(){initializePlan();dialog.showModal()});document.getElementById("plan-form").addEventListener("submit",function(event){if(event.submitter&&event.submitter.id==="save-plan"){plan.minutes=Math.max(10,Math.min(45,Number(document.getElementById("plan-minutes-input").value)||15));plan.focus=document.getElementById("plan-focus-input").value;plan.target=document.getElementById("plan-target-input").value.trim();writeStorage(planStorageKey,plan);renderLocal();showToast(t("planSaved"))}});dialog.addEventListener("click",function(event){if(event.target===dialog)dialog.close()});var requestedPanel=new URLSearchParams(window.location.search).get("panel");if(["overview","courses","teacher","progress"].indexOf(requestedPanel)>=0)selectPanel(requestedPanel);loadAccount()}
+  function initialize(){
+    renderLocal();
+    applyLanguage(language);
+    initializePlan();
+    document.querySelectorAll("[data-panel]").forEach(function(button){button.addEventListener("click",function(){selectPanel(button.getAttribute("data-panel"))})});
+    document.querySelectorAll("[data-open-panel]").forEach(function(button){button.addEventListener("click",function(){selectPanel(button.getAttribute("data-open-panel"))})});
+    document.getElementById("language-button").addEventListener("click",function(){var order=["ru","en","ar"];applyLanguage(order[(order.indexOf(language)+1)%order.length])});
+    var dialog=document.getElementById("plan-dialog");
+    document.getElementById("edit-plan").addEventListener("click",function(){initializePlan();dialog.showModal()});
+    document.getElementById("plan-form").addEventListener("submit",function(event){if(event.submitter&&event.submitter.id==="save-plan"){plan.minutes=Math.max(10,Math.min(45,Number(document.getElementById("plan-minutes-input").value)||15));plan.focus=document.getElementById("plan-focus-input").value;plan.target=document.getElementById("plan-target-input").value.trim();writeStorage(planStorageKey,plan);renderLocal();showToast(t("planSaved"))}});
+    dialog.addEventListener("click",function(event){if(event.target===dialog)dialog.close()});
+    var params=new URLSearchParams(window.location.search);
+    var requestedPanel=params.get("panel");
+    if(["overview","courses","teacher","progress"].indexOf(requestedPanel)>=0)selectPanel(requestedPanel);
+    if(params.get("feature")==="page-recall"){
+      var feature=document.getElementById("advanced-recall-card");
+      if(feature){
+        feature.classList.add("is-feature-target");
+        window.setTimeout(function(){feature.scrollIntoView({behavior:"smooth",block:"center"});feature.focus({preventScroll:true})},180);
+      }
+    }
+    loadAccount();
+  }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initialize);else initialize();
 }());
 

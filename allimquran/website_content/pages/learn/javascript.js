@@ -970,7 +970,7 @@
   function setBrandFavicon() {
     var iconUrl = window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
       ? "allim-brand-icon.png"
-      : "/assets/allimquran/media/allim-brand-icon.png?v=74";
+      : "/assets/allimquran/media/allim-brand-icon.png?v=75";
     document.querySelectorAll('head link[rel~="icon"],head link[rel="apple-touch-icon"]').forEach(function (node) { node.remove(); });
     ["icon", "apple-touch-icon"].forEach(function (relation) {
       var link = document.createElement("link");
@@ -1550,6 +1550,18 @@
     pageRecallEyebrow: "اختبار الصفحة", pageRecallTitle: "المستوى التالي: اقرأ صفحة كاملة غيبًا", pageRecallIntro: "يبقى ترتيب السطور وعلامات الآيات كما هو ويُخفى النص. تظهر الكلمات الصحيحة بالترتيب، ويتوقف التقدّم عند الخطأ حتى تصحيحه.", pageRecallSteps: "مراحل اختبار الصفحة", pageRecallStepHide: "يُخفى النص مع بقاء هيئة الصفحة", pageRecallStepCheck: "يتابع الميكروفون الآيات بلا إعادة تشغيل", pageRecallStepCorrect: "يمنع الخطأ الانتقال حتى التصحيح", pageRecallSelected: "المختار للاختبار", pageRecallStart: "ابدأ اختبار الصفحة", pageRecallReady: "اقرأ الصفحة غيبًا", pageRecallStatus: "الصفحة {page} · تم فحص {done} من {total} آيات", pageRecallShowText: "إظهار النص", pageRecallHideText: "إخفاء النص", pageRecallFinish: "إنهاء", pageRecallStarted: "أُخفي نص الصفحة. اضغط الميكروفون وابدأ من أول آية.", pageRecallComplete: "قُرئت الصفحة كاملة غيبًا.", pageRecallStopped: "انتهى اختبار الصفحة وحُفظ تقدّم الجلسة.", pageRecallLoading: "جارٍ إعداد الصفحة للاختبار…", pageRecallWrongOrder: "تابع من الآية النشطة للمحافظة على ترتيب الصفحة.", lifeJournalVisible: "دفتر الآية متاح دائمًا هنا", recognitionInstant: "أساسي", recognitionInstantText: "ترتيب الكلمات والأخطاء الواضحة", recognitionCareful: "تدقيق", recognitionCarefulText: "مطابقة أشد للكلمات بعد الإيقاف", recognitionScopeNote: "يفحص هذا الوضع ترتيب الكلمات ومطابقتها، ولا يقيّم أحكام التجويد أو التنغيم."
   });
 
+  Object.assign(translations.ru, {
+    pageRecallAccessTier: "УРОВЕНЬ 3 · ALLIM ACADEMY", pageRecallCheckingAccess: "Проверяем доступ…", pageRecallAccessActive: "ТРЕТИЙ ДОСТУП АКТИВЕН", pageRecallThirdAccessRequired: "ДОСТУП С ПРЕПОДАВАТЕЛЕМ", pageRecallOpenAcademy: "Открыть третий доступ", pageRecallAccessError: "Открыть ALLIM Academy"
+  });
+
+  Object.assign(translations.en, {
+    pageRecallAccessTier: "LEVEL 3 · ALLIM ACADEMY", pageRecallCheckingAccess: "Checking access…", pageRecallAccessActive: "LEVEL THREE ACTIVE", pageRecallThirdAccessRequired: "TEACHER-GUIDED ACCESS", pageRecallOpenAcademy: "Open level three", pageRecallAccessError: "Open ALLIM Academy"
+  });
+
+  Object.assign(translations.ar, {
+    pageRecallAccessTier: "المستوى الثالث · أكاديمية ALLIM", pageRecallCheckingAccess: "جارٍ التحقق من الوصول…", pageRecallAccessActive: "المستوى الثالث مفعّل", pageRecallThirdAccessRequired: "وصول بإشراف المعلّم", pageRecallOpenAcademy: "افتح المستوى الثالث", pageRecallAccessError: "افتح أكاديمية ALLIM"
+  });
+
   var reciters = [
     { id: "husary", path: "Husary_128kbps", names: { ru: "Махмуд Халиль аль-Хусари", en: "Mahmoud Khalil Al-Husary", ar: "محمود خليل الحصري" } },
     { id: "alafasy", path: "Alafasy_128kbps", names: { ru: "Мишари Рашид аль-Афаси", en: "Mishari Rashid al-Afasy", ar: "مشاري راشد العفاسي" } },
@@ -1695,6 +1707,8 @@
   var linkedPageSession = null;
   var pageRecallSession = null;
   var pageRecallShowText = false;
+  var pageRecallAccessLevel = "checking";
+  var pageRecallAccessPromise = null;
   var selectedLifePrompt = "benefit";
   var activeLifeEntryId = "";
   var audioDownloadController = null;
@@ -1977,6 +1991,7 @@
     updateVerseActions();
     var openHeartDialog = document.getElementById("heart-page-dialog");
     if (openHeartDialog && openHeartDialog.open && heartCurrentPageData) renderHeartPageDialog(heartCurrentPageData);
+    updatePageRecallAccessUi();
     saveState();
   }
 
@@ -2878,6 +2893,91 @@
     }).filter(Boolean);
   }
 
+  function pageRecallAcademyUrl() {
+    var params = new URLSearchParams({ panel: "teacher", feature: "page-recall", lang: state.language });
+    return "/academy?" + params.toString();
+  }
+
+  function updatePageRecallAccessUi() {
+    var card = document.getElementById("page-recall-card");
+    var access = document.getElementById("page-recall-access");
+    var label = document.getElementById("page-recall-access-label");
+    var button = document.getElementById("start-page-recall");
+    if (!card || !button) return;
+    card.setAttribute("data-access-level", pageRecallAccessLevel);
+    card.classList.toggle("is-access-checking", pageRecallAccessLevel === "checking");
+    card.classList.toggle("is-access-active", pageRecallAccessLevel === "guided");
+    card.classList.toggle("is-access-locked", pageRecallAccessLevel !== "checking" && pageRecallAccessLevel !== "guided");
+    button.disabled = pageRecallAccessLevel === "checking";
+    var buttonLabel = button.querySelector("span");
+    if (pageRecallAccessLevel === "guided") {
+      if (label) label.textContent = t("pageRecallAccessActive");
+      if (buttonLabel) buttonLabel.textContent = t("pageRecallStart");
+      if (access) access.setAttribute("aria-label", t("pageRecallAccessActive"));
+      return;
+    }
+    if (pageRecallAccessLevel === "checking") {
+      if (label) label.textContent = t("pageRecallAccessTier");
+      if (buttonLabel) buttonLabel.textContent = t("pageRecallCheckingAccess");
+      if (access) access.setAttribute("aria-label", t("pageRecallCheckingAccess"));
+      return;
+    }
+    if (label) label.textContent = t("pageRecallThirdAccessRequired");
+    if (buttonLabel) buttonLabel.textContent = t(pageRecallAccessLevel === "error" ? "pageRecallAccessError" : "pageRecallOpenAcademy");
+    if (access) access.setAttribute("aria-label", t("pageRecallThirdAccessRequired"));
+  }
+
+  function getPageRecallAcademyAccess(force) {
+    if (!force && pageRecallAccessPromise) return pageRecallAccessPromise;
+    pageRecallAccessLevel = "checking";
+    updatePageRecallAccessUi();
+    if (window.location.protocol === "file:") {
+      pageRecallAccessLevel = "basic";
+      updatePageRecallAccessUi();
+      return Promise.resolve(pageRecallAccessLevel);
+    }
+    pageRecallAccessPromise = window.fetch("/api/method/frappe.auth.get_logged_user", {
+      credentials: "same-origin",
+      headers: { Accept: "application/json", "X-Requested-With": "XMLHttpRequest" }
+    }).then(function (response) {
+      if (!response.ok) throw new Error("academy-user-" + response.status);
+      return response.json();
+    }).then(function (payload) {
+      var user = payload && payload.message ? String(payload.message) : "Guest";
+      if (user === "Guest") return "open";
+      var query = new URLSearchParams({
+        fields: JSON.stringify(["name"]),
+        filters: JSON.stringify([["member", "=", user]]),
+        limit_page_length: "1"
+      });
+      return window.fetch("/api/resource/LMS%20Batch%20Enrollment?" + query.toString(), {
+        credentials: "same-origin",
+        headers: { Accept: "application/json", "X-Requested-With": "XMLHttpRequest" }
+      }).then(function (response) {
+        if (!response.ok) throw new Error("academy-access-" + response.status);
+        return response.json();
+      }).then(function (data) {
+        return data && Array.isArray(data.data) && data.data.length ? "guided" : "basic";
+      });
+    }).catch(function () {
+      return "error";
+    }).then(function (level) {
+      pageRecallAccessLevel = level;
+      updatePageRecallAccessUi();
+      return level;
+    });
+    return pageRecallAccessPromise;
+  }
+
+  function enterPageRecall() {
+    if (pageRecallAccessLevel === "guided") {
+      startPageRecall();
+      return;
+    }
+    if (pageRecallAccessLevel === "checking") return;
+    window.location.href = pageRecallAcademyUrl();
+  }
+
   function updatePageRecallUi() {
     var page = pageRecallSession ? pageRecallSession.pageNumber : (heartCurrentPageData && heartCurrentPageData.page);
     var total = pageRecallSession ? pageRecallSession.keys.length : (heartCurrentPageData ? getPageRecallKeys(heartCurrentPageData).length : 0);
@@ -2897,6 +2997,7 @@
       var toggleLabel = toggle.querySelector("span");
       if (toggleLabel) toggleLabel.textContent = t(pageRecallShowText ? "pageRecallHideText" : "pageRecallShowText");
     }
+    updatePageRecallAccessUi();
   }
 
   function preparePageRecall(pageData) {
@@ -2933,6 +3034,10 @@
   }
 
   function startPageRecall() {
+    if (pageRecallAccessLevel !== "guided") {
+      window.location.href = pageRecallAcademyUrl();
+      return;
+    }
     stopMemoryRecognition(true);
     navigate("read");
     setStudioMode(false);
@@ -6634,7 +6739,7 @@
       showToast(t("heartPracticeScroll"));
       startMemoryRecognition();
     });
-    document.getElementById("start-page-recall").addEventListener("click", startPageRecall);
+    document.getElementById("start-page-recall").addEventListener("click", enterPageRecall);
     document.getElementById("page-recall-mic").addEventListener("click", function () { startRecognition(false); });
     document.getElementById("toggle-page-recall-text").addEventListener("click", function () {
       if (!pageRecallSession) return;
@@ -6915,10 +7020,11 @@
     checkQuranAsrService();
     updateProgress();
     updatePageRecallUi();
+    getPageRecallAcademyAccess(false);
     var requestedView = new URLSearchParams(window.location.search).get("view");
     if (Object.prototype.hasOwnProperty.call(viewTitles, requestedView)) navigate(requestedView);
     if ("serviceWorker" in navigator && isLocalPreview) {
-      navigator.serviceWorker.register("sw.js?v=74").catch(function () {
+      navigator.serviceWorker.register("sw.js?v=75").catch(function () {
         return null;
       });
     }

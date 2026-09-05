@@ -109,10 +109,11 @@
               <div class="heart-copy"><span class="eyebrow" data-copy="heartBook">КНИГА ХИФЗА</span><h3 data-copy="heartTitle">Коран в сердце</h3><p data-copy="heartText">Страницы проявляются правильными повторениями и сохраняются регулярным возвращением.</p><a href="/learn?view=memorize" class="text-link"><span data-copy="continueHifz">Продолжить собирать</span><svg><use href="#i-arrow"/></svg></a></div>
               <div class="heart-stats"><div><strong id="heart-repetitions">0</strong><small data-copy="acceptedRepeats">принято повторений</small></div><div><strong id="heart-pages">0</strong><small data-copy="securedAyat">аятов закреплено</small></div><div><strong id="heart-due">0</strong><small data-copy="dueForReview">пора повторить</small></div></div>
             </article>
-            <article class="access-card">
-              <span class="eyebrow" data-copy="twoLevels">ДВА УРОВНЯ ОДНОГО ПУТИ</span>
-              <div class="access-line is-current"><span><svg><use href="#i-check"/></svg></span><div><strong data-copy="basicTitle">Базовый кабинет</strong><p data-copy="basicText">Личный план, Companion, хифз, повторения, курсы и история прогресса.</p></div><em data-copy="included">Включён</em></div>
-              <div class="access-line" id="guided-access-line"><span><svg><use href="#i-teacher"/></svg></span><div><strong data-copy="guidedTitle">С преподавателем</strong><p data-copy="guidedText">Расписание, задания, проверка чтения, обратная связь и учебная история.</p></div><em id="guided-status" data-copy="notConnected">Не подключён</em></div>
+            <article class="access-card" aria-labelledby="access-levels-title">
+              <span class="eyebrow" id="access-levels-title" data-copy="threeLevels">ТРИ УРОВНЯ ОДНОГО ПУТИ</span>
+              <div class="access-line" id="open-access-line"><span><strong>01</strong></span><div><strong data-copy="openTitle">Открытый доступ</strong><p data-copy="openText">Коран, чтение и базовая проверка слов — свободно, без регистрации.</p></div><em data-copy="alwaysOpen">Всегда открыт</em></div>
+              <div class="access-line" id="basic-access-line"><span><strong>02</strong></span><div><strong data-copy="basicTitle">Базовый кабинет</strong><p data-copy="basicText">Личный план, первичное обучение, «Коран в сердце», курсы и история прогресса.</p></div><em id="basic-status" data-copy="signIn">Войти</em></div>
+              <div class="access-line" id="guided-access-line"><span><strong>03</strong></span><div><strong data-copy="guidedTitle">ALLIM Academy с преподавателем</strong><p data-copy="guidedText">Углублённая проверка страницы наизусть, живое исправление, задания, расписание и обратная связь.</p></div><em id="guided-status" data-copy="notConnected">Не подключён</em></div>
               <button class="text-button" type="button" data-open-panel="teacher"><span data-copy="seeGuided">Посмотреть сопровождение</span><svg><use href="#i-arrow"/></svg></button>
             </article>
           </div>
@@ -133,6 +134,23 @@
               <article><span><svg><use href="#i-message"/></svg></span><div><small data-copy="feedback">Обратная связь</small><strong id="feedback-status" data-copy="noFeedback">Новых комментариев нет</strong><p data-copy="feedbackHint">Комментарии относятся к конкретному заданию или чтению.</p></div></article>
             </div>
           </div>
+          <article class="advanced-recall-card" id="advanced-recall-card" data-access-state="locked" aria-labelledby="advanced-recall-title" tabindex="-1">
+            <div class="advanced-recall-number" aria-hidden="true">03</div>
+            <div class="advanced-recall-copy">
+              <span class="eyebrow" data-copy="advancedRecallEyebrow">ПРОДВИНУТАЯ ПРАКТИКА ХИФЗА</span>
+              <h3 id="advanced-recall-title" data-copy="advancedRecallTitle">Проверка страницы наизусть</h3>
+              <p data-copy="advancedRecallText">Настоящая геометрия мусхафа остаётся на экране, текст скрывается, а правильные слова проявляются по порядку. Результат можно разбирать вместе с преподавателем.</p>
+              <ul>
+                <li data-copy="advancedRecallPoint1">Связное чтение всей страницы</li>
+                <li data-copy="advancedRecallPoint2">Остановка на ошибке до исправления</li>
+                <li data-copy="advancedRecallPoint3">Учебная проверка между живыми занятиями</li>
+              </ul>
+            </div>
+            <div class="advanced-recall-action">
+              <span class="access-pill muted" id="advanced-recall-status"><i></i><span data-copy="thirdAccessLocked">Доступно после зачисления</span></span>
+              <a class="primary-button" id="advanced-recall-action" href="/lms/courses"><span data-copy="chooseProgram">Выбрать программу</span><svg><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
           <aside class="trust-banner"><svg><use href="#i-teacher"/></svg><p><strong data-copy="humanTrust">Преподаватель остаётся центральным.</strong><span data-copy="humanTrustText">Автоматическая проверка помогает между уроками, но не заменяет живое исправление и не выдаёт иджазу.</span></p></aside>
         </section>
 

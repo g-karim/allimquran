@@ -1,4 +1,4 @@
-<link rel="icon" href="/assets/allimquran/media/allim-brand-icon.png?v=74" type="image/png"><link rel="apple-touch-icon" href="/assets/allimquran/media/allim-brand-icon.png?v=74"><div class="allim-web-root"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
+<link rel="icon" href="/assets/allimquran/media/allim-brand-icon.png?v=75" type="image/png"><link rel="apple-touch-icon" href="/assets/allimquran/media/allim-brand-icon.png?v=75"><div class="allim-web-root"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
 
   <div class="allim-system-intro" id="allim-system-intro" data-stage="ornament" role="status" aria-live="polite" aria-label="Подготовка ALLIM">
     <div class="system-intro-frame">
@@ -71,7 +71,7 @@
   <div class="app-shell">
     <aside class="sidebar" aria-label="Основная навигация" data-i18n-aria="mainNav">
       <a class="brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home">
-        <img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=74" alt="" aria-hidden="true">
+        <img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=75" alt="" aria-hidden="true">
         <span class="brand-copy"><strong>ALLIM</strong><small>Qur’an Companion</small><span class="brand-dua-mini" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span></span>
       </a>
 
@@ -106,7 +106,7 @@
 
     <div class="workspace">
       <header class="topbar">
-        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=74" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
+        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=75" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
         <div class="topbar-context">
           <span class="eyebrow topbar-dua" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span>
           <h1 id="view-title" data-i18n="todayTitle">Сегодня</h1>
@@ -128,7 +128,7 @@
             <strong data-i18n="secureContextRequired">Микрофон заблокирован режимом открытия файла</strong>
             <p data-i18n="secureContextText">Не открывайте index.html двойным нажатием. Запустите приложение через локальный адрес — тогда заработают микрофон, распознавание и офлайн-режим.</p>
           </div>
-          <a class="primary-button compact" href="http://localhost:4174/?v=74" data-i18n="openServerVersion">Открыть рабочую версию</a>
+          <a class="primary-button compact" href="http://localhost:4174/?v=75" data-i18n="openServerVersion">Открыть рабочую версию</a>
         </aside>
 
         <section class="view is-active" id="view-today" data-view-panel="today" aria-labelledby="today-heading">
@@ -543,7 +543,7 @@
             </div>
             <button class="text-button" id="reset-memory" type="button"><svg><use href="#i-reset"/></svg><span data-i18n="startAgain">Начать заново</span></button>
           </div>
-          <section class="page-recall-card" aria-labelledby="page-recall-title">
+          <section class="page-recall-card is-access-checking" id="page-recall-card" aria-labelledby="page-recall-title" data-access-level="checking">
             <div class="page-recall-card-icon"><svg><use href="#i-brain"/></svg><span>02</span></div>
             <div class="page-recall-card-copy">
               <span class="kicker" data-i18n="pageRecallEyebrow">ПРОВЕРКА СТРАНИЦЫ</span>
@@ -556,8 +556,9 @@
               </div>
             </div>
             <div class="page-recall-card-action">
+              <span class="page-recall-access" id="page-recall-access"><svg><use href="#i-shield"/></svg><small id="page-recall-access-label" data-i18n="pageRecallAccessTier">УРОВЕНЬ 3 · ALLIM ACADEMY</small></span>
               <span><small data-i18n="pageRecallSelected">ВЫБРАНО ДЛЯ ПРОВЕРКИ</small><strong id="page-recall-card-page" data-i18n="heartPageLoadingShort">Определяем страницу…</strong></span>
-              <button class="primary-button" id="start-page-recall" type="button"><span data-i18n="pageRecallStart">Начать проверку страницы</span><svg><use href="#i-arrow"/></svg></button>
+              <button class="primary-button" id="start-page-recall" type="button" aria-describedby="page-recall-access-label"><span data-i18n="pageRecallCheckingAccess">Проверяем доступ…</span><svg><use href="#i-arrow"/></svg></button>
             </div>
           </section>
           <div class="study-library">

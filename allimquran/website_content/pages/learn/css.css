@@ -1646,10 +1646,17 @@ body.reader-studio .recitation-panel { position: sticky; z-index: 30; bottom: 18
 .page-recall-features b { display: grid; width: 21px; height: 21px; flex: 0 0 21px; place-items: center; border-radius: 7px; color: var(--forest-2); background: var(--mint-2); font-size: 7px; }
 .page-recall-features small { color: var(--ink-soft); font-size: 8px; line-height: 1.3; }
 .page-recall-card-action { display: grid; gap: 10px; padding: 13px; border: 1px solid rgba(185,119,36,.2); border-radius: 17px; background: rgba(255,252,243,.88); }
+.page-recall-access { display: flex !important; min-height: 32px; grid-template-columns: none !important; flex-direction: row !important; align-items: center; gap: 7px !important; padding: 6px 8px; border: 1px solid rgba(128,99,42,.16); border-radius: 11px; background: rgba(255,255,255,.68); }
+.page-recall-access svg { width: 17px; height: 17px; flex: 0 0 17px; color: #8b672b; }
+.page-recall-card.is-access-active .page-recall-access { border-color: rgba(28,90,76,.22); background: #e7f3ee; }
+.page-recall-card.is-access-active .page-recall-access svg { color: var(--forest-2); }
+.page-recall-card.is-access-locked .page-recall-card-action { border-color: rgba(132,99,40,.24); background: linear-gradient(145deg,#fffcf3,#f8eed6); }
+.page-recall-card.is-access-checking .page-recall-card-action { opacity: .78; }
 .page-recall-card-action > span { display: grid; gap: 3px; }
 .page-recall-card-action small { color: #81693e; font-size: 8px; font-weight: 830; letter-spacing: .08em; }
 .page-recall-card-action strong { color: var(--forest); font-family: Georgia,"Times New Roman",serif; font-size: 17px; }
 .page-recall-card-action .primary-button { width: 100%; min-height: 48px; justify-content: space-between; border-radius: 15px; white-space: normal; text-align: start; }
+.page-recall-card.is-access-locked .page-recall-card-action .primary-button { color: #fff; background: #785b2b; }
 
 .page-recall-dock { display: none; }
 body.page-recall-mode .page-recall-dock { position: fixed; z-index: 72; inset: auto 18px 18px 18px; display: grid; min-height: 64px; grid-template-columns: auto minmax(150px,1fr) auto auto auto; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid rgba(189,201,195,.88); border-radius: 18px; background: rgba(255,254,250,.94); box-shadow: 0 18px 46px rgba(23,49,43,.18); backdrop-filter: blur(18px); }
