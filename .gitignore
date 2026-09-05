@@ -1,0 +1,54 @@
+# Python and tooling
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ruff_cache/
+.pytest_cache/
+.coverage*
+htmlcov/
+build/
+dist/
+
+# JavaScript dependencies and generated bundles
+node_modules/
+allimquran/public/dist/
+
+# Local configuration, production data and credentials
+.env
+.env.*
+!.env.example
+site_config.json
+common_site_config.json
+sites/
+private/
+backups/
+logs/
+*.log
+*.sql
+*.sql.gz
+*.db
+*.sqlite*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Model weights, caches and user recordings
+cache/
+models/
+recordings/
+uploads/
+*.safetensors
+*.pt
+*.pth
+*.onnx
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo

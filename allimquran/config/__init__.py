@@ -1,0 +1,1 @@
+"""ALLIM Quran application configuration."""
