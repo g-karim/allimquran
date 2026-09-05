@@ -25,6 +25,7 @@ common_site_config.json
 sites/
 private/
 backups/
+.migration/
 logs/
 *.log
 *.sql

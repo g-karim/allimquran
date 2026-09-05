@@ -1,0 +1,650 @@
+[
+  {
+    "name": "ar/blog/300-repetitions-quran-memorization",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ar_SA",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ru/blog/300-povtorenij-dlya-zauchivaniya-korana",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ru_RU",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "blog/300-repetitions-quran-memorization",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "en_US",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ar/blog/quran-recitation-ai",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ar_SA",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ar/blog/quran-memorization-review",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ar_SA",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ar/blog/learn-quranic-alphabet",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ar_SA",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ar/blog",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "website",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ar_SA",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ru/blog/ii-dlya-chteniya-korana",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ru_RU",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ru/blog/sistema-povtoreniya-korana",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ru_RU",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ru/blog/arabskij-alfavit-dlya-chteniya-korana",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ru_RU",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "ru/blog",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "website",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "ru_RU",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "blog/quran-recitation-ai-guide",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "en_US",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "blog/quran-memorization-review-system",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "en_US",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "blog/learn-quranic-alphabet",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "article",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "en_US",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "blog",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "website",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "en_US",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "academy",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "website",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "en_US",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "learn",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "website",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "en_US",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "home",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "og:site_name",
+        "value": "ALLIM Qur’an",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "og:type",
+        "value": "website",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "og:locale",
+        "value": "en_US",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  }
+]

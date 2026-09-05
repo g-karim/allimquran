@@ -1,49 +1,53 @@
-# Architecture and migration direction
+# Architecture — migrated prototype 0.1.0
 
-## Foundation release: 0.0.1
+| Component | Source of truth | Runtime |
+| --- | --- | --- |
+| 19 pages (18 public, one draft) | website_content/pages | Native Frappe Web Page |
+| Three trial forms | website_content/forms | Native Frappe Web Form |
+| Inquiry schema | allim_quran/doctype | Existing table, standard app DocType |
+| SEO, redirects, public defaults | website_content/*.json | Frappe settings/meta |
+| Public media | public/media | /assets/allimquran/media/ |
+| Speech and Quran APIs | asr/server.py | Separate FastAPI service |
+| Users, requests, courses, enrollments | Site database | Frappe and LMS |
+| Companion progress / personal plan | Browser storage | Existing JS |
 
-`allimquran` is a Frappe version-16 application. Its initial module is
-`ALLIM Quran`, located in `allimquran/allim_quran/`.
+## Deliberately preserved
 
-The foundation registers application metadata and the module. It has no custom
-DocTypes, request handlers, scheduled jobs, installation callbacks or fixtures.
-It does not override another app or claim existing website routes.
+This migration moves ownership, not product behavior. Large embedded prototype
+data structures and inline scripts are preserved. Only project media URLs change
+from /files/allim-* to app assets. HTML, CSS and JavaScript fields are separate
+editable files. Document names, routes, publication flags, translations, form
+permissions and storage keys (`quran-companion-prototype-v4`,
+`allim-academy-plan-v1`) remain unchanged.
 
-## Existing prototype
+There is no custom router or renderer. Frappe owns rendering, authentication, CSRF
+and form submission. setup.sync materializes source into native runtime documents.
 
-The live prototype currently has these boundaries:
+## Synchronization
 
-| Component | Current owner |
-| --- | --- |
-| Landing page, Companion, student cabinet and articles | Frappe `Web Page` records in the site's database |
-| Authentication, courses and course enrollment | Frappe and LMS |
-| Companion progress and personal plan | Browser storage |
-| Quran page and word data | Separate HTTP service proxying Quran Foundation data |
-| Server speech recognition | Separate FastAPI service using a Quran Whisper model |
-| Public media | Site files and external recitation/font providers |
+The preflight compares managed fields against the export baseline, the previously
+installed fingerprint and desired source. Audit timestamps and random child IDs
+are ignored. Unreconciled Desk edits abort before writes. A Redis lock serializes
+ALLIM sync operations; records are checked again before each save. Normal Frappe
+timestamp checks remain enabled.
 
-The initial repository contains the foundation only. A fresh installation does
-not reproduce the live prototype.
+The `allimquran_source_state` value lives in the site's DefaultValue table, not Git.
+An unchanged deployment does not save documents. Site DML commits after successful
+synchronization. Schema imports can execute DDL and commit, so backups are still
+required. before_migrate guards before framework schema sync; after_migrate syncs
+website source; after_install installs public defaults. No app hook calls systemd,
+downloads a model, restarts workers or edits nginx.
 
-## Where new code belongs
+The trial-request table is adopted with the same fields and record names.
+System Manager permissions are preserved. Frappe supports anonymous submission;
+anonymous listing and editing of stored requests remain disabled.
 
-- Put website routes in `allimquran/www/`, shared markup in `templates/`, and
-  browser assets in `public/`.
-- Put app-owned DocTypes and Desk pages in `allimquran/allim_quran/`.
-- Add versioned data migrations to `patches/` and register them in `patches.txt`.
-- Add optional integrations with explicit requirements when their features land.
-  The base app should remain installable without private apps or production data.
+## Boundaries
 
-## Planned migration
+LMS is required for Academy integration. Frappe/LMS are not vendored. Private apps
+and production site configuration are not bundled. Optional ASR keeps a separate
+virtual environment and model cache. Nginx exposes the existing same-origin
+/api/quran-asr, /api/mushaf/* and /api/quran/words/* endpoints.
 
-First export and review the existing page source, split shared code into modules,
-and establish reproducible builds and checks. Transfer route ownership with a
-documented rollback and preserve the current URLs and learning state.
-
-Next define account-backed progress, permissions and a versioned import from
-browser storage. The speech-recognition service can then be versioned with
-documented requests, resource limits and a reviewed evaluation set.
-
-Operational configuration must be reproducible without embedding deployment
-hosts, credentials or site data in this public repository. Production-specific
-backups and rollback records stay outside Git.
+This migration does not imply a progress database, model upgrade, curriculum,
+offline/PWA guarantee or theological/content audit.

@@ -1,0 +1,14 @@
+
+body { background:#f4f2ec; color:#17352e; }
+.navbar, .web-footer, footer { display:none!important; }
+.page-content-wrapper, .web-page-content { max-width:none!important; padding:0!important; }
+.web-form-container { max-width:760px; margin:42px auto; padding:clamp(22px,4vw,44px); border:1px solid #d7ddd8; border-radius:24px; background:#fffdf8; box-shadow:0 24px 70px rgba(31,65,56,.1); direction:rtl;text-align:right; }
+.web-form-container h1 { font-family:Georgia,'Times New Roman',serif; letter-spacing:-.035em; }
+.web-form-container .btn-primary { min-height:48px; padding-inline:22px; border:0; border-radius:14px; background:#244f45; }
+.web-form-container .form-control { min-height:46px; border-radius:12px; }
+.frappe-control[data-fieldname="learner_stage"],
+.frappe-control[data-fieldname="learning_goal"],
+.frappe-control[data-fieldname="recommended_route"],
+.frappe-control[data-fieldname="daily_minutes"],
+.frappe-control[data-fieldname="language"],
+.frappe-control[data-fieldname="source"] { display:none!important; }
