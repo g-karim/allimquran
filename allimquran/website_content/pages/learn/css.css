@@ -785,6 +785,7 @@ body.mushaf-view .mushaf-page { position: relative; z-index: 2; display: grid; m
 .recognition-mode-grid button small { overflow: hidden; color: var(--ink-soft); font-size: 9px; line-height: 1.32; text-overflow: ellipsis; }
 .recognition-mode-grid button[aria-pressed="true"] small { color: rgba(255,255,255,.68); }
 .recognition-mode-grid button:disabled { opacity: .45; cursor: not-allowed; }
+.recognition-scope-note { display: block; margin-top: 8px; color: var(--ink-soft); font-size: 8px; line-height: 1.45; }
 .recognition-choice-memory { margin: 16px 0 4px; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: rgba(247,246,241,.84); }
 .live-transcript { display: grid; gap: 10px; padding: 20px 24px; border-top: 1px solid rgba(220,222,215,.72); background: rgba(255,254,250,.88); }
 .live-transcript > div { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -1321,8 +1322,22 @@ dialog > p { margin: 0; padding: 0 28px; color: var(--ink-soft); line-height: 1.
 .heart-legend-sample { display: block; width: 34px; height: 5px; border-radius: 999px; background: var(--mushaf-page-ink); }
 .heart-legend-sample.is-ghost { opacity: .08; }.heart-legend-sample.is-building { opacity: .48; }.heart-legend-sample.is-complete { opacity: 1; }
 .heart-page-dialog-actions { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 0; }
-.heart-page-dialog-actions button { width: 100%; min-width: 0; min-height: 50px; white-space: normal; text-align: center; }
-.heart-page-dialog-actions button:disabled { cursor: not-allowed; opacity: .46; transform: none; }
+.heart-page-next-step { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 2px 2px 0; }
+.heart-page-next-step span { flex: 0 0 auto; color: #88734c; font-size: 8px; font-weight: 850; letter-spacing: .12em; }
+.heart-page-next-step strong { color: var(--forest); font-size: 10px; line-height: 1.35; text-align: end; }
+.heart-page-dialog-actions button { width: 100%; min-width: 0; min-height: 58px; justify-content: space-between; padding: 9px 14px 9px 17px; white-space: normal; text-align: start; }
+.heart-page-dialog-actions button > svg { width: 19px; height: 19px; flex: 0 0 auto; }
+.heart-action-copy { display: grid; gap: 3px; min-width: 0; }
+.heart-action-copy strong { font-size: 12px; line-height: 1.25; }
+.heart-action-copy small { color: inherit; font-size: 9px; font-weight: 680; line-height: 1.3; opacity: .72; }
+.heart-page-primary-action { border-color: var(--forest); background: linear-gradient(135deg,var(--forest),#1b6757); box-shadow: 0 10px 24px rgba(18,61,52,.18); }
+.heart-page-linked-action[data-state="locked"] { cursor: not-allowed; opacity: 1; color: #66736e; border: 1px dashed #b9c1bd; background: repeating-linear-gradient(135deg,#eef0ed 0,#eef0ed 9px,#e8ebe8 9px,#e8ebe8 18px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.52); transform: none; }
+.heart-page-linked-action[data-state="locked"] strong::before { display: inline-block; margin-inline-end: 6px; color: #718078; content: "●"; font-size: 8px; transform: translateY(-1px); }
+.heart-page-linked-action[data-state="locked"] small { opacity: .9; }
+.heart-page-linked-action[data-state="locked"]:hover { border-color: #b9c1bd; background: repeating-linear-gradient(135deg,#eef0ed 0,#eef0ed 9px,#e8ebe8 9px,#e8ebe8 18px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.52); transform: none; }
+.heart-page-linked-action[data-state="ready"],.heart-page-linked-action[data-state="active"],.heart-page-linked-action[data-state="saved"] { color: white; }
+.heart-page-linked-action[data-state="active"] { background: linear-gradient(135deg,#1a6958,#237b68); box-shadow: 0 0 0 4px rgba(38,122,90,.11),0 12px 26px rgba(18,61,52,.2); }
+.heart-page-linked-action[data-state="active"] strong::before { display: inline-block; width: 7px; height: 7px; margin-inline-end: 7px; border-radius: 50%; background: #93e5c8; box-shadow: 0 0 0 5px rgba(147,229,200,.13); content: ""; }
 .toast { position: fixed; z-index: 100; inset-inline-end: 24px; inset-block-end: 24px; max-width: min(360px, calc(100% - 32px)); padding: 14px 18px; border-radius: 16px; color: white; background: var(--forest); box-shadow: var(--shadow); opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .2s, transform .2s; }
 .toast.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -1617,6 +1632,69 @@ body.reader-studio .recitation-panel { position: sticky; z-index: 30; bottom: 18
   body.reader-studio .recitation-panel { bottom: 8px; margin: 0 8px 8px; }
 }
 
+/* Hifz level two: recall a complete Mushaf page without changing its geometry. */
+.page-recall-card { display: grid; max-width: 1180px; grid-template-columns: auto minmax(0,1fr) minmax(250px,330px); align-items: center; gap: 20px; margin: 18px auto 0; padding: 22px 24px; border: 1px solid rgba(28,90,76,.2); border-radius: 22px; background: linear-gradient(125deg,#fdfcf7 0,#f5faf7 62%,#edf6f1 100%); box-shadow: 0 18px 50px rgba(23,49,43,.075); }
+.page-recall-card-icon { position: relative; display: grid; width: 58px; height: 58px; place-items: center; border-radius: 18px; color: white; background: linear-gradient(145deg,var(--forest-2),#27816b); box-shadow: 0 12px 28px rgba(28,90,76,.2); }
+.page-recall-card-icon svg { width: 27px; height: 27px; }
+.page-recall-card-icon span { position: absolute; inset: -7px -7px auto auto; display: grid; width: 23px; height: 23px; place-items: center; border: 3px solid #f7faf7; border-radius: 50%; color: var(--forest); background: var(--gold-soft); font-size: 8px; font-weight: 850; }
+[dir="rtl"] .page-recall-card-icon span { inset: -7px auto auto -7px; }
+.page-recall-card-copy { min-width: 0; }
+.page-recall-card-copy h3 { margin: 4px 0 6px; font-family: Georgia,"Times New Roman",serif; font-size: clamp(22px,2.25vw,31px); font-weight: 500; line-height: 1.12; }
+.page-recall-card-copy > p { max-width: 760px; margin: 0; color: var(--ink-soft); font-size: 11px; line-height: 1.55; }
+.page-recall-features { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+.page-recall-features > span { display: inline-flex; min-height: 34px; align-items: center; gap: 7px; padding: 6px 9px; border: 1px solid rgba(28,90,76,.12); border-radius: 12px; background: rgba(255,255,255,.72); }
+.page-recall-features b { display: grid; width: 21px; height: 21px; flex: 0 0 21px; place-items: center; border-radius: 7px; color: var(--forest-2); background: var(--mint-2); font-size: 7px; }
+.page-recall-features small { color: var(--ink-soft); font-size: 8px; line-height: 1.3; }
+.page-recall-card-action { display: grid; gap: 10px; padding: 13px; border: 1px solid rgba(185,119,36,.2); border-radius: 17px; background: rgba(255,252,243,.88); }
+.page-recall-card-action > span { display: grid; gap: 3px; }
+.page-recall-card-action small { color: #81693e; font-size: 8px; font-weight: 830; letter-spacing: .08em; }
+.page-recall-card-action strong { color: var(--forest); font-family: Georgia,"Times New Roman",serif; font-size: 17px; }
+.page-recall-card-action .primary-button { width: 100%; min-height: 48px; justify-content: space-between; border-radius: 15px; white-space: normal; text-align: start; }
+
+.page-recall-dock { display: none; }
+body.page-recall-mode .page-recall-dock { position: fixed; z-index: 72; inset: auto 18px 18px 18px; display: grid; min-height: 64px; grid-template-columns: auto minmax(150px,1fr) auto auto auto; align-items: center; gap: 10px; padding: 8px 10px; border: 1px solid rgba(189,201,195,.88); border-radius: 18px; background: rgba(255,254,250,.94); box-shadow: 0 18px 46px rgba(23,49,43,.18); backdrop-filter: blur(18px); }
+[dir="rtl"] body.page-recall-mode .page-recall-dock { inset: auto 18px 18px 18px; }
+.page-recall-dock-icon { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 13px; color: white; background: var(--forest-2); }
+.page-recall-dock-icon svg { width: 20px; height: 20px; }
+.page-recall-dock-copy { display: grid; min-width: 0; gap: 2px; }
+.page-recall-dock-copy small { color: #8a6a31; font-size: 7px; font-weight: 850; letter-spacing: .1em; }
+.page-recall-dock-copy strong { overflow: hidden; color: var(--forest); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.page-recall-dock-copy span { color: var(--ink-soft); font-size: 9px; font-variant-numeric: tabular-nums; }
+.page-recall-dock button { min-height: 42px; border-radius: 13px; }
+.page-recall-dock button svg { display: block; width: 18px; height: 18px; flex: 0 0 18px; }
+body.page-recall-mode .recitation-panel { display: none; }
+
+body.page-recall-mode:not(.page-recall-show-text) .mushaf-glyph:not(.is-ayah-end):not(.is-recognized):not(.is-warning):not(.is-error) { color: transparent !important; text-shadow: none !important; background: linear-gradient(to left,rgba(28,90,76,.15),rgba(28,90,76,.15)) bottom 25% center/88% 1px no-repeat; box-shadow: none; pointer-events: none; }
+body.page-recall-mode.page-recall-show-text .mushaf-glyph:not(.is-ayah-end) { color: var(--mushaf-page-ink) !important; background: transparent; pointer-events: auto; }
+body.page-recall-mode .mushaf-glyph.is-ayah-end { color: color-mix(in srgb,var(--mushaf-page-ink) 72%,transparent); }
+body.page-recall-mode .mushaf-glyph.is-recognized { color: #16705b !important; background: rgba(36,152,116,.11); }
+body.page-recall-mode .mushaf-glyph.is-warning { color: #9a6d1f !important; background: rgba(224,177,68,.15); }
+body.page-recall-mode .mushaf-glyph.is-error { color: #a44841 !important; background: rgba(192,75,66,.13); }
+body.page-recall-mode .mushaf-page-toolbar { padding-inline-end: 86px; }
+
+@media (max-width: 860px) {
+  .page-recall-card { grid-template-columns: auto minmax(0,1fr); }
+  .page-recall-card-action { grid-column: 1 / -1; grid-template-columns: minmax(0,1fr) minmax(220px,.7fr); align-items: center; }
+}
+
+@media (max-width: 620px) {
+  .page-recall-card { grid-template-columns: 46px minmax(0,1fr); gap: 12px; margin-top: 12px; padding: 15px; border-radius: 19px; }
+  .page-recall-card-icon { width: 46px; height: 46px; border-radius: 14px; }
+  .page-recall-card-copy h3 { font-family: var(--sans); font-size: 17px; }
+  .page-recall-card-copy > p { font-size: 10px; }
+  .page-recall-features { display: grid; }
+  .page-recall-features > span { width: 100%; }
+  .page-recall-card-action { grid-template-columns: 1fr; padding: 10px; }
+  body.page-recall-mode .mushaf-page-toolbar { padding-inline-end: 0; }
+  body.page-recall-mode .page-recall-dock { inset: auto 6px calc(6px + env(safe-area-inset-bottom)) 6px; min-height: 54px; grid-template-columns: auto minmax(0,1fr) auto auto auto; gap: 5px; padding: 6px; border-radius: 16px; }
+  [dir="rtl"] body.page-recall-mode .page-recall-dock { inset: auto 6px calc(6px + env(safe-area-inset-bottom)) 6px; }
+  .page-recall-dock-icon { width: 38px; height: 38px; border-radius: 12px; }
+  .page-recall-dock-copy small { display: none; }
+  .page-recall-dock-copy strong { font-size: 10px; }
+  .page-recall-dock button { width: 38px; min-width: 38px; height: 38px; min-height: 38px; padding: 0; justify-content: center; }
+  .page-recall-dock button span { display: none; }
+}
+
 @media (max-width: 390px) {
   .topbar-context { display: none; }
   .heart-metrics { gap: 6px; }
@@ -1753,7 +1831,9 @@ body.mushaf-view .auto-advance-notice { position: fixed; z-index: 69; inset: aut
   .heart-page-rail { grid-template-columns: 1fr; }
   .heart-page-connected { padding: 12px; }
   .heart-page-legend { display: none; }
-  .heart-page-dialog-actions { grid-template-columns: 1fr; }
+  .heart-page-dialog-actions { position: sticky; z-index: 3; bottom: -16px; grid-template-columns: 1fr; margin: 0 -4px -16px; padding: 10px 4px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(220,222,215,.8); background: linear-gradient(180deg,rgba(255,254,250,.9),#fffefa 18%); box-shadow: 0 -12px 28px rgba(25,48,40,.08); backdrop-filter: blur(16px); }
+  .heart-page-dialog-actions button { min-height: 56px; }
+  .heart-page-next-step { margin-inline: 4px; }
 }
 
 /* Full-page reading flow: the page keeps a physical Mushaf proportion and controls never cover it. */

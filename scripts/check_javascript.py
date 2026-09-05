@@ -34,7 +34,8 @@ class Scripts(HTMLParser):
 
 
 def main():
-	root = Path(__file__).resolve().parents[1] / "allimquran" / "website_content"
+	app = Path(__file__).resolve().parents[1] / "allimquran"
+	root = app / "website_content"
 	count = 0
 	for path in sorted(root.rglob("*")):
 		if path.suffix == ".js":
@@ -50,6 +51,9 @@ def main():
 			if result.returncode:
 				raise SystemExit(f"JavaScript syntax error in {path} script {index}:\n{result.stderr}")
 			count += 1
+	for path in (app / "allim_quran" / "page").rglob("*.js"):
+		subprocess.run(["node", "--check", str(path)], check=True)
+		count += 1
 	print(f"JavaScript syntax OK: {count} standalone/inline scripts")
 
 

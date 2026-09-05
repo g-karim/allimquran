@@ -9,7 +9,7 @@ const results = [];
 try {
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
     const context = await browser.newContext({ viewport, reducedMotion: "reduce" });
-    for (const route of ["/", "/learn", "/academy", "/ru/blog", "/academy-trial"]) {
+    for (const route of ["/", "/learn", "/academy", "/ru/blog", "/ar/blog", "/tr/blog", "/tr/blog/dijital-mushaf-okuma-anlama-hatirlama", "/academy-trial"]) {
       const page = await context.newPage();
       const errors = [];
       page.on("pageerror", error => errors.push(error.message));

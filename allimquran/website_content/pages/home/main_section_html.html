@@ -249,19 +249,36 @@
           <p class="eyebrow" data-copy="intelligenceEyebrow">Qur’anic intelligence, with boundaries</p>
           <h2 id="intelligence-title" data-copy="intelligenceTitle">An AI companion that knows when to listen — and when not to invent.</h2>
           <p data-copy="intelligenceLead">ALLIM is designed around verified Qur’anic text, clear source attribution and honest uncertainty. It should help the learner navigate trusted knowledge, never present a generated guess as tafsir or a machine score as a teacher’s ijazah.</p>
-          <div class="intelligence-points">
-            <div><span>01</span><p><strong data-copy="aiRecitationTitle">Recitation intelligence</strong><small data-copy="aiRecitationText">Word order, omissions and correction gates — with adjustable sound cues and strict mode.</small></p></div>
-            <div><span>02</span><p><strong data-copy="aiMemoryTitle">Memory intelligence</strong><small data-copy="aiMemoryText">A review queue shaped by hesitation, mistakes, strength and time since the last recall.</small></p></div>
-            <div><span>03</span><p><strong data-copy="aiKnowledgeTitle">Knowledge intelligence</strong><small data-copy="aiKnowledgeText">Answers constrained by connected sources, with Arabic text, translation and attribution shown together.</small></p></div>
+          <div class="intelligence-points" aria-label="AI capabilities">
+            <button class="intelligence-point is-active" type="button" data-ai-flow="recitation" aria-pressed="true" aria-controls="ai-knowledge-map"><span>01</span><p><strong data-copy="aiRecitationTitle">Recitation intelligence</strong><small data-copy="aiRecitationText">Word order, omissions and correction gates — with adjustable sound cues and strict mode.</small></p><i aria-hidden="true"><svg><use href="#i-arrow"/></svg></i></button>
+            <button class="intelligence-point" type="button" data-ai-flow="memory" aria-pressed="false" aria-controls="ai-knowledge-map"><span>02</span><p><strong data-copy="aiMemoryTitle">Memory intelligence</strong><small data-copy="aiMemoryText">A review queue shaped by hesitation, mistakes, strength and time since the last recall.</small></p><i aria-hidden="true"><svg><use href="#i-arrow"/></svg></i></button>
+            <button class="intelligence-point" type="button" data-ai-flow="knowledge" aria-pressed="false" aria-controls="ai-knowledge-map"><span>03</span><p><strong data-copy="aiKnowledgeTitle">Knowledge intelligence</strong><small data-copy="aiKnowledgeText">Answers constrained by connected sources, with Arabic text, translation and attribution shown together.</small></p><i aria-hidden="true"><svg><use href="#i-arrow"/></svg></i></button>
           </div>
         </div>
-        <div class="knowledge-map" aria-label="Source-bound knowledge preview">
+        <div class="knowledge-map" id="ai-knowledge-map" data-active-flow="recitation" aria-label="Source-bound knowledge preview">
           <div class="map-glow"></div>
-          <div class="map-node node-main"><span lang="ar">هُدًى</span><small data-copy="mapGuidance">guidance</small></div>
+          <div class="map-stage" aria-live="polite">
+            <span aria-hidden="true"></span>
+            <strong class="map-stage-label" data-copy="mapStageRecitation">Listening and matching the ayah</strong>
+          </div>
+          <div class="map-node node-listen"><span><svg><use href="#i-wave"/></svg></span><strong data-copy="aiRecitationTitle">Recitation intelligence</strong><small class="map-wave-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></small></div>
+          <div class="map-node node-main"><span lang="ar">هُدًى</span><small data-copy="mapGuidance">guidance</small><i aria-hidden="true"><svg><use href="#i-check"/></svg></i></div>
           <div class="map-node node-root"><strong data-copy="mapRoot">Root</strong><span lang="ar">ه د ي</span></div>
           <div class="map-node node-tafsir"><strong data-copy="mapTafsir">Tafsir</strong><span data-copy="mapTafsirText">Qur’an by Qur’an</span></div>
+          <div class="map-node node-memory"><span><svg><use href="#i-repeat"/></svg></span><strong data-copy="aiMemoryTitle">Memory intelligence</strong><small class="map-memory-score"><b>72%</b><i>19:40</i></small></div>
           <div class="map-node node-action"><strong data-copy="mapAction">Today</strong><span data-copy="mapActionText">One guided action</span></div>
-          <svg class="map-lines" viewBox="0 0 500 500" aria-hidden="true"><path d="M250 245C182 198 142 170 97 128"/><path d="M256 244C328 190 370 154 416 118"/><path d="M250 258C300 324 338 357 397 391"/></svg>
+          <svg class="map-lines" viewBox="0 0 500 500" preserveAspectRatio="none" aria-hidden="true">
+            <path class="map-path path-listen" d="M72 250C132 250 166 245 205 245"/>
+            <path class="map-path path-root" d="M242 218C188 180 142 155 98 116"/>
+            <path class="map-path path-tafsir" d="M260 218C326 174 368 144 416 108"/>
+            <path class="map-path path-memory" d="M235 282C184 322 140 356 93 405"/>
+            <path class="map-path path-action" d="M264 282C307 328 345 357 400 402"/>
+            <circle class="map-particle particle-listen" r="4"><animateMotion dur="1.7s" repeatCount="indefinite" path="M72 250C132 250 166 245 205 245"/></circle>
+            <circle class="map-particle particle-root" r="4"><animateMotion dur="1.8s" repeatCount="indefinite" path="M242 218C188 180 142 155 98 116"/></circle>
+            <circle class="map-particle particle-tafsir" r="4"><animateMotion dur="2s" repeatCount="indefinite" path="M260 218C326 174 368 144 416 108"/></circle>
+            <circle class="map-particle particle-memory" r="4"><animateMotion dur="1.9s" repeatCount="indefinite" path="M235 282C184 322 140 356 93 405"/></circle>
+            <circle class="map-particle particle-action" r="4"><animateMotion dur="2.1s" repeatCount="indefinite" path="M264 282C307 328 345 357 400 402"/></circle>
+          </svg>
         </div>
       </div>
     </section>

@@ -49,6 +49,8 @@ def export(site, destination):
 				"Web Form", filters={"doc_type": "ALLIM Trial Lesson Request"}, pluck="name"
 			)
 		]
+		doctype_names = set(frappe.get_all("DocType", filters={"module": "ALLIM Quran"}, pluck="name"))
+		doctype_names.add("ALLIM Trial Lesson Request")
 		settings_fields = {
 			"Website Settings": [
 				"app_name",
@@ -72,7 +74,15 @@ def export(site, destination):
 			"Website Script": ["javascript"],
 			"Navbar Settings": ["app_logo"],
 			"Portal Settings": ["hide_standard_menu"],
-			"LMS Settings": ["allow_guest_access", "disable_signup", "disable_pwa", "default_home"],
+			"LMS Settings": [
+				"allow_guest_access",
+				"disable_signup",
+				"disable_pwa",
+				"default_home",
+				"meta_description",
+				"meta_image",
+				"meta_keywords",
+			],
 		}
 		settings = {
 			doctype: clean({field: frappe.get_single(doctype).get(field) for field in fields})
@@ -81,7 +91,11 @@ def export(site, destination):
 		result = {
 			"pages": [clean(doc.as_dict()) for doc in pages],
 			"forms": [clean(doc.as_dict()) for doc in forms],
-			"doctypes": [clean(frappe.get_doc("DocType", "ALLIM Trial Lesson Request").as_dict())],
+			"doctypes": [clean(frappe.get_doc("DocType", name).as_dict()) for name in sorted(doctype_names)],
+			"desk_pages": [
+				clean(frappe.get_doc("Page", name).as_dict())
+				for name in frappe.get_all("Page", filters={"module": "ALLIM Quran"}, pluck="name")
+			],
 			"route_meta": [
 				clean(frappe.get_doc("Website Route Meta", name).as_dict())
 				for name in frappe.get_all("Website Route Meta", pluck="name")

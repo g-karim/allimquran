@@ -2,12 +2,14 @@
 
 | Component | Source of truth | Runtime |
 | --- | --- | --- |
-| 19 pages (18 public, one draft) | website_content/pages | Native Frappe Web Page |
+| 24 pages (23 public, one draft) | website_content/pages | Native Frappe Web Page |
 | Three trial forms | website_content/forms | Native Frappe Web Form |
 | Inquiry schema | allim_quran/doctype | Existing table, standard app DocType |
 | SEO, redirects, public defaults | website_content/*.json | Frappe settings/meta |
 | Public media | public/media | /assets/allimquran/media/ |
 | Speech and Quran APIs | asr/server.py | Separate FastAPI service |
+| Search Intelligence | search_intelligence.py, allim_quran/doctype and page | Four schemas, Desk page and existing daily audit hook |
+| LMS search presentation | lms_renderer.py, lms_template.py, templates/includes | Site-local Frappe renderer using the current LMS build |
 | Users, requests, courses, enrollments | Site database | Frappe and LMS |
 | Companion progress / personal plan | Browser storage | Existing JS |
 
@@ -20,8 +22,13 @@ editable files. Document names, routes, publication flags, translations, form
 permissions and storage keys (`quran-companion-prototype-v4`,
 `allim-academy-plan-v1`) remain unchanged.
 
-There is no custom router or renderer. Frappe owns rendering, authentication, CSRF
-and form submission. setup.sync materializes source into native runtime documents.
+Public pages and forms use native Frappe rendering, authentication, CSRF and form
+submission. setup.sync materializes source into native runtime documents. Only the
+LMS `_lms` endpoint has an app-owned TemplatePage subclass: it preserves LMS boot
+data and current compiled asset URLs while adding the migrated search head and
+fallback content. It replaces the former manual LMS controller/build edits and
+does not edit or vendor LMS. Template-shape checks fail explicitly after an
+incompatible upstream layout change; check this integration on LMS upgrades.
 
 ## Synchronization
 

@@ -1,5 +1,85 @@
 [
   {
+    "name": "courses/v83hvg7uj9",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "keywords",
+        "value": "арабский алфавит, буквы Корана, чтение Корана для начинающих, арабские буквы, формы арабских букв, ALLIM",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "description",
+        "value": "Базовый курс ALLIM: 28 арабских букв, их формы в начале, середине и конце слова и практика поиска знакомых букв в аятах Корана.",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "courses/a-guide-to-frappe-learning",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "robots",
+        "value": "noindex,nofollow,noarchive",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
+    "name": "courses",
+    "docstatus": 0,
+    "idx": 0,
+    "doctype": "Website Route Meta",
+    "meta_tags": [
+      {
+        "docstatus": 0,
+        "idx": 1,
+        "key": "title",
+        "value": "Qur’an Courses & Guided Learning",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 2,
+        "key": "description",
+        "value": "Explore structured learning paths for Qur’an recitation, memorisation, Qur’anic Arabic and guided study.",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 3,
+        "key": "image",
+        "value": "/assets/allimquran/media/allim-brand-icon.png",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 4,
+        "key": "keywords",
+        "value": "Qur’an courses, Quran learning, recitation, memorisation, Qur’anic Arabic, tajwid, hifz",
+        "doctype": "Website Meta Tag"
+      },
+      {
+        "docstatus": 0,
+        "idx": 5,
+        "key": "robots",
+        "value": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+        "doctype": "Website Meta Tag"
+      }
+    ]
+  },
+  {
     "name": "tr/blog/dijital-mushaf-okuma-anlama-hatirlama",
     "docstatus": 0,
     "idx": 0,

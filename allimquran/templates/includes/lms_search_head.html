@@ -1,0 +1,24 @@
+<!-- ALLIM SEARCH HEAD START -->
+		<title>{{ seo.title | e }}</title>
+		<meta name="description" content="{{ seo.description | e }}" />
+		<meta name="robots" content="{{ seo.robots | e }}" />
+		<link rel="canonical" href="{{ seo.canonical | e }}" />
+		<meta property="og:site_name" content="ALLIM Qur’an" />
+		<meta property="og:type" content="{{ seo.og_type | e }}" />
+		<meta property="og:title" content="{{ seo.title | e }}" />
+		<meta property="og:description" content="{{ seo.description | e }}" />
+		<meta property="og:image" content="{{ seo.image | e }}" />
+		<meta property="og:url" content="{{ seo.canonical | e }}" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="{{ seo.title | e }}" />
+		<meta name="twitter:description" content="{{ seo.description | e }}" />
+		<meta name="twitter:image" content="{{ seo.image | e }}" />
+		<script type="application/ld+json">{{ seo.json_ld | safe }}</script>
+		<style>
+			#seo-content .allim-search-fallback{max-width:1120px;margin:0 auto;padding:clamp(32px,7vw,88px) 24px;color:#17352e;font-family:system-ui,sans-serif}
+			#seo-content .allim-search-fallback h1{font-family:Georgia,serif;font-size:clamp(2rem,5vw,4rem);line-height:1.04}
+			#seo-content .allim-search-fallback p{max-width:760px;line-height:1.65}
+			#seo-content .allim-search-fallback ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;padding:24px 0;list-style:none}
+			#seo-content .allim-search-fallback li{border:1px solid #d8e4de;border-radius:18px;padding:18px;background:#fff}
+		</style>
+		<!-- ALLIM SEARCH HEAD END -->

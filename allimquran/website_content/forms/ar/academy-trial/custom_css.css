@@ -12,3 +12,11 @@ body { background:#f4f2ec; color:#17352e; }
 .frappe-control[data-fieldname="daily_minutes"],
 .frappe-control[data-fieldname="language"],
 .frappe-control[data-fieldname="source"] { display:none!important; }
+
+/* ALLIM_RETURN_BUTTON_START */
+.success-footer .success_url_message { margin:0; }
+.success-footer .allim-return-button { display:inline-flex; min-height:48px; align-items:center; justify-content:center; padding:0 24px; border:1px solid #244f45; border-radius:999px; background:#244f45; color:#fff!important; font-weight:650; text-decoration:none!important; box-shadow:0 12px 30px rgba(36,79,69,.18); transition:transform .2s ease,box-shadow .2s ease,background .2s ease; }
+.success-footer .allim-return-button:hover { background:#1b4038; transform:translateY(-2px); box-shadow:0 16px 34px rgba(36,79,69,.24); }
+.success-footer .allim-return-button:focus-visible { outline:3px solid rgba(36,79,69,.28); outline-offset:3px; }
+.success-footer .new-btn { min-height:46px; padding-inline:20px; border-radius:999px; }
+/* ALLIM_RETURN_BUTTON_END */

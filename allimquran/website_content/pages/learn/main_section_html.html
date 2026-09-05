@@ -1,4 +1,4 @@
-<link rel="icon" href="/assets/allimquran/media/allim-brand-icon.png?v=71" type="image/png"><link rel="apple-touch-icon" href="/assets/allimquran/media/allim-brand-icon.png?v=71"><div class="allim-web-root"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
+<link rel="icon" href="/assets/allimquran/media/allim-brand-icon.png?v=74" type="image/png"><link rel="apple-touch-icon" href="/assets/allimquran/media/allim-brand-icon.png?v=74"><div class="allim-web-root"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
 
   <div class="allim-system-intro" id="allim-system-intro" data-stage="ornament" role="status" aria-live="polite" aria-label="Подготовка ALLIM">
     <div class="system-intro-frame">
@@ -71,7 +71,7 @@
   <div class="app-shell">
     <aside class="sidebar" aria-label="Основная навигация" data-i18n-aria="mainNav">
       <a class="brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home">
-        <img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=71" alt="" aria-hidden="true">
+        <img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=74" alt="" aria-hidden="true">
         <span class="brand-copy"><strong>ALLIM</strong><small>Qur’an Companion</small><span class="brand-dua-mini" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span></span>
       </a>
 
@@ -106,7 +106,7 @@
 
     <div class="workspace">
       <header class="topbar">
-        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=71" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
+        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=74" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
         <div class="topbar-context">
           <span class="eyebrow topbar-dua" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span>
           <h1 id="view-title" data-i18n="todayTitle">Сегодня</h1>
@@ -128,7 +128,7 @@
             <strong data-i18n="secureContextRequired">Микрофон заблокирован режимом открытия файла</strong>
             <p data-i18n="secureContextText">Не открывайте index.html двойным нажатием. Запустите приложение через локальный адрес — тогда заработают микрофон, распознавание и офлайн-режим.</p>
           </div>
-          <a class="primary-button compact" href="http://localhost:4174/?v=71" data-i18n="openServerVersion">Открыть рабочую версию</a>
+          <a class="primary-button compact" href="http://localhost:4174/?v=74" data-i18n="openServerVersion">Открыть рабочую версию</a>
         </aside>
 
         <section class="view is-active" id="view-today" data-view-panel="today" aria-labelledby="today-heading">
@@ -168,7 +168,7 @@
             <article class="daily-card"><span class="daily-icon"><svg><use href="#i-bookmark"/></svg></span><div><small data-i18n="savedAndReview">Сохранено · повторить</small><strong><span id="saved-count">0</span> · <span id="review-count">0</span></strong></div></article>
           </div>
 
-          <button class="life-practice-summary" id="open-life-practice-today" type="button" hidden>
+          <button class="life-practice-summary" id="open-life-practice-today" type="button">
             <span class="life-practice-summary-icon"><svg><use href="#i-spark"/></svg></span>
             <span class="life-practice-summary-copy">
               <small data-i18n="lifeEyebrow">АЯТ В ЖИЗНИ</small>
@@ -349,6 +349,17 @@
                   <button class="primary-button compact" id="start-recognition" type="button" aria-label="Начать чтение"><span data-i18n="startListening">Начать чтение</span><svg><use href="#i-mic"/></svg></button>
                 </div>
               </div>
+              <div class="page-recall-dock" id="page-recall-dock" aria-live="polite">
+                <span class="page-recall-dock-icon"><svg><use href="#i-brain"/></svg></span>
+                <div class="page-recall-dock-copy">
+                  <small data-i18n="pageRecallEyebrow">ПРОВЕРКА СТРАНИЦЫ</small>
+                  <strong id="page-recall-dock-title" data-i18n="pageRecallReady">Читайте страницу наизусть</strong>
+                  <span id="page-recall-dock-status">0 / 0</span>
+                </div>
+                <button class="primary-button compact" id="page-recall-mic" type="button" aria-label="Начать чтение"><span data-i18n="startListening">Начать чтение</span><svg><use href="#i-mic"/></svg></button>
+                <button class="secondary-button compact" id="toggle-page-recall-text" type="button" aria-pressed="false" aria-label="Показать текст" data-i18n-aria="pageRecallShowText"><svg><use href="#i-eye"/></svg><span data-i18n="pageRecallShowText">Показать текст</span></button>
+                <button class="secondary-button compact" id="exit-page-recall" type="button" aria-label="Завершить" data-i18n-aria="pageRecallFinish"><svg><use href="#i-stop"/></svg><span data-i18n="pageRecallFinish">Завершить</span></button>
+              </div>
               <div class="recognition-choice" data-recognition-picker>
                 <div class="recognition-choice-heading">
                   <div><strong data-i18n="recognitionChoiceTitle">Как проверять чтение</strong><small data-recognition-summary>Авто открывает слова сразу и подключает Quran AI при необходимости.</small></div>
@@ -359,6 +370,7 @@
                   <button type="button" data-recognition-choice="browser" aria-pressed="false"><strong data-i18n="recognitionInstant">Мгновенно</strong><small data-i18n="recognitionInstantText">Слова открываются во время чтения</small></button>
                   <button type="button" data-recognition-choice="quran" aria-pressed="false"><strong data-i18n="recognitionCareful">Тщательно</strong><small data-i18n="recognitionCarefulText">Строгая проверка Quran AI после остановки</small></button>
                 </div>
+                <small class="recognition-scope-note" data-i18n="recognitionScopeNote">Сейчас проверяются порядок и совпадение слов. Таджвид и интонация этим режимом не оцениваются.</small>
               </div>
               <div class="live-transcript" id="live-transcript" aria-live="polite">
                 <div><span class="kicker" data-i18n="recognizedText">Распознанный текст</span><span class="recognition-engine" id="recognition-engine" data-i18n="browserRecognition">Системное распознавание браузера</span></div>
@@ -386,7 +398,7 @@
               <div class="reader-actions" aria-label="Быстрые действия с аятом" data-i18n-aria="verseActions">
                 <button class="quick-action" id="save-verse" type="button"><span><svg><use href="#i-bookmark"/></svg></span><strong data-i18n="saveVerse">Сохранить аят</strong><small data-i18n="saveVerseText">Вернуться к нему позже</small></button>
                 <button class="quick-action" id="queue-review" type="button"><span><svg><use href="#i-target"/></svg></span><strong data-i18n="addToReview">Добавить к повторению</strong><small data-i18n="addToReviewText">Включить в очередь хифза</small></button>
-                <button class="quick-action" id="open-life-practice" type="button" hidden><span><svg><use href="#i-spark"/></svg></span><strong data-i18n="lifeApplyToday">Применить сегодня</strong><small data-i18n="lifeApplyTodayText">Размышление и одно действие</small></button>
+                <button class="quick-action" id="open-life-practice" type="button"><span><svg><use href="#i-spark"/></svg></span><strong data-i18n="lifeApplyToday">Применить сегодня</strong><small data-i18n="lifeApplyTodayText">Размышление и одно действие</small></button>
                 <button class="quick-action" id="open-studio" type="button"><span><svg><use href="#i-expand"/></svg></span><strong data-i18n="focusStudio">Студия фокуса</strong><small data-i18n="focusStudioText">Только мусхаф и чтение</small></button>
               </div>
             </article>
@@ -416,7 +428,7 @@
                   <button type="button" data-ai-prompt="memory"><svg><use href="#i-brain"/></svg><span data-i18n="aiMemory">Как запомнить?</span></button>
                   <button type="button" data-ai-prompt="word"><svg><use href="#i-book"/></svg><span data-i18n="aiWord">Объяснить слово</span></button>
                   <button type="button" data-ai-prompt="review"><svg><use href="#i-target"/></svg><span data-i18n="aiReview">Что повторить?</span></button>
-                  <button type="button" id="open-life-practice-ai" hidden><svg><use href="#i-spark"/></svg><span data-i18n="lifeAiOpen">Как воплотить сегодня?</span></button>
+                  <button type="button" id="open-life-practice-ai"><svg><use href="#i-spark"/></svg><span data-i18n="lifeAiOpen">Как воплотить сегодня?</span></button>
                 </div>
                 <small class="ai-disclosure" data-i18n="aiDisclosure">Контекстные подсказки формируются локально и не заменяют преподавателя или тафсир.</small>
               </div>
@@ -517,6 +529,7 @@
                 <button type="button" data-recognition-choice="browser" aria-pressed="false"><strong data-i18n="recognitionInstant">Мгновенно</strong><small data-i18n="recognitionInstantText">Слова открываются во время чтения</small></button>
                 <button type="button" data-recognition-choice="quran" aria-pressed="false"><strong data-i18n="recognitionCareful">Тщательно</strong><small data-i18n="recognitionCarefulText">Строгая проверка Quran AI после остановки</small></button>
               </div>
+              <small class="recognition-scope-note" data-i18n="recognitionScopeNote">Сейчас проверяются порядок и совпадение слов. Таджвид и интонация этим режимом не оцениваются.</small>
             </div>
             <div class="auto-advance-notice" id="memory-auto-advance" hidden aria-live="polite">
               <span class="auto-advance-icon"><svg><use href="#i-arrow"/></svg></span>
@@ -530,6 +543,23 @@
             </div>
             <button class="text-button" id="reset-memory" type="button"><svg><use href="#i-reset"/></svg><span data-i18n="startAgain">Начать заново</span></button>
           </div>
+          <section class="page-recall-card" aria-labelledby="page-recall-title">
+            <div class="page-recall-card-icon"><svg><use href="#i-brain"/></svg><span>02</span></div>
+            <div class="page-recall-card-copy">
+              <span class="kicker" data-i18n="pageRecallEyebrow">ПРОВЕРКА СТРАНИЦЫ</span>
+              <h3 id="page-recall-title" data-i18n="pageRecallTitle">Следующий уровень: прочитайте страницу наизусть</h3>
+              <p data-i18n="pageRecallIntro">Сохраняем расположение строк и номера аятов, но скрываем текст. Правильные слова проявляются по порядку; ошибка останавливает продвижение до исправления.</p>
+              <div class="page-recall-features" aria-label="Этапы проверки страницы" data-i18n-aria="pageRecallSteps">
+                <span><b>01</b><small data-i18n="pageRecallStepHide">Текст скрыт, геометрия страницы сохранена</small></span>
+                <span><b>02</b><small data-i18n="pageRecallStepCheck">Микрофон ведёт по аятам без повторного запуска</small></span>
+                <span><b>03</b><small data-i18n="pageRecallStepCorrect">Ошибка блокирует переход до исправления</small></span>
+              </div>
+            </div>
+            <div class="page-recall-card-action">
+              <span><small data-i18n="pageRecallSelected">ВЫБРАНО ДЛЯ ПРОВЕРКИ</small><strong id="page-recall-card-page" data-i18n="heartPageLoadingShort">Определяем страницу…</strong></span>
+              <button class="primary-button" id="start-page-recall" type="button"><span data-i18n="pageRecallStart">Начать проверку страницы</span><svg><use href="#i-arrow"/></svg></button>
+            </div>
+          </section>
           <div class="study-library">
             <article class="library-card"><div class="library-heading"><span><svg><use href="#i-target"/></svg></span><div><strong data-i18n="reviewQueue">Очередь повторения</strong><small data-i18n="reviewQueueText">Аяты, добавленные вами или отмеченные после чтения</small></div></div><div class="verse-list" id="review-queue-list"></div></article>
             <article class="library-card"><div class="library-heading"><span><svg><use href="#i-bookmark"/></svg></span><div><strong data-i18n="savedVerses">Сохранённые аяты</strong><small data-i18n="savedVersesText">Личная локальная коллекция без аккаунта</small></div></div><div class="verse-list" id="saved-verses-list"></div></article>
@@ -720,7 +750,7 @@
     <button class="primary-button dialog-close" id="guide-done" type="button"><span data-i18n="beginSession">Начать сессию</span><svg><use href="#i-arrow"/></svg></button>
   </dialog>
 
-  <dialog id="life-practice-dialog" class="life-practice-dialog" aria-labelledby="life-practice-title" hidden>
+  <dialog id="life-practice-dialog" class="life-practice-dialog" aria-labelledby="life-practice-title">
     <div class="dialog-heading life-practice-heading">
       <div><span class="kicker" data-i18n="lifeEyebrow">АЯТ В ЖИЗНИ</span><h2 id="life-practice-title" data-i18n="lifeDialogTitle">Одно искреннее действие</h2></div>
       <button class="icon-button" id="close-life-practice" type="button" aria-label="Закрыть" data-i18n-aria="close">×</button>
@@ -834,9 +864,19 @@
             <span><i class="heart-legend-sample is-building"></i><small data-i18n="heartRevealBuilding">Проявляется с повторениями</small></span>
             <span><i class="heart-legend-sample is-complete"></i><small data-i18n="heartRevealComplete">300 повторений</small></span>
           </div>
-          <div class="heart-page-dialog-actions">
-            <button class="secondary-button" id="continue-heart-page" type="button"><span data-i18n="heartContinueAyat">Продолжить собирать аяты</span><svg><use href="#i-arrow"/></svg></button>
-            <button class="primary-button" id="start-linked-page" type="button" disabled><span data-i18n="heartStartConnected">Начать связное чтение</span><svg><use href="#i-mic"/></svg></button>
+          <div class="heart-page-dialog-actions" aria-label="Следующие действия" data-i18n-aria="heartNextActions">
+            <div class="heart-page-next-step" role="status" aria-live="polite">
+              <span data-i18n="heartNextStep">СЛЕДУЮЩИЙ ШАГ</span>
+              <strong id="heart-page-next-step" data-i18n="heartNextCollect">Соберите оставшиеся аяты</strong>
+            </div>
+            <button class="primary-button heart-page-primary-action" id="continue-heart-page" type="button">
+              <span class="heart-action-copy"><strong data-i18n="heartContinueAyat">Продолжить собирать аяты</strong><small id="continue-heart-page-state" data-i18n="heartCurrentStage">Текущий этап</small></span>
+              <svg><use href="#i-arrow"/></svg>
+            </button>
+            <button class="secondary-button heart-page-linked-action" id="start-linked-page" type="button" aria-describedby="start-linked-page-state" aria-disabled="true" disabled data-state="locked">
+              <span class="heart-action-copy"><strong id="start-linked-page-label" data-i18n="heartStartConnected">Начать связное чтение</strong><small id="start-linked-page-state" data-i18n="heartLinkedUnavailable">Недоступно до завершения первого этапа</small></span>
+              <svg><use href="#i-link"/></svg>
+            </button>
           </div>
         </div>
       </div>

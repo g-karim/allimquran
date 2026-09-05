@@ -38,6 +38,9 @@
     "allow_guest_access": 1,
     "disable_signup": 1,
     "disable_pwa": 0,
-    "default_home": 0
+    "default_home": 0,
+    "meta_description": "Structured Qur’an learning for recitation, memorisation, Qur’anic Arabic and guided study with ALLIM.",
+    "meta_image": "/assets/allimquran/media/allim-brand-icon.png",
+    "meta_keywords": "Qur’an learning, Quran recitation, Quran memorisation, Qur’anic Arabic, tajwid, hifz, ALLIM"
   }
 }

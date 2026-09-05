@@ -12,8 +12,8 @@ class SourceTests(unittest.TestCase):
 		self.pages = [doc for doc in self.records if doc["doctype"] == "Web Page"]
 
 	def test_all_pages_and_draft_preserved(self):
-		self.assertEqual(len(self.pages), 19)
-		self.assertEqual(sum(doc["published"] for doc in self.pages), 18)
+		self.assertEqual(len(self.pages), 24)
+		self.assertEqual(sum(doc["published"] for doc in self.pages), 23)
 		self.assertEqual([doc["route"] for doc in self.pages if not doc["published"]], ["allim-home-preview"])
 
 	def test_unique_routes_and_identities(self):
@@ -28,7 +28,7 @@ class SourceTests(unittest.TestCase):
 			{doc["route"] for doc in forms}, {"academy-trial", "ru/probnyj-urok", "ar/academy-trial"}
 		)
 		self.assertTrue(all(doc["doc_type"] == "ALLIM Trial Lesson Request" for doc in forms))
-		schema = next(doc for doc in self.records if doc["doctype"] == "DocType")
+		schema = next(doc for doc in self.records if doc["name"] == "ALLIM Trial Lesson Request")
 		self.assertEqual(schema["custom"], 0)
 		self.assertEqual(schema["module"], "ALLIM Quran")
 		self.assertEqual({row["role"] for row in schema["permissions"]}, {"System Manager"})
@@ -53,6 +53,7 @@ class SourceTests(unittest.TestCase):
 			"Web Form",
 			"Website Route Meta",
 			"DocType",
+			"Page",
 			"Website Settings",
 			"Website Script",
 			"Portal Settings",
@@ -73,6 +74,28 @@ class SourceTests(unittest.TestCase):
 	def test_child_identifiers_are_not_source(self):
 		doc = {"name": "parent", "rows": [{"name": "random-id", "parent": "parent", "value": "source"}]}
 		self.assertEqual(clean(doc), {"name": "parent", "rows": [{"value": "source"}]})
+
+	def test_heterogeneous_child_fields_are_fingerprinted(self):
+		source = {"fields": [{"fieldname": "title"}, {"fieldname": "status", "options": "Open\nClosed"}]}
+		changed = {"fields": [{"fieldname": "title"}, {"fieldname": "status", "options": "Open\nDeleted"}]}
+		self.assertNotEqual(fingerprint(source, source), fingerprint(changed, source))
+
+	def test_search_definitions_and_turkish_routes_preserved(self):
+		schemas = {doc["name"] for doc in self.records if doc["doctype"] == "DocType"}
+		self.assertEqual(
+			schemas,
+			{
+				"ALLIM Trial Lesson Request",
+				"ALLIM Search Audit",
+				"ALLIM Search Observation",
+				"ALLIM Search Opportunity",
+				"ALLIM Search Prompt",
+			},
+		)
+		page = next(doc for doc in self.records if doc["doctype"] == "Page")
+		self.assertEqual(page["name"], "allim-search-center")
+		self.assertEqual({row["role"] for row in page["roles"]}, {"System Manager", "Website Manager"})
+		self.assertIn("tr/blog", {doc["route"] for doc in self.pages})
 
 	def test_no_anonymous_source_execution(self):
 		self.assertTrue(all(not doc.get("context_script") for doc in self.pages))

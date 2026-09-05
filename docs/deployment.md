@@ -28,6 +28,14 @@ Preflight deliberately fails if managed records were edited since the source
 snapshot/last deployment. Reconcile those changes into Git, back up again and
 rerun. Never override the guard simply to make a deployment finish.
 
+If Desk edits also reintroduced legacy `/files/allim-*` URLs, reconcile in two
+steps: import the reviewed export with `scripts/import_snapshot.py SNAPSHOT
+--keep-media-paths` and verify that preflight reports no document changes before
+syncing that exact source. Then import the same snapshot normally and deploy the
+asset URL changes through the usual guard. This adopts the reviewed live content
+without overwriting it or resetting drift fingerprints. Keep the snapshot private
+and stop if live source changes again between these steps.
+
 The first migration preserves the `ALLIM Trial Lesson Request` table, record names,
 all existing inquiries and permissions. It changes schema ownership from a custom
 LMS DocType to a standard ALLIM DocType. It never imports personal inquiries.
@@ -75,6 +83,14 @@ sites/processes on the shared bench. Do not submit fake production inquiries.
 
 Run sync a second time: its `updated` array should be empty. Inspect the trial
 request count and role permissions without printing private record contents.
+
+Also check `/lms/courses`: one canonical URL, title and JSON-LD graph, unchanged
+LMS compiled assets and working client navigation. The app's site-local renderer
+adds search presentation without modifying LMS. For a legacy deployment with
+manual ALLIM edits in `lms/www/_lms.py` and the ignored built `_lms.html`, first
+back up both files and verify output parity with the app renderer, then remove
+only those exact migrated edits. Never discard unrelated LMS changes or rebuild
+a shared frontend merely to remove them.
 
 ## Recovery
 

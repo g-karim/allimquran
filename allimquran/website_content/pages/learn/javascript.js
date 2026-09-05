@@ -970,7 +970,7 @@
   function setBrandFavicon() {
     var iconUrl = window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
       ? "allim-brand-icon.png"
-      : "/assets/allimquran/media/allim-brand-icon.png?v=71";
+      : "/assets/allimquran/media/allim-brand-icon.png?v=74";
     document.querySelectorAll('head link[rel~="icon"],head link[rel="apple-touch-icon"]').forEach(function (node) { node.remove(); });
     ["icon", "apple-touch-icon"].forEach(function (relation) {
       var link = document.createElement("link");
@@ -1488,6 +1488,18 @@
   });
 
   Object.assign(translations.ru, {
+    heartContinueConnected: "Продолжить связное чтение", heartNextActions: "Следующие действия", heartNextStep: "СЛЕДУЮЩИЙ ШАГ", heartNextCollect: "Соберите оставшиеся аяты", heartNextConnect: "Свяжите всю страницу одним чтением", heartNextSaved: "Страница сохранена — её можно повторить", heartLinkedUnavailable: "Недоступно до завершения первого этапа", heartCollectProgress: "Текущий этап · собрано {collected} из {total}", heartLinkedLockedProgress: "Недоступно · собрано {collected} из {total}", heartLinkedReadyProgress: "Доступно · все {total} аятов собраны", heartLinkedActiveProgress: "Идёт чтение · связано {done} из {total}", heartLinkedSavedProgress: "Страница сохранена навсегда"
+  });
+
+  Object.assign(translations.en, {
+    heartContinueConnected: "Continue connected recitation", heartNextActions: "Next actions", heartNextStep: "NEXT STEP", heartNextCollect: "Collect the remaining verses", heartNextConnect: "Connect the whole page in one recitation", heartNextSaved: "The page is saved — you can review it", heartLinkedUnavailable: "Unavailable until the first stage is complete", heartCollectProgress: "Current stage · {collected} of {total} collected", heartLinkedLockedProgress: "Unavailable · {collected} of {total} collected", heartLinkedReadyProgress: "Available · all {total} verses collected", heartLinkedActiveProgress: "In progress · {done} of {total} connected", heartLinkedSavedProgress: "Page saved permanently"
+  });
+
+  Object.assign(translations.ar, {
+    heartContinueConnected: "واصل التلاوة المتصلة", heartNextActions: "الإجراءات التالية", heartNextStep: "الخطوة التالية", heartNextCollect: "أكمل جمع الآيات المتبقية", heartNextConnect: "اربط الصفحة كاملة في تلاوة واحدة", heartNextSaved: "الصفحة محفوظة ويمكنك مراجعتها", heartLinkedUnavailable: "غير متاح حتى اكتمال المرحلة الأولى", heartCollectProgress: "المرحلة الحالية · جُمعت {collected} من {total}", heartLinkedLockedProgress: "غير متاح · جُمعت {collected} من {total}", heartLinkedReadyProgress: "متاح · جُمعت الآيات الـ {total} كلها", heartLinkedActiveProgress: "التلاوة جارية · رُبطت {done} من {total}", heartLinkedSavedProgress: "الصفحة محفوظة دائمًا"
+  });
+
+  Object.assign(translations.ru, {
     heartPageTitle: "Собирайте настоящую страницу мусхафа", heartPageGuidance: "Строки и положение каждого слова остаются такими же, как в режиме чтения. Аят постепенно проявляется до 300 правильных чтений, не сдвигая страницу.", heartSelectedAyah: "Выбранный аят", heartRevealTitle: "Страница проявляется без смещения строк", heartRevealGhost: "Ещё не закреплено", heartRevealBuilding: "Проявляется с повторениями", heartRevealComplete: "300 повторений",
     mushafAppearance: "Вид страницы", mushafPaper: "Бумага", mushafInk: "Чернила", mushafPaperIvory: "Тёплая слоновая кость", mushafPaperWhite: "Белая", mushafPaperSage: "Светло-зелёная", mushafPaperMist: "Светло-серая", mushafPaperSky: "Светло-голубая", mushafInkCharcoal: "Классические чёрные", mushafInkEmerald: "Глубокие зелёные", mushafInkNavy: "Тёмно-синие", mushafInkSepia: "Сепия", mushafAppearanceChanged: "Оформление мусхафа сохранено для чтения и заучивания."
   });
@@ -1524,6 +1536,18 @@
 
   Object.assign(translations.ar, {
     lifeEyebrow: "الآية في الحياة", lifeTodayTitle: "من الفهم إلى عملٍ صادقٍ واحد", lifeTodayEmpty: "اختر آية، وسجّل تدبرًا وخطوة واحدة قابلة للتنفيذ.", lifeStreakDays: "أيام الممارسة", lifeApplyToday: "طبّقها اليوم", lifeApplyTodayText: "تدبر وعمل واحد", lifeAiOpen: "كيف أعمل بها اليوم؟", lifeDialogTitle: "عملٌ صادقٌ واحد", lifeSelectedAyah: "الآية المختارة", lifeAiTitle: "يساعدك المرشد الذكي على الصياغة", lifeAiBoundary: "يعمل مع الآية المختارة وكلماتك أنت فقط، ولا يبتكر تفسيرًا ولا يغني عن التفسير أو المعلّم.", lifeReflectionTitle: "ماذا تغيّر هذه الآية في نفسي اليوم؟", lifeReflectionPlaceholder: "اكتب جملة أو جملتين بصدق من غير تكلّف.", lifePromptLegend: "إن صعبت البداية فاختر اتجاهًا", lifePromptBenefit: "نفع الآخرين", lifePromptRestraint: "ممّ أمتنع", lifePromptContinue: "ما الذي أستمر عليه", lifeActionTitle: "عمل صغير موجّه", lifeActionPlaceholder: "حدّد ماذا ومتى ولمن، بحيث تنجزه في ٥–١٥ دقيقة.", lifeAiSuggest: "ساعدني في الصياغة", lifeAiSuggestionIdle: "سيقترح المرشد صيغة للعمل من غير أن يفسّر الآية من عنده.", lifeReturnTitle: "متى تعود إلى هذه الملاحظة؟", lifeReturnText: "العودة تربط المعنى بالحفظ والعمل.", lifeReturnEvening: "هذا المساء", lifeReturnTomorrow: "غدًا", lifeReturnThree: "بعد ٣ أيام", lifeReturnSeven: "بعد ٧ أيام", lifeComplete: "تحديد العمل منجزًا", lifeReturned: "عدت إلى الآية", lifeReturnedDone: "سُجّلت العودة", lifeSave: "حفظ وعودة", lifeHistoryEyebrow: "دفتر خاص", lifeHistoryTitle: "آخر التدبرات والأعمال", lifeHistoryEmpty: "ستظهر أول ملاحظة هنا بعد الحفظ.", lifeSaved: "حُفظ التدبر والعمل.", lifeCompleted: "سُجّل إنجاز العمل.", lifeReviewCompleted: "سُجّلت العودة إلى الآية.", lifeNeedWords: "اكتب تدبرًا أو عملًا محددًا.", lifeNeedAction: "اكتب عملًا محددًا أولًا.", lifeDueNow: "حان وقت العودة إلى الملاحظة", lifePlannedFor: "العودة: {date}", lifeDoneStatus: "اكتمل العمل · العودة {date}", lifeReviewDoneStatus: "تمت العودة إلى الآية", lifeDraftStatus: "لم يُنجز العمل بعد", lifeAiBenefit: "سأقدّم اليوم نفعًا محددًا لشخص واحد بخطوة صغيرة أنجزها خلال ٥–١٥ دقيقة.", lifeAiRestraint: "سأتوقف اليوم قبل تصرف معتاد، وأترك بوعي ما يخالف ما فهمته.", lifeAiContinue: "سأخصص اليوم عشر دقائق في أقرب وقت مناسب لأواصل عملًا مرتبطًا بما فهمته.", lifeAiFromReflection: "سأتخذ اليوم خطوة محددة من هذا التدبر: {reflection}", lifeAiReady: "الصياغة جاهزة. عدّلها حتى تكون من كلماتك وقابلة للتنفيذ.", lifeJournalLabel: "تدبر شخصي", lifeActionLabel: "العمل"
+  });
+
+  Object.assign(translations.ru, {
+    pageRecallEyebrow: "ПРОВЕРКА СТРАНИЦЫ", pageRecallTitle: "Следующий уровень: прочитайте страницу наизусть", pageRecallIntro: "Сохраняем расположение строк и номера аятов, но скрываем текст. Правильные слова проявляются по порядку; ошибка останавливает продвижение до исправления.", pageRecallSteps: "Этапы проверки страницы", pageRecallStepHide: "Текст скрыт, геометрия страницы сохранена", pageRecallStepCheck: "Микрофон ведёт по аятам без повторного запуска", pageRecallStepCorrect: "Ошибка блокирует переход до исправления", pageRecallSelected: "ВЫБРАНО ДЛЯ ПРОВЕРКИ", pageRecallStart: "Начать проверку страницы", pageRecallReady: "Читайте страницу наизусть", pageRecallStatus: "Страница {page} · проверено {done} из {total} аятов", pageRecallShowText: "Показать текст", pageRecallHideText: "Скрыть текст", pageRecallFinish: "Завершить", pageRecallStarted: "Страница скрыта. Нажмите микрофон и читайте с первого аята.", pageRecallComplete: "Страница прочитана полностью по памяти.", pageRecallStopped: "Проверка страницы завершена. Результат сессии сохранён.", pageRecallLoading: "Готовлю страницу для проверки…", pageRecallWrongOrder: "Продолжите с активного аята — порядок страницы сохранён.", lifeJournalVisible: "Дневник аята всегда доступен здесь", recognitionInstant: "Базовый", recognitionInstantText: "Порядок слов и явные ошибки", recognitionCareful: "Тщательно", recognitionCarefulText: "Более строгая проверка слов после остановки", recognitionScopeNote: "Сейчас проверяются порядок и совпадение слов. Таджвид и интонация этим режимом не оцениваются."
+  });
+
+  Object.assign(translations.en, {
+    pageRecallEyebrow: "PAGE RECALL", pageRecallTitle: "Next level: recite a complete page from memory", pageRecallIntro: "The line layout and verse markers remain while the text is hidden. Correct words appear in order; an error pauses progress until corrected.", pageRecallSteps: "Page recall steps", pageRecallStepHide: "Text is hidden while page geometry stays intact", pageRecallStepCheck: "The microphone follows verses without a restart", pageRecallStepCorrect: "An error blocks progress until corrected", pageRecallSelected: "SELECTED FOR RECALL", pageRecallStart: "Start page recall", pageRecallReady: "Recite the page from memory", pageRecallStatus: "Page {page} · {done} of {total} verses checked", pageRecallShowText: "Show text", pageRecallHideText: "Hide text", pageRecallFinish: "Finish", pageRecallStarted: "The page is hidden. Tap the microphone and begin with the first verse.", pageRecallComplete: "The complete page was recited from memory.", pageRecallStopped: "Page recall finished. Session progress was saved.", pageRecallLoading: "Preparing the page for recall…", pageRecallWrongOrder: "Continue from the active verse to preserve page order.", lifeJournalVisible: "Your verse journal is always available here", recognitionInstant: "Basic", recognitionInstantText: "Word order and clear mistakes", recognitionCareful: "Careful", recognitionCarefulText: "Stricter word check after stopping", recognitionScopeNote: "This mode checks word order and word matching. It does not assess tajwid or intonation."
+  });
+
+  Object.assign(translations.ar, {
+    pageRecallEyebrow: "اختبار الصفحة", pageRecallTitle: "المستوى التالي: اقرأ صفحة كاملة غيبًا", pageRecallIntro: "يبقى ترتيب السطور وعلامات الآيات كما هو ويُخفى النص. تظهر الكلمات الصحيحة بالترتيب، ويتوقف التقدّم عند الخطأ حتى تصحيحه.", pageRecallSteps: "مراحل اختبار الصفحة", pageRecallStepHide: "يُخفى النص مع بقاء هيئة الصفحة", pageRecallStepCheck: "يتابع الميكروفون الآيات بلا إعادة تشغيل", pageRecallStepCorrect: "يمنع الخطأ الانتقال حتى التصحيح", pageRecallSelected: "المختار للاختبار", pageRecallStart: "ابدأ اختبار الصفحة", pageRecallReady: "اقرأ الصفحة غيبًا", pageRecallStatus: "الصفحة {page} · تم فحص {done} من {total} آيات", pageRecallShowText: "إظهار النص", pageRecallHideText: "إخفاء النص", pageRecallFinish: "إنهاء", pageRecallStarted: "أُخفي نص الصفحة. اضغط الميكروفون وابدأ من أول آية.", pageRecallComplete: "قُرئت الصفحة كاملة غيبًا.", pageRecallStopped: "انتهى اختبار الصفحة وحُفظ تقدّم الجلسة.", pageRecallLoading: "جارٍ إعداد الصفحة للاختبار…", pageRecallWrongOrder: "تابع من الآية النشطة للمحافظة على ترتيب الصفحة.", lifeJournalVisible: "دفتر الآية متاح دائمًا هنا", recognitionInstant: "أساسي", recognitionInstantText: "ترتيب الكلمات والأخطاء الواضحة", recognitionCareful: "تدقيق", recognitionCarefulText: "مطابقة أشد للكلمات بعد الإيقاف", recognitionScopeNote: "يفحص هذا الوضع ترتيب الكلمات ومطابقتها، ولا يقيّم أحكام التجويد أو التنغيم."
   });
 
   var reciters = [
@@ -1669,6 +1693,10 @@
   var heartMushafFitFrame = null;
   var heartMushafRenderRequest = 0;
   var linkedPageSession = null;
+  var pageRecallSession = null;
+  var pageRecallShowText = false;
+  var selectedLifePrompt = "benefit";
+  var activeLifeEntryId = "";
   var audioDownloadController = null;
   var memorySessionCounted = false;
   var memoryPromptCount = 0;
@@ -1947,12 +1975,15 @@
     updateProgress();
     renderMemoryVerse();
     updateVerseActions();
+    var openHeartDialog = document.getElementById("heart-page-dialog");
+    if (openHeartDialog && openHeartDialog.open && heartCurrentPageData) renderHeartPageDialog(heartCurrentPageData);
     saveState();
   }
 
   function navigate(view) {
     var panel = document.querySelector('[data-view-panel="' + view + '"]');
     if (!panel) return;
+    if (view !== "read" && pageRecallSession) clearPageRecallMode();
     clearAutoAdvance();
     if (view !== "memorize") stopMemoryRecognition(true);
     if (view !== "read") document.body.classList.remove("audio-view");
@@ -2497,6 +2528,7 @@
     launch.classList.toggle("is-ready", summary.ready && !summary.permanent);
     launch.classList.toggle("is-permanent", summary.permanent);
     launch.setAttribute("aria-label", t("openHeartPage") + ": " + title.textContent + ", " + progress.textContent);
+    updatePageRecallUi();
   }
 
   function recordHeartRecitation(key) {
@@ -2743,20 +2775,36 @@
     var connectedCount = document.getElementById("heart-connected-count");
     var startButton = document.getElementById("start-linked-page");
     var continueButton = document.getElementById("continue-heart-page");
+    var startLabel = document.getElementById("start-linked-page-label");
+    var startState = document.getElementById("start-linked-page-state");
+    var continueState = document.getElementById("continue-heart-page-state");
+    var nextStep = document.getElementById("heart-page-next-step");
+    var activeLinked = Boolean(linkedPageSession && linkedPageSession.pageNumber === Number(pageData.page));
     pageNumber.textContent = formatMetric(pageData.page);
     collected.textContent = formatMetric(summary.collected) + " / " + formatMetric(summary.total);
     meter.style.width = summary.percent + "%";
     lock.classList.toggle("is-ready", summary.ready && !summary.permanent);
     lock.classList.toggle("is-permanent", summary.permanent);
     lockText.textContent = t(summary.permanent ? "heartPagePermanent" : (summary.ready ? "heartPageReady" : "heartPageBuilding"));
-    connected.classList.toggle("is-active", Boolean(linkedPageSession && linkedPageSession.pageNumber === Number(pageData.page)));
+    connected.classList.toggle("is-active", activeLinked);
     connected.classList.toggle("is-complete", summary.permanent);
-    connectedStatus.textContent = t(summary.permanent ? "heartConnectedPermanent" : (linkedPageSession && linkedPageSession.pageNumber === Number(pageData.page) ? "heartConnectedActive" : (summary.ready ? "heartConnectedReady" : "heartConnectedLocked")));
-    var linkedDone = linkedPageSession && linkedPageSession.pageNumber === Number(pageData.page) ? linkedPageSession.nextIndex : 0;
+    connectedStatus.textContent = t(summary.permanent ? "heartConnectedPermanent" : (activeLinked ? "heartConnectedActive" : (summary.ready ? "heartConnectedReady" : "heartConnectedLocked")));
+    var linkedDone = activeLinked ? linkedPageSession.nextIndex : 0;
     connectedCount.textContent = formatMetric(summary.permanent ? summary.total : linkedDone) + " / " + formatMetric(summary.total);
     startButton.disabled = !summary.ready;
-    startButton.querySelector("span").textContent = t(summary.permanent ? "heartOpenPermanent" : "heartStartConnected");
-    continueButton.hidden = summary.permanent;
+    startButton.setAttribute("aria-disabled", String(!summary.ready));
+    startButton.setAttribute("data-state", summary.permanent ? "saved" : (activeLinked ? "active" : (summary.ready ? "ready" : "locked")));
+    startButton.classList.toggle("primary-button", summary.ready);
+    startButton.classList.toggle("secondary-button", !summary.ready);
+    startLabel.textContent = t(summary.permanent ? "heartOpenPermanent" : (activeLinked ? "heartContinueConnected" : "heartStartConnected"));
+    startState.textContent = formatText(summary.permanent ? "heartLinkedSavedProgress" : (activeLinked ? "heartLinkedActiveProgress" : (summary.ready ? "heartLinkedReadyProgress" : "heartLinkedLockedProgress")), {
+      collected: formatMetric(summary.collected), total: formatMetric(summary.total), done: formatMetric(linkedDone)
+    });
+    continueState.textContent = formatText("heartCollectProgress", { collected: formatMetric(summary.collected), total: formatMetric(summary.total) });
+    nextStep.textContent = t(summary.permanent ? "heartNextSaved" : (summary.ready ? "heartNextConnect" : "heartNextCollect"));
+    continueButton.hidden = summary.ready || summary.permanent;
+    var linkedIcon = startButton.querySelector("use");
+    if (linkedIcon) linkedIcon.setAttribute("href", summary.ready ? "#i-mic" : "#i-link");
     renderHeartMushafPage(pageData, summary);
   }
 
@@ -2787,6 +2835,14 @@
     var summary = getHeartPageSummary(heartCurrentPageData);
     if (!summary.ready || !summary.keys.length) return;
     var pageNumber = Number(heartCurrentPageData.page);
+    if (linkedPageSession && linkedPageSession.pageNumber === pageNumber) {
+      document.getElementById("heart-page-dialog").close();
+      navigate("read");
+      setMushafMode(true, true);
+      selectReaderMode("mushaf");
+      loadMushafPage(pageNumber, false);
+      return;
+    }
     var page = getHeartPageUnit(pageNumber);
     page.connectedAttempts += 1;
     linkedPageSession = { pageNumber: pageNumber, keys: summary.keys.slice(), nextIndex: 0, reviewing: page.permanent };
@@ -2814,6 +2870,113 @@
       activateMushafVerse(first, true);
       window.setTimeout(function () { startRecognition(true); }, 160);
     });
+  }
+
+  function getPageRecallKeys(pageData) {
+    return (pageData && Array.isArray(pageData.verses) ? pageData.verses : []).map(function (verse) {
+      return String(verse.verse_key || "");
+    }).filter(Boolean);
+  }
+
+  function updatePageRecallUi() {
+    var page = pageRecallSession ? pageRecallSession.pageNumber : (heartCurrentPageData && heartCurrentPageData.page);
+    var total = pageRecallSession ? pageRecallSession.keys.length : (heartCurrentPageData ? getPageRecallKeys(heartCurrentPageData).length : 0);
+    var done = pageRecallSession ? pageRecallSession.nextIndex : 0;
+    var cardPage = document.getElementById("page-recall-card-page");
+    var dockTitle = document.getElementById("page-recall-dock-title");
+    var dockStatus = document.getElementById("page-recall-dock-status");
+    if (cardPage) cardPage.textContent = page ? t("mushafPage") + " " + formatMetric(page) : t("heartPageLoadingShort");
+    if (dockTitle) dockTitle.textContent = t(pageRecallSession && pageRecallSession.complete ? "pageRecallComplete" : "pageRecallReady");
+    if (dockStatus) dockStatus.textContent = page ? formatText("pageRecallStatus", {
+      page: formatMetric(page), done: formatMetric(done), total: formatMetric(total)
+    }) : t("pageRecallLoading");
+    var toggle = document.getElementById("toggle-page-recall-text");
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", String(pageRecallShowText));
+      toggle.setAttribute("aria-label", t(pageRecallShowText ? "pageRecallHideText" : "pageRecallShowText"));
+      var toggleLabel = toggle.querySelector("span");
+      if (toggleLabel) toggleLabel.textContent = t(pageRecallShowText ? "pageRecallHideText" : "pageRecallShowText");
+    }
+  }
+
+  function preparePageRecall(pageData) {
+    if (!pageData) return false;
+    var keys = getPageRecallKeys(pageData);
+    if (!keys.length) return false;
+    pageRecallSession = { pageNumber: Number(pageData.page), keys: keys, nextIndex: 0, complete: false };
+    pageRecallShowText = false;
+    document.body.classList.add("page-recall-mode");
+    document.body.classList.remove("page-recall-show-text");
+    document.querySelectorAll("#mushaf-page .mushaf-glyph").forEach(function (glyph) {
+      glyph.classList.remove("is-recognized", "is-warning", "is-error");
+    });
+    updatePageRecallUi();
+    return true;
+  }
+
+  function clearPageRecallMode() {
+    if (!pageRecallSession && !document.body.classList.contains("page-recall-mode")) return;
+    pageRecallSession = null;
+    pageRecallShowText = false;
+    document.body.classList.remove("page-recall-mode", "page-recall-show-text");
+    stopContinuousSession();
+    updatePageRecallUi();
+  }
+
+  function finishPageRecall() {
+    var completed = Boolean(pageRecallSession && pageRecallSession.complete);
+    clearPageRecallMode();
+    setMushafMode(false);
+    selectReaderMode("read");
+    navigate("memorize");
+    showToast(t(completed ? "pageRecallComplete" : "pageRecallStopped"));
+  }
+
+  function startPageRecall() {
+    stopMemoryRecognition(true);
+    navigate("read");
+    setStudioMode(false);
+    state.recitationFlow = "continuous";
+    state.recitationFlowExplicit = true;
+    state.autoAdvance = true;
+    state.strictCorrection = true;
+    updateRecitationFlowUi();
+    saveState();
+    setMushafMode(true, true);
+    selectReaderMode("mushaf");
+    showToast(t("pageRecallLoading"));
+    loadHeartPageContextForCurrentVerse().then(function (pageData) {
+      return loadMushafPage(pageData.page, false).then(function () {
+        if (!preparePageRecall(pageData)) return;
+        var first = mushafPageVerses.find(function (verse) { return String(verse.verse_key || "") === pageRecallSession.keys[0]; }) || mushafPageVerses[0];
+        if (first) activateMushafVerse(first, true);
+        updatePageRecallUi();
+        showToast(t("pageRecallStarted"));
+      });
+    }).catch(function () {
+      clearPageRecallMode();
+      setMushafMode(false);
+      navigate("memorize");
+      showToast(t("heartPageLoadError"));
+    });
+  }
+
+  function registerPageRecallVerse(verseKey) {
+    if (!pageRecallSession || pageRecallSession.complete) return { complete: false };
+    var key = String(verseKey || "");
+    var expected = pageRecallSession.keys[pageRecallSession.nextIndex];
+    if (key !== expected) {
+      showToast(t("pageRecallWrongOrder"));
+      return { complete: false };
+    }
+    pageRecallSession.nextIndex += 1;
+    pageRecallSession.complete = pageRecallSession.nextIndex >= pageRecallSession.keys.length;
+    updatePageRecallUi();
+    if (pageRecallSession.complete) {
+      stopContinuousSession();
+      showToast(t("pageRecallComplete"));
+    }
+    return { complete: pageRecallSession.complete };
   }
 
   function registerLinkedPageVerse(verseKey) {
@@ -2889,6 +3052,159 @@
     document.getElementById("current-streak").textContent = formatMetric(currentStreak());
     document.getElementById("saved-count").textContent = formatMetric(state.savedVerses.length);
     document.getElementById("review-count").textContent = formatMetric(state.reviewQueue.length);
+  }
+
+  function getLifeEntries() {
+    return state.lifePractice && Array.isArray(state.lifePractice.entries) ? state.lifePractice.entries : [];
+  }
+
+  function formatLifeDate(value) {
+    var date = new Date(value);
+    if (!Number.isFinite(date.getTime())) return "—";
+    return date.toLocaleDateString(state.language === "ar" ? "ar-SA" : (state.language === "en" ? "en-GB" : "ru-RU"), { day: "numeric", month: "short" });
+  }
+
+  function getLifeReviewAt(choice) {
+    var date = new Date();
+    if (choice === "evening") date.setHours(20, 0, 0, 0);
+    else date.setDate(date.getDate() + Math.max(1, Number(choice) || 1));
+    return date.toISOString();
+  }
+
+  function lifePracticeStreak() {
+    var days = {};
+    getLifeEntries().forEach(function (entry) { if (entry.createdAt) days[dateKey(new Date(entry.createdAt))] = true; });
+    var cursor = new Date();
+    cursor.setHours(12, 0, 0, 0);
+    if (!days[dateKey(cursor)]) cursor.setDate(cursor.getDate() - 1);
+    var streak = 0;
+    while (days[dateKey(cursor)]) {
+      streak += 1;
+      cursor.setDate(cursor.getDate() - 1);
+    }
+    return streak;
+  }
+
+  function renderLifePracticeSummary() {
+    var summary = document.getElementById("open-life-practice-today");
+    if (!summary) return;
+    summary.hidden = false;
+    var entries = getLifeEntries().slice().sort(function (a, b) { return String(b.createdAt || "").localeCompare(String(a.createdAt || "")); });
+    var latest = entries[0];
+    var status = document.getElementById("life-today-status");
+    if (status) {
+      if (!latest) status.textContent = t("lifeTodayEmpty");
+      else if (latest.completed) status.textContent = t("lifeDoneStatus").replace("{date}", formatLifeDate(latest.reviewAt));
+      else if (latest.reviewAt && new Date(latest.reviewAt).getTime() <= Date.now()) status.textContent = t("lifeDueNow");
+      else status.textContent = latest.action || latest.reflection || t("lifeDraftStatus");
+    }
+    var streak = document.getElementById("life-streak-count");
+    if (streak) streak.textContent = formatMetric(lifePracticeStreak());
+  }
+
+  function renderLifeHistory() {
+    var list = document.getElementById("life-history-list");
+    if (!list) return;
+    list.textContent = "";
+    var entries = getLifeEntries().slice().sort(function (a, b) { return String(b.createdAt || "").localeCompare(String(a.createdAt || "")); }).slice(0, 6);
+    if (!entries.length) {
+      var empty = document.createElement("p");
+      empty.className = "life-history-empty";
+      empty.textContent = t("lifeHistoryEmpty");
+      list.appendChild(empty);
+      return;
+    }
+    entries.forEach(function (entry) {
+      var item = document.createElement("article");
+      item.className = "life-history-item";
+      var meta = document.createElement("span");
+      var reference = document.createElement("strong");
+      reference.textContent = entry.reference || entry.verseKey || "—";
+      var date = document.createElement("small");
+      date.textContent = formatLifeDate(entry.createdAt);
+      meta.appendChild(reference);
+      meta.appendChild(date);
+      var reflection = document.createElement("p");
+      reflection.textContent = entry.reflection || entry.action || "—";
+      var action = document.createElement("small");
+      action.textContent = (entry.completed ? "✓ " : "→ ") + (entry.action || t("lifeDraftStatus"));
+      item.appendChild(meta);
+      item.appendChild(reflection);
+      item.appendChild(action);
+      list.appendChild(item);
+    });
+  }
+
+  function openLifePracticeDialog() {
+    if (!currentSurah || !currentVerse) return;
+    var dialog = document.getElementById("life-practice-dialog");
+    if (!dialog) return;
+    var key = getVerseKey(currentSurah, currentVerse);
+    var today = dateKey(new Date());
+    var existing = getLifeEntries().slice().reverse().find(function (entry) {
+      return entry.verseKey === key && entry.createdAt && dateKey(new Date(entry.createdAt)) === today;
+    });
+    activeLifeEntryId = existing ? existing.id : "";
+    document.getElementById("life-verse-reference").textContent = currentSurah.names[state.language] + " · " + key;
+    document.getElementById("life-verse-arabic").textContent = currentVerse.text;
+    document.getElementById("life-verse-meaning").textContent = currentVerse.meaning[state.language];
+    document.getElementById("life-reflection").value = existing ? existing.reflection || "" : "";
+    document.getElementById("life-action").value = existing ? existing.action || "" : "";
+    document.getElementById("life-ai-suggestion").textContent = t("lifeAiSuggestionIdle");
+    document.getElementById("life-ai-suggestion").classList.remove("is-ready");
+    selectedLifePrompt = existing && existing.prompt ? existing.prompt : "benefit";
+    document.querySelectorAll("[data-life-prompt]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.getAttribute("data-life-prompt") === selectedLifePrompt));
+    });
+    renderLifeHistory();
+    dialog.hidden = false;
+    if (!dialog.open) dialog.showModal();
+  }
+
+  function saveLifePractice(completed) {
+    if (!currentSurah || !currentVerse) return false;
+    var reflection = document.getElementById("life-reflection").value.trim();
+    var action = document.getElementById("life-action").value.trim();
+    if (!reflection && !action) {
+      showToast(t("lifeNeedWords"));
+      return false;
+    }
+    if (completed && !action) {
+      showToast(t("lifeNeedAction"));
+      return false;
+    }
+    var entries = getLifeEntries();
+    var entry = activeLifeEntryId ? entries.find(function (item) { return item.id === activeLifeEntryId; }) : null;
+    var now = new Date().toISOString();
+    if (!entry) {
+      entry = { id: "life-" + Date.now(), createdAt: now };
+      entries.push(entry);
+      activeLifeEntryId = entry.id;
+    }
+    entry.verseKey = getVerseKey(currentSurah, currentVerse);
+    entry.reference = currentSurah.names[state.language] + " · " + entry.verseKey;
+    entry.reflection = reflection;
+    entry.action = action;
+    entry.prompt = selectedLifePrompt;
+    entry.reviewAt = getLifeReviewAt(document.getElementById("life-review-delay").value);
+    entry.updatedAt = now;
+    if (completed) entry.completed = true;
+    saveState();
+    renderLifeHistory();
+    renderLifePracticeSummary();
+    updateProgress();
+    showToast(t(completed ? "lifeCompleted" : "lifeSaved"));
+    return true;
+  }
+
+  function suggestLifeAction() {
+    var reflection = document.getElementById("life-reflection").value.trim();
+    var key = selectedLifePrompt === "restraint" ? "lifeAiRestraint" : (selectedLifePrompt === "continue" ? "lifeAiContinue" : "lifeAiBenefit");
+    var suggestion = reflection ? formatText("lifeAiFromReflection", { reflection: reflection.slice(0, 150) }) : t(key);
+    document.getElementById("life-action").value = suggestion;
+    var output = document.getElementById("life-ai-suggestion");
+    output.textContent = t("lifeAiReady");
+    output.classList.add("is-ready");
   }
 
   function renderMemoryVerse() {
@@ -3602,6 +3918,7 @@
   function setMushafMode(active, skipLoad) {
     var enabled = Boolean(active);
     var wasEnabled = document.body.classList.contains("mushaf-view");
+    if (!enabled && pageRecallSession) clearPageRecallMode();
     if (enabled && !wasEnabled) {
       recitationFlowBeforeMushaf = state.recitationFlow;
       state.recitationFlow = "continuous";
@@ -3826,6 +4143,7 @@
     else if (data.verses[0]) activateMushafVerse(data.verses[0], true);
     renderHeartReadCounter();
     fitMushafLines(container);
+    updatePageRecallUi();
   }
 
   function activateMushafVerse(verseData, resetRecognition) {
@@ -4706,13 +5024,17 @@
   }
 
   function setRecognitionButton(listening) {
-    var button = document.getElementById("start-recognition");
     var labelKey = listening ? "stopListening" : (recognitionStartPending ? "cancelMicRequest" : "startListening");
     var label = t(labelKey);
-    button.querySelector("span").textContent = label;
-    button.setAttribute("aria-label", label);
-    button.setAttribute("aria-pressed", String(listening));
-    button.classList.toggle("is-requesting", recognitionStartPending);
+    ["start-recognition", "page-recall-mic"].forEach(function (id) {
+      var button = document.getElementById(id);
+      if (!button) return;
+      var text = button.querySelector("span");
+      if (text) text.textContent = label;
+      button.setAttribute("aria-label", label);
+      button.setAttribute("aria-pressed", String(listening));
+      button.classList.toggle("is-requesting", recognitionStartPending);
+    });
   }
 
   function clearRecognitionStartTimer() {
@@ -4789,6 +5111,10 @@
     recognitionStatusHasError = Boolean(hasError);
     document.getElementById("recitation-title").textContent = t(titleKey);
     document.getElementById("recitation-subtitle").textContent = t(subtitleKey);
+    if (pageRecallSession) {
+      var pageRecallTitle = document.getElementById("page-recall-dock-title");
+      if (pageRecallTitle) pageRecallTitle.textContent = t(titleKey);
+    }
     panel.classList.toggle("has-error", Boolean(hasError));
     transcriptPanel.classList.toggle("has-error", Boolean(hasError));
   }
@@ -5076,6 +5402,11 @@
     document.querySelectorAll(".quran-word").forEach(function (button) {
       button.classList.remove("is-recognized", "is-warning", "is-error");
     });
+    if (mushafSelectedVerseKey) {
+      document.querySelectorAll('[data-verse-key="' + mushafSelectedVerseKey + '"]').forEach(function (glyph) {
+        glyph.classList.remove("is-recognized", "is-warning", "is-error");
+      });
+    }
     setRecognitionStatus("micReady", "micDisclosure", false);
     setRecognitionButton(false);
   }
@@ -5142,6 +5473,7 @@
     var shouldCredit = !recognitionSessionCounted;
     var heartResult = null;
     var linkedResult = { sealed: false };
+    var pageRecallResult = { complete: false };
     var resolvedCorrection = correctionLocked;
     clearCorrectionLock();
     if (resolvedCorrection) {
@@ -5156,6 +5488,7 @@
       var verseKey = getVerseKey(currentSurah, currentVerse);
       heartResult = recordHeartRecitation(verseKey);
       linkedResult = registerLinkedPageVerse(verseKey);
+      pageRecallResult = registerPageRecallVerse(verseKey);
       saveState();
       renderHeartMushaf();
       renderHeartReadCounter();
@@ -5176,6 +5509,12 @@
       continuousResumePending = true;
     }
     if (linkedResult.sealed) {
+      continuousResumePending = false;
+      stopContinuousSession();
+      clearAutoAdvance();
+      return;
+    }
+    if (pageRecallResult.complete) {
       continuousResumePending = false;
       stopContinuousSession();
       clearAutoAdvance();
@@ -6042,6 +6381,7 @@
     document.getElementById("metric-words").textContent = formatMetric(state.wordsReviewed);
     document.getElementById("metric-hints").textContent = formatMetric(state.hints);
     updateDailyOverview();
+    renderLifePracticeSummary();
     renderActivityHeatmap();
     renderLibraries();
     var empty = document.getElementById("empty-progress");
@@ -6294,6 +6634,15 @@
       showToast(t("heartPracticeScroll"));
       startMemoryRecognition();
     });
+    document.getElementById("start-page-recall").addEventListener("click", startPageRecall);
+    document.getElementById("page-recall-mic").addEventListener("click", function () { startRecognition(false); });
+    document.getElementById("toggle-page-recall-text").addEventListener("click", function () {
+      if (!pageRecallSession) return;
+      pageRecallShowText = !pageRecallShowText;
+      document.body.classList.toggle("page-recall-show-text", pageRecallShowText);
+      updatePageRecallUi();
+    });
+    document.getElementById("exit-page-recall").addEventListener("click", finishPageRecall);
     document.querySelectorAll("[data-cancel-auto-advance]").forEach(function (button) {
       button.addEventListener("click", function () {
         continuousResumePending = false;
@@ -6429,6 +6778,29 @@
     document.getElementById("start-linked-page").addEventListener("click", startLinkedPageReading);
     heartPageDialog.addEventListener("click", function (event) { if (event.target === heartPageDialog) heartPageDialog.close(); });
 
+    var lifePracticeDialog = document.getElementById("life-practice-dialog");
+    ["open-life-practice-today", "open-life-practice", "open-life-practice-ai"].forEach(function (id) {
+      document.getElementById(id).addEventListener("click", openLifePracticeDialog);
+    });
+    document.getElementById("close-life-practice").addEventListener("click", function () { lifePracticeDialog.close(); });
+    lifePracticeDialog.addEventListener("click", function (event) { if (event.target === lifePracticeDialog) lifePracticeDialog.close(); });
+    document.getElementById("life-practice-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (saveLifePractice(false)) lifePracticeDialog.close();
+    });
+    document.getElementById("life-complete").addEventListener("click", function () {
+      if (saveLifePractice(true)) lifePracticeDialog.close();
+    });
+    document.getElementById("life-ai-suggest").addEventListener("click", suggestLifeAction);
+    document.querySelectorAll("[data-life-prompt]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        selectedLifePrompt = button.getAttribute("data-life-prompt") || "benefit";
+        document.querySelectorAll("[data-life-prompt]").forEach(function (item) {
+          item.setAttribute("aria-pressed", String(item === button));
+        });
+      });
+    });
+
     var quranSearchDialog = document.getElementById("quran-search-dialog");
     var quranSearchInput = document.getElementById("quran-search-input");
     var quranSearchResults = document.getElementById("quran-search-results");
@@ -6542,10 +6914,11 @@
     checkRecognitionSupport();
     checkQuranAsrService();
     updateProgress();
+    updatePageRecallUi();
     var requestedView = new URLSearchParams(window.location.search).get("view");
     if (Object.prototype.hasOwnProperty.call(viewTitles, requestedView)) navigate(requestedView);
     if ("serviceWorker" in navigator && isLocalPreview) {
-      navigator.serviceWorker.register("sw.js?v=71").catch(function () {
+      navigator.serviceWorker.register("sw.js?v=74").catch(function () {
         return null;
       });
     }

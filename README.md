@@ -7,13 +7,15 @@ independent of Tarteel AI. This is an early prototype, not a certified tajwid as
 
 ## What is included — 0.1.0
 
-- Landing page, Quran Companion, Academy and English/Russian/Arabic blog:
-  18 published pages plus one unpublished design draft.
+- Landing page, Quran Companion, Academy and English/Russian/Arabic/Turkish blog:
+  23 published pages plus one unpublished design draft.
 - Three localized trial-lesson forms and the standard ALLIM Trial Lesson Request DocType.
 - HTML, CSS, JavaScript, SEO metadata, redirects and public website defaults.
 - Project logos, Literata font, three demo videos, posters and subtitles.
 - Standalone FastAPI speech-recognition and Quran-content API source,
   nginx/systemd configuration, migration guards and tests.
+- Search Intelligence: four app-owned DocTypes, an administrative Desk page,
+  public-route audits, LMS SEO helpers and the existing daily audit hook.
 
 Existing behavior and browser storage keys are preserved. Progress remains
 browser-local. Users, inquiries, courses and enrollments stay in the site database;
@@ -47,6 +49,8 @@ allimquran/
   allim_quran/doctype/             standard schemas/controllers
   public/media/                   public project assets
   asr/server.py                   speech and Quran-content APIs
+  search_intelligence.py          existing search audits and SEO integration
+  lms_renderer.py, lms_template.py app-owned LMS search presentation
   source.py, setup.py              guarded source synchronization
 deploy/                           nginx/systemd configuration
 scripts/                          export, migration and browser checks

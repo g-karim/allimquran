@@ -43,7 +43,10 @@ def project(value, template):
 	if isinstance(template, list):
 		if not template:
 			return value or []
-		return [project(item, template[0]) for item in (value or [])]
+		return [
+			project(item, template[index] if index < len(template) else template[-1])
+			for index, item in enumerate(value or [])
+		]
 	return value
 
 
@@ -59,6 +62,8 @@ def records():
 		doc = json.loads(path.read_text())
 		doc.pop("field_order", None)
 		yield doc
+	for path in sorted((CONTENT.parent / "allim_quran" / "page").glob("*/*.json")):
+		yield json.loads(path.read_text())
 	for group in ("pages", "forms"):
 		for path in sorted((CONTENT / group).rglob("page.json")):
 			doc = json.loads(path.read_text())
