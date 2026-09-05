@@ -8,6 +8,7 @@ import json
 
 import frappe
 
+from allimquran import __version__
 from allimquran.source import CONTENT, fingerprint, records
 
 STATE_KEY = "allimquran_source_state"
@@ -90,6 +91,9 @@ def sync(dry_run=False):
 					changed.append(key)
 				state[key] = {"source": desired_hash, "current": fingerprint(_current(source), source)}
 			frappe.db.set_default(STATE_KEY, json.dumps(state, sort_keys=True))
+			installed = {"parent": "Installed Applications", "app_name": "allimquran"}
+			if frappe.db.get_value("Installed Application", installed, "app_version") != __version__:
+				frappe.db.set_value("Installed Application", installed, "app_version", __version__)
 			frappe.db.commit()
 		except Exception:
 			frappe.db.rollback()

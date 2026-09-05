@@ -12,6 +12,7 @@ From the bench directory, as its owner:
 bench --site SITE backup --with-files --compress
 git -C apps/allimquran status --short --branch
 git -C apps/allimquran pull --ff-only
+./env/bin/pip install --no-deps -e apps/allimquran
 bench --site SITE execute allimquran.setup.preflight
 bench build --app allimquran
 bench --site SITE execute allimquran.setup.sync
