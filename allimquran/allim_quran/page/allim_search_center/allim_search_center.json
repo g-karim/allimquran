@@ -1,0 +1,14 @@
+{
+  "doctype": "Page",
+  "name": "allim-search-center",
+  "page_name": "allim-search-center",
+  "title": "ALLIM Search Intelligence",
+  "module": "ALLIM Quran",
+  "standard": "Yes",
+  "system_page": 0,
+  "icon": "search",
+  "roles": [
+    {"role": "System Manager"},
+    {"role": "Website Manager"}
+  ]
+}

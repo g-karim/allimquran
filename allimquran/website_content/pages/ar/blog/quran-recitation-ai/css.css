@@ -51,3 +51,92 @@ h1,h2,h3,p{margin-top:0}.insights-hero h1{max-width:1050px;margin-bottom:0;font-
 @media(max-width:980px){.insights-header{grid-template-columns:auto 1fr auto}.insights-header>nav{position:absolute;top:100%;right:16px;left:16px;display:none;flex-direction:column;gap:0;padding:10px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:0 18px 50px rgba(23,55,47,.12)}.insights-header.menu-open>nav{display:flex}.insights-header nav a{padding:14px}.menu-toggle{display:block}.insights-hero{grid-template-columns:1fr;gap:34px;min-height:0}.featured-card{grid-template-columns:1fr}.editorial-note{grid-template-columns:1fr}.article-layout{grid-template-columns:1fr}.article-aside{position:static}.article-aside nav{grid-template-columns:1fr 1fr}.article-next{align-items:flex-start;flex-direction:column}}
 @media(max-width:650px){.insights-header{min-height:70px;padding:10px 16px;gap:10px}.insights-brand strong{display:none}.insights-brand>span{width:40px;height:40px}.locale-switch a{min-width:30px}.insights-hero,.featured,.article-section,.editorial-note,.insights-cta,.article-shell,.article-next{width:min(calc(100% - 28px),var(--content))}.insights-hero{padding:58px 0}.insights-hero h1{font-size:clamp(47px,15vw,68px)}.featured-card{border-radius:24px}.featured-copy{padding:34px 24px}.lesson-visual{min-height:330px;padding:30px 20px;gap:8px}.lesson-visual .letter{width:76px;height:76px;border-radius:20px;font-size:38px}.path-line{width:15px}.article-grid{grid-template-columns:1fr}.article-card{min-height:330px}.article-card h3{margin-top:42px}.editorial-note{padding:38px 24px}.insights-cta{align-items:flex-start;flex-direction:column;padding:34px 24px}.insights-footer{grid-template-columns:1fr auto}.insights-footer p{display:none}.article-hero{padding:56px 0 46px}.article-hero h1{font-size:clamp(43px,13vw,62px)}.breadcrumbs{margin-bottom:36px}.article-layout{gap:36px;padding:44px 0 80px}.article-aside nav{grid-template-columns:1fr}.article-body{font-size:18px}.answer-first{padding:24px}.lesson-row{grid-template-columns:1fr;gap:8px;padding:20px}.article-next{margin-bottom:60px;padding:34px 24px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.letter{animation:none!important}.article-card,.featured-card,.editorial-note,.insights-cta{opacity:1;transform:none;transition:none}}
+
+/* ALLIM living library: calm motion that reveals the meaning of each guide. */
+.button,.menu-toggle,.locale-switch,.locale-switch a{border-radius:999px}
+.locale-switch a.is-current{color:#fff;background:var(--forest)}
+.button{position:relative;isolation:isolate;overflow:hidden;padding-inline:28px;box-shadow:0 12px 28px rgba(25,79,67,.14);transition:transform .25s ease,box-shadow .25s ease,background-color .25s ease}
+.button:before{position:absolute;z-index:-1;inset:-2px;border-radius:inherit;background:linear-gradient(105deg,transparent 25%,rgba(255,255,255,.28) 48%,transparent 70%);content:"";transform:translateX(-125%)}
+.button:hover,.button:focus-visible{transform:translateY(-3px);box-shadow:0 18px 34px rgba(25,79,67,.22)}
+.button:hover:before,.button:focus-visible:before{animation:button-light .7s ease}
+@keyframes button-light{to{transform:translateX(125%)}}
+
+.article-card{position:relative;min-height:490px;padding:28px;transform:perspective(900px) translateY(16px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transform-style:preserve-3d;transition:opacity .6s ease,transform .38s cubic-bezier(.2,.8,.2,1),border-color .3s ease,box-shadow .3s ease}
+.article-card.is-visible{transform:perspective(900px) translateY(0) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))}
+.article-card:before{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at var(--pointer-x,50%) var(--pointer-y,25%),rgba(72,154,130,.16),transparent 36%);content:"";opacity:0;pointer-events:none;transition:opacity .3s ease}
+.article-card:hover,.article-card:focus-within{z-index:2;border-color:rgba(31,117,95,.36);box-shadow:0 30px 70px rgba(18,61,52,.16);transform:perspective(900px) translateY(-7px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))}
+.article-card:hover:before,.article-card:focus-within:before{opacity:1}
+.article-card:active,.article-card.is-opening{transform:perspective(900px) translateY(-2px) scale(.988)}
+.article-card a{position:relative;z-index:1}
+.article-card .card-number{align-self:flex-start;padding:7px 12px;border:1px solid rgba(201,155,61,.3);border-radius:999px;background:rgba(255,254,250,.7);font-family:var(--sans);font-size:11px;font-weight:900;letter-spacing:.12em}
+.article-card h3{margin:26px 0 16px;font-size:clamp(25px,1.8vw,34px)}
+.article-card .read-more{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding:14px 18px;border:1px solid rgba(25,79,67,.18);border-radius:999px;background:rgba(255,255,255,.62);transition:color .25s ease,background .25s ease,border-color .25s ease}
+.article-card:hover .read-more,.article-card:focus-within .read-more{color:#fff;border-color:var(--forest);background:var(--forest)}
+.article-card .read-more span{font-size:18px;transition:transform .25s ease}
+.article-card:hover .read-more span,.article-card:focus-within .read-more span{transform:translateX(5px)}
+[dir=rtl] .article-card:hover .read-more span,[dir=rtl] .article-card:focus-within .read-more span{transform:translateX(-5px)}
+
+.article-card__visual{position:relative;height:142px;margin-top:20px;overflow:hidden;border:1px solid rgba(25,79,67,.12);border-radius:21px;background:linear-gradient(145deg,#f2eee2,#e4f1eb);transform:translateZ(18px);transition:background .35s ease,transform .35s ease}
+.article-card__visual:after{position:absolute;inset:-60% -20%;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.72) 49%,transparent 60%);content:"";transform:translateX(-65%) rotate(8deg)}
+.article-card:hover .article-card__visual:after,.article-card:focus-within .article-card__visual:after{animation:visual-scan .9s ease}
+.article-card:hover .article-card__visual,.article-card:focus-within .article-card__visual{background:linear-gradient(145deg,#eef4e9,#cae6dc);transform:translateZ(25px) translateY(-3px)}
+.article-card__visual svg{display:block;width:100%;height:100%;overflow:visible;color:var(--forest)}
+.article-card__visual path,.article-card__visual circle,.article-card__visual rect{vector-effect:non-scaling-stroke}
+.av-frame,.av-book,.av-spine,.av-path,.av-page-line,.av-wave,.av-recall,.av-marker,.av-layer,.av-glyphs path{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.av-frame,.av-book{fill:rgba(255,254,250,.56);stroke:rgba(25,79,67,.58)}
+.av-glyphs circle,.av-ring{fill:rgba(255,255,255,.48);stroke:rgba(25,79,67,.5);stroke-width:1.5}
+.av-nodes circle,.av-core{fill:var(--gold);stroke:none}
+.av-recall{fill:rgba(201,155,61,.14);stroke:var(--gold)}
+.av-focus{fill:rgba(201,155,61,.35);stroke:var(--gold);stroke-width:1.2}
+.av-layer{stroke:var(--gold);stroke-dasharray:4 5}
+.article-card:hover .av-path,.article-card:focus-within .av-path,.article-card:hover .av-wave,.article-card:focus-within .av-wave{stroke-dasharray:12 7;animation:flow-line 1.15s linear infinite}
+.article-card:hover .av-glyphs circle,.article-card:focus-within .av-glyphs circle{animation:glyph-breathe 1.2s ease-in-out infinite alternate}
+.article-card:hover .av-page-line,.article-card:focus-within .av-page-line{stroke-dasharray:45;stroke-dashoffset:45;animation:write-line .65s ease forwards}
+.article-card:hover .line-two,.article-card:focus-within .line-two{animation-delay:.1s}
+.article-card:hover .line-three,.article-card:focus-within .line-three{animation-delay:.2s}
+.article-card:hover .ring-one,.article-card:focus-within .ring-one{animation:ring-breathe 1.4s ease-in-out infinite}
+.article-card:hover .ring-two,.article-card:focus-within .ring-two{animation:ring-breathe 1.4s .15s ease-in-out infinite}
+.article-card:hover .ring-three,.article-card:focus-within .ring-three{animation:ring-breathe 1.4s .3s ease-in-out infinite}
+.article-card:hover .av-focus,.article-card:focus-within .av-focus{animation:focus-word 1.05s ease-in-out infinite alternate}
+.article-card:hover .av-layer,.article-card:focus-within .av-layer{animation:layer-open 1s ease-in-out infinite alternate;transform-origin:133px 42px}
+@keyframes visual-scan{to{transform:translateX(65%) rotate(8deg)}}
+@keyframes flow-line{to{stroke-dashoffset:-38}}
+@keyframes glyph-breathe{to{transform:translateY(-3px)}}
+@keyframes write-line{to{stroke-dashoffset:0}}
+@keyframes ring-breathe{50%{opacity:.35;transform:scale(1.08);transform-origin:90px 54px}}
+@keyframes focus-word{to{transform:translateX(5px)}}
+@keyframes layer-open{to{transform:translate(3px,-4px)}}
+
+.lesson-visual{isolation:isolate;background:radial-gradient(circle at 50% 44%,#347968 0,#1b5548 46%,var(--forest-deep) 100%)}
+.lesson-visual:before,.lesson-visual:after{display:none}
+.mushaf-stage{position:relative;width:min(92%,570px);aspect-ratio:1.25;filter:drop-shadow(0 26px 34px rgba(5,35,28,.28));perspective:1000px}
+.mushaf-halo{position:absolute;inset:3%;border:1px solid rgba(228,195,119,.26);border-radius:50%;animation:halo-breathe 5s ease-in-out infinite}
+.mushaf-halo.halo-two{inset:14%;animation-delay:-2.4s}
+.mushaf-book{position:absolute;inset:24% 10% 14%;transform:rotateX(48deg);transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.mushaf-leaf{position:absolute;top:0;bottom:0;width:50%;padding:17% 9%;border:1px solid rgba(229,204,146,.58);background:linear-gradient(135deg,#fffdf5,#e9dfc9);box-shadow:inset 0 0 30px rgba(119,88,43,.12)}
+.mushaf-leaf.leaf-left{right:50%;border-radius:10px 3px 5px 17px;transform-origin:right center;transform:rotateY(8deg)}
+.mushaf-leaf.leaf-right{left:50%;border-radius:3px 10px 17px 5px;transform-origin:left center;transform:rotateY(-8deg)}
+.mushaf-leaf i{display:block;height:2px;margin-bottom:10%;border-radius:2px;background:rgba(40,91,77,.42);transform-origin:center}
+.mushaf-leaf b{position:absolute;top:43%;right:17%;width:28%;height:9%;border-radius:999px;background:rgba(201,155,61,.38);box-shadow:0 0 0 4px rgba(201,155,61,.08)}
+.mushaf-spine{position:absolute;z-index:3;top:-2%;bottom:-5%;left:50%;width:2px;background:linear-gradient(transparent,#b79450,transparent)}
+.learning-layer{position:absolute;border:1px solid rgba(255,255,255,.25);border-radius:16px;background:rgba(255,255,255,.11);box-shadow:0 14px 24px rgba(5,35,28,.16);backdrop-filter:blur(7px);transition:transform .55s ease,opacity .55s ease}
+.learning-layer span{display:block;height:3px;border-radius:3px;background:rgba(238,211,148,.72)}
+.layer-read{top:12%;left:7%;width:24%;height:14%;padding:8% 6%}.layer-read span{width:80%}
+.layer-meaning{top:17%;right:3%;width:29%;height:21%;padding:6%}.layer-meaning span{width:72%;margin-bottom:11%}.layer-meaning span+span{width:48%}
+.layer-memory{right:8%;bottom:4%;width:31%;height:22%;padding:6%}.layer-memory span{display:inline-block;width:14%;height:auto;aspect-ratio:1;border-radius:50%;margin-inline-end:10%;background:#e2bb65;box-shadow:0 0 0 5px rgba(226,187,101,.1)}
+.featured-card:hover .mushaf-book,.featured-card:focus-within .mushaf-book{transform:rotateX(40deg) translateY(-8px)}
+.featured-card:hover .layer-read,.featured-card:focus-within .layer-read{transform:translate(-7px,-9px)}
+.featured-card:hover .layer-meaning,.featured-card:focus-within .layer-meaning{transform:translate(8px,-10px)}
+.featured-card:hover .layer-memory,.featured-card:focus-within .layer-memory{transform:translate(9px,7px)}
+.featured-card:hover .mushaf-leaf i,.featured-card:focus-within .mushaf-leaf i{animation:line-glow 1.2s ease-in-out infinite alternate}
+@keyframes halo-breathe{50%{opacity:.35;transform:scale(.94)}}
+@keyframes line-glow{to{background:rgba(40,123,100,.78)}}
+
+.sources .basis-links{font-family:var(--sans);font-size:13px;line-height:1.9}
+.sources .basis-links a{display:inline;text-decoration-color:rgba(25,79,67,.35)}
+.authorship{border-radius:22px}
+.article-next,.insights-cta,.featured-card,.editorial-note{border-radius:32px}
+
+@media(max-width:650px){.article-card{min-height:440px;padding:22px}.article-card__visual{height:128px}.article-card h3{margin-top:22px}.mushaf-stage{width:100%}.learning-layer{border-radius:12px}.article-next,.insights-cta,.featured-card,.editorial-note{border-radius:25px}}
+@media(hover:none){.article-card{transform:none!important}.article-card:before{display:none}.article-card__visual{transform:none!important}}
+@media(prefers-reduced-motion:reduce){.button:before,.article-card__visual:after,.article-card__visual svg *,.mushaf-halo,.mushaf-leaf i{animation:none!important}.article-card,.article-card__visual,.mushaf-book,.learning-layer,.button,.read-more span{transform:none!important;transition:none!important}}
