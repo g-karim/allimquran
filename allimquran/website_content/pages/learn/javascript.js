@@ -3729,14 +3729,34 @@
 
   function getMushafChapterLabel(id) {
     var chapter = mushafChapterNames[id] || {};
-    return chapter.name_arabic || ("سُورَةُ " + arabicNumber(id));
+    var label = chapter.name_arabic || arabicNumber(id);
+    return /^\s*س[ُ]?ور[ةۃ]/.test(label) ? label : ("سُورَةُ " + label);
+  }
+
+  function makeMushafSurahWing(side) {
+    var wing = document.createElement("span");
+    wing.className = "mushaf-surah-wing is-" + side;
+    wing.setAttribute("aria-hidden", "true");
+    wing.innerHTML = '<svg viewBox="0 0 180 42" preserveAspectRatio="none" focusable="false">' +
+      '<path class="mushaf-surah-vine" d="M2 21C24 21 28 8 48 8S72 34 94 34 120 8 142 8c17 0 20 13 36 13"/>' +
+      '<path class="mushaf-surah-leaf" d="M44 10c-13-8-22 2-9 10 9 5 16-1 9-10Zm51 22c-12 9-22 0-10-9 8-6 16-1 10 9Zm48-22c-12-8-21 2-9 10 9 5 16-1 9-10Z"/>' +
+      '<circle class="mushaf-surah-blossom" cx="70" cy="21" r="3.2"/><circle class="mushaf-surah-blossom" cx="119" cy="21" r="3.2"/>' +
+      '</svg>';
+    return wing;
   }
 
   function makeMushafHeader(chapterId) {
     var fragment = document.createDocumentFragment();
     var heading = document.createElement("div");
     heading.className = "mushaf-surah-banner";
-    heading.textContent = getMushafChapterLabel(chapterId);
+    heading.setAttribute("role", "separator");
+    heading.setAttribute("aria-label", getMushafChapterLabel(chapterId));
+    var title = document.createElement("strong");
+    title.className = "mushaf-surah-title";
+    title.textContent = getMushafChapterLabel(chapterId);
+    heading.appendChild(makeMushafSurahWing("start"));
+    heading.appendChild(title);
+    heading.appendChild(makeMushafSurahWing("end"));
     fragment.appendChild(heading);
     if (Number(chapterId) !== 9 && Number(chapterId) !== 1) {
       var basmala = document.createElement("div");

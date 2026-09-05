@@ -33,7 +33,7 @@ Git теперь является источником кода. Изменен�
 bench get-app --branch main https://github.com/g-karim/allimquran.git
 bench --site your-site.localhost install-app allimquran
 bench build --app allimquran
-bench --site your-site.localhost execute allimquran.setup.sync --kwargs '{"dry_run": true}'
+bench --site your-site.localhost execute allimquran.setup.preflight
 ```
 
 ASR запускается отдельно; в окружение Frappe не устанавливаются Torch и модель.

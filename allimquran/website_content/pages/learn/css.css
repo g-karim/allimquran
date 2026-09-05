@@ -721,7 +721,22 @@ body.mushaf-view .mushaf-page { position: relative; z-index: 2; display: grid; m
 .mushaf-glyph.is-warning { color: #9a6d1f; background: rgba(224,177,68,.13); }
 .mushaf-glyph.is-error { color: #a44841; background: rgba(192,75,66,.12); box-shadow: inset 0 -2px 0 rgba(164,72,65,.45); }
 .mushaf-glyph.is-ayah-end { margin-inline-start: 1px; }
-.mushaf-surah-banner { display: grid; place-items: center; min-height: 58px; margin: 10px auto 5px; border: 3px double color-mix(in srgb,var(--mushaf-page-rule) 66%,transparent); background: linear-gradient(90deg,transparent,color-mix(in srgb,var(--mushaf-page-rule) 12%,transparent),transparent); color: var(--mushaf-page-ink); font-family: "Uthmanic Hafs","SF Arabic",serif; font-size: 28px; line-height: 1.5; }
+.mushaf-surah-banner { position: relative; display: grid; width: min(96%,720px); min-height: 58px; grid-template-columns: minmax(54px,1fr) auto minmax(54px,1fr); place-items: center stretch; margin: 10px auto 5px; padding: 3px 7px; overflow: hidden; border: 1px solid color-mix(in srgb,#276f60 76%,var(--mushaf-page-rule)); outline: 1px solid color-mix(in srgb,var(--mushaf-page-rule) 38%,transparent); outline-offset: 2px; color: var(--mushaf-page-ink); background: linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.06)),linear-gradient(90deg,color-mix(in srgb,#2e856f 18%,var(--mushaf-page-bg)),color-mix(in srgb,#6ea796 31%,var(--mushaf-page-bg)) 50%,color-mix(in srgb,#2e856f 18%,var(--mushaf-page-bg))); box-shadow: inset 0 0 0 3px color-mix(in srgb,var(--mushaf-page-bg) 76%,transparent),0 3px 10px rgba(39,91,75,.08); font-family: "Uthmanic Hafs","SF Arabic",serif; font-size: 28px; line-height: 1.5; }
+.mushaf-surah-banner::before,.mushaf-surah-banner::after { content: ""; position: absolute; inset-block: 5px; width: 16px; border-block: 1px solid color-mix(in srgb,#b77b89 44%,transparent); opacity: .8; }
+.mushaf-surah-banner::before { inset-inline-start: 4px; border-inline-start: 1px solid color-mix(in srgb,#276f60 46%,transparent); }
+.mushaf-surah-banner::after { inset-inline-end: 4px; border-inline-end: 1px solid color-mix(in srgb,#276f60 46%,transparent); }
+.mushaf-surah-title { position: relative; z-index: 1; min-width: clamp(150px,32vw,280px); padding: 3px clamp(14px,2.7vw,30px) 5px; border-inline: 1px solid color-mix(in srgb,#276f60 48%,transparent); color: var(--mushaf-page-ink); background: color-mix(in srgb,#d7ebe1 46%,var(--mushaf-page-bg)); font: inherit; font-weight: 400; text-align: center; white-space: nowrap; clip-path: polygon(8px 0,calc(100% - 8px) 0,100% 50%,calc(100% - 8px) 100%,8px 100%,0 50%); }
+.mushaf-surah-title::before,.mushaf-surah-title::after { content: ""; position: absolute; inset-block-start: 50%; width: 5px; height: 5px; border: 1px solid color-mix(in srgb,#b77b89 76%,#276f60); border-radius: 50%; background: color-mix(in srgb,#cf8797 62%,var(--mushaf-page-bg)); transform: translateY(-50%); }
+.mushaf-surah-title::before { inset-inline-start: 8px; }
+.mushaf-surah-title::after { inset-inline-end: 8px; }
+.mushaf-surah-wing { display: block; width: 100%; height: 38px; color: color-mix(in srgb,#276f60 76%,var(--mushaf-page-rule)); opacity: .9; }
+.mushaf-surah-wing.is-end { transform: scaleX(-1); }
+[dir="rtl"] .mushaf-surah-wing.is-end { transform: none; }
+[dir="rtl"] .mushaf-surah-wing.is-start { transform: scaleX(-1); }
+.mushaf-surah-wing svg { display: block; width: 100%; height: 100%; }
+.mushaf-surah-vine { fill: none; stroke: currentColor; stroke-width: 1.55; vector-effect: non-scaling-stroke; }
+.mushaf-surah-leaf { fill: currentColor; opacity: .3; }
+.mushaf-surah-blossom { fill: color-mix(in srgb,#bf7888 78%,var(--mushaf-page-bg)); stroke: color-mix(in srgb,#276f60 58%,var(--mushaf-page-rule)); stroke-width: .75; vector-effect: non-scaling-stroke; }
 .mushaf-basmala { margin: 1px auto 5px; color: var(--mushaf-page-ink); font-family: "Uthmanic Hafs","SF Arabic",serif; font-size: 26px; line-height: 1.8; text-align: center; }
 .mushaf-page-footer { margin-top: 12px; color: var(--mushaf-page-rule); font: 800 11px/1 var(--sans); text-align: center; }
 .mushaf-page-loading, .mushaf-page-error { display: grid; min-height: 420px; place-items: center; align-content: center; gap: 16px; color: #766644; font: 750 13px/1.5 var(--sans); text-align: center; }
@@ -1927,7 +1942,11 @@ body.mushaf-view .toast { display: none !important; }
     padding: 3px 6px 3px;
     border-width: 3px;
   }
-  body.mushaf-view .mushaf-surah-banner { min-height: 34px; margin: 1px auto; font-size: clamp(17px,2.5vh,22px); }
+  body.mushaf-view .mushaf-surah-banner { width: calc(100% - 5px); min-height: 34px; grid-template-columns: minmax(30px,1fr) auto minmax(30px,1fr); margin: 2px auto 1px; padding: 2px 4px; font-size: clamp(17px,2.5vh,22px); }
+  body.mushaf-view .mushaf-surah-title { min-width: clamp(132px,48vw,205px); padding: 1px 14px 3px; }
+  body.mushaf-view .mushaf-surah-title::before { inset-inline-start: 6px; }
+  body.mushaf-view .mushaf-surah-title::after { inset-inline-end: 6px; }
+  body.mushaf-view .mushaf-surah-wing { height: 27px; }
   body.mushaf-view .mushaf-basmala { margin: 0 auto 1px; font-size: clamp(16px,2.3vh,20px); line-height: 1.35; }
   body.mushaf-view .mushaf-page-footer { margin-top: 1px; font-size: 9px; }
   body.mushaf-view .mushaf-page-toolbar {

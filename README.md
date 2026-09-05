@@ -58,7 +58,7 @@ of truth. Installation and migration synchronize source files into these records
 Direct Desk edits are detected and must be reconciled before the next deployment.
 
 ```sh
-bench --site your-site.localhost execute allimquran.setup.sync --kwargs '{"dry_run": true}'
+bench --site your-site.localhost execute allimquran.setup.preflight
 bench --site your-site.localhost execute allimquran.setup.sync
 ```
 

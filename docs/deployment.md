@@ -12,7 +12,7 @@ From the bench directory, as its owner:
 bench --site SITE backup --with-files --compress
 git -C apps/allimquran status --short --branch
 git -C apps/allimquran pull --ff-only
-bench --site SITE execute allimquran.setup.sync --kwargs '{"dry_run": true}'
+bench --site SITE execute allimquran.setup.preflight
 bench build --app allimquran
 bench --site SITE execute allimquran.setup.sync
 ```

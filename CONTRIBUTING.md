@@ -17,7 +17,7 @@ Keep each pull request focused. Add behavioral tests for new logic, permissions
 and migrations. A migration should be safe to retry and preserve existing user
 data. Changes to Arabic UI should be checked in RTL as well as LTR layouts.
 
-Use `bench --site your-site.localhost execute allimquran.setup.sync --kwargs '{"dry_run": true}'`
+Use `bench --site your-site.localhost execute allimquran.setup.preflight`
 before syncing sources. If it reports drift, reconcile the existing edits into Git first.
 Do not bypass the check or export real trial-lesson requests as fixtures.
 
