@@ -2076,7 +2076,7 @@ window.ALLIM_LANGUAGE_META = {
   function setBrandFavicon() {
     var iconUrl = window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
       ? "allim-brand-icon.png"
-      : "/files/allim-brand-icon.png?v=65";
+      : "/assets/allimquran/media/allim-brand-icon.png?v=65";
     document.querySelectorAll('head link[rel~="icon"],head link[rel="apple-touch-icon"]').forEach(function (node) { node.remove(); });
     ["icon", "apple-touch-icon"].forEach(function (relation) {
       var link = document.createElement("link");
@@ -2446,27 +2446,27 @@ window.ALLIM_LANGUAGE_META = {
 
   var heartFilmMedia = {
     en: {
-      src: mediaUrl("/files/allim-quran-in-heart-300-en.mp4?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-EN-Web-720p.mp4"),
-      poster: mediaUrl("/files/allim-quran-in-heart-300-en-poster.jpg?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-EN-poster.jpg"),
-      captions: mediaUrl("/files/allim-quran-in-heart-300-en.vtt?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-EN.vtt"),
+      src: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-en.mp4?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-EN-Web-720p.mp4"),
+      poster: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-en-poster.jpg?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-EN-poster.jpg"),
+      captions: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-en.vtt?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-EN.vtt"),
       label: "English captions"
     },
     ar: {
-      src: mediaUrl("/files/allim-quran-in-heart-300-ar.mp4?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-AR-Web-720p.mp4"),
-      poster: mediaUrl("/files/allim-quran-in-heart-300-ar-poster.jpg?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-AR-poster.jpg"),
-      captions: mediaUrl("/files/allim-quran-in-heart-300-ar.vtt?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-AR.vtt"),
+      src: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-ar.mp4?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-AR-Web-720p.mp4"),
+      poster: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-ar-poster.jpg?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-AR-poster.jpg"),
+      captions: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-ar.vtt?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-AR.vtt"),
       label: "ترجمة عربية"
     },
     ru: {
-      src: mediaUrl("/files/allim-quran-in-heart-300-ru.mp4?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-RU-Web-720p.mp4"),
-      poster: mediaUrl("/files/allim-quran-in-heart-300-ru-poster.jpg?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-RU-poster.jpg"),
-      captions: mediaUrl("/files/allim-quran-in-heart-300-ru.vtt?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-RU.vtt"),
+      src: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-ru.mp4?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-RU-Web-720p.mp4"),
+      poster: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-ru-poster.jpg?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-RU-poster.jpg"),
+      captions: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-ru.vtt?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-RU.vtt"),
       label: "Русские субтитры"
     },
     tr: {
-      src: mediaUrl("/files/allim-quran-in-heart-300-tr.mp4?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-TR-Web-720p.mp4"),
-      poster: mediaUrl("/files/allim-quran-in-heart-300-tr-poster.jpg?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-TR-poster.jpg"),
-      captions: mediaUrl("/files/allim-quran-in-heart-300-tr.vtt?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-TR.vtt"),
+      src: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-tr.mp4?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-TR-Web-720p.mp4"),
+      poster: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-tr-poster.jpg?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-TR-poster.jpg"),
+      captions: mediaUrl("/assets/allimquran/media/allim-quran-in-heart-300-tr.vtt?v=83", "../video/hifz-300-film/output/ALLIM-Quran-in-heart-300-TR.vtt"),
       label: "Türkçe altyazı"
     }
   };

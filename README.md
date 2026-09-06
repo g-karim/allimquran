@@ -11,7 +11,8 @@ independent of Tarteel AI. This is an early prototype, not a certified tajwid as
   23 published pages plus one unpublished design draft.
 - Three localized trial-lesson forms and the standard ALLIM Trial Lesson Request DocType.
 - HTML, CSS, JavaScript, SEO metadata, redirects and public website defaults.
-- Project logos, Literata font, three demo videos, posters and subtitles.
+- Project logos, Literata font, Companion demos and the four-language
+  Quran-in-heart film, with posters and subtitles.
 - Standalone FastAPI speech-recognition and Quran-content API source,
   nginx/systemd configuration, migration guards and tests.
 - Search Intelligence: four app-owned DocTypes, an administrative Desk page,
@@ -76,12 +77,16 @@ python -m venv .venv
 .venv/bin/ruff check .
 .venv/bin/ruff format --check .
 .venv/bin/python -m unittest discover -s tests -v
+node --test tests/recitation.test.cjs
 .venv/bin/python scripts/check_javascript.py
 .venv/bin/python -m build
 ```
 
 API tests mock the model and upstream service; they do not assess recognition
-quality. The read-only browser smoke script requires Playwright and Chrome.
+quality. Audio boundary/cleanup tests also require ffmpeg. The browser smoke
+scripts require Playwright and Chrome. See the [stage-one recognition checks and
+limitations](docs/recognition-stage1.md), including the isolated fake-microphone
+script `node scripts/recognition_browser_smoke.mjs`.
 
 GitHub Actions is not active. A template is at
 [.github/checks.yml.example](.github/checks.yml.example); activation requires

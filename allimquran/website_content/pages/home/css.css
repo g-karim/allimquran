@@ -11,7 +11,7 @@ body:has(.allim-web-root) { margin: 0 !important; background: #f6f4ef !important
 
 @font-face {
   font-family: "ALLIM Literata";
-  src: url("/files/allim-literata-medium.woff2") format("woff2");
+  src: url("/assets/allimquran/media/allim-literata-medium.woff2") format("woff2");
   font-style: normal;
   font-weight: 500;
   font-display: swap;

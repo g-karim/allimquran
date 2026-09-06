@@ -54,6 +54,9 @@ def main():
 	for path in (app / "allim_quran" / "page").rglob("*.js"):
 		subprocess.run(["node", "--check", str(path)], check=True)
 		count += 1
+	for path in (app / "public" / "js").rglob("*.js"):
+		subprocess.run(["node", "--check", str(path)], check=True)
+		count += 1
 	print(f"JavaScript syntax OK: {count} standalone/inline scripts")
 
 

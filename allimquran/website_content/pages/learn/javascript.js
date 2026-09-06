@@ -970,7 +970,7 @@
   function setBrandFavicon() {
     var iconUrl = window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
       ? "allim-brand-icon.png"
-      : "/files/allim-brand-icon.png?v=77";
+      : "/assets/allimquran/media/allim-brand-icon.png?v=77";
     document.querySelectorAll('head link[rel~="icon"],head link[rel="apple-touch-icon"]').forEach(function (node) { node.remove(); });
     ["icon", "apple-touch-icon"].forEach(function (relation) {
       var link = document.createElement("link");
@@ -1657,6 +1657,83 @@
 
   var corpus = window.QuranCompanionData && window.QuranCompanionData.surahs ? window.QuranCompanionData.surahs : [];
   var tafsirData = window.QuranCompanionTafsir || { source: {}, entries: {} };
+  // Stage-one feedback describes text evidence, never certified pronunciation.
+  Object.assign(translations.ru, {
+    enhancedRecognition: "Браузер · основной вариант",
+    micDisclosure: "Сверяем слова. Произношение и таджвид пока не проверяются по звуку.",
+    comparisonDisclaimer: "Зелёный — совпало слово в расшифровке; серый — неуверенное сопоставление; красный — несовпадение текста. Это не оценка произношения.",
+    recognitionComplete: "Слова аята сопоставлены",
+    recognitionCompleteSub: "Последовательность слов совпала. Произношение, огласовки и таджвид по звуку не подтверждены.",
+    summaryComplete: "Все слова сопоставлены. Это не подтверждение правильного произношения.",
+    recognitionUncertain: "Не удалось уверенно сопоставить чтение",
+    recognitionUncertainSub: "Это не подтверждённая ошибка чтения. Проверьте звук и повторите отмеченный фрагмент.",
+    recognitionExtrasSub: "В расшифровке остались лишние слова. Прочитайте весь аят ещё раз для проверки.",
+    correctionTailSub: "Прочитайте от «{word}» до конца аята. Уже подтверждённое начало сохранено.",
+    correctionRequired: "Нужно проверить несовпадение текста",
+    correctionStatus: "Слова пока не совпали",
+    correctionStatusSub: "Повторите отмеченный фрагмент. Распознаватель тоже может ошибаться.",
+    quranAudioTooLong: "Запись длиннее 60 секунд",
+    quranAudioTooLongSub: "Прочитайте более короткий фрагмент. Запись не была засчитана или обрезана для проверки.",
+    quranAudioInvalid: "Не удалось прочитать аудиозапись",
+    quranAudioInvalidSub: "Запишите фрагмент ещё раз. Это техническая проблема, а не ошибка чтения.",
+    quranBusy: "Сервис распознавания занят",
+    quranBusySub: "Подождите немного и повторите. Эта попытка не засчитана.",
+    memoryComplete: "Слова аята сопоставлены",
+    memoryWordCorrect: "Слово совпало в расшифровке",
+    heartReadCredit: "Слова сопоставлены; повторение засчитано: {count} из 300.",
+    memorizeIntro: "Слово открывается после окончательного сопоставления текста. Произношение по звуку пока не проверяется."
+  });
+  Object.assign(translations.en, {
+    enhancedRecognition: "Browser · top hypothesis",
+    micDisclosure: "Word matching only. Pronunciation and tajwid are not acoustically assessed yet.",
+    comparisonDisclaimer: "Green: matching transcript word. Grey: uncertain alignment. Red: text mismatch. This is not a pronunciation assessment.",
+    recognitionComplete: "Verse words matched",
+    recognitionCompleteSub: "The word sequence matched. Pronunciation, vowels and tajwid are not acoustically verified.",
+    summaryComplete: "All words matched; this does not verify pronunciation.",
+    recognitionUncertain: "Could not confidently match the recitation",
+    recognitionUncertainSub: "This is not a confirmed reading mistake. Check the audio and repeat the marked passage.",
+    recognitionExtrasSub: "There are unmatched extra words. Recite the whole verse again to verify it.",
+    correctionTailSub: "Recite from “{word}” to the end. The confirmed beginning is retained.",
+    correctionRequired: "Check the text mismatch",
+    correctionStatus: "The words have not matched yet",
+    correctionStatusSub: "Repeat the marked passage. The recognizer can also make mistakes.",
+    quranAudioTooLong: "Recording exceeds 60 seconds",
+    quranAudioTooLongSub: "Record a shorter passage. This attempt was not credited or silently truncated.",
+    quranAudioInvalid: "Could not decode the recording",
+    quranAudioInvalidSub: "Record the passage again. This is a technical problem, not a reading mistake.",
+    quranBusy: "Recognition is busy",
+    quranBusySub: "Wait briefly and try again. This attempt has not been credited.",
+    memoryComplete: "Verse words matched",
+    memoryWordCorrect: "Word matched in the transcript",
+    heartReadCredit: "Words matched; repetition counted: {count} of 300.",
+    memorizeIntro: "Words open after final text matching. Pronunciation is not acoustically assessed yet."
+  });
+  Object.assign(translations.ar, {
+    enhancedRecognition: "المتصفح · النتيجة الأساسية",
+    heartReadCredit: "تطابقت الكلمات؛ احتُسب التكرار: {count} من ٣٠٠.",
+    micDisclosure: "نطابق الكلمات فقط. لا نقيّم النطق والتجويد صوتيًا بعد.",
+    comparisonDisclaimer: "الأخضر: كلمة مطابقة في النص. الرمادي: مطابقة غير مؤكدة. الأحمر: اختلاف نصي. هذه ليست نتيجة لتقييم النطق.",
+    recognitionComplete: "تمت مطابقة كلمات الآية",
+    recognitionCompleteSub: "تطابق ترتيب الكلمات. لم يتم التحقق صوتيًا من النطق والحركات والتجويد.",
+    summaryComplete: "تمت مطابقة الكلمات، وهذا لا يؤكد صحة النطق.",
+    recognitionUncertain: "تعذرت مطابقة التلاوة بثقة",
+    recognitionUncertainSub: "هذا ليس خطأ قراءة مؤكدًا. تحقق من الصوت وأعد المقطع المحدد.",
+    recognitionExtrasSub: "بقيت كلمات إضافية غير مطابقة. أعد قراءة الآية كاملة للتحقق.",
+    correctionTailSub: "اقرأ من «{word}» إلى نهاية الآية. تم الاحتفاظ بالبداية المطابقة.",
+    correctionRequired: "تحقق من الاختلاف النصي",
+    correctionStatus: "لم تتطابق الكلمات بعد",
+    correctionStatusSub: "أعد المقطع المحدد. قد يخطئ نظام التعرف أيضًا.",
+    quranAudioTooLong: "التسجيل أطول من ٦٠ ثانية",
+    quranAudioTooLongSub: "سجّل مقطعًا أقصر. لم تُحتسب المحاولة ولم يُقتطع التسجيل للتحقق.",
+    quranAudioInvalid: "تعذرت قراءة التسجيل الصوتي",
+    quranAudioInvalidSub: "أعد تسجيل المقطع. هذه مشكلة تقنية وليست خطأ في القراءة.",
+    quranBusy: "خدمة التعرف مشغولة",
+    quranBusySub: "انتظر قليلًا ثم حاول مجددًا. لم تُحتسب هذه المحاولة.",
+    memoryComplete: "تمت مطابقة كلمات الآية",
+    memoryWordCorrect: "تطابقت الكلمة في النص",
+    memorizeIntro: "تظهر الكلمات بعد المطابقة النهائية للنص. لا نقيّم النطق صوتيًا بعد."
+  });
+
   var state = loadState();
   var launchParams = new URLSearchParams(window.location.search);
   var teacherAssessmentRequested = launchParams.get("assessment") === "teacher";
@@ -1771,6 +1848,7 @@
   var memoryVadSpeechDetected = false;
   var memoryHadError = false;
   var memoryLastTranscript = "";
+  var memoryLastOutcome = "uncertain";
   var memoryFullVerseMatched = false;
   var autoAdvanceTimer = null;
   var autoAdvanceInterval = null;
@@ -1788,6 +1866,9 @@
   var MIC_REQUEST_TIMEOUT = 15000;
   var correctionIndex = -1;
   var correctionStatuses = [];
+  var correctionRequiresFullVerse = false;
+  var recognitionFallbackTimer = null;
+  var quranSubmitTimer = null;
   var verseAudioPlaying = false;
   var verseAudioPaused = false;
   var activeAudioObjectUrl = "";
@@ -3816,14 +3897,17 @@
     gate.hidden = !correctionLocked;
     if (!correctionLocked) return;
     var word = currentWords[correctionIndex] ? currentWords[correctionIndex].ar : "";
-    document.getElementById("correction-gate-title").textContent = t("correctionRequired");
-    document.getElementById("correction-gate-text").textContent = formatText("correctionRequiredSub", { word: word });
+    var uncertain = !correctionRequiresFullVerse && correctionStatuses[correctionIndex] !== "error";
+    gate.classList.toggle("is-uncertain", uncertain);
+    document.getElementById("correction-gate-title").textContent = t(uncertain ? "recognitionUncertain" : "correctionRequired");
+    document.getElementById("correction-gate-text").textContent = correctionRequiresFullVerse ? t("recognitionExtrasSub") : formatText("correctionTailSub", { word: word });
   }
 
   function clearCorrectionLock() {
     correctionLocked = false;
     correctionIndex = -1;
     correctionStatuses = [];
+    correctionRequiresFullVerse = false;
     var gate = document.getElementById("correction-gate");
     if (gate) {
       gate.hidden = true;
@@ -3834,19 +3918,21 @@
 
   function activateCorrectionLock(alignment) {
     if (!state.strictCorrection || !alignment || alignment.complete) return false;
-    var targetIndex = findCorrectionIndex(alignment.statuses, 0);
+    correctionRequiresFullVerse = alignment.extras > 0;
+    var targetIndex = correctionRequiresFullVerse ? 0 : findCorrectionIndex(alignment.statuses, 0);
     if (targetIndex < 0) return false;
     correctionLocked = true;
     correctionIndex = targetIndex;
-    correctionStatuses = alignment.statuses.slice();
+    correctionStatuses = correctionRequiresFullVerse ? currentWords.map(function () { return "pending"; }) : alignment.statuses.slice();
     clearAutoAdvance();
     renderCorrectionGate(false);
     updateNextButton();
-    setRecognitionStatus("correctionStatus", "correctionStatusSub", true);
-    document.getElementById("recitation-subtitle").textContent = formatText("correctionRequiredSub", {
+    var hasMismatch = alignment.outcome === "mismatch";
+    setRecognitionStatus(hasMismatch ? "correctionStatus" : "recognitionUncertain", hasMismatch ? "correctionStatusSub" : "recognitionUncertainSub", hasMismatch);
+    document.getElementById("recitation-subtitle").textContent = correctionRequiresFullVerse ? t("recognitionExtrasSub") : formatText("correctionTailSub", {
       word: currentWords[correctionIndex] ? currentWords[correctionIndex].ar : ""
     });
-    playErrorCue();
+    if (hasMismatch) playErrorCue();
     return true;
   }
 
@@ -3882,6 +3968,8 @@
   }
 
   function stopContinuousSession() {
+    window.clearTimeout(recognitionFallbackTimer);
+    recognitionFallbackTimer = null;
     continuousSessionActive = false;
     continuousResumePending = false;
     clearContinuousRestart();
@@ -4033,7 +4121,7 @@
     document.getElementById("summary-matched").textContent = formatMetric(matched);
     document.getElementById("summary-review").textContent = formatMetric(review);
     document.getElementById("summary-extra").textContent = formatMetric(extras);
-    var messageKey = !alignment ? "summaryIdle" : (alignment.complete ? "summaryComplete" : (isFinal ? "summaryFinal" : "summaryLive"));
+    var messageKey = !alignment ? "summaryIdle" : (alignment.complete ? "summaryComplete" : (isFinal ? (alignment.outcome === "uncertain" ? "recognitionUncertainSub" : "summaryFinal") : "summaryLive"));
     document.getElementById("summary-message").textContent = t(messageKey);
     document.getElementById("reading-summary").classList.toggle("has-results", Boolean(alignment));
     updateTeacherAssessmentUi(alignment);
@@ -5114,196 +5202,16 @@
       .trim();
   }
 
-  function firstArabicCluster(value) {
-    var compact = String(value || "").normalize("NFC").replace(/^[^\u0621-\u063A\u0641-\u064A]+/, "");
-    if (!compact) return "";
-    var end = 1;
-    while (end < compact.length && !/[\u0621-\u063A\u0641-\u064A]/.test(compact.charAt(end))) end += 1;
-    return compact.slice(0, end);
-  }
-
-  function lastArabicCluster(value) {
-    var compact = String(value || "").normalize("NFC").replace(/[^\u0621-\u063A\u0641-\u064A\u064B-\u065F\u0670\u06D6-\u06ED]/g, "");
-    if (!compact) return "";
-    var start = compact.length - 1;
-    while (start >= 0 && !/[\u0621-\u063A\u0641-\u064A]/.test(compact.charAt(start))) start -= 1;
-    return start >= 0 ? compact.slice(start) : "";
-  }
-
-  function idghamJoinVariants(leftWord, rightWord) {
-    var leftRaw = typeof leftWord === "string" ? leftWord : leftWord && leftWord.ar;
-    var rightRaw = typeof rightWord === "string" ? rightWord : rightWord && rightWord.ar;
-    var left = normalizeArabic(leftRaw);
-    var right = normalizeArabic(rightRaw);
-    if (!left || !right) return [];
-    var leftCluster = lastArabicCluster(leftRaw);
-    var rightCluster = firstArabicCluster(rightRaw);
-    var rightLetter = normalizeArabic(rightCluster).charAt(0);
-    var hasTanween = /[\u064B-\u064D]/.test(leftCluster);
-    var hasAssimilatedNun = left.endsWith("ن") && !/[\u064E-\u0650\u0652]/.test(leftCluster);
-    if (!(hasTanween || hasAssimilatedNun) || "يرملون".indexOf(rightLetter) < 0) return [];
-    var spokenLeft = hasAssimilatedNun ? left.slice(0, -1) : left;
-    return [spokenLeft + right, left + right].filter(function (variant, index, variants) {
-      return variant && variants.indexOf(variant) === index;
-    });
-  }
-
-  function idghamJoinSimilarity(leftWord, rightWord, heardWord) {
-    return idghamJoinVariants(leftWord, rightWord).reduce(function (best, variant) {
-      return Math.max(best, wordSimilarity(variant, heardWord));
-    }, 0);
-  }
-
-  function idghamJoinThreshold() {
-    return Math.max(0.8, recognitionMatchThreshold());
-  }
-
-  function levenshtein(left, right) {
-    var a = String(left || "");
-    var b = String(right || "");
-    var previous = Array.from({ length: b.length + 1 }, function (_, index) { return index; });
-    for (var i = 1; i <= a.length; i += 1) {
-      var current = [i];
-      for (var j = 1; j <= b.length; j += 1) {
-        current[j] = Math.min(
-          current[j - 1] + 1,
-          previous[j] + 1,
-          previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
-        );
-      }
-      previous = current;
-    }
-    return previous[b.length];
-  }
-
-  function wordSimilarity(left, right) {
-    var a = normalizeArabic(left);
-    var b = normalizeArabic(right);
-    if (!a || !b) return 0;
-    return 1 - (levenshtein(a, b) / Math.max(a.length, b.length));
-  }
-
-  function recognitionMatchThreshold() {
-    return getEffectiveRecognitionMode() === "quran" ? 0.8 : 0.72;
-  }
-
   function alignExpectedWords(expectedWords, transcript, isFinal) {
-    var expected = expectedWords.map(function (word) {
-      return normalizeArabic(typeof word === "string" ? word : word.ar);
-    });
-    var heard = normalizeArabic(transcript).split(/\s+/).filter(Boolean);
-    var rows = expected.length + 1;
-    var columns = heard.length + 1;
-    var costs = Array.from({ length: rows }, function () { return Array(columns).fill(0); });
-    var moves = Array.from({ length: rows }, function () { return Array(columns).fill(""); });
-    var i;
-    var j;
-    for (i = 1; i < rows; i += 1) {
-      costs[i][0] = i;
-      moves[i][0] = "delete";
-    }
-    for (j = 1; j < columns; j += 1) {
-      costs[0][j] = j;
-      moves[0][j] = "insert";
-    }
-    for (i = 1; i < rows; i += 1) {
-      for (j = 1; j < columns; j += 1) {
-        var similarity = wordSimilarity(expected[i - 1], heard[j - 1]);
-        var substitutionCost = similarity >= 0.88 ? 0 : (similarity >= 0.58 ? 0.45 : 1);
-        var substitute = costs[i - 1][j - 1] + substitutionCost;
-        var remove = costs[i - 1][j] + 1;
-        var insert = costs[i][j - 1] + 1;
-        var best = Math.min(substitute, remove, insert);
-        costs[i][j] = best;
-        moves[i][j] = best === substitute ? "substitute" : (best === remove ? "delete" : "insert");
-        if (i >= 2) {
-          var joinedSimilarity = idghamJoinSimilarity(expectedWords[i - 2], expectedWords[i - 1], heard[j - 1]);
-          if (joinedSimilarity >= idghamJoinThreshold()) {
-            var joinedCost = joinedSimilarity >= 0.88 ? 0 : 0.45;
-            var joined = costs[i - 2][j - 1] + joinedCost;
-            if (joined < costs[i][j]) {
-              costs[i][j] = joined;
-              moves[i][j] = "idgham-join";
-            }
-          }
-        }
-      }
-    }
-    var statuses = Array(expected.length).fill("pending");
-    var extras = 0;
-    i = expected.length;
-    j = heard.length;
-    while (i > 0 || j > 0) {
-      var move = moves[i][j];
-      if (i >= 2 && j > 0 && move === "idgham-join") {
-        var joinedScore = idghamJoinSimilarity(expectedWords[i - 2], expectedWords[i - 1], heard[j - 1]);
-        var joinedStatus = joinedScore >= idghamJoinThreshold() ? "recognized" : "warning";
-        statuses[i - 2] = joinedStatus;
-        statuses[i - 1] = joinedStatus;
-        i -= 2;
-        j -= 1;
-      } else if (i > 0 && j > 0 && move === "substitute") {
-        var score = wordSimilarity(expected[i - 1], heard[j - 1]);
-        statuses[i - 1] = score >= recognitionMatchThreshold() ? "recognized" : "warning";
-        i -= 1;
-        j -= 1;
-      } else if (i > 0 && (move === "delete" || j === 0)) {
-        statuses[i - 1] = isFinal ? "error" : "pending";
-        i -= 1;
-      } else {
-        extras += 1;
-        j -= 1;
-      }
-    }
-    return {
-      statuses: statuses,
-      matched: statuses.filter(function (status) { return status === "recognized"; }).length,
-      warnings: statuses.filter(function (status) { return status === "warning"; }).length,
-      errors: statuses.filter(function (status) { return status === "error"; }).length,
-      extras: extras,
-      score: (statuses.filter(function (status) { return status === "recognized"; }).length * 4) +
-        (statuses.filter(function (status) { return status === "warning"; }).length * 1.5) -
-        (statuses.filter(function (status) { return status === "error"; }).length * .5) -
-        (Math.max(0, heard.length - expected.length) * .25),
-      complete: statuses.length > 0 && statuses.every(function (status) { return status === "recognized"; })
-    };
+    return window.AllimRecitation.align(expectedWords, transcript, isFinal);
   }
 
   function alignRecognizedWords(transcript, isFinal) {
     return alignExpectedWords(currentWords, transcript, isFinal);
   }
 
-  function chooseBestTranscript(event, expectedWords) {
-    var targetWords = expectedWords && expectedWords.length ? expectedWords : currentWords;
-    var candidates = [{ text: "", confidence: 0 }];
-    var finalResult = true;
-    for (var resultIndex = 0; resultIndex < event.results.length; resultIndex += 1) {
-      var result = event.results[resultIndex];
-      if (!result.isFinal) finalResult = false;
-      var alternatives = [];
-      for (var alternativeIndex = 0; alternativeIndex < Math.min(result.length, 5); alternativeIndex += 1) {
-        alternatives.push({
-          text: result[alternativeIndex].transcript,
-          confidence: Number(result[alternativeIndex].confidence || 0)
-        });
-      }
-      if (!alternatives.length) alternatives.push({ text: "", confidence: 0 });
-      var expanded = [];
-      candidates.forEach(function (candidate) {
-        alternatives.forEach(function (alternative) {
-          var text = (candidate.text + " " + alternative.text).trim();
-          var alignment = alignExpectedWords(targetWords, text, finalResult);
-          expanded.push({
-            text: text,
-            confidence: candidate.confidence + alternative.confidence,
-            rank: alignment.score + ((candidate.confidence + alternative.confidence) * .05)
-          });
-        });
-      });
-      expanded.sort(function (left, right) { return right.rank - left.rank; });
-      candidates = expanded.slice(0, 8);
-    }
-    return { transcript: candidates.length ? candidates[0].text : "", isFinal: finalResult };
+  function chooseBestTranscript(event) {
+    return window.AllimRecitation.chooseTranscript(event);
   }
 
   function setRecognitionButton(listening) {
@@ -5469,7 +5377,7 @@
         return;
       }
       if (!quranVadSpeechDetected && elapsed >= 10000) {
-        recorder._noSpeech = true;
+        // The meter can miss quiet speech. Let the server assess the captured audio.
         try { recorder.stop(); } catch (error) { handleRecognitionError("audio-capture"); }
         return;
       }
@@ -5532,47 +5440,82 @@
     return {};
   }
 
+  function readQuranAsrResponse(response) {
+    return response.json().then(function (data) {
+      if (!response.ok) {
+        var error = new Error("quran-asr-unavailable");
+        error.code = data && data.detail && data.detail.code || (response.status === 429 ? "rate_limited" : "asr_failed");
+        throw error;
+      }
+      return data;
+    });
+  }
+
+  function showQuranSubmissionError(error) {
+    var key = error && error.code === "audio_too_long" ? "quranAudioTooLong" :
+      error && error.code === "invalid_audio" ? "quranAudioInvalid" :
+      error && ["rate_limited", "asr_busy"].indexOf(error.code) >= 0 ? "quranBusy" : "quranRecognitionError";
+    setRecognitionStatus(key, key + "Sub", true);
+    stopContinuousSession();
+  }
+
   function submitQuranAudio(blob, mimeType) {
     var form = new FormData();
     var extension = mimeType.indexOf("mp4") >= 0 ? "m4a" : "webm";
     var alignmentResult = null;
     var controller = new window.AbortController();
+    var requestId = recognitionRequestId;
+    var verseKey = currentSurah.id + ":" + currentVerse.ayah;
+    var timedOut = false;
+    function isCurrent() {
+      return quranSubmitController === controller && recognitionRequestId === requestId &&
+        currentSurah.id + ":" + currentVerse.ayah === verseKey;
+    }
     if (quranSubmitController) quranSubmitController.abort();
+    window.clearTimeout(quranSubmitTimer);
     quranSubmitController = controller;
     quranSubmitting = true;
     clearContinuousRestart();
     form.append("audio", blob, "recitation." + extension);
-    form.append("verse_key", currentSurah.id + ":" + currentVerse.ayah);
+    form.append("verse_key", verseKey);
     setRecognitionStatus("quranProcessing", "quranProcessingSub", false);
     document.getElementById("recognition-engine").textContent = t("quranRecognition");
     setRecognitionControlsDisabled(false);
     setRecognitionButton(true);
+    quranSubmitTimer = window.setTimeout(function () {
+      if (isCurrent()) { timedOut = true; controller.abort(); }
+    }, 90000);
     return window.fetch("/api/quran-asr", {
-      method: "POST",
-      body: form,
-      signal: controller.signal,
+      method: "POST", body: form, signal: controller.signal,
       headers: { "X-Requested-With": "QuranCompanion" }
-    }).then(function (response) {
-      if (!response.ok) throw new Error("quran-asr-unavailable");
-      return response.json();
-    }).then(function (data) {
-      var transcript = data && data.transcript ? String(data.transcript) : "";
-      if (!transcript.trim()) {
+    }).then(readQuranAsrResponse).then(function (data) {
+      if (!isCurrent() || controller.signal.aborted) return;
+      if (data.verse_key !== verseKey) throw new Error("stale-asr-verse");
+      var result = window.AllimRecitation.parseResponse(data);
+      if (result.issue) {
         continuousFailureCount += 1;
-        handleRecognitionError("no-speech");
+        if (result.issue === "no-speech") handleRecognitionError("no-speech");
+        else {
+          setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
+          document.getElementById("live-transcript-text").textContent = result.transcript || t("recognitionUncertain");
+        }
         return;
       }
       continuousFailureCount = 0;
-      alignmentResult = correctionLocked ? applyCorrectionTranscript(transcript, true) : applyTranscript(transcript, true);
-      recordRecognitionSession(alignmentResult.matched);
-      if (!alignmentResult.complete && !(state.strictCorrection && correctionLocked)) setRecognitionStatus("recognitionStopped", "recognitionStoppedSub", false);
+      alignmentResult = correctionLocked ? applyCorrectionTranscript(result.transcript, true) : applyTranscript(result.transcript, true);
+      if (alignmentResult.complete) recordRecognitionSession(alignmentResult.matched);
+      if (!alignmentResult.complete && !(state.strictCorrection && correctionLocked)) {
+        setRecognitionStatus(alignmentResult.outcome === "uncertain" ? "recognitionUncertain" : "recognitionStopped",
+          alignmentResult.outcome === "uncertain" ? "recognitionUncertainSub" : "recognitionStoppedSub", false);
+      }
     }).catch(function (error) {
-      if (error && error.name === "AbortError") return;
+      if (!isCurrent() || (error && error.name === "AbortError" && !timedOut)) return;
       continuousFailureCount += 1;
-      setRecognitionStatus("quranRecognitionError", "quranRecognitionErrorSub", true);
-      document.getElementById("recognition-engine").textContent = t("quranRecognitionError");
+      showQuranSubmissionError(error);
     }).then(function () {
-      if (quranSubmitController !== controller) return;
+      if (!isCurrent()) return;
+      window.clearTimeout(quranSubmitTimer);
+      quranSubmitTimer = null;
       quranSubmitController = null;
       quranSubmitting = false;
       setRecognitionControlsDisabled(false);
@@ -5605,11 +5548,14 @@
         if (event.data && event.data.size > 0) chunks.push(event.data);
       };
       recorder.onerror = function () {
+        if (quranRecorder !== recorder) return;
+        recorder._discard = true;
         continuousFailureCount += 1;
         stopAudioMeter();
         handleRecognitionError("audio-capture");
       };
       recorder.onstart = function () {
+        if (quranRecorder !== recorder || requestId !== recognitionRequestId) return;
         isListening = true;
         if (!(state.recitationFlow === "continuous" && continuousSessionActive)) playStartCue();
         setRecognitionControlsDisabled(false);
@@ -5620,24 +5566,19 @@
         startQuranVad(recorder);
       };
       recorder.onstop = function () {
+        if (quranRecorder !== recorder || requestId !== recognitionRequestId) return;
         isListening = false;
         quranRecorder = null;
         document.getElementById("recitation-panel").classList.remove("is-listening");
         setRecognitionButton(false);
         stopAudioMeter();
         if (recorder._discard) return;
-        if (recorder._noSpeech) {
-          continuousFailureCount += 1;
-          handleRecognitionError("no-speech");
-          queueContinuousRestart(620);
-          return;
-        }
         var mimeType = recorder.mimeType || chunks[0] && chunks[0].type || "audio/webm";
         var blob = new Blob(chunks, { type: mimeType });
         chunks.length = 0;
         if (!blob.size) {
           continuousFailureCount += 1;
-          handleRecognitionError("no-speech");
+          handleRecognitionError("audio-capture");
           queueContinuousRestart(620);
           return;
         }
@@ -5654,6 +5595,10 @@
   }
 
   function resetRecognitionView() {
+    window.clearTimeout(recognitionFallbackTimer);
+    recognitionFallbackTimer = null;
+    window.clearTimeout(quranSubmitTimer);
+    quranSubmitTimer = null;
     clearContinuousRestart();
     recognitionRequestId += 1;
     clearRecognitionStartTimer();
@@ -5705,7 +5650,7 @@
   }
 
   function recordRecognitionSession(matchedWords) {
-    if (recognitionSessionCounted || !lastTranscript.trim()) return;
+    if (recognitionSessionCounted || !lastTranscript.trim() || !lastAlignmentFinal || !lastAlignment || !lastAlignment.complete) return;
     recognitionSessionCounted = true;
     state.sessions += 1;
     state.wordsReviewed += matchedWords;
@@ -5716,20 +5661,6 @@
     updateVerseActions();
   }
 
-  function makeAlignmentFromStatuses(statuses, extras) {
-    var matched = statuses.filter(function (status) { return status === "recognized"; }).length;
-    var warnings = statuses.filter(function (status) { return status === "warning"; }).length;
-    var errors = statuses.filter(function (status) { return status === "error" || status === "pending"; }).length;
-    return {
-      statuses: statuses.slice(),
-      matched: matched,
-      warnings: warnings,
-      errors: errors,
-      extras: Number(extras) || 0,
-      score: (matched * 4) + (warnings * 1.5) - (errors * .5),
-      complete: statuses.length > 0 && statuses.every(function (status) { return status === "recognized"; })
-    };
-  }
 
   function renderRecognitionAlignment(alignment, isFinal) {
     lastMatchedCount = alignment.matched;
@@ -5743,7 +5674,7 @@
       var status = alignment.statuses[index];
       if (status === "recognized") button.classList.add("is-recognized");
       if (status === "warning") button.classList.add("is-warning");
-      if (status === "error" || (isFinal && status === "pending")) button.classList.add("is-error");
+      if (status === "error") button.classList.add("is-error");
     });
     if (mushafSelectedVerseKey) {
       var mushafWords = Array.prototype.slice.call(document.querySelectorAll('[data-verse-key="' + mushafSelectedVerseKey + '"]:not(.is-ayah-end)'));
@@ -5752,7 +5683,7 @@
         var status = alignment.statuses[index];
         if (status === "recognized") button.classList.add("is-recognized");
         if (status === "warning") button.classList.add("is-warning");
-        if (status === "error" || (isFinal && status === "pending")) button.classList.add("is-error");
+        if (status === "error") button.classList.add("is-error");
       });
     }
     document.querySelector("#recognition-progress span").style.width = Math.round((alignment.matched / Math.max(currentWords.length, 1)) * 100) + "%";
@@ -5762,6 +5693,7 @@
   }
 
   function completeRecognizedVerse(alignment) {
+    if (!alignment || !alignment.complete || !lastAlignmentFinal) return;
     continuousFailureCount = 0;
     var shouldCredit = !recognitionSessionCounted;
     var heartResult = null;
@@ -5794,8 +5726,10 @@
     document.getElementById("recitation-panel").classList.remove("is-listening");
     setRecognitionButton(false);
     if (recognition) {
+      var finishedRecognition = recognition;
+      recognition = null;
       userStoppedRecognition = true;
-      try { recognition.stop(); } catch (error) { /* no-op */ }
+      try { finishedRecognition.stop(); } catch (error) { /* no-op */ }
     }
     if (state.recitationFlow === "continuous" && continuousSessionActive) {
       userStoppedRecognition = false;
@@ -5821,8 +5755,11 @@
     document.getElementById("live-transcript-text").textContent = lastTranscript || t("waitingSpeech");
     var alignment = alignRecognizedWords(lastTranscript, isFinal);
     renderRecognitionAlignment(alignment, isFinal);
-    if (alignment.complete) completeRecognizedVerse(alignment);
-    else if (isFinal && !alignment.complete && !activateCorrectionLock(alignment)) playErrorCue();
+    if (isFinal && alignment.complete) completeRecognizedVerse(alignment);
+    else if (isFinal && !alignment.complete && !activateCorrectionLock(alignment)) {
+      if (alignment.outcome === "mismatch") playErrorCue();
+      else setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
+    }
     return alignment;
   }
 
@@ -5830,50 +5767,21 @@
     if (!state.strictCorrection || !correctionLocked) return applyTranscript(transcript, isFinal);
     lastTranscript = String(transcript || "").trim();
     document.getElementById("live-transcript-text").textContent = lastTranscript || t("waitingSpeech");
-    var heard = normalizeArabic(lastTranscript).split(/\s+/).filter(Boolean);
-    var statuses = correctionStatuses.length ? correctionStatuses.slice() : Array(currentWords.length).fill("error");
-    var targetIndex = findCorrectionIndex(statuses, correctionIndex);
-    var resolved = 0;
-    var startedCorrection = false;
-    var extras = 0;
-    heard.forEach(function (heardWord) {
-      if (targetIndex < 0) {
-        extras += 1;
-        return;
-      }
-      var score = wordSimilarity(currentWords[targetIndex].ar, heardWord);
-      if (score >= recognitionMatchThreshold()) {
-        statuses[targetIndex] = "recognized";
-        resolved += 1;
-        startedCorrection = true;
-        targetIndex = findCorrectionIndex(statuses, targetIndex + 1);
-      } else if (startedCorrection) {
-        extras += 1;
-      }
-    });
-    var alignment = makeAlignmentFromStatuses(statuses, extras);
-    correctionStatuses = statuses.slice();
+    var alignment = window.AllimRecitation.alignCorrection(currentWords, lastTranscript,
+      correctionStatuses, isFinal, correctionRequiresFullVerse);
     renderRecognitionAlignment(alignment, isFinal);
+    if (!isFinal) return alignment;
     if (alignment.complete) {
       completeRecognizedVerse(alignment);
       return alignment;
     }
-    correctionIndex = findCorrectionIndex(statuses, correctionIndex);
-    correctionLocked = true;
-    renderCorrectionGate(false);
-    updateNextButton();
-    setRecognitionStatus("correctionStatus", "correctionStatusSub", true);
-    document.getElementById("recitation-subtitle").textContent = formatText("correctionRequiredSub", {
-      word: currentWords[correctionIndex] ? currentWords[correctionIndex].ar : ""
-    });
-    if (isFinal && resolved === 0) playErrorCue();
+    activateCorrectionLock(alignment);
     return alignment;
   }
 
   function canAutoFallbackToServer(errorCode) {
     return state.recognitionMode === "auto" &&
       !autoServerFallback &&
-      !browserRecognitionSupported() &&
       quranRecognitionSupported() &&
       ["network", "phrases-not-supported", "start-failed", "unsupported"].indexOf(errorCode) >= 0;
   }
@@ -5887,12 +5795,20 @@
     setRecognitionControlsDisabled(false);
     setRecognitionButton(false);
     if (canAutoFallbackToServer(errorCode)) {
+      var failedRecognition = recognition;
       recognition = null;
+      if (failedRecognition) {
+        try { failedRecognition.abort(); } catch (error) { /* no-op */ }
+      }
       recognitionHadError = false;
       autoServerFallback = true;
       updateRecognitionModeUi();
       setRecognitionStatus("recognitionAutoFallback", "recognitionAutoFallbackSub", false);
-      window.setTimeout(function () { startRecognition(true); }, 280);
+      var fallbackRequestId = recognitionRequestId;
+      recognitionFallbackTimer = window.setTimeout(function () {
+        recognitionFallbackTimer = null;
+        if (recognitionRequestId === fallbackRequestId && !userStoppedRecognition) startRecognition(true);
+      }, 280);
       return;
     }
     if (errorCode === "not-allowed" || errorCode === "service-not-allowed") {
@@ -5923,7 +5839,7 @@
     instance.lang = "ar-SA";
     instance.continuous = false;
     instance.interimResults = true;
-    instance.maxAlternatives = 5;
+    instance.maxAlternatives = 1;
     /* Keep the baseline recognizer free of experimental phrase and grammar hints.
        Some Chromium-based browsers expose these APIs but reject them at runtime. */
     instance.onstart = function () {
@@ -5962,16 +5878,20 @@
       setRecognitionControlsDisabled(false);
       setRecognitionButton(false);
       if (recognitionHadError) return;
+      // onend is not a final result. An abandoned interim hypothesis cannot earn credit.
       if (lastTranscript && !lastAlignmentFinal) {
-        var alignment = correctionLocked ? applyCorrectionTranscript(lastTranscript, true) : applyTranscript(lastTranscript, true);
-        recordRecognitionSession(alignment.matched);
+        setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
+        queueContinuousRestart(900);
+        return;
       }
       if (recognitionSessionCounted && !correctionLocked) {
         if (state.recitationFlow === "continuous" && continuousSessionActive && !userStoppedRecognition && (!lastAlignment || !lastAlignment.complete)) queueContinuousRestart(420);
         return;
       }
       if (state.strictCorrection && correctionLocked) {
-        setRecognitionStatus("correctionStatus", "correctionStatusSub", true);
+        var uncertain = lastAlignment && lastAlignment.outcome === "uncertain";
+        setRecognitionStatus(uncertain ? "recognitionUncertain" : "correctionStatus",
+          uncertain ? "recognitionUncertainSub" : "correctionStatusSub", !uncertain);
         queueContinuousRestart(320);
         return;
       }
@@ -5990,6 +5910,8 @@
     userStoppedRecognition = true;
     stopContinuousSession();
     clearAutoAdvance();
+    window.clearTimeout(quranSubmitTimer);
+    quranSubmitTimer = null;
     recognitionRequestId += 1;
     clearRecognitionStartTimer();
     recognitionStartPending = false;
@@ -6020,6 +5942,16 @@
   }
 
   function startRecognition(internalRestart) {
+    if (!window.AllimRecitation) {
+      setRecognitionStatus("recognitionError", "recognitionErrorSub", true);
+      return;
+    }
+    if (recognitionFallbackTimer) {
+      userStoppedRecognition = true;
+      stopContinuousSession();
+      setRecognitionStatus("recognitionStopped", "recognitionStoppedSub", false);
+      return;
+    }
     if (recognitionStartPending) {
       cancelRecognitionStart(true);
       return;
@@ -6098,7 +6030,7 @@
   function checkRecognitionSupport() {
     var secureRuntime = updateRuntimeContextUi();
     var effectiveMode = getEffectiveRecognitionMode();
-    var supported = secureRuntime && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
+    var supported = secureRuntime && Boolean(window.AllimRecitation) && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
     setRecognitionControlsDisabled(!supported);
     if (!secureRuntime) {
       setRecognitionStatus("secureMicStatus", "secureMicStatusSub", true);
@@ -6218,7 +6150,7 @@
         return;
       }
       if (!memoryVadSpeechDetected && elapsed >= 10000) {
-        recorder._noSpeech = true;
+        // The meter alone cannot distinguish silence from a quiet recitation.
         try { recorder.stop(); } catch (error) { handleMemoryRecognitionError("audio-capture"); }
         return;
       }
@@ -6272,13 +6204,14 @@
     var button = document.getElementById("start-memory-recognition");
     if (!button) return false;
     var effectiveMode = getEffectiveRecognitionMode();
-    var supported = hasSecureAudioContext() && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
+    var supported = hasSecureAudioContext() && Boolean(window.AllimRecitation) && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
     button.disabled = !supported || memoryPipelineActive();
     if (!supported) setMemoryStatus("memoryUnsupported", "memoryUnsupportedSub", true);
     return supported;
   }
 
   function prepareMemoryAttempt() {
+    memoryLastOutcome = "uncertain";
     getMemoryWordElements().forEach(function (word) {
       word.classList.remove("is-revealed", "is-correct", "is-hint", "is-incorrect", "is-current");
     });
@@ -6299,7 +6232,10 @@
       setMemoryButton(false);
       return;
     }
-    setMemorySeriesPhase(afterError ? "error" : "accepted", afterError ? "memorySeriesError" : "memorySeriesAccepted", afterError ? "memorySeriesErrorSub" : "memorySeriesAcceptedSub");
+    var uncertain = afterError === "uncertain";
+    setMemorySeriesPhase(uncertain ? "ready" : afterError ? "error" : "accepted",
+      uncertain ? "recognitionUncertain" : afterError ? "memorySeriesError" : "memorySeriesAccepted",
+      uncertain ? "recognitionUncertainSub" : afterError ? "memorySeriesErrorSub" : "memorySeriesAcceptedSub");
     memoryRestartTimer = window.setTimeout(function () {
       memoryRestartTimer = null;
       if (!memorySeriesActive) return;
@@ -6367,10 +6303,17 @@
     memoryLastTranscript = cleanTranscript;
     document.getElementById("memory-transcript-text").textContent = cleanTranscript;
     var fullAlignment = alignExpectedWords(splitVerseWords(currentVerse.text), cleanTranscript, Boolean(isFinal));
-    if (fullAlignment.complete) memoryFullVerseMatched = true;
+    if (isFinal && fullAlignment.complete) memoryFullVerseMatched = true;
     var remainingWords = getRemainingMemoryWords();
     if (!remainingWords.length) return null;
     var alignment = alignExpectedWords(remainingWords, cleanTranscript, Boolean(isFinal));
+    memoryLastOutcome = alignment.outcome;
+    if (!isFinal) return alignment;
+    if (fullAlignment.complete) alignment = window.AllimRecitation.summarize(remainingWords.map(function () { return "recognized"; }), 0, true);
+    if (alignment.extras > 0) {
+      setMemoryStatus("memoryWordRetry", "recognitionExtrasSub", true);
+      return alignment;
+    }
     var elements = getMemoryWordElements();
     var opened = 0;
     for (var index = 0; index < alignment.statuses.length; index += 1) {
@@ -6381,14 +6324,16 @@
     if (memorySessionCounted) return alignment;
     var current = elements[memoryRevealedCount];
     if (current) {
-      current.classList.toggle("is-incorrect", Boolean(isFinal) && opened === 0);
+      current.classList.toggle("is-incorrect", alignment.outcome === "mismatch" && opened === 0);
       current.classList.add("is-current");
     }
     if (opened > 0) {
       setMemoryStatus("memoryWordCorrect", "memoryWordCorrectSub", false);
     } else if (isFinal) {
-      setMemoryStatus("memoryWordRetry", "memoryWordRetrySub", true);
-      playErrorCue();
+      var uncertain = alignment.outcome === "uncertain";
+      setMemoryStatus(uncertain ? "recognitionUncertain" : "memoryWordRetry",
+        uncertain ? "recognitionUncertainSub" : "memoryWordRetrySub", !uncertain);
+      if (!uncertain) playErrorCue();
     }
     return alignment;
   }
@@ -6439,7 +6384,7 @@
     instance.lang = "ar-SA";
     instance.continuous = false;
     instance.interimResults = true;
-    instance.maxAlternatives = 5;
+    instance.maxAlternatives = 1;
     instance.onstart = function () {
       if (memoryRecognition !== instance) return;
       if (instance._allimRequestId !== memoryRequestId || !memorySeriesActive) {
@@ -6471,11 +6416,11 @@
       clearMemoryStartTimer();
       setMemoryButton(false);
       if (memorySessionCounted || memoryHadError) return;
-      if (memoryLastTranscript) applyMemoryTranscript(memoryLastTranscript, true);
+      // Only onresult may provide a final hypothesis; onend must not promote interim text.
       if (!memorySessionCounted && memorySeriesActive) {
         var needsCorrection = Boolean(document.querySelector(".memory-stage.has-memory-error")) || !memoryLastTranscript;
         if (!needsCorrection) setMemoryStatus("memoryPaused", "memoryPausedSub", false);
-        queueMemoryRestart(needsCorrection ? 900 : 520, needsCorrection);
+        queueMemoryRestart(needsCorrection ? 900 : 520, memoryLastOutcome === "uncertain" ? "uncertain" : needsCorrection);
       }
     };
     return instance;
@@ -6495,29 +6440,31 @@
     setMemoryButton(false);
     memorySubmitTimer = window.setTimeout(function () {
       if (memorySubmitController === controller && controller) controller.abort();
-    }, 45000);
+    }, 90000);
     return window.fetch("/api/quran-asr", {
       method: "POST",
       body: form,
       headers: { "X-Requested-With": "QuranCompanion" },
       signal: controller ? controller.signal : undefined
-    }).then(function (response) {
-      if (!response.ok) throw new Error("quran-asr-unavailable");
-      return response.json();
-    }).then(function (data) {
+    }).then(readQuranAsrResponse).then(function (data) {
       if (submitToken !== memoryRequestId || !memorySeriesActive) return;
-      var transcript = data && data.transcript ? String(data.transcript) : "";
-      if (!transcript.trim()) {
-        handleMemoryRecognitionError("no-speech");
+      if (data.verse_key !== currentSurah.id + ":" + currentVerse.ayah) throw new Error("stale-asr-verse");
+      var result = window.AllimRecitation.parseResponse(data);
+      if (result.issue) {
+        if (result.issue === "no-speech") handleMemoryRecognitionError("no-speech");
+        else {
+          setMemoryStatus("recognitionUncertain", "recognitionUncertainSub", false);
+          queueMemoryRestart(900, "uncertain");
+        }
         return;
       }
-      applyMemoryTranscript(transcript, true);
+      applyMemoryTranscript(result.transcript, true);
       if (!memorySessionCounted && memorySeriesActive) {
         var needsCorrection = Boolean(document.querySelector(".memory-stage.has-memory-error"));
-        queueMemoryRestart(needsCorrection ? 900 : 620, needsCorrection);
+        queueMemoryRestart(needsCorrection ? 900 : 620, memoryLastOutcome === "uncertain" ? "uncertain" : needsCorrection);
       }
     }).catch(function (error) {
-      if (error && error.name === "AbortError" && (!memorySeriesActive || submitToken !== memoryRequestId)) return;
+      if (!memorySeriesActive || submitToken !== memoryRequestId) return;
       handleMemoryRecognitionError("quran-asr-unavailable");
     }).then(function () {
       if (memorySubmitController === controller) {
@@ -6578,13 +6525,9 @@
         stopMemoryMicStream();
         setMemoryButton(false);
         if (recorder._discard) return;
-        if (recorder._noSpeech) {
-          handleMemoryRecognitionError("no-speech");
-          return;
-        }
         var mimeType = recorder.mimeType || chunks[0] && chunks[0].type || "audio/webm";
         var blob = new Blob(chunks, { type: mimeType });
-        if (!blob.size) handleMemoryRecognitionError("no-speech");
+        if (!blob.size) handleMemoryRecognitionError("audio-capture");
         else submitMemoryQuranAudio(blob, mimeType);
       };
       recorder.start(500);
