@@ -39,6 +39,11 @@ ASR is optional and runs in a separate environment, not in Frappe workers.
 See [deployment](docs/deployment.md) and [ASR](services/asr/README.md).
 The app does not install a model, demo courses or demo users.
 
+Recognition quality work: [stage 1](docs/recognition-stage1.md) and the
+[private evaluation/annotation workflow](docs/recognition-stage2.md) (Russian).
+Engineering audio controls are not a learner benchmark; private recordings never
+belong in this public repository.
+
 ## Source layout
 
 ```text

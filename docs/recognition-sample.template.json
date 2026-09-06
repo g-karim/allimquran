@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "dataset_id": "replace-with-private-corpus-id",
+  "samples": [
+    {
+      "id": "clip-001",
+      "speaker_id": "speaker-001",
+      "recording_group": "session-001",
+      "kind": "learner",
+      "split": "dev",
+      "audio": "audio/clip-001.wav",
+      "sha256": "REPLACE_WITH_AUDIO_SHA256",
+      "duration_seconds": 0,
+      "metadata": {
+        "native_language": "not_collected",
+        "device": "not_collected",
+        "noise": "not_collected",
+        "pace": "not_collected",
+        "riwayah": "requires_teacher_confirmation"
+      },
+      "tags": [],
+      "rights": {
+        "evaluation_allowed": false,
+        "redistribution_allowed": false,
+        "basis": "REPLACE_AFTER_AGREEMENT",
+        "consent_status": "pending",
+        "consent_id": "consent-001"
+      },
+      "annotation": {
+        "status": "draft",
+        "reviewer_ids": [],
+        "disputed": false,
+        "expected_words": [],
+        "spoken_text": "",
+        "verdict": "unscorable",
+        "errors": []
+      }
+    }
+  ]
+}

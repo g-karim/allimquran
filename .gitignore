@@ -42,6 +42,9 @@ cache/
 models/
 recordings/
 uploads/
+.eval-data/
+*.predictions.json
+*.evaluation.json
 *.safetensors
 *.pt
 *.pth

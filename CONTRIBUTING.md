@@ -30,6 +30,9 @@ from verified pronunciation or tajwid assessment.
 
 Use public or explicitly consented samples when evaluating speech recognition.
 Document the expected result, actual result and limitations of an evaluation.
+For corpus annotation and reproducible evaluation, follow
+[recognition stage 2](docs/recognition-stage2.md). Do not copy canonical Quran
+text into a learner's verbatim transcript or publish voices without permission.
 
 ## Repository data
 
