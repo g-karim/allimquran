@@ -117,3 +117,25 @@ syntax checks, lint and package build. These counts do not measure learner accur
 Deploy the **page, asset and API together**, after a fresh full site backup and
 guarded preflight. No shared Frappe/nginx restart is required; only the ASR process
 needs a scoped restart. Verify the live API, website and idempotent sync afterward.
+
+## Production verification, 2026-09-06
+
+Application code `82a8bc8` was deployed after verified database and public/private
+file backups. Only Home and Companion required native document updates; the second
+sync returned `updated: []`. The ASR service alone was restarted. The model remains
+`tarteel-ai/whisper-tiny-ar-quran` on CPU, with no dependency/model upgrade.
+
+- 68 HTTP checks passed, including published/draft pages, forms, assets, protected
+  endpoints, Quran APIs, LMS and the two other checked sites on the shared bench.
+- 16 desktop/mobile page checks had no JavaScript errors, broken images or
+  horizontal overflow. Additional reading-page checks confirmed the new matching
+  core, mobile microphone control and the preserved Kuliev translation.
+- Live HTTPS ASR returned `422 / invalid_audio` for corrupt input and `no_speech`
+  for digital silence. The short reference basmala matched in about 1–1.3 seconds.
+  Unbroken 30.72-second repetitions were explicitly uncertain; 34.32 seconds with
+  pauses preserved all six basmalas (about 5 seconds processing). These are smoke
+  timings, not performance guarantees or a reading-accuracy benchmark.
+- The inquiry count and permissions were unchanged; shared Frappe/Redis processes
+  were not restarted by this deployment. Original public files remain intact.
+
+Reload an already-open Companion tab to load the new matching logic.
