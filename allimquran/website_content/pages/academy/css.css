@@ -127,3 +127,27 @@ body:has(.allim-academy-root) { margin: 0 !important; background: #f4f2ec !impor
 @keyframes featureReveal{from{transform:translateY(8px);opacity:.55}to{transform:none;opacity:1}}
 @media(max-width:1040px){.advanced-recall-card{grid-template-columns:58px minmax(0,1fr)}.advanced-recall-action{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(220px,.65fr);align-items:center}}
 @media(max-width:780px){.advanced-recall-card{grid-template-columns:44px minmax(0,1fr);gap:14px;padding:17px 14px;border-radius:18px}.advanced-recall-number{width:44px;height:44px;border-radius:14px}.advanced-recall-copy h3{font:600 23px/1.08 var(--sans);letter-spacing:-.025em}.advanced-recall-copy ul{display:grid;gap:7px}.advanced-recall-action{grid-column:1/-1;grid-template-columns:1fr;padding:10px}.advanced-recall-action .primary-button{width:100%}}
+
+/* Level-three teacher-supervised recitation assessment. */
+.strict-assessment-card{position:relative;display:grid;gap:18px;margin-top:18px;padding:24px;overflow:hidden;border:1px solid #d2d9d5;border-radius:var(--radius);background:linear-gradient(135deg,#fbfaf5 0%,#f0f5f1 55%,#edf4f5 100%);box-shadow:var(--shadow)}
+.strict-assessment-card::after{position:absolute;inset:auto -90px -130px auto;width:270px;height:270px;border:1px solid rgba(36,79,69,.09);border-radius:50%;box-shadow:0 0 0 34px rgba(36,79,69,.025),0 0 0 70px rgba(185,142,61,.025);content:"";pointer-events:none}
+.strict-assessment-head{position:relative;z-index:1;display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:15px;align-items:center}
+.strict-assessment-mark{display:grid;width:52px;height:52px;place-items:center;border-radius:16px;color:#fff;background:var(--green)}
+.strict-assessment-mark svg{width:23px;height:23px}
+.strict-assessment-head h3{margin:6px 0 0;font:500 clamp(27px,3vw,40px)/1.04 var(--serif);letter-spacing:-.035em}
+.strict-assessment-lead{position:relative;z-index:1;max-width:900px;margin:0;color:var(--muted);font-size:11px;line-height:1.62}
+.strict-assessment-flow{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.strict-assessment-flow>span{display:grid;grid-template-columns:28px 32px minmax(0,1fr);grid-template-rows:auto auto;gap:2px 8px;align-items:center;min-height:76px;padding:11px;border:1px solid #d8dfda;border-radius:15px;background:rgba(255,255,255,.78)}
+.strict-assessment-flow b{grid-row:1/3;color:#8a9691;font-size:8px}
+.strict-assessment-flow svg{grid-row:1/3;width:30px;height:30px;padding:7px;border-radius:9px;color:var(--green);background:var(--mint)}
+.strict-assessment-flow strong{font-size:10px;line-height:1.3}
+.strict-assessment-flow small{color:var(--muted);font-size:8px;line-height:1.35}
+.strict-assessment-foot{position:relative;z-index:1;display:flex;gap:16px;align-items:center;justify-content:space-between;padding-top:2px}
+.strict-assessment-foot p{display:flex;max-width:760px;gap:9px;align-items:flex-start;margin:0;color:var(--muted);font-size:9px;line-height:1.5}
+.strict-assessment-foot p svg{width:18px;height:18px;flex:0 0 18px;color:var(--green)}
+.strict-assessment-card[data-access-state="active"]{border-color:#aac7bc;box-shadow:0 18px 46px rgba(31,78,65,.12)}
+.strict-assessment-card[data-access-state="active"] .strict-assessment-mark{background:linear-gradient(145deg,var(--green),#3f8170)}
+.strict-assessment-card[data-access-state="active"] .access-pill{color:#fff;background:var(--green)}
+.strict-assessment-card.is-feature-target{animation:featureReveal .8s ease both;box-shadow:0 0 0 4px rgba(185,142,61,.18),var(--shadow)}
+@media(max-width:1040px){.strict-assessment-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:780px){.strict-assessment-card{gap:14px;padding:16px 14px;border-radius:18px}.strict-assessment-head{grid-template-columns:44px minmax(0,1fr)}.strict-assessment-mark{width:44px;height:44px;border-radius:14px}.strict-assessment-head .access-pill{grid-column:1/-1;justify-content:center}.strict-assessment-head h3{font:600 23px/1.08 var(--sans);letter-spacing:-.025em}.strict-assessment-flow{grid-template-columns:1fr}.strict-assessment-flow>span{min-height:67px}.strict-assessment-foot{display:grid}.strict-assessment-foot .primary-button{width:100%}}

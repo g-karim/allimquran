@@ -9,6 +9,8 @@
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4m-4 0h8"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.2 8 11 4.6-1.8 8-6 8-11V5Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
     <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></symbol>
     <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M4 4v6h6M5.5 15a7 7 0 1 0 .5-7"/></symbol>
     <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4Z"/></symbol>
@@ -112,11 +114,28 @@
             <article class="access-card" aria-labelledby="access-levels-title">
               <span class="eyebrow" id="access-levels-title" data-copy="threeLevels">ТРИ УРОВНЯ ОДНОГО ПУТИ</span>
               <div class="access-line" id="open-access-line"><span><strong>01</strong></span><div><strong data-copy="openTitle">Открытый доступ</strong><p data-copy="openText">Коран, чтение и базовая проверка слов — свободно, без регистрации.</p></div><em data-copy="alwaysOpen">Всегда открыт</em></div>
-              <div class="access-line" id="basic-access-line"><span><strong>02</strong></span><div><strong data-copy="basicTitle">Базовый кабинет</strong><p data-copy="basicText">Личный план, первичное обучение, «Коран в сердце», курсы и история прогресса.</p></div><em id="basic-status" data-copy="signIn">Войти</em></div>
-              <div class="access-line" id="guided-access-line"><span><strong>03</strong></span><div><strong data-copy="guidedTitle">ALLIM Academy с преподавателем</strong><p data-copy="guidedText">Углублённая проверка страницы наизусть, живое исправление, задания, расписание и обратная связь.</p></div><em id="guided-status" data-copy="notConnected">Не подключён</em></div>
+              <div class="access-line" id="basic-access-line"><span><strong>02</strong></span><div><strong data-copy="basicTitle">Базовый кабинет</strong><p data-copy="basicText">Личный план, первичное обучение, «Коран в сердце», проверка страницы наизусть, курсы и история прогресса.</p></div><em id="basic-status" data-copy="signIn">Войти</em></div>
+              <div class="access-line" id="guided-access-line"><span><strong>03</strong></span><div><strong data-copy="guidedTitle">ALLIM Academy с преподавателем</strong><p data-copy="guidedText">Живое исправление чтения, задания, расписание, личная обратная связь и сопровождение преподавателя.</p></div><em id="guided-status" data-copy="notConnected">Не подключён</em></div>
               <button class="text-button" type="button" data-open-panel="teacher"><span data-copy="seeGuided">Посмотреть сопровождение</span><svg><use href="#i-arrow"/></svg></button>
             </article>
           </div>
+          <article class="advanced-recall-card" id="advanced-recall-card" data-access-state="locked" aria-labelledby="advanced-recall-title" tabindex="-1">
+            <div class="advanced-recall-number" aria-hidden="true">02</div>
+            <div class="advanced-recall-copy">
+              <span class="eyebrow" data-copy="advancedRecallEyebrow">ПРАКТИКА ХИФЗА В БАЗОВОМ КАБИНЕТЕ</span>
+              <h3 id="advanced-recall-title" data-copy="advancedRecallTitle">Проверка страницы наизусть</h3>
+              <p data-copy="advancedRecallText">Настоящая геометрия мусхафа остаётся на экране, текст скрывается, а правильные слова проявляются по порядку. Результат сохраняется в личной истории.</p>
+              <ul>
+                <li data-copy="advancedRecallPoint1">Связное чтение всей страницы</li>
+                <li data-copy="advancedRecallPoint2">Остановка на ошибке до исправления</li>
+                <li data-copy="advancedRecallPoint3">История самостоятельных проверок</li>
+              </ul>
+            </div>
+            <div class="advanced-recall-action">
+              <span class="access-pill muted" id="advanced-recall-status"><i></i><span data-copy="secondAccessLocked">Войдите в базовый кабинет</span></span>
+              <a class="primary-button" id="advanced-recall-action" href="/login?redirect-to=/academy"><span data-copy="signInAndOpen">Войти и открыть</span><svg><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
         </section>
 
         <section class="cabinet-panel" data-panel-content="courses" hidden>
@@ -134,21 +153,25 @@
               <article><span><svg><use href="#i-message"/></svg></span><div><small data-copy="feedback">Обратная связь</small><strong id="feedback-status" data-copy="noFeedback">Новых комментариев нет</strong><p data-copy="feedbackHint">Комментарии относятся к конкретному заданию или чтению.</p></div></article>
             </div>
           </div>
-          <article class="advanced-recall-card" id="advanced-recall-card" data-access-state="locked" aria-labelledby="advanced-recall-title" tabindex="-1">
-            <div class="advanced-recall-number" aria-hidden="true">03</div>
-            <div class="advanced-recall-copy">
-              <span class="eyebrow" data-copy="advancedRecallEyebrow">ПРОДВИНУТАЯ ПРАКТИКА ХИФЗА</span>
-              <h3 id="advanced-recall-title" data-copy="advancedRecallTitle">Проверка страницы наизусть</h3>
-              <p data-copy="advancedRecallText">Настоящая геометрия мусхафа остаётся на экране, текст скрывается, а правильные слова проявляются по порядку. Результат можно разбирать вместе с преподавателем.</p>
-              <ul>
-                <li data-copy="advancedRecallPoint1">Связное чтение всей страницы</li>
-                <li data-copy="advancedRecallPoint2">Остановка на ошибке до исправления</li>
-                <li data-copy="advancedRecallPoint3">Учебная проверка между живыми занятиями</li>
-              </ul>
+          <article class="strict-assessment-card" id="strict-assessment-card" data-access-state="locked" aria-labelledby="strict-assessment-title" tabindex="-1">
+            <div class="strict-assessment-head">
+              <span class="strict-assessment-mark" aria-hidden="true"><svg><use href="#i-mic"/></svg></span>
+              <div>
+                <span class="eyebrow" data-copy="strictAssessmentEyebrow">УРОВЕНЬ 3 · С ПРЕПОДАВАТЕЛЕМ</span>
+                <h3 id="strict-assessment-title" data-copy="strictAssessmentTitle">Строгая проверка произношения и таджвида</h3>
+              </div>
+              <span class="access-pill muted" id="strict-assessment-status"><i></i><span data-copy="strictAssessmentLocked">Доступен после зачисления</span></span>
             </div>
-            <div class="advanced-recall-action">
-              <span class="access-pill muted" id="advanced-recall-status"><i></i><span data-copy="thirdAccessLocked">Доступно после зачисления</span></span>
-              <a class="primary-button" id="advanced-recall-action" href="/lms/courses"><span data-copy="chooseProgram">Выбрать программу</span><svg><use href="#i-arrow"/></svg></a>
+            <p class="strict-assessment-lead" data-copy="strictAssessmentText">Система строит предварительную карту чтения, а преподаватель подтверждает оценку и даёт точное задание на исправление.</p>
+            <div class="strict-assessment-flow" aria-label="Этапы строгой проверки" data-copy-aria="strictAssessmentFlowLabel">
+              <span><b>01</b><svg><use href="#i-mic"/></svg><strong data-copy="strictAssessmentWords">Порядок слов</strong><small data-copy="strictAssessmentWordsText">Пропуски и замены</small></span>
+              <span><b>02</b><svg><use href="#i-spark"/></svg><strong data-copy="strictAssessmentPhonetics">Фонетическая карта</strong><small data-copy="strictAssessmentPhoneticsText">Махрадж и сифаты</small></span>
+              <span><b>03</b><svg><use href="#i-shield"/></svg><strong data-copy="strictAssessmentRules">Правила таджвида</strong><small data-copy="strictAssessmentRulesText">Мадд, гунна, калькала, идгам и васл</small></span>
+              <span><b>04</b><svg><use href="#i-teacher"/></svg><strong data-copy="strictAssessmentTeacher">Вывод преподавателя</strong><small data-copy="strictAssessmentTeacherText">Интонация, паузы и личное задание</small></span>
+            </div>
+            <div class="strict-assessment-foot">
+              <p><svg><use href="#i-check"/></svg><span data-copy="strictAssessmentBoundary">Автооценка не становится итоговой, пока её не подтвердит преподаватель.</span></p>
+              <a class="primary-button" id="strict-assessment-action" href="/lms/batches"><span data-copy="strictAssessmentChooseProgram">Выбрать программу</span><svg><use href="#i-arrow"/></svg></a>
             </div>
           </article>
           <aside class="trust-banner"><svg><use href="#i-teacher"/></svg><p><strong data-copy="humanTrust">Преподаватель остаётся центральным.</strong><span data-copy="humanTrustText">Автоматическая проверка помогает между уроками, но не заменяет живое исправление и не выдаёт иджазу.</span></p></aside>

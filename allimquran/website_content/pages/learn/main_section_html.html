@@ -1,4 +1,4 @@
-<link rel="icon" href="/assets/allimquran/media/allim-brand-icon.png?v=75" type="image/png"><link rel="apple-touch-icon" href="/assets/allimquran/media/allim-brand-icon.png?v=75"><div class="allim-web-root"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
+<link rel="icon" href="/files/allim-brand-icon.png?v=80" type="image/png"><link rel="apple-touch-icon" href="/files/allim-brand-icon.png?v=80"><div class="allim-web-root"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
 
   <div class="allim-system-intro" id="allim-system-intro" data-stage="ornament" role="status" aria-live="polite" aria-label="Подготовка ALLIM">
     <div class="system-intro-frame">
@@ -71,7 +71,7 @@
   <div class="app-shell">
     <aside class="sidebar" aria-label="Основная навигация" data-i18n-aria="mainNav">
       <a class="brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home">
-        <img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=75" alt="" aria-hidden="true">
+        <img class="brand-mark" src="/files/allim-brand-icon.png?v=80" alt="" aria-hidden="true">
         <span class="brand-copy"><strong>ALLIM</strong><small>Qur’an Companion</small><span class="brand-dua-mini" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span></span>
       </a>
 
@@ -106,7 +106,7 @@
 
     <div class="workspace">
       <header class="topbar">
-        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=75" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
+        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/files/allim-brand-icon.png?v=80" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
         <div class="topbar-context">
           <span class="eyebrow topbar-dua" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span>
           <h1 id="view-title" data-i18n="todayTitle">Сегодня</h1>
@@ -128,7 +128,7 @@
             <strong data-i18n="secureContextRequired">Микрофон заблокирован режимом открытия файла</strong>
             <p data-i18n="secureContextText">Не открывайте index.html двойным нажатием. Запустите приложение через локальный адрес — тогда заработают микрофон, распознавание и офлайн-режим.</p>
           </div>
-          <a class="primary-button compact" href="http://localhost:4174/?v=75" data-i18n="openServerVersion">Открыть рабочую версию</a>
+          <a class="primary-button compact" href="http://localhost:4174/?v=80" data-i18n="openServerVersion">Открыть рабочую версию</a>
         </aside>
 
         <section class="view is-active" id="view-today" data-view-panel="today" aria-labelledby="today-heading">
@@ -236,21 +236,6 @@
                   <button class="interlinear-toggle" id="interlinear-toggle" type="button" aria-pressed="false" aria-label="Показать подстрочный смысл" data-i18n-aria="interlinearAria"><svg><use href="#i-layers"/></svg><span data-i18n="interlinearMode">Подстрочно</span></button>
                   <button class="icon-button" id="play-demo-audio" type="button" aria-pressed="false" aria-label="Озвучить выбранный аят системным арабским голосом" data-i18n-aria="audioDemo"><svg><use href="#i-volume"/></svg></button>
                 </div>
-              </div>
-
-              <div class="mode-switch" role="group" aria-label="Режим отображения" data-i18n-aria="displayMode">
-                <button type="button" class="is-active" data-reader-mode="read" data-i18n="modeRead">Чтение</button>
-                <button type="button" data-reader-mode="mushaf" data-i18n="modeMushaf">Мусхаф</button>
-                <button type="button" data-reader-mode="listen" data-i18n="modeListen">Аудио</button>
-                <button type="button" data-reader-mode="focus" data-i18n="modeFocus">Фокус</button>
-              </div>
-
-              <div class="ayah-wrap" id="ayah-wrap">
-                <div class="mushaf-ribbon" aria-hidden="true">
-                  <span data-i18n="mushafMadinah">Мединский мусхаф</span>
-                  <strong lang="ar" dir="rtl">مُصْحَفُ الْمَدِينَةِ النَّبَوِيَّةِ</strong>
-                  <small data-i18n="mushafHafs">Риваят Хафс ‘ан ‘Асим · шрифт Османа Таха</small>
-                </div>
                 <div class="mushaf-page-toolbar" id="mushaf-page-toolbar" hidden>
                   <button class="icon-button" id="mushaf-prev-page" type="button" aria-label="Предыдущая страница" data-i18n-aria="previousMushafPage"><svg><use href="#i-arrow"/></svg></button>
                   <label for="mushaf-page-number"><span data-i18n="mushafPage">Страница</span><input id="mushaf-page-number" type="number" min="1" max="604" value="1" inputmode="numeric"><small>/ 604</small></label>
@@ -277,6 +262,29 @@
                       </div>
                     </div>
                   </details>
+                  <details class="reader-mode-picker" id="reader-mode-picker">
+                    <summary aria-label="Выбрать режим чтения" data-i18n-aria="displayMode"><svg><use href="#i-layers"/></svg><span id="reader-mode-picker-label" data-i18n="modeMushaf">Мусхаф</span></summary>
+                    <div class="reader-mode-popover" role="group" aria-label="Режим отображения" data-i18n-aria="displayMode">
+                      <button type="button" data-reader-mode="read" data-i18n="modeRead">Чтение</button>
+                      <button type="button" data-reader-mode="listen" data-i18n="modeListen">Аудио</button>
+                      <button type="button" data-reader-mode="focus" data-i18n="modeFocus">Фокус</button>
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <div class="mode-switch" role="group" aria-label="Режим отображения" data-i18n-aria="displayMode">
+                <button type="button" class="is-active" data-reader-mode="read" data-i18n="modeRead">Чтение</button>
+                <button type="button" data-reader-mode="mushaf" data-i18n="modeMushaf">Мусхаф</button>
+                <button type="button" data-reader-mode="listen" data-i18n="modeListen">Аудио</button>
+                <button type="button" data-reader-mode="focus" data-i18n="modeFocus">Фокус</button>
+              </div>
+
+              <div class="ayah-wrap" id="ayah-wrap">
+                <div class="mushaf-ribbon" aria-hidden="true">
+                  <span data-i18n="mushafMadinah">Мединский мусхаф</span>
+                  <strong lang="ar" dir="rtl">مُصْحَفُ الْمَدِينَةِ النَّبَوِيَّةِ</strong>
+                  <small data-i18n="mushafHafs">Риваят Хафс ‘ан ‘Асим · шрифт Османа Таха</small>
                 </div>
                 <div class="passage-header">
                   <span class="surah-seal" id="surah-seal" aria-hidden="true">٢</span>
@@ -293,7 +301,13 @@
                 <div class="mushaf-page" id="mushaf-page" lang="ar" dir="rtl" aria-live="polite" hidden>
                   <div class="mushaf-page-loading"><span></span><strong data-i18n="mushafLoading">Загружаю точную страницу мусхафа…</strong></div>
                 </div>
-                <p class="meaning" id="meaning-text">Это Писание, в котором нет сомнения, — руководство для богобоязненных.</p>
+                <div class="meaning-block" id="meaning-block">
+                  <p class="meaning" id="meaning-text" lang="ru" translate="no">Это Писание, в котором нет сомнения, является верным руководством для богобоязненных,</p>
+                  <p class="meaning-attribution" id="meaning-attribution" hidden>
+                    <strong id="meaning-edition">Смысловой перевод · Эльмир Кулиев</strong>
+                    <span id="meaning-source">Данные Корана предоставлены Quran Foundation.</span>
+                  </p>
+                </div>
                 <aside class="interlinear-note" id="interlinear-note" hidden>
                   <svg aria-hidden="true"><use href="#i-info"/></svg>
                   <div><strong data-i18n="interlinearVerified">Буквальный подстрочник</strong><small id="interlinear-description" data-i18n="interlinearLimited">Арабское слово, произношение и краткий смысл показаны вместе прямо в ALLIM.</small></div>
@@ -330,6 +344,16 @@
                 </div>
                 <audio id="verse-audio" preload="metadata"></audio>
               </div>
+
+              <section class="teacher-assessment-banner" id="teacher-assessment-banner" hidden aria-labelledby="teacher-assessment-title">
+                <span class="teacher-assessment-icon" aria-hidden="true"><svg><use href="#i-shield"/></svg></span>
+                <div>
+                  <span class="kicker" data-i18n="teacherAssessmentEyebrow">УРОВЕНЬ 3 · С ПРЕПОДАВАТЕЛЕМ</span>
+                  <strong id="teacher-assessment-title" data-i18n="teacherAssessmentTitle">Строгая диагностика чтения</strong>
+                  <small data-i18n="teacherAssessmentLead">Система строит предварительную карту, а таджвид и интонацию подтверждает преподаватель.</small>
+                </div>
+                <a class="tertiary-button compact" href="/academy?panel=teacher"><span data-i18n="teacherAssessmentBack">К преподавателю</span><svg><use href="#i-arrow"/></svg></a>
+              </section>
 
               <div class="recitation-flow-picker">
                 <div><strong data-i18n="recitationFlowTitle">Как вы хотите читать?</strong><small data-i18n="recitationFlowText">Один аят вручную или непрерывно по суре.</small></div>
@@ -390,6 +414,16 @@
                   <span><strong id="summary-extra">0</strong><small data-i18n="summaryExtra">не сопоставлено</small></span>
                 </div>
               </div>
+              <section class="teacher-assessment-result" id="teacher-assessment-result" hidden aria-live="polite">
+                <div class="teacher-assessment-result-head"><div><span class="kicker" data-i18n="teacherAssessmentMap">КАРТА ДЛЯ РАЗБОРА</span><strong data-i18n="teacherAssessmentPreliminary">Предварительный результат</strong></div><span data-i18n="teacherAssessmentNotFinal">Не итоговая оценка</span></div>
+                <div class="teacher-assessment-metrics">
+                  <article class="is-live"><small data-i18n="teacherAssessmentWordOrder">Порядок слов</small><strong id="teacher-assessment-word-score">—</strong><em data-i18n="teacherAssessmentAutomatic">Автоматически</em></article>
+                  <article><small data-i18n="teacherAssessmentPronunciation">Произношение</small><strong>…</strong><em data-i18n="teacherAssessmentCalibration">Калибровка</em></article>
+                  <article><small data-i18n="teacherAssessmentTajwid">Таджвид</small><strong>…</strong><em data-i18n="teacherAssessmentTeacherReview">Проверка учителя</em></article>
+                  <article><small data-i18n="teacherAssessmentIntonation">Интонация и паузы</small><strong>…</strong><em data-i18n="teacherAssessmentTeacherReview">Проверка учителя</em></article>
+                </div>
+                <p><svg><use href="#i-info"/></svg><span data-i18n="teacherAssessmentBoundary">Васл, идгам и реальную манеру чтения нельзя оценивать только по текстовой расшифровке. Итог появится после проверки преподавателем.</span></p>
+              </section>
               <div class="auto-advance-notice" id="read-auto-advance" hidden aria-live="polite">
                 <span class="auto-advance-icon"><svg><use href="#i-arrow"/></svg></span>
                 <div><strong data-i18n="autoAdvanceTitle">Автопереход включён</strong><small id="read-auto-advance-text">Следующий аят откроется через 3 сек.</small></div>
@@ -556,7 +590,7 @@
               </div>
             </div>
             <div class="page-recall-card-action">
-              <span class="page-recall-access" id="page-recall-access"><svg><use href="#i-shield"/></svg><small id="page-recall-access-label" data-i18n="pageRecallAccessTier">УРОВЕНЬ 3 · ALLIM ACADEMY</small></span>
+              <span class="page-recall-access" id="page-recall-access"><svg><use href="#i-shield"/></svg><small id="page-recall-access-label" data-i18n="pageRecallAccessTier">УРОВЕНЬ 2 · БАЗОВЫЙ КАБИНЕТ</small></span>
               <span><small data-i18n="pageRecallSelected">ВЫБРАНО ДЛЯ ПРОВЕРКИ</small><strong id="page-recall-card-page" data-i18n="heartPageLoadingShort">Определяем страницу…</strong></span>
               <button class="primary-button" id="start-page-recall" type="button" aria-describedby="page-recall-access-label"><span data-i18n="pageRecallCheckingAccess">Проверяем доступ…</span><svg><use href="#i-arrow"/></svg></button>
             </div>
@@ -580,7 +614,7 @@
               <div class="track-list">
                 <div><span>01</span><p><strong data-i18n="trackQuran">Язык Корана</strong><small data-i18n="trackQuranText">Лексика, корни, морфология и синтаксис.</small></p></div>
                 <div><span>02</span><p><strong data-i18n="trackFusha">Фусха</strong><small data-i18n="trackFushaText">Современная литературная речь и письмо.</small></p></div>
-                <div><span>03</span><p><strong data-i18n="trackHijazi">Хиджазский</strong><small data-i18n="trackHijaziText">Повседневная речь Медины, Мекки и Джидды.</small></p></div>
+                <div><span>03</span><p><strong data-i18n="trackHijazi">Хиджазский</strong><small data-i18n="trackHijaziText">Повседневная речь Мекки, Медины и других городов Саудовской Аравии.</small></p></div>
               </div>
             </aside>
           </div>
@@ -709,6 +743,11 @@
         <button class="nav-item" type="button" data-view="tafsir"><svg><use href="#i-layers"/></svg><span data-i18n="navTafsir">Тафсир</span></button>
         <button class="nav-item" type="button" data-view="progress"><svg><use href="#i-chart"/></svg><span data-i18n="navProgress">Прогресс</span></button>
       </nav>
+
+      <button class="mobile-recognition-fab" id="mobile-recognition-toggle" type="button" aria-label="Начать чтение" aria-pressed="false" data-i18n-aria="startListening">
+        <span data-i18n="startListening">Начать чтение</span>
+        <svg aria-hidden="true"><use href="#i-mic"/></svg>
+      </button>
     </div>
   </div>
 

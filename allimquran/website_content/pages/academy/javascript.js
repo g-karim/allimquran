@@ -13,19 +13,19 @@
     openText:"Коран, чтение и базовая проверка слов — свободно, без регистрации.",
     alwaysOpen:"Всегда открыт",
     basicTitle:"Базовый кабинет",
-    basicText:"Личный план, первичное обучение, «Коран в сердце», курсы и история прогресса.",
+    basicText:"Личный план, первичное обучение, «Коран в сердце», проверка страницы наизусть, курсы и история прогресса.",
     guidedTitle:"ALLIM Academy с преподавателем",
-    guidedText:"Углублённая проверка страницы наизусть, живое исправление, задания, расписание и обратная связь.",
-    advancedRecallEyebrow:"ПРОДВИНУТАЯ ПРАКТИКА ХИФЗА",
+    guidedText:"Живое исправление чтения, задания, расписание, личная обратная связь и сопровождение преподавателя.",
+    advancedRecallEyebrow:"ПРАКТИКА ХИФЗА В БАЗОВОМ КАБИНЕТЕ",
     advancedRecallTitle:"Проверка страницы наизусть",
-    advancedRecallText:"Настоящая геометрия мусхафа остаётся на экране, текст скрывается, а правильные слова проявляются по порядку. Результат можно разбирать вместе с преподавателем.",
+    advancedRecallText:"Настоящая геометрия мусхафа остаётся на экране, текст скрывается, а правильные слова проявляются по порядку. Результат сохраняется в личной истории.",
     advancedRecallPoint1:"Связное чтение всей страницы",
     advancedRecallPoint2:"Остановка на ошибке до исправления",
-    advancedRecallPoint3:"Учебная проверка между живыми занятиями",
-    thirdAccessLocked:"Доступно после зачисления",
-    thirdAccessActive:"Третий доступ активен",
+    advancedRecallPoint3:"История самостоятельных проверок",
+    secondAccessLocked:"Войдите в базовый кабинет",
+    secondAccessActive:"Второй доступ активен",
     startPageRecall:"Начать проверку страницы",
-    chooseProgram:"Выбрать программу",
+    signInAndOpen:"Войти и открыть",
     openAccess:"Открытый доступ",
     levelThreeActive:"Третий доступ · преподаватель"
   });
@@ -35,19 +35,19 @@
     openText:"The Qur’an, reading and basic word checking are open to everyone without registration.",
     alwaysOpen:"Always open",
     basicTitle:"Basic cabinet",
-    basicText:"A personal plan, foundation learning, Qur’an in the Heart, courses and progress history.",
+    basicText:"A personal plan, foundation learning, Qur’an in the Heart, full-page recall, courses and progress history.",
     guidedTitle:"ALLIM Academy with a teacher",
-    guidedText:"Advanced full-page recall, live correction, assignments, schedule and teacher feedback.",
-    advancedRecallEyebrow:"ADVANCED HIFZ PRACTICE",
+    guidedText:"Live recitation correction, assignments, schedule, personal feedback and teacher guidance.",
+    advancedRecallEyebrow:"HIFZ PRACTICE IN THE BASIC CABINET",
     advancedRecallTitle:"Recall a full page from memory",
-    advancedRecallText:"The real Mushaf page geometry stays in place while the text is hidden and correctly recited words appear in order. The result can then be reviewed with a teacher.",
+    advancedRecallText:"The real Mushaf page geometry stays in place while the text is hidden and correctly recited words appear in order. The result is saved to your personal history.",
     advancedRecallPoint1:"Continuous recitation of the full page",
     advancedRecallPoint2:"Pause on an error until it is corrected",
-    advancedRecallPoint3:"Structured practice between live lessons",
-    thirdAccessLocked:"Available after enrollment",
-    thirdAccessActive:"Third-level access is active",
+    advancedRecallPoint3:"History of independent checks",
+    secondAccessLocked:"Sign in to the basic cabinet",
+    secondAccessActive:"Level-two access is active",
     startPageRecall:"Start full-page recall",
-    chooseProgram:"Choose a program",
+    signInAndOpen:"Sign in and open",
     openAccess:"Open access",
     levelThreeActive:"Third level · teacher-guided"
   });
@@ -57,21 +57,30 @@
     openText:"المصحف والتلاوة والتحقق الأساسي من الكلمات متاحة للجميع بلا تسجيل.",
     alwaysOpen:"مفتوح دائمًا",
     basicTitle:"لوحة الطالب الأساسية",
-    basicText:"خطة شخصية وتعلّم تأسيسي و«القرآن في القلب» ودورات وسجل للتقدم.",
+    basicText:"خطة شخصية وتعلّم تأسيسي و«القرآن في القلب» واختبار الصفحة غيبًا ودورات وسجل للتقدم.",
     guidedTitle:"أكاديمية ALLIM مع معلّم",
-    guidedText:"اختبار متقدم لصفحة غيبًا، وتصحيح حي، وواجبات، وجدول، وتغذية راجعة.",
-    advancedRecallEyebrow:"تدريب متقدم للحفظ",
+    guidedText:"تصحيح حي للتلاوة، وواجبات، وجدول، وملاحظات شخصية، ومتابعة من المعلّم.",
+    advancedRecallEyebrow:"تدريب الحفظ في لوحة الطالب الأساسية",
     advancedRecallTitle:"اختبار الصفحة غيبًا",
-    advancedRecallText:"تبقى هيئة صفحة المصحف الحقيقية في مكانها، ويُخفى النص، ثم تظهر الكلمات الصحيحة بالترتيب. ويمكن مراجعة النتيجة مع المعلّم.",
+    advancedRecallText:"تبقى هيئة صفحة المصحف الحقيقية في مكانها، ويُخفى النص، ثم تظهر الكلمات الصحيحة بالترتيب. وتُحفظ النتيجة في سجلك الشخصي.",
     advancedRecallPoint1:"تلاوة الصفحة كاملة بصورة متصلة",
     advancedRecallPoint2:"التوقف عند الخطأ حتى تصحيحه",
-    advancedRecallPoint3:"تدريب منظم بين الدروس المباشرة",
-    thirdAccessLocked:"متاح بعد التسجيل في البرنامج",
-    thirdAccessActive:"المستوى الثالث مفعّل",
+    advancedRecallPoint3:"سجل للاختبارات المستقلة",
+    secondAccessLocked:"سجّل الدخول إلى اللوحة الأساسية",
+    secondAccessActive:"المستوى الثاني مفعّل",
     startPageRecall:"ابدأ اختبار الصفحة",
-    chooseProgram:"اختر برنامجًا",
+    signInAndOpen:"سجّل الدخول وافتح",
     openAccess:"وصول مفتوح",
     levelThreeActive:"المستوى الثالث · مع معلّم"
+  });
+  Object.assign(copies.ru,{
+    strictAssessmentEyebrow:"УРОВЕНЬ 3 · С ПРЕПОДАВАТЕЛЕМ", strictAssessmentTitle:"Строгая проверка произношения и таджвида", strictAssessmentText:"Система строит предварительную карту чтения, а преподаватель подтверждает оценку и даёт точное задание на исправление.", strictAssessmentFlowLabel:"Этапы строгой проверки", strictAssessmentWords:"Порядок слов", strictAssessmentWordsText:"Пропуски и замены", strictAssessmentPhonetics:"Фонетическая карта", strictAssessmentPhoneticsText:"Махрадж и сифаты", strictAssessmentRules:"Правила таджвида", strictAssessmentRulesText:"Мадд, гунна, калькала, идгам и васл", strictAssessmentTeacher:"Вывод преподавателя", strictAssessmentTeacherText:"Интонация, паузы и личное задание", strictAssessmentBoundary:"Автооценка не становится итоговой, пока её не подтвердит преподаватель.", strictAssessmentLocked:"Доступен после зачисления", strictAssessmentActive:"Строгий режим активен", strictAssessmentChooseProgram:"Выбрать программу", strictAssessmentStart:"Начать сессию с преподавателем"
+  });
+  Object.assign(copies.en,{
+    strictAssessmentEyebrow:"LEVEL 3 · WITH A TEACHER", strictAssessmentTitle:"Strict pronunciation and tajwid review", strictAssessmentText:"The system prepares a preliminary recitation map; the teacher confirms the assessment and gives a precise correction task.", strictAssessmentFlowLabel:"Strict assessment stages", strictAssessmentWords:"Word order", strictAssessmentWordsText:"Omissions and substitutions", strictAssessmentPhonetics:"Phonetic map", strictAssessmentPhoneticsText:"Makharij and attributes", strictAssessmentRules:"Tajwid rules", strictAssessmentRulesText:"Madd, ghunnah, qalqalah, idgham and wasl", strictAssessmentTeacher:"Teacher conclusion", strictAssessmentTeacherText:"Intonation, pauses and a personal task", strictAssessmentBoundary:"An automated score is not final until it is confirmed by the teacher.", strictAssessmentLocked:"Available after enrolment", strictAssessmentActive:"Strict mode is active", strictAssessmentChooseProgram:"Choose a programme", strictAssessmentStart:"Start a teacher-guided session"
+  });
+  Object.assign(copies.ar,{
+    strictAssessmentEyebrow:"المستوى الثالث · مع معلّم", strictAssessmentTitle:"تحقق دقيق من النطق والتجويد", strictAssessmentText:"يعدّ النظام خريطة أولية للتلاوة، ثم يؤكد المعلّم التقييم ويحدد تمرينًا دقيقًا للتصحيح.", strictAssessmentFlowLabel:"مراحل التحقق الدقيق", strictAssessmentWords:"ترتيب الكلمات", strictAssessmentWordsText:"السقط والإبدال", strictAssessmentPhonetics:"الخريطة الصوتية", strictAssessmentPhoneticsText:"المخارج والصفات", strictAssessmentRules:"أحكام التجويد", strictAssessmentRulesText:"المد والغنة والقلقلة والإدغام والوصل", strictAssessmentTeacher:"خلاصة المعلّم", strictAssessmentTeacherText:"النغم والوقفات وتمرين شخصي", strictAssessmentBoundary:"لا تصبح النتيجة الآلية نهائية حتى يعتمدها المعلّم.", strictAssessmentLocked:"متاح بعد الالتحاق", strictAssessmentActive:"الوضع الدقيق مفعّل", strictAssessmentChooseProgram:"اختر برنامجًا", strictAssessmentStart:"ابدأ جلسة مع المعلّم"
   });
   var defaultPlan={minutes:15,focus:"recitation",target:""};
   var appState=readStorage(appStorageKey,{});
@@ -98,7 +107,7 @@
   async function getJson(url){var response=await fetch(url,{credentials:"same-origin",headers:{Accept:"application/json"}});if(!response.ok)throw new Error("request-"+response.status);return response.json()}
   async function getList(doctype,filters,fields){var query="?filters="+encodeURIComponent(JSON.stringify(filters||[]))+"&fields="+encodeURIComponent(JSON.stringify(fields||["name"]))+"&limit_page_length=100";var data=await getJson("/api/resource/"+encodeURIComponent(doctype)+query);return data.data||[]}
   async function getDoc(doctype,name){var data=await getJson("/api/resource/"+encodeURIComponent(doctype)+"/"+encodeURIComponent(name));return data.data||{}}
-  async function loadAccount(){try{var auth=await getJson("/api/method/frappe.auth.get_logged_user");currentUser=auth.message||"Guest"}catch(error){currentUser="Guest"}updateAccountUi();if(currentUser==="Guest"){renderCourses();renderGuided();return}try{enrollments=await getList("LMS Enrollment",[["member","=",currentUser]],["name","course","progress","current_lesson","modified"]);batchEnrollments=await getList("LMS Batch Enrollment",[["member","=",currentUser]],["name","batch"]);await Promise.all(enrollments.map(async function(row){try{courseDetails[row.course]=await getDoc("LMS Course",row.course)}catch(error){courseDetails[row.course]={title:row.course}}}));await Promise.all(batchEnrollments.map(async function(row){try{batchDetails[row.batch]=await getDoc("LMS Batch",row.batch)}catch(error){batchDetails[row.batch]={title:row.batch}}}));document.getElementById("metric-courses").textContent=String(enrollments.length);renderCourses();renderGuided();renderServerProgress()}catch(error){renderServerError()}}
+  async function loadAccount(){try{var auth=await getJson("/api/method/frappe.auth.get_logged_user");currentUser=auth.message||"Guest"}catch(error){currentUser="Guest"}updateAccountUi();if(currentUser==="Guest"){renderCourses();renderGuided();return}renderGuided();try{enrollments=await getList("LMS Enrollment",[["member","=",currentUser]],["name","course","progress","current_lesson","modified"]);batchEnrollments=await getList("LMS Batch Enrollment",[["member","=",currentUser]],["name","batch"]);await Promise.all(enrollments.map(async function(row){try{courseDetails[row.course]=await getDoc("LMS Course",row.course)}catch(error){courseDetails[row.course]={title:row.course}}}));await Promise.all(batchEnrollments.map(async function(row){try{batchDetails[row.batch]=await getDoc("LMS Batch",row.batch)}catch(error){batchDetails[row.batch]={title:row.batch}}}));document.getElementById("metric-courses").textContent=String(enrollments.length);renderCourses();renderGuided();renderServerProgress()}catch(error){renderServerError()}}
   function updateAccountUi(){var button=document.getElementById("account-button");var status=document.getElementById("sync-status");if(currentUser==="Guest")return;var label=currentUser.split("@")[0].replace(/[._-]+/g," ");button.href="/lms/profile";button.querySelector("span").textContent=label;document.getElementById("student-name").textContent=label;status.querySelector("span").textContent=t("signedIn")}
   function emptyCard(title,text){var card=document.createElement("article");card.className="empty-state";var icon=document.createElement("span");icon.innerHTML='<svg><use href="#i-book"/></svg>';var heading=document.createElement("h3");heading.textContent=title;var copy=document.createElement("p");copy.textContent=text;card.append(icon,heading,copy);return card}
   function starterCard(){var card=document.createElement("article");card.className="course-card starter-course";var head=document.createElement("div");head.className="course-card-head";var badge=document.createElement("span");badge.textContent=t("starterBadge");var symbol=document.createElement("strong");symbol.lang="ar";symbol.dir="rtl";symbol.textContent="ا ← بِ ← رَبِّ";head.append(badge,symbol);var title=document.createElement("h3");title.textContent=t("starterTitle");var copy=document.createElement("p");copy.textContent=t("starterText");var link=document.createElement("a");link.className="text-link";link.href=language==="ar"?"/ar/blog/learn-quranic-alphabet":(language==="ru"?"/ru/blog/arabskij-alfavit-dlya-chteniya-korana":"/blog/learn-quranic-alphabet");var label=document.createElement("span");label.textContent=t("starterAction");var arrow=document.createElementNS("http://www.w3.org/2000/svg","svg");arrow.innerHTML='<use href="#i-arrow"/>';link.append(label,arrow);card.append(head,title,copy,link);return card}
@@ -107,6 +116,7 @@
   async function renderGuided(){
     var active=batchEnrollments.length>0;
     var isGuest=currentUser==="Guest";
+    var recallActive=!isGuest;
     var openLine=document.getElementById("open-access-line");
     var basicLine=document.getElementById("basic-access-line");
     var basicStatus=document.getElementById("basic-status");
@@ -117,6 +127,9 @@
     var recallCard=document.getElementById("advanced-recall-card");
     var recallStatus=document.getElementById("advanced-recall-status");
     var recallAction=document.getElementById("advanced-recall-action");
+    var strictCard=document.getElementById("strict-assessment-card");
+    var strictStatus=document.getElementById("strict-assessment-status");
+    var strictAction=document.getElementById("strict-assessment-action");
 
     if(openLine)openLine.classList.toggle("is-current",isGuest);
     if(basicLine)basicLine.classList.toggle("is-current",!isGuest&&!active);
@@ -129,11 +142,18 @@
     accessPill.querySelector("span").textContent=active?t("levelThreeActive"):(isGuest?t("openAccess"):t("basicAccess"));
 
     if(recallCard){
-      recallCard.dataset.accessState=active?"active":"locked";
-      recallStatus.classList.toggle("muted",!active);
-      recallStatus.querySelector("span").textContent=active?t("thirdAccessActive"):t("thirdAccessLocked");
-      recallAction.href=active?"/learn?view=memorize&academy=page-recall&lang="+encodeURIComponent(language):"/lms/courses";
-      recallAction.querySelector("span").textContent=active?t("startPageRecall"):t("chooseProgram");
+      recallCard.dataset.accessState=recallActive?"active":"locked";
+      recallStatus.classList.toggle("muted",!recallActive);
+      recallStatus.querySelector("span").textContent=recallActive?t("secondAccessActive"):t("secondAccessLocked");
+      recallAction.href=recallActive?"/learn?view=memorize&academy=page-recall&lang="+encodeURIComponent(language):"/login?redirect-to=/academy";
+      recallAction.querySelector("span").textContent=recallActive?t("startPageRecall"):t("signInAndOpen");
+    }
+    if(strictCard){
+      strictCard.dataset.accessState=active?"active":"locked";
+      strictStatus.classList.toggle("muted",!active);
+      strictStatus.querySelector("span").textContent=active?t("strictAssessmentActive"):t("strictAssessmentLocked");
+      strictAction.href=active?"/learn?view=read&assessment=teacher&lang="+encodeURIComponent(language):"/lms/batches";
+      strictAction.querySelector("span").textContent=active?t("strictAssessmentStart"):t("strictAssessmentChooseProgram");
     }
 
     var names=teacherNames();
@@ -168,6 +188,9 @@
   function renderServerError(){var list=document.getElementById("course-list");list.textContent="";list.appendChild(emptyCard(t("serverUnavailable"),t("serverUnavailableText")));document.getElementById("sync-status").querySelector("span").textContent=t("serverUnavailable")}
   function initializePlan(){document.getElementById("plan-minutes-input").value=String(plan.minutes);document.getElementById("plan-focus-input").value=plan.focus;document.getElementById("plan-target-input").value=plan.target||""}
   function initialize(){
+    var params=new URLSearchParams(window.location.search);
+    var requestedLanguage=params.get("lang");
+    if(["ru","en","ar"].indexOf(requestedLanguage)>=0)language=requestedLanguage;
     renderLocal();
     applyLanguage(language);
     initializePlan();
@@ -178,7 +201,6 @@
     document.getElementById("edit-plan").addEventListener("click",function(){initializePlan();dialog.showModal()});
     document.getElementById("plan-form").addEventListener("submit",function(event){if(event.submitter&&event.submitter.id==="save-plan"){plan.minutes=Math.max(10,Math.min(45,Number(document.getElementById("plan-minutes-input").value)||15));plan.focus=document.getElementById("plan-focus-input").value;plan.target=document.getElementById("plan-target-input").value.trim();writeStorage(planStorageKey,plan);renderLocal();showToast(t("planSaved"))}});
     dialog.addEventListener("click",function(event){if(event.target===dialog)dialog.close()});
-    var params=new URLSearchParams(window.location.search);
     var requestedPanel=params.get("panel");
     if(["overview","courses","teacher","progress"].indexOf(requestedPanel)>=0)selectPanel(requestedPanel);
     if(params.get("feature")==="page-recall"){
@@ -186,6 +208,14 @@
       if(feature){
         feature.classList.add("is-feature-target");
         window.setTimeout(function(){feature.scrollIntoView({behavior:"smooth",block:"center"});feature.focus({preventScroll:true})},180);
+      }
+    }
+    if(params.get("feature")==="strict-assessment"){
+      selectPanel("teacher");
+      var strictFeature=document.getElementById("strict-assessment-card");
+      if(strictFeature){
+        strictFeature.classList.add("is-feature-target");
+        window.setTimeout(function(){strictFeature.scrollIntoView({behavior:"smooth",block:"center"});strictFeature.focus({preventScroll:true})},180);
       }
     }
     loadAccount();

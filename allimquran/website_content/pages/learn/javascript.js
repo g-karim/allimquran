@@ -970,7 +970,7 @@
   function setBrandFavicon() {
     var iconUrl = window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
       ? "allim-brand-icon.png"
-      : "/assets/allimquran/media/allim-brand-icon.png?v=75";
+      : "/files/allim-brand-icon.png?v=77";
     document.querySelectorAll('head link[rel~="icon"],head link[rel="apple-touch-icon"]').forEach(function (node) { node.remove(); });
     ["icon", "apple-touch-icon"].forEach(function (relation) {
       var link = document.createElement("link");
@@ -1241,7 +1241,7 @@
       reviewQueue: "Очередь повторения", reviewQueueText: "Аяты, добавленные вами или отмеченные после чтения", savedVerses: "Сохранённые аяты", savedVersesText: "Личная локальная коллекция без аккаунта", emptyReview: "Пока пусто. Добавьте аят после чтения.", emptySaved: "Пока нет сохранённых аятов.",
       revealOne: "Открыть одно слово", recalled: "Я вспомнил", startAgain: "Начать заново", memoryStart: "Начать читать наизусть", memoryStop: "Остановить проверку", memoryHint: "Нужна подсказка", memoryHeard: "Распознано", memoryWaiting: "Здесь появятся услышанные слова…", memoryMicReady: "Микрофон готов к проверке", memoryMicReadySub: "Читайте с начала аята или продолжите с первой закрытой карточки.", memoryRequesting: "Разрешите доступ к микрофону…", memoryRequestingSub: "Подтвердите доступ в браузере. Аудио не сохраняется.", memoryListening: "Слушаю ваше чтение…", memoryListeningSub: "Правильные слова открываются строго по порядку.", memoryWordCorrect: "Правильно — слово открыто", memoryWordCorrectSub: "Продолжайте читать следующую закрытую карточку.", memoryWordRetry: "Слово не совпало", memoryWordRetrySub: "Карточка остаётся закрытой. Повторите слово ещё раз.", memoryPaused: "Проверка остановлена", memoryPausedSub: "Нажмите кнопку и продолжите с первой закрытой карточки.", memoryComplete: "Аят прочитан правильно", memoryCompleteSub: "Все закрытые слова распознаны по порядку.", memoryCompleteWithHint: "Аят завершён с подсказкой", memoryCompleteWithHintSub: "Повторите ещё раз без подсказок, чтобы закрепить результат.", memoryUnsupported: "Проверка голосом недоступна в этом браузере", memoryUnsupportedSub: "Используйте Quran AI или поддерживаемое распознавание браузера.", memoryNoSpeech: "Слова не распознаны", memoryNoSpeechSub: "Проверьте микрофон и повторите с первой закрытой карточки.", memoryPermissionDenied: "Нет доступа к микрофону", memoryPermissionDeniedSub: "Разрешите микрофон для allimquran.com в настройках браузера.", memoryProcessing: "Проверяю чтение…", memoryProcessingSub: "Сопоставляю услышанные слова с продолжением аята.", memoryHintOpened: "Подсказка открыта. Для закрепления повторите аят без подсказок.",
       quranicArabic: "Коранический арабский", learnIntro: "Фусха, кораническая грамматика и разговорная практика показаны раздельно.", verseMap: "Карта аята", tapWord: "Нажмите на слово",
-      threeTracks: "Три учебных трека", trackQuran: "Язык Корана", trackQuranText: "Лексика, корни, морфология и синтаксис.", trackFusha: "Фусха", trackFushaText: "Современная литературная речь и письмо.", trackHijazi: "Хиджазский", trackHijaziText: "Повседневная речь Медины, Мекки и Джидды.",
+      threeTracks: "Три учебных трека", trackQuran: "Язык Корана", trackQuranText: "Лексика, корни, морфология и синтаксис.", trackFusha: "Фусха", trackFushaText: "Современная литературная речь и письмо.", trackHijazi: "Хиджазский", trackHijaziText: "Повседневная речь Мекки, Медины и других городов Саудовской Аравии.",
       yourJourney: "Ваш путь", progressIntro: "Здесь появятся только реальные результаты ваших действий в приложении.", sessions: "Сессии", storedLocally: "Хранятся локально",
       wordsReviewed: "Слова повторены", fromYourActions: "По вашим действиям", hintsUsed: "Подсказки", notAScore: "Не оценка, а ориентир",
       noInventedStats: "Без выдуманной статистики", noInventedStatsText: "Завершите чтение или тренировку памяти — и этот экран обновится.", beginSession: "Начать сессию",
@@ -1342,6 +1342,35 @@
       dataPresentTitle: "تحدّث التقدّم المحلي", dataPresentText: "تعكس الأرقام أعلاه الأعمال المنفّذة في هذا النموذج فقط.", confirmClear: "هل تريد مسح التقدّم المحلي للنموذج؟", verseSaved: "حُفظت الآية على هذا الجهاز.", verseUnsaved: "أُزيلت الآية من المحفوظات.", reviewAdded: "أُضيفت الآية إلى قائمة المراجعة.", reviewRemoved: "أُزيلت الآية من قائمة المراجعة."
     }
   };
+
+  Object.assign(translations.ru, {
+    teacherAssessmentEyebrow: "УРОВЕНЬ 3 · С ПРЕПОДАВАТЕЛЕМ", teacherAssessmentTitle: "Строгая диагностика чтения", teacherAssessmentLead: "Система строит предварительную карту, а таджвид и интонацию подтверждает преподаватель.", teacherAssessmentBack: "К преподавателю", teacherAssessmentMap: "КАРТА ДЛЯ РАЗБОРА", teacherAssessmentPreliminary: "Предварительный результат", teacherAssessmentNotFinal: "Не итоговая оценка", teacherAssessmentWordOrder: "Порядок слов", teacherAssessmentAutomatic: "Автоматически", teacherAssessmentPronunciation: "Произношение", teacherAssessmentCalibration: "Калибровка", teacherAssessmentTajwid: "Таджвид", teacherAssessmentIntonation: "Интонация и паузы", teacherAssessmentTeacherReview: "Проверка учителя", teacherAssessmentBoundary: "Васл, идгам и реальную манеру чтения нельзя оценивать только по текстовой расшифровке. Итог появится после проверки преподавателем."
+  });
+
+  Object.assign(translations.ru, {
+    translationLoading: "Загружаю проверенный смысловой перевод…",
+    translationUnavailable: "Проверенный смысловой перевод временно недоступен.",
+    translationBy: "Смысловой перевод · {author}",
+    quranFoundationAttribution: "Данные Корана предоставлены Quran Foundation."
+  });
+  Object.assign(translations.en, {
+    translationLoading: "Loading the reviewed meaning translation…",
+    translationUnavailable: "The reviewed meaning translation is temporarily unavailable.",
+    translationBy: "Meaning translation · {author}",
+    quranFoundationAttribution: "Quran data provided by Quran Foundation."
+  });
+  Object.assign(translations.ar, {
+    translationLoading: "جارٍ تحميل ترجمة المعاني المراجعة…",
+    translationUnavailable: "ترجمة المعاني المراجعة غير متاحة مؤقتًا.",
+    translationBy: "ترجمة المعاني · {author}",
+    quranFoundationAttribution: "بيانات القرآن مقدمة من Quran Foundation."
+  });
+  Object.assign(translations.en, {
+    teacherAssessmentEyebrow: "LEVEL 3 · WITH A TEACHER", teacherAssessmentTitle: "Strict recitation diagnostic", teacherAssessmentLead: "The system prepares a preliminary map; tajwid and intonation are confirmed by the teacher.", teacherAssessmentBack: "Back to the teacher", teacherAssessmentMap: "REVIEW MAP", teacherAssessmentPreliminary: "Preliminary result", teacherAssessmentNotFinal: "Not a final grade", teacherAssessmentWordOrder: "Word order", teacherAssessmentAutomatic: "Automatic", teacherAssessmentPronunciation: "Pronunciation", teacherAssessmentCalibration: "Calibration", teacherAssessmentTajwid: "Tajwid", teacherAssessmentIntonation: "Intonation and pauses", teacherAssessmentTeacherReview: "Teacher review", teacherAssessmentBoundary: "Wasl, idgham and real recitation style cannot be judged from a text transcript alone. The final result appears after teacher review."
+  });
+  Object.assign(translations.ar, {
+    teacherAssessmentEyebrow: "المستوى الثالث · مع معلّم", teacherAssessmentTitle: "تشخيص دقيق للتلاوة", teacherAssessmentLead: "يعدّ النظام خريطة أولية، ويعتمد المعلّم التجويد والنغم.", teacherAssessmentBack: "العودة إلى المعلّم", teacherAssessmentMap: "خريطة للمراجعة", teacherAssessmentPreliminary: "نتيجة أولية", teacherAssessmentNotFinal: "ليست درجة نهائية", teacherAssessmentWordOrder: "ترتيب الكلمات", teacherAssessmentAutomatic: "آلي", teacherAssessmentPronunciation: "النطق", teacherAssessmentCalibration: "قيد المعايرة", teacherAssessmentTajwid: "التجويد", teacherAssessmentIntonation: "النغم والوقفات", teacherAssessmentTeacherReview: "مراجعة المعلّم", teacherAssessmentBoundary: "لا يمكن تقييم الوصل والإدغام وأداء التلاوة من النص المفرّغ وحده. تظهر النتيجة النهائية بعد مراجعة المعلّم."
+  });
 
   Object.assign(translations.ru, {
     navTafsir: "Тафсир", tafsirTitle: "Увидьте связи между аятами", connectAyat: "Связать аят с аятами", connectAyatText: "Адва аль-Баян · проверенный источник",
@@ -1551,15 +1580,15 @@
   });
 
   Object.assign(translations.ru, {
-    pageRecallAccessTier: "УРОВЕНЬ 3 · ALLIM ACADEMY", pageRecallCheckingAccess: "Проверяем доступ…", pageRecallAccessActive: "ТРЕТИЙ ДОСТУП АКТИВЕН", pageRecallThirdAccessRequired: "ДОСТУП С ПРЕПОДАВАТЕЛЕМ", pageRecallOpenAcademy: "Открыть третий доступ", pageRecallAccessError: "Открыть ALLIM Academy"
+    pageRecallAccessTier: "УРОВЕНЬ 2 · БАЗОВЫЙ КАБИНЕТ", pageRecallCheckingAccess: "Проверяем доступ…", pageRecallAccessActive: "ВТОРОЙ ДОСТУП АКТИВЕН", pageRecallAccountRequired: "ТРЕБУЕТСЯ ВХОД В КАБИНЕТ", pageRecallOpenAcademy: "Войти в базовый кабинет", pageRecallAccessError: "Открыть ALLIM Academy"
   });
 
   Object.assign(translations.en, {
-    pageRecallAccessTier: "LEVEL 3 · ALLIM ACADEMY", pageRecallCheckingAccess: "Checking access…", pageRecallAccessActive: "LEVEL THREE ACTIVE", pageRecallThirdAccessRequired: "TEACHER-GUIDED ACCESS", pageRecallOpenAcademy: "Open level three", pageRecallAccessError: "Open ALLIM Academy"
+    pageRecallAccessTier: "LEVEL 2 · BASIC CABINET", pageRecallCheckingAccess: "Checking access…", pageRecallAccessActive: "LEVEL TWO ACTIVE", pageRecallAccountRequired: "SIGN-IN REQUIRED", pageRecallOpenAcademy: "Open the basic cabinet", pageRecallAccessError: "Open ALLIM Academy"
   });
 
   Object.assign(translations.ar, {
-    pageRecallAccessTier: "المستوى الثالث · أكاديمية ALLIM", pageRecallCheckingAccess: "جارٍ التحقق من الوصول…", pageRecallAccessActive: "المستوى الثالث مفعّل", pageRecallThirdAccessRequired: "وصول بإشراف المعلّم", pageRecallOpenAcademy: "افتح المستوى الثالث", pageRecallAccessError: "افتح أكاديمية ALLIM"
+    pageRecallAccessTier: "المستوى الثاني · لوحة الطالب الأساسية", pageRecallCheckingAccess: "جارٍ التحقق من الوصول…", pageRecallAccessActive: "المستوى الثاني مفعّل", pageRecallAccountRequired: "يلزم تسجيل الدخول", pageRecallOpenAcademy: "افتح لوحة الطالب الأساسية", pageRecallAccessError: "افتح أكاديمية ALLIM"
   });
 
   var reciters = [
@@ -1629,6 +1658,9 @@
   var corpus = window.QuranCompanionData && window.QuranCompanionData.surahs ? window.QuranCompanionData.surahs : [];
   var tafsirData = window.QuranCompanionTafsir || { source: {}, entries: {} };
   var state = loadState();
+  var launchParams = new URLSearchParams(window.location.search);
+  var teacherAssessmentRequested = launchParams.get("assessment") === "teacher";
+  var teacherAssessmentMode = false;
   if (!Array.isArray(state.savedVerses)) state.savedVerses = [];
   if (!Array.isArray(state.reviewQueue)) state.reviewQueue = [];
   if (!state.activity || typeof state.activity !== "object" || Array.isArray(state.activity)) state.activity = {};
@@ -1657,6 +1689,9 @@
   var interlinearWordCache = Object.create(null);
   var interlinearPending = Object.create(null);
   var interlinearRequestId = 0;
+  var verseTranslationCache = Object.create(null);
+  var verseTranslationPending = Object.create(null);
+  var verseTranslationRequestId = 0;
   var recognition = null;
   var isListening = false;
   var userStoppedRecognition = false;
@@ -2004,6 +2039,7 @@
     if (view !== "read") document.body.classList.remove("audio-view");
     document.querySelectorAll(".view").forEach(function (item) { item.classList.remove("is-active"); });
     panel.classList.add("is-active");
+    document.body.classList.toggle("read-view-active", view === "read");
     document.querySelectorAll("[data-view]").forEach(function (item) {
       var active = item.getAttribute("data-view") === view;
       item.classList.toggle("is-active", active);
@@ -2894,7 +2930,7 @@
   }
 
   function pageRecallAcademyUrl() {
-    var params = new URLSearchParams({ panel: "teacher", feature: "page-recall", lang: state.language });
+    var params = new URLSearchParams({ panel: "overview", feature: "page-recall", lang: state.language });
     return "/academy?" + params.toString();
   }
 
@@ -2906,11 +2942,12 @@
     if (!card || !button) return;
     card.setAttribute("data-access-level", pageRecallAccessLevel);
     card.classList.toggle("is-access-checking", pageRecallAccessLevel === "checking");
-    card.classList.toggle("is-access-active", pageRecallAccessLevel === "guided");
-    card.classList.toggle("is-access-locked", pageRecallAccessLevel !== "checking" && pageRecallAccessLevel !== "guided");
+    var hasAccess = pageRecallAccessLevel === "basic" || pageRecallAccessLevel === "guided";
+    card.classList.toggle("is-access-active", hasAccess);
+    card.classList.toggle("is-access-locked", pageRecallAccessLevel !== "checking" && !hasAccess);
     button.disabled = pageRecallAccessLevel === "checking";
     var buttonLabel = button.querySelector("span");
-    if (pageRecallAccessLevel === "guided") {
+    if (hasAccess) {
       if (label) label.textContent = t("pageRecallAccessActive");
       if (buttonLabel) buttonLabel.textContent = t("pageRecallStart");
       if (access) access.setAttribute("aria-label", t("pageRecallAccessActive"));
@@ -2922,9 +2959,9 @@
       if (access) access.setAttribute("aria-label", t("pageRecallCheckingAccess"));
       return;
     }
-    if (label) label.textContent = t("pageRecallThirdAccessRequired");
+    if (label) label.textContent = t("pageRecallAccountRequired");
     if (buttonLabel) buttonLabel.textContent = t(pageRecallAccessLevel === "error" ? "pageRecallAccessError" : "pageRecallOpenAcademy");
-    if (access) access.setAttribute("aria-label", t("pageRecallThirdAccessRequired"));
+    if (access) access.setAttribute("aria-label", t("pageRecallAccountRequired"));
   }
 
   function getPageRecallAcademyAccess(force) {
@@ -2944,21 +2981,7 @@
       return response.json();
     }).then(function (payload) {
       var user = payload && payload.message ? String(payload.message) : "Guest";
-      if (user === "Guest") return "open";
-      var query = new URLSearchParams({
-        fields: JSON.stringify(["name"]),
-        filters: JSON.stringify([["member", "=", user]]),
-        limit_page_length: "1"
-      });
-      return window.fetch("/api/resource/LMS%20Batch%20Enrollment?" + query.toString(), {
-        credentials: "same-origin",
-        headers: { Accept: "application/json", "X-Requested-With": "XMLHttpRequest" }
-      }).then(function (response) {
-        if (!response.ok) throw new Error("academy-access-" + response.status);
-        return response.json();
-      }).then(function (data) {
-        return data && Array.isArray(data.data) && data.data.length ? "guided" : "basic";
-      });
+      return user === "Guest" ? "open" : "basic";
     }).catch(function () {
       return "error";
     }).then(function (level) {
@@ -2970,7 +2993,7 @@
   }
 
   function enterPageRecall() {
-    if (pageRecallAccessLevel === "guided") {
+    if (pageRecallAccessLevel === "basic" || pageRecallAccessLevel === "guided") {
       startPageRecall();
       return;
     }
@@ -3034,7 +3057,7 @@
   }
 
   function startPageRecall() {
-    if (pageRecallAccessLevel !== "guided") {
+    if (pageRecallAccessLevel !== "basic" && pageRecallAccessLevel !== "guided") {
       window.location.href = pageRecallAcademyUrl();
       return;
     }
@@ -3359,7 +3382,7 @@
     var shouldActivate = Boolean(active);
     document.body.classList.toggle("reader-studio", shouldActivate);
     document.getElementById("open-studio").classList.toggle("is-active", shouldActivate);
-    document.getElementById("meaning-text").classList.toggle("is-hidden", shouldActivate || !state.showMeaning);
+    renderCurrentMeaning();
     if (!shouldActivate) {
       document.querySelectorAll("[data-reader-mode]").forEach(function (item) {
         item.classList.toggle("is-active", item.getAttribute("data-reader-mode") === "read");
@@ -3896,6 +3919,13 @@
       return false;
     }
     autoAdvanceContext = context === "memory" ? "memory" : "read";
+    if (autoAdvanceContext === "read" && state.recitationFlow === "continuous" && continuousSessionActive) {
+      autoAdvanceTimer = window.setTimeout(function () {
+        clearAutoAdvance();
+        goToNextVerse();
+      }, 80);
+      return true;
+    }
     autoAdvanceSeconds = autoAdvanceContext === "read" ? 1 : 3;
     var delay = autoAdvanceSeconds * 1000;
     renderAutoAdvanceCountdown();
@@ -3927,13 +3957,13 @@
     continuousResumePending = false;
     if (next.mushafVerse) {
       activateMushafVerse(next.mushafVerse, true);
-      if (resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 220);
+      if (resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 90);
       return true;
     }
     if (next.mushafNextPage) {
       loadMushafPage(next.mushafNextPage, false).then(function () {
         if (mushafPageVerses[0]) activateMushafVerse(mushafPageVerses[0], true);
-        if (resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 220);
+        if (resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 90);
       });
       return true;
     }
@@ -3943,7 +3973,7 @@
           setMushafMode(true);
           selectReaderMode("mushaf");
         }
-        if (selected && resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 220);
+        if (selected && resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 90);
       });
       return true;
     }
@@ -3958,7 +3988,7 @@
     if (resumeContinuous) {
       window.setTimeout(function () {
         if (state.recitationFlow === "continuous" && continuousSessionActive && !isListening && !recognitionStartPending) startRecognition(true);
-      }, 220);
+      }, 90);
     }
     return true;
   }
@@ -4006,6 +4036,54 @@
     var messageKey = !alignment ? "summaryIdle" : (alignment.complete ? "summaryComplete" : (isFinal ? "summaryFinal" : "summaryLive"));
     document.getElementById("summary-message").textContent = t(messageKey);
     document.getElementById("reading-summary").classList.toggle("has-results", Boolean(alignment));
+    updateTeacherAssessmentUi(alignment);
+  }
+
+  function updateTeacherAssessmentUi(alignment) {
+    if (!teacherAssessmentMode) return;
+    var score = document.getElementById("teacher-assessment-word-score");
+    if (!score) return;
+    if (!alignment || !currentWords.length) {
+      score.textContent = "—";
+      return;
+    }
+    var percent = Math.max(0, Math.min(100, Math.round((Number(alignment.matched) || 0) / currentWords.length * 100)));
+    score.textContent = formatMetric(percent) + "%";
+  }
+
+  async function initializeTeacherAssessmentMode() {
+    if (!teacherAssessmentRequested) return;
+    var returnUrl = "/academy?panel=teacher&feature=strict-assessment&lang=" + encodeURIComponent(state.language);
+    try {
+      var authResponse = await fetch("/api/method/frappe.auth.get_logged_user", { credentials: "same-origin", headers: { Accept: "application/json" } });
+      if (!authResponse.ok) throw new Error("auth-" + authResponse.status);
+      var auth = await authResponse.json();
+      var user = auth.message || "Guest";
+      if (user === "Guest") throw new Error("guest");
+      var filters = encodeURIComponent(JSON.stringify([["member", "=", user]]));
+      var fields = encodeURIComponent(JSON.stringify(["name", "batch"]));
+      var accessResponse = await fetch("/api/resource/LMS%20Batch%20Enrollment?filters=" + filters + "&fields=" + fields + "&limit_page_length=1", { credentials: "same-origin", headers: { Accept: "application/json" } });
+      if (!accessResponse.ok) throw new Error("access-" + accessResponse.status);
+      var access = await accessResponse.json();
+      if (!access.data || !access.data.length) throw new Error("not-enrolled");
+    } catch (error) {
+      window.location.replace(returnUrl);
+      return;
+    }
+    teacherAssessmentMode = true;
+    document.body.classList.add("teacher-assessment-mode");
+    document.getElementById("teacher-assessment-banner").hidden = false;
+    document.getElementById("teacher-assessment-result").hidden = false;
+    state.recognitionMode = "quran";
+    state.recognitionModeExplicit = true;
+    state.recitationFlow = "single";
+    state.recitationFlowExplicit = true;
+    state.strictCorrection = true;
+    saveState();
+    updateRecognitionModeUi();
+    updateRecitationFlowUi();
+    document.getElementById("strict-correction-toggle").checked = true;
+    updateTeacherAssessmentUi(lastAlignment);
   }
 
   function splitVerseWords(text) {
@@ -4018,6 +4096,11 @@
     document.querySelectorAll("[data-reader-mode]").forEach(function (item) {
       item.classList.toggle("is-active", item.getAttribute("data-reader-mode") === mode);
     });
+    var pickerLabel = document.getElementById("reader-mode-picker-label");
+    var picker = document.getElementById("reader-mode-picker");
+    var labelKeys = { read: "modeRead", mushaf: "modeMushaf", listen: "modeListen", focus: "modeFocus" };
+    if (pickerLabel) pickerLabel.textContent = t(labelKeys[mode] || "modeMushaf");
+    if (picker) picker.removeAttribute("open");
   }
 
   function setMushafMode(active, skipLoad) {
@@ -4251,6 +4334,99 @@
     updatePageRecallUi();
   }
 
+  function renderMeaningAttribution() {
+    var attribution = document.getElementById("meaning-attribution");
+    var edition = document.getElementById("meaning-edition");
+    var source = document.getElementById("meaning-source");
+    var metadata = currentVerse && currentVerse.translationMeta;
+    var visible = Boolean(
+      attribution &&
+      metadata &&
+      metadata.language === state.language &&
+      state.showMeaning &&
+      !document.body.classList.contains("reader-studio")
+    );
+    if (!attribution) return;
+    attribution.hidden = !visible;
+    if (!visible) return;
+    edition.textContent = formatText("translationBy", { author: metadata.author });
+    source.textContent = t("quranFoundationAttribution");
+  }
+
+  function renderCurrentMeaning(fallbackText) {
+    var meaning = document.getElementById("meaning-text");
+    if (!meaning || !currentVerse) return;
+    var text = currentVerse.meaning && currentVerse.meaning[state.language];
+    meaning.textContent = text || fallbackText || t("translationUnavailable");
+    meaning.lang = state.language;
+    meaning.setAttribute("translate", "no");
+    meaning.classList.toggle("is-hidden", !state.showMeaning || document.body.classList.contains("reader-studio"));
+    renderMeaningAttribution();
+  }
+
+  function ensureVerifiedVerseTranslation() {
+    if (!currentSurah || !currentVerse || state.language !== "ru" || !window.fetch) {
+      renderCurrentMeaning();
+      return Promise.resolve(null);
+    }
+    var key = getVerseKey(currentSurah, currentVerse);
+    var cached = verseTranslationCache[key];
+    if (cached) {
+      currentVerse.meaning.ru = cached.text;
+      currentVerse.translationMeta = cached;
+      renderCurrentMeaning();
+      return Promise.resolve(cached);
+    }
+    if (window.location.protocol === "file:") {
+      renderCurrentMeaning();
+      return Promise.resolve(null);
+    }
+    if (verseTranslationPending[key]) return verseTranslationPending[key];
+    verseTranslationRequestId += 1;
+    var localFallback = currentVerse.meaning && currentVerse.meaning.ru;
+    if (!localFallback || localFallback === t("glossPending")) {
+      currentVerse.meaning.ru = t("translationLoading");
+      renderCurrentMeaning();
+    }
+    verseTranslationPending[key] = window.fetch(
+      "/api/quran/translation/" + currentSurah.id + "/" + currentVerse.ayah + "?resource_id=45",
+      {
+        cache: "force-cache",
+        headers: { "X-Requested-With": "QuranCompanion" }
+      }
+    ).then(function (response) {
+      if (!response.ok) throw new Error("translation-unavailable");
+      return response.json();
+    }).then(function (payload) {
+      if (!payload || !payload.text || Number(payload.resource_id) !== 45) throw new Error("translation-invalid");
+      var record = {
+        language: "ru",
+        text: String(payload.text),
+        author: String(payload.author || "Эльмир Кулиев"),
+        edition: String(payload.edition || "Russian Translation (Elmir Kuliev)"),
+        source: String(payload.source || "Quran Foundation")
+      };
+      verseTranslationCache[key] = record;
+      if (currentSurah && currentVerse && getVerseKey(currentSurah, currentVerse) === key) {
+        currentVerse.meaning.ru = record.text;
+        currentVerse.translationMeta = record;
+        renderCurrentMeaning();
+      }
+      return record;
+    }).catch(function () {
+      if (currentSurah && currentVerse && getVerseKey(currentSurah, currentVerse) === key) {
+        currentVerse.meaning.ru = localFallback && localFallback !== t("glossPending") ? localFallback : t("translationUnavailable");
+        delete currentVerse.translationMeta;
+        renderCurrentMeaning();
+      }
+      return null;
+    }).then(function (payload) {
+      delete verseTranslationPending[key];
+      return payload;
+    });
+    return verseTranslationPending[key];
+  }
+
   function activateMushafVerse(verseData, resetRecognition) {
     if (!verseData || !verseData.verse_key) return;
     var parts = String(verseData.verse_key).split(":");
@@ -4280,7 +4456,7 @@
     selectedWordIndex = 0;
     renderCurrentVerseWords(ayahNumber);
     document.getElementById("verse-reference").textContent = verseData.verse_key;
-    document.getElementById("meaning-text").textContent = currentVerse.meaning[state.language];
+    renderCurrentMeaning();
     updatePassageHeader();
     updateInterlinearUi();
     updateMatchIndicator(0);
@@ -4295,6 +4471,7 @@
     document.querySelectorAll(".mushaf-glyph.is-current").forEach(function (node) { node.classList.remove("is-current"); });
     document.querySelectorAll('[data-verse-key="' + verseData.verse_key + '"]').forEach(function (node) { node.classList.add("is-current"); });
     ensureInterlinearWords();
+    ensureVerifiedVerseTranslation();
   }
 
   function loadMushafPage(pageNumber, announce) {
@@ -4828,7 +5005,7 @@
     selectedWordIndex = 0;
     renderCurrentVerseWords(currentVerse.ayah);
     document.getElementById("verse-reference").textContent = currentSurah.id + ":" + currentVerse.ayah;
-    document.getElementById("meaning-text").textContent = currentVerse.meaning[state.language];
+    renderCurrentMeaning();
     updateInterlinearUi();
     updatePassageHeader();
     updateMatchIndicator(resetRecognition === false ? lastMatchedCount : 0);
@@ -4844,6 +5021,7 @@
     saveState();
     loadHeartPageContextForCurrentVerse().catch(function () { return null; });
     ensureInterlinearWords();
+    ensureVerifiedVerseTranslation();
   }
 
   function updateWord(index, revealPanel) {
@@ -4914,7 +5092,7 @@
 
   function setMeaningVisibility(show) {
     state.showMeaning = Boolean(show);
-    document.getElementById("meaning-text").classList.toggle("is-hidden", !state.showMeaning);
+    renderCurrentMeaning();
     document.getElementById("meaning-toggle").checked = state.showMeaning;
     document.getElementById("toggle-translation").setAttribute("aria-pressed", String(state.showMeaning));
     saveState();
@@ -5131,7 +5309,7 @@
   function setRecognitionButton(listening) {
     var labelKey = listening ? "stopListening" : (recognitionStartPending ? "cancelMicRequest" : "startListening");
     var label = t(labelKey);
-    ["start-recognition", "page-recall-mic"].forEach(function (id) {
+    ["start-recognition", "page-recall-mic", "mobile-recognition-toggle"].forEach(function (id) {
       var button = document.getElementById(id);
       if (!button) return;
       var text = button.querySelector("span");
@@ -5139,6 +5317,16 @@
       button.setAttribute("aria-label", label);
       button.setAttribute("aria-pressed", String(listening));
       button.classList.toggle("is-requesting", recognitionStartPending);
+      button.classList.toggle("is-listening", listening);
+      var icon = button.querySelector("use");
+      if (icon) icon.setAttribute("href", listening || recognitionStartPending ? "#i-stop" : "#i-mic");
+    });
+  }
+
+  function setRecognitionControlsDisabled(disabled) {
+    ["start-recognition", "page-recall-mic", "mobile-recognition-toggle"].forEach(function (id) {
+      var button = document.getElementById(id);
+      if (button) button.disabled = Boolean(disabled);
     });
   }
 
@@ -5173,7 +5361,7 @@
     var panel = document.getElementById("recitation-panel");
     panel.classList.remove("is-requesting", "is-listening");
     panel.setAttribute("aria-busy", "false");
-    document.getElementById("start-recognition").disabled = false;
+    setRecognitionControlsDisabled(false);
     setRecognitionButton(false);
     if (showCancelled !== false) setRecognitionStatus("micRequestCancelled", "micRequestCancelledSub", false);
     return true;
@@ -5187,7 +5375,7 @@
     var panel = document.getElementById("recitation-panel");
     panel.classList.add("is-requesting");
     panel.setAttribute("aria-busy", "true");
-    document.getElementById("start-recognition").disabled = false;
+    setRecognitionControlsDisabled(false);
     setRecognitionStatus("requestingMic", "requestingMicSub", false);
     setRecognitionButton(false);
     recognitionStartTimer = window.setTimeout(function () {
@@ -5201,7 +5389,7 @@
       }
       stopAudioMeter();
       stopContinuousSession();
-      document.getElementById("start-recognition").disabled = false;
+      setRecognitionControlsDisabled(false);
       setRecognitionStatus("micRequestTimeout", "micRequestTimeoutSub", true);
       setRecognitionButton(false);
     }, MIC_REQUEST_TIMEOUT);
@@ -5357,7 +5545,7 @@
     form.append("verse_key", currentSurah.id + ":" + currentVerse.ayah);
     setRecognitionStatus("quranProcessing", "quranProcessingSub", false);
     document.getElementById("recognition-engine").textContent = t("quranRecognition");
-    document.getElementById("start-recognition").disabled = false;
+    setRecognitionControlsDisabled(false);
     setRecognitionButton(true);
     return window.fetch("/api/quran-asr", {
       method: "POST",
@@ -5387,7 +5575,7 @@
       if (quranSubmitController !== controller) return;
       quranSubmitController = null;
       quranSubmitting = false;
-      document.getElementById("start-recognition").disabled = false;
+      setRecognitionControlsDisabled(false);
       setRecognitionButton(false);
       if ((!alignmentResult || !alignmentResult.complete) && state.recitationFlow === "continuous" && continuousSessionActive && !userStoppedRecognition) {
         queueContinuousRestart(alignmentResult ? 520 : 900);
@@ -5423,8 +5611,8 @@
       };
       recorder.onstart = function () {
         isListening = true;
-        playStartCue();
-        document.getElementById("start-recognition").disabled = false;
+        if (!(state.recitationFlow === "continuous" && continuousSessionActive)) playStartCue();
+        setRecognitionControlsDisabled(false);
         document.getElementById("recitation-panel").classList.add("is-listening");
         document.getElementById("recognition-engine").textContent = t("quranRecognition");
         setRecognitionStatus("quranRecording", "quranRecordingSub", false);
@@ -5600,7 +5788,7 @@
       if (!linkedPageSession && !linkedResult.sealed && heartResult) showToast(formatText(heartResult.messageKey === "heartCreditRecorded" ? "heartReadCredit" : heartResult.messageKey, heartResult.values));
     }
     setRecognitionStatus("recognitionComplete", "recognitionCompleteSub", false);
-    playSuccessCue();
+    if (!(state.recitationFlow === "continuous" && continuousSessionActive)) playSuccessCue();
     isListening = false;
     stopAudioMeter();
     document.getElementById("recitation-panel").classList.remove("is-listening");
@@ -5696,7 +5884,7 @@
     finishRecognitionStart();
     stopAudioMeter();
     document.getElementById("recitation-panel").classList.remove("is-listening", "is-requesting");
-    document.getElementById("start-recognition").disabled = false;
+    setRecognitionControlsDisabled(false);
     setRecognitionButton(false);
     if (canAutoFallbackToServer(errorCode)) {
       recognition = null;
@@ -5745,8 +5933,8 @@
         return;
       }
       isListening = true;
-      document.getElementById("start-recognition").disabled = false;
-      playStartCue();
+      setRecognitionControlsDisabled(false);
+      if (!(state.recitationFlow === "continuous" && continuousSessionActive)) playStartCue();
       document.getElementById("recitation-panel").classList.add("is-listening");
       document.getElementById("recognition-engine").textContent = t("enhancedRecognition");
       setRecognitionStatus("listeningNow", "listeningSub", false);
@@ -5771,7 +5959,7 @@
       finishRecognitionStart(instance._allimRequestId);
       stopAudioMeter();
       document.getElementById("recitation-panel").classList.remove("is-listening");
-      document.getElementById("start-recognition").disabled = false;
+      setRecognitionControlsDisabled(false);
       setRecognitionButton(false);
       if (recognitionHadError) return;
       if (lastTranscript && !lastAlignmentFinal) {
@@ -5798,20 +5986,46 @@
     return instance;
   }
 
+  function stopRecognitionImmediately() {
+    userStoppedRecognition = true;
+    stopContinuousSession();
+    clearAutoAdvance();
+    recognitionRequestId += 1;
+    clearRecognitionStartTimer();
+    recognitionStartPending = false;
+    if (quranSubmitController) {
+      quranSubmitController.abort();
+      quranSubmitController = null;
+    }
+    quranSubmitting = false;
+    if (quranRecorder && quranRecorder.state !== "inactive") {
+      quranRecorder._discard = true;
+      try { quranRecorder.stop(); } catch (error) { /* no-op */ }
+    }
+    quranRecorder = null;
+    var activeRecognition = recognition;
+    recognition = null;
+    recognitionHadError = true;
+    if (activeRecognition) {
+      try { activeRecognition.abort(); } catch (error) { /* no-op */ }
+    }
+    isListening = false;
+    stopAudioMeter();
+    var panel = document.getElementById("recitation-panel");
+    panel.classList.remove("is-listening", "is-requesting");
+    panel.setAttribute("aria-busy", "false");
+    setRecognitionControlsDisabled(false);
+    setRecognitionButton(false);
+    setRecognitionStatus("recognitionStopped", "recognitionStoppedSub", false);
+  }
+
   function startRecognition(internalRestart) {
     if (recognitionStartPending) {
       cancelRecognitionStart(true);
       return;
     }
     if (quranSubmitting) {
-      userStoppedRecognition = true;
-      stopContinuousSession();
-      if (quranSubmitController) quranSubmitController.abort();
-      quranSubmitController = null;
-      quranSubmitting = false;
-      document.getElementById("start-recognition").disabled = false;
-      setRecognitionButton(false);
-      setRecognitionStatus("recognitionStopped", "recognitionStoppedSub", false);
+      stopRecognitionImmediately();
       return;
     }
     if (!hasSecureAudioContext()) {
@@ -5821,14 +6035,7 @@
       return;
     }
     if (isListening) {
-      userStoppedRecognition = true;
-      stopContinuousSession();
-      if (quranRecorder && quranRecorder.state !== "inactive") {
-        try { quranRecorder.stop(); } catch (error) { handleRecognitionError("aborted"); }
-      } else if (recognition) {
-        stopAudioMeter();
-        try { recognition.stop(); } catch (error) { handleRecognitionError("aborted"); }
-      }
+      stopRecognitionImmediately();
       return;
     }
     primeCueAudio();
@@ -5854,7 +6061,7 @@
     }
     recognition = createRecognition();
     if (!recognition) {
-      document.getElementById("start-recognition").disabled = true;
+      setRecognitionControlsDisabled(true);
       setRecognitionStatus("recognitionUnsupported", "recognitionUnsupportedSub", true);
       document.getElementById("recognition-engine").textContent = t("recognitionUnsupported");
       return;
@@ -5868,12 +6075,31 @@
     }
   }
 
+  function focusMobileReadingTarget() {
+    if (window.innerWidth > 760 || document.body.classList.contains("mushaf-view")) return;
+    var target = document.getElementById("ayah-text");
+    if (!target) return;
+    var rect = target.getBoundingClientRect();
+    var topbar = document.querySelector(".topbar");
+    var navigation = document.querySelector(".bottom-nav");
+    var safeTop = topbar ? topbar.getBoundingClientRect().bottom + 12 : 12;
+    var safeBottom = window.innerHeight - (navigation ? navigation.getBoundingClientRect().height : 0) - 78;
+    var viewportCenter = safeTop + Math.max(0, safeBottom - safeTop) / 2;
+    var targetCenter = rect.top + rect.height / 2;
+    var distance = targetCenter - viewportCenter;
+    if (Math.abs(distance) > 16) window.scrollBy({ top: distance, behavior: "smooth" });
+  }
+
+  function toggleMobileRecognition() {
+    if (!isListening && !recognitionStartPending && !quranSubmitting) focusMobileReadingTarget();
+    startRecognition(false);
+  }
+
   function checkRecognitionSupport() {
     var secureRuntime = updateRuntimeContextUi();
     var effectiveMode = getEffectiveRecognitionMode();
     var supported = secureRuntime && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
-    var button = document.getElementById("start-recognition");
-    button.disabled = !supported;
+    setRecognitionControlsDisabled(!supported);
     if (!secureRuntime) {
       setRecognitionStatus("secureMicStatus", "secureMicStatusSub", true);
       document.getElementById("recognition-engine").textContent = t("secureContextRequired");
@@ -6631,6 +6857,7 @@
     });
     document.getElementById("next-ayah").addEventListener("click", goToNextVerse);
     document.getElementById("start-recognition").addEventListener("click", function () { startRecognition(false); });
+    document.getElementById("mobile-recognition-toggle").addEventListener("click", toggleMobileRecognition);
     document.getElementById("bookmark-verse").addEventListener("click", toggleSavedVerse);
     document.getElementById("save-verse").addEventListener("click", toggleSavedVerse);
     document.getElementById("queue-review").addEventListener("click", toggleReviewVerse);
@@ -6774,9 +7001,8 @@
     });
     document.querySelectorAll("[data-reader-mode]").forEach(function (button) {
       button.addEventListener("click", function () {
-        document.querySelectorAll("[data-reader-mode]").forEach(function (item) { item.classList.remove("is-active"); });
-        button.classList.add("is-active");
         var mode = button.getAttribute("data-reader-mode");
+        selectReaderMode(mode);
         if (mode === "focus") {
           document.body.classList.remove("audio-view");
           setMushafMode(false);
@@ -6863,11 +7089,15 @@
     document.addEventListener("pointerdown", function (event) {
       var picker = document.querySelector(".mushaf-appearance-picker[open]");
       if (picker && !picker.contains(event.target)) picker.open = false;
+      var modePicker = document.querySelector(".reader-mode-picker[open]");
+      if (modePicker && !modePicker.contains(event.target)) modePicker.open = false;
     });
     document.addEventListener("keydown", function (event) {
       if (event.key !== "Escape") return;
       var picker = document.querySelector(".mushaf-appearance-picker[open]");
       if (picker) picker.open = false;
+      var modePicker = document.querySelector(".reader-mode-picker[open]");
+      if (modePicker) modePicker.open = false;
     });
     window.addEventListener("resize", function () {
       if (document.body.classList.contains("mushaf-view")) fitMushafLines(document.getElementById("mushaf-page"));
@@ -6991,6 +7221,8 @@
     document.querySelectorAll("[data-academy-link]").forEach(function (link) {
       link.setAttribute("href", isFilePreview ? "https://allimquran.com/academy" : (isLocalPreview ? "/academy/?v=1" : "/academy"));
     });
+    var launchLanguage = launchParams.get("lang");
+    if (["ru", "en", "ar"].indexOf(launchLanguage) >= 0) state.language = launchLanguage;
     applyMushafAppearance();
     initializeEvents();
     document.documentElement.style.setProperty("--arabic-size", state.arabicSize + "px");
@@ -7023,8 +7255,9 @@
     getPageRecallAcademyAccess(false);
     var requestedView = new URLSearchParams(window.location.search).get("view");
     if (Object.prototype.hasOwnProperty.call(viewTitles, requestedView)) navigate(requestedView);
+    initializeTeacherAssessmentMode();
     if ("serviceWorker" in navigator && isLocalPreview) {
-      navigator.serviceWorker.register("sw.js?v=75").catch(function () {
+      navigator.serviceWorker.register("sw.js?v=80").catch(function () {
         return null;
       });
     }
