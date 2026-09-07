@@ -7,6 +7,8 @@
   var copy = {
     ru: {
       title: "Помогите улучшить распознавание Корана",
+      short: "Сохраняем фрагменты Quran AI для проверки командой и преподавателями до 90 дней, без имени и аккаунта. Голос может быть узнаваемым. Отказ не ограничивает занятия; записи можно удалить в настройках.",
+      more: "Что сохраняем и как удалить записи",
       lead: "Вы можете добровольно поделиться фрагментами своего чтения. Они помогут находить ложные замечания и пропущенные ошибки. Надеемся, что ваш вклад станет садака джария, иншаАллах.",
       details: "С вашего согласия сохраняем фрагменты, отправляемые в Quran AI, выбранный аят и результат распознавания — до 90 дней с момента согласия. Команда проекта и допущенные преподаватели смогут прослушивать их для проверки качества. На этом этапе записи не используются для обучения моделей, не публикуются и не передаются внешним ИИ-сервисам.",
       privacy: "В коллекцию не включаем имя, аккаунт, IP или контакты. Голос может быть узнаваемым: полной анонимности обещать нельзя. Сохраняем только ваше чтение после нажатия микрофона; не записывайте других людей. Распознавание браузером в сборе не участвует.",
@@ -24,6 +26,8 @@
     },
     en: {
       title: "Help improve Qur’an recognition",
+      short: "We keep Quran AI clips for review by the team and teachers for up to 90 days, without your name or account. Your voice may be recognizable. Declining does not limit practice; you can delete clips in settings.",
+      more: "What we keep and how to delete it",
       lead: "You can volunteer clips of your own recitation to help us find false warnings and missed mistakes. We hope your contribution becomes sadaqah jariyah, inshaAllah.",
       details: "With your consent, we keep clips sent to Quran AI, the selected verse and recognition results for up to 90 days from consent. The project team and authorized teachers may listen to them to assess quality. At this stage, clips are not used to train models, published or sent to external AI services.",
       privacy: "The collection excludes your name, account, IP and contact details. A voice may be recognizable, so we cannot promise complete anonymity. Only your recitation after pressing the microphone is eligible; do not record other people. Browser speech recognition does not contribute audio.",
@@ -41,6 +45,8 @@
     },
     ar: {
       title: "ساعد في تحسين التعرّف على تلاوة القرآن",
+      short: "نحفظ مقاطع Quran AI لمراجعة الفريق والمعلّمين مدة لا تتجاوز 90 يومًا دون اسمك أو حسابك. قد يُعرف الشخص بصوته. الرفض لا يقيّد التعلّم، ويمكن حذف المقاطع من الإعدادات.",
+      more: "ما نحفظه وكيف تحذف المقاطع",
       lead: "يمكنك التطوّع بمقاطع من تلاوتك لمساعدتنا في اكتشاف التنبيهات الخاطئة والأخطاء التي لم تُكتشف. نرجو أن تكون مساهمتك صدقة جارية إن شاء الله.",
       details: "بموافقتك نحفظ المقاطع المرسلة إلى Quran AI والآية المختارة ونتائج التعرّف لمدة لا تتجاوز 90 يومًا من الموافقة. يمكن لفريق المشروع والمعلّمين المصرّح لهم الاستماع لتقييم الجودة. في هذه المرحلة لا تُستخدم المقاطع لتدريب النماذج ولا تُنشر ولا تُرسل إلى خدمات ذكاء اصطناعي خارجية.",
       privacy: "لا تتضمن المجموعة اسمك أو حسابك أو عنوان IP أو بيانات اتصالك. قد يُعرف الشخص بصوته، لذلك لا نعد بإخفاء الهوية تمامًا. تُجمع تلاوتك فقط بعد ضغط الميكروفون؛ لا تسجّل أشخاصًا آخرين. التعرّف الصوتي في المتصفح لا يشارك في الجمع.",
@@ -148,8 +154,12 @@
         });
       }
       dialog.replaceChildren(); dialog.lang = language(); dialog.dir = language() === "ar" ? "rtl" : "ltr";
-      element("h2", t("title"), dialog).id = "allim-contribution-title";
-      ["lead", "details", "privacy", "control"].forEach(function (key) { element("p", t(key), dialog); });
+      var heading = element("h2", t("title"), dialog);
+      heading.id = "allim-contribution-title"; heading.tabIndex = -1;
+      ["lead", "short"].forEach(function (key) { element("p", t(key), dialog); });
+      var details = element("details", "", dialog);
+      element("summary", t("more"), details);
+      ["details", "privacy", "control"].forEach(function (key) { element("p", t(key), details); });
       message = element("p", status(), dialog); message.setAttribute("role", "status");
       if (choice.token) {
         var label = element("label", t("key"), dialog);
@@ -191,6 +201,7 @@
       }
       if (choice.token) button(t(isFirst ? "no" : "close"), function () { if (isFirst) decline(); else finish(false); }, dialog);
       if (!dialog.open) dialog.showModal();
+      heading.focus({ preventScroll: true }); dialog.scrollTop = 0;
     }
     function beforeStart(next) {
       choice = read();
