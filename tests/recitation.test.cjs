@@ -196,7 +196,7 @@ function submissionHarness() {
   let timerId = 0;
   const element = { textContent: '', disabled: false };
   const context = load(['setRecognitionControlsDisabled', 'readQuranAsrResponse', 'submitQuranAudio'], {
-    FormData, Blob,
+    FormData, Blob, contribution: null,
     window: { AllimRecitation: core, AbortController,
       setTimeout: fn => { timers.set(++timerId, fn); return timerId; },
       clearTimeout: id => timers.delete(id),

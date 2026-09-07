@@ -1,0 +1,12 @@
+.allim-contribution-dialog { width: min(620px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); box-sizing: border-box; padding: 24px; border: 1px solid #b9ccc3; border-radius: 18px; color: #1e332b; background: #fffdf8; overflow-y: auto; font: 15px/1.6 system-ui, sans-serif; }
+.allim-contribution-dialog::backdrop { background: rgb(15 30 23 / 55%); }
+.allim-contribution-dialog h2 { font-size: 23px; line-height: 1.3; margin: 0 0 16px; }
+.allim-contribution-dialog p { margin: 12px 0; }
+.contribution-adult { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0; }
+.contribution-adult input { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 3px; accent-color: #21654b; }
+.contribution-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.allim-contribution-dialog button { cursor: pointer; min-height: 44px; margin-block: 5px; border: 1px solid #759b89; border-radius: 9px; padding: 10px 14px; font: inherit; color: #1e332b; background: #f4f7f3; white-space: normal; }
+.allim-contribution-dialog button:disabled { opacity: .5; cursor: default; }
+.allim-contribution-dialog :focus-visible { outline: 3px solid #21654b; outline-offset: 3px; }
+.contribution-key { display: block; width: 100%; box-sizing: border-box; margin-block: 10px; padding: 10px; border: 1px solid #759b89; border-radius: 6px; font: 13px monospace; }
+#contribution-settings { flex-wrap: wrap; gap: 12px; }

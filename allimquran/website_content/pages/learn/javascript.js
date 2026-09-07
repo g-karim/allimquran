@@ -1904,6 +1904,22 @@
     }
   }
 
+  var contribution = window.AllimContribution ? window.AllimContribution({
+    language: function () { return state.language; },
+    stop: function () { stopRecognitionImmediately(); pauseMemoryRecognition(); }
+  }) : null;
+  [
+    ["ru", "Без отдельного согласия аудио Quran AI удаляется после обработки. Участием в сборе можно управлять в настройках.", "Проверяем последовательность слов. Сохранение для проекта — только с отдельного согласия.", "Подтвердите доступ к микрофону в браузере."],
+    ["en", "Without separate consent, Quran AI audio is deleted after processing. Manage contribution in settings.", "We check word sequence. Saving for the project requires separate consent.", "Confirm microphone access in your browser."],
+    ["ar", "دون موافقة منفصلة يُحذف صوت Quran AI بعد المعالجة. تُدار المشاركة من الإعدادات.", "نقارن تسلسل الكلمات. يتطلب الحفظ للمشروع موافقة منفصلة.", "اسمح بالوصول إلى الميكروفون في المتصفح."]
+  ].forEach(function (entry) {
+    translations[entry[0]].privacyText = entry[1];
+    translations[entry[0]].quranServiceReady = entry[1];
+    translations[entry[0]].micDisclosure = entry[2];
+    translations[entry[0]].requestingMicSub = entry[3];
+    translations[entry[0]].memoryRequestingSub = entry[3];
+  });
+
   function t(key) {
     var current = translations[state.language] || translations.ru;
     return current[key] || translations.en[key] || key;
@@ -2061,6 +2077,7 @@
   }
 
   function setLanguage(language) {
+    if (contribution) window.setTimeout(function () { contribution.refresh(); }, 0);
     if (!translations[language]) return;
     clearAutoAdvance();
     state.language = language;
@@ -5459,7 +5476,7 @@
     stopContinuousSession();
   }
 
-  function submitQuranAudio(blob, mimeType) {
+  function submitQuranAudio(blob, mimeType, contributionContext) {
     var form = new FormData();
     var extension = mimeType.indexOf("mp4") >= 0 ? "m4a" : "webm";
     var alignmentResult = null;
@@ -5487,7 +5504,7 @@
     }, 90000);
     return window.fetch("/api/quran-asr", {
       method: "POST", body: form, signal: controller.signal,
-      headers: { "X-Requested-With": "QuranCompanion" }
+      headers: contribution ? contribution.append(form, contributionContext, "read") : { "X-Requested-With": "QuranCompanion" }
     }).then(readQuranAsrResponse).then(function (data) {
       if (!isCurrent() || controller.signal.aborted) return;
       if (data.verse_key !== verseKey) throw new Error("stale-asr-verse");
@@ -5526,11 +5543,17 @@
     });
   }
 
-  function startQuranRecognition() {
+  function startQuranRecognition(consentChecked) {
     if (!quranAsrAvailable || !window.MediaRecorder) {
       setRecognitionStatus("quranRecognitionError", "quranRecognitionErrorSub", true);
       return;
     }
+    if (contribution && !consentChecked) {
+      var pendingId = recognitionRequestId;
+      contribution.beforeStart(function () { if (pendingId === recognitionRequestId) startQuranRecognition(true); });
+      return;
+    }
+    var contributionContext = contribution ? contribution.context() : null;
     var requestId = beginRecognitionStart();
     startAudioMeter(requestId).then(function (meterReady) {
       if (!meterReady || !micStream || !finishRecognitionStart(requestId)) return;
@@ -5582,7 +5605,7 @@
           queueContinuousRestart(620);
           return;
         }
-        submitQuranAudio(blob, mimeType);
+        submitQuranAudio(blob, mimeType, contributionContext);
       };
       recorder.start(500);
     }).catch(function (error) {
@@ -6426,7 +6449,7 @@
     return instance;
   }
 
-  function submitMemoryQuranAudio(blob, mimeType) {
+  function submitMemoryQuranAudio(blob, mimeType, contributionContext) {
     var form = new FormData();
     var extension = mimeType.indexOf("mp4") >= 0 ? "m4a" : "webm";
     var controller = window.AbortController ? new window.AbortController() : null;
@@ -6444,7 +6467,7 @@
     return window.fetch("/api/quran-asr", {
       method: "POST",
       body: form,
-      headers: { "X-Requested-With": "QuranCompanion" },
+      headers: contribution ? contribution.append(form, contributionContext, "memory") : { "X-Requested-With": "QuranCompanion" },
       signal: controller ? controller.signal : undefined
     }).then(readQuranAsrResponse).then(function (data) {
       if (submitToken !== memoryRequestId || !memorySeriesActive) return;
@@ -6478,7 +6501,13 @@
     });
   }
 
-  function startMemoryQuranRecognition() {
+  function startMemoryQuranRecognition(consentChecked) {
+    if (contribution && !consentChecked) {
+      var pendingId = memoryRequestId;
+      contribution.beforeStart(function () { if (pendingId === memoryRequestId && memorySeriesActive) startMemoryQuranRecognition(true); });
+      return;
+    }
+    var contributionContext = contribution ? contribution.context() : null;
     var requestId = ++memoryRequestId;
     memoryStartPending = true;
     setMemoryStatus("memoryRequesting", "memoryRequestingSub", false);
@@ -6528,7 +6557,7 @@
         var mimeType = recorder.mimeType || chunks[0] && chunks[0].type || "audio/webm";
         var blob = new Blob(chunks, { type: mimeType });
         if (!blob.size) handleMemoryRecognitionError("audio-capture");
-        else submitMemoryQuranAudio(blob, mimeType);
+        else submitMemoryQuranAudio(blob, mimeType, contributionContext);
       };
       recorder.start(500);
     }).catch(function (error) {
@@ -7168,6 +7197,7 @@
     if (["ru", "en", "ar"].indexOf(launchLanguage) >= 0) state.language = launchLanguage;
     applyMushafAppearance();
     initializeEvents();
+    if (contribution) contribution.mount();
     document.documentElement.style.setProperty("--arabic-size", state.arabicSize + "px");
     document.getElementById("arabic-size").value = String(state.arabicSize);
     document.getElementById("daily-goal").value = String(state.dailyGoal);

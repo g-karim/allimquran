@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import json
+import logging
 import os
 import re
 import tempfile
@@ -18,8 +19,10 @@ from typing import Any
 from fastapi import FastAPI, File, Form, Header, HTTPException, Request, UploadFile
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import FileResponse, JSONResponse
+from pydantic import BaseModel, ConfigDict, StrictBool
 
 from allimquran.asr.audio import transcribe_audio
+from allimquran.asr.research import RETENTION_DAYS, VERSION, Corpus
 
 APP_ROOT = Path(__file__).resolve().parents[1]
 MODEL_ID = os.getenv("QURAN_ASR_MODEL", "tarteel-ai/whisper-tiny-ar-quran")
@@ -65,6 +68,20 @@ _transcription_lock = threading.Lock()
 _rate_limit_lock = threading.Lock()
 _mushaf_cache_lock = threading.Lock()
 _request_times: dict[str, deque[float]] = defaultdict(deque)
+_research_root = os.getenv("QURAN_RESEARCH_ROOT")
+research_corpus = Corpus(_research_root) if _research_root else None
+RESEARCH_ENABLED = os.getenv("QURAN_RESEARCH_ENABLED", "0") == "1"
+_research_stop = threading.Event()
+logger = logging.getLogger(__name__)
+
+
+def _research_maintenance():
+	while not _research_stop.is_set():
+		try:
+			research_corpus.purge()
+		except Exception:
+			logger.warning("Research expiry cleanup failed")
+		_research_stop.wait(3600)
 
 
 @app.middleware("http")
@@ -189,6 +206,74 @@ def _validate_request(request: Request, x_requested_with: str | None) -> None:
 @app.on_event("startup")
 def warm_model() -> None:
 	_get_pipeline()
+	if research_corpus:
+		_research_stop.clear()
+		threading.Thread(target=_research_maintenance, daemon=True).start()
+
+
+@app.on_event("shutdown")
+def stop_research_maintenance():
+	_research_stop.set()
+
+
+class ResearchConsent(BaseModel):
+	model_config = ConfigDict(extra="forbid")
+	version: str
+	adult: StrictBool
+
+
+def _validate_research_request(request, x_requested_with):
+	# Reject conflicting Origin even if Referer happens to look same-origin.
+	if request.headers.get("origin", "").rstrip("/") != ALLOWED_ORIGIN:
+		raise HTTPException(403, "Origin not allowed")
+	_validate_request(request, x_requested_with)
+
+
+@app.get("/api/quran-asr/research")
+async def research_config():
+	return {
+		"enabled": RESEARCH_ENABLED and research_corpus is not None,
+		"version": VERSION,
+		"retention_days": RETENTION_DAYS,
+	}
+
+
+@app.post("/api/quran-asr/research")
+async def research_consent(
+	request: Request,
+	consent: ResearchConsent,
+	x_requested_with: str | None = Header(default=None),
+	x_allim_contribution: str | None = Header(default=None),
+):
+	_validate_research_request(request, x_requested_with)
+	if not RESEARCH_ENABLED or research_corpus is None:
+		raise HTTPException(503, "Participation is unavailable")
+	try:
+		expires = await run_in_threadpool(
+			research_corpus.grant, x_allim_contribution, consent.version, consent.adult
+		)
+	except ValueError as error:
+		raise HTTPException(
+			422, "Current consent, adult confirmation and a valid key are required"
+		) from error
+	return {"granted": True, "expires": expires, "version": VERSION}
+
+
+@app.delete("/api/quran-asr/research")
+async def research_withdraw(
+	request: Request,
+	x_requested_with: str | None = Header(default=None),
+	x_allim_contribution: str | None = Header(default=None),
+):
+	_validate_research_request(request, x_requested_with)
+	# Withdrawal still works when new collection is switched off.
+	if research_corpus is None:
+		raise HTTPException(503, "Withdrawal is temporarily unavailable")
+	try:
+		deleted = await run_in_threadpool(research_corpus.revoke, x_allim_contribution)
+	except ValueError as error:
+		raise HTTPException(422, "Valid contribution key required") from error
+	return {"withdrawn": True, "deleted_clips": deleted}
 
 
 @app.get("/api/quran-asr/health")
@@ -351,6 +436,10 @@ async def transcribe(
 	audio: UploadFile = File(...),
 	verse_key: str = Form(...),
 	x_requested_with: str | None = Header(default=None),
+	x_allim_contribution: str | None = Header(default=None),
+	research_session: str = Form(default=""),
+	research_language: str = Form(default=""),
+	research_mode: str = Form(default=""),
 ):
 	_validate_request(request, x_requested_with)
 	if not VERSE_KEY_RE.fullmatch(verse_key):
@@ -374,7 +463,26 @@ async def transcribe(
 				temporary.write(chunk)
 		if total == 0:
 			raise HTTPException(status_code=422, detail="Audio clip is empty")
+		started = time.monotonic()
 		result = await run_in_threadpool(_transcribe, temporary_path)
+		if RESEARCH_ENABLED and research_corpus and x_allim_contribution:
+			try:
+				await run_in_threadpool(
+					research_corpus.capture,
+					x_allim_contribution,
+					research_session,
+					temporary_path,
+					verse_key,
+					result,
+					MODEL_ID,
+					time.monotonic() - started,
+					research_language,
+					research_mode,
+					getattr(getattr(getattr(_pipeline, "model", None), "config", None), "_commit_hash", None),
+				)
+			except Exception:
+				# Corpus failures must not fail reading, expose a transcript or log the key.
+				logger.warning("Research sample was not saved")
 		return {**result, "verse_key": verse_key}
 	finally:
 		await audio.close()
