@@ -109,4 +109,7 @@ def sync(dry_run=False):
 
 def after_install():
 	"""Install public ALLIM defaults, never demo users, enrollments or requests."""
+	from allimquran.review_portal import ensure_role
+
+	ensure_role()
 	return sync()

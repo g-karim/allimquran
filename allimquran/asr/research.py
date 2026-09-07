@@ -56,6 +56,19 @@ class Corpus:
 				"metadata TEXT NOT NULL, audio BLOB NOT NULL)"
 			)
 			connection.execute("CREATE INDEX IF NOT EXISTS clips_consent ON clips(consent_id)")
+			# Keep annotations in the same private store and deletion boundary as audio.
+			connection.execute(
+				"CREATE TABLE IF NOT EXISTS reviews (clip_id TEXT PRIMARY KEY REFERENCES clips(id) "
+				"ON DELETE CASCADE, revision INTEGER NOT NULL, status TEXT NOT NULL, "
+				"annotation TEXT NOT NULL, reviewer TEXT NOT NULL, updated REAL NOT NULL, "
+				"disputed_by TEXT)"
+			)
+			connection.execute(
+				"CREATE TABLE IF NOT EXISTS review_history (clip_id TEXT NOT NULL REFERENCES clips(id) "
+				"ON DELETE CASCADE, revision INTEGER NOT NULL, status TEXT NOT NULL, "
+				"annotation TEXT NOT NULL, reviewer TEXT NOT NULL, updated REAL NOT NULL, "
+				"PRIMARY KEY (clip_id, revision))"
+			)
 			connection.execute("BEGIN IMMEDIATE")
 			connection.execute("DELETE FROM consents WHERE expires <= ?", (self.clock(),))
 			yield connection

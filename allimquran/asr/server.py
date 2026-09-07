@@ -7,6 +7,7 @@ import json
 import logging
 import os
 import re
+import secrets
 import tempfile
 import threading
 import time
@@ -18,11 +19,12 @@ from typing import Any
 
 from fastapi import FastAPI, File, Form, Header, HTTPException, Request, UploadFile
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response
 from pydantic import BaseModel, ConfigDict, StrictBool
 
 from allimquran.asr.audio import transcribe_audio
 from allimquran.asr.research import RETENTION_DAYS, VERSION, Corpus
+from allimquran.asr.review import ReviewError, ReviewQueue
 
 APP_ROOT = Path(__file__).resolve().parents[1]
 MODEL_ID = os.getenv("QURAN_ASR_MODEL", "tarteel-ai/whisper-tiny-ar-quran")
@@ -71,6 +73,7 @@ _request_times: dict[str, deque[float]] = defaultdict(deque)
 _research_root = os.getenv("QURAN_RESEARCH_ROOT")
 research_corpus = Corpus(_research_root) if _research_root else None
 RESEARCH_ENABLED = os.getenv("QURAN_RESEARCH_ENABLED", "0") == "1"
+REVIEW_SECRET = os.getenv("QURAN_REVIEW_SECRET", "")
 _research_stop = threading.Event()
 logger = logging.getLogger(__name__)
 
@@ -93,9 +96,60 @@ async def security_headers(request, call_next):
 		response.headers["Cache-Control"] = "public, max-age=3600, stale-while-revalidate=86400"
 	elif request.url.path.startswith("/api/mushaf/") or request.url.path.startswith("/api/quran/words/"):
 		response.headers["Cache-Control"] = "public, max-age=86400, stale-while-revalidate=604800"
-	elif request.url.path.startswith("/api/"):
+	elif request.url.path.startswith(("/api/", "/internal/")):
 		response.headers["Cache-Control"] = "no-store"
 	return response
+
+
+@app.post("/internal/review")
+async def internal_review(request: Request):
+	"""Loopback-only Frappe bridge; never add this route to the public nginx proxy."""
+	key = request.headers.get("x-allim-review-key", "")
+	if (
+		not request.client
+		or request.client.host not in {"127.0.0.1", "::1"}
+		or len(REVIEW_SECRET) < 64
+		or not secrets.compare_digest(key, REVIEW_SECRET)
+	):
+		raise HTTPException(403, "Private reviewer bridge required")
+	if not research_corpus:
+		raise HTTPException(503, "Private corpus unavailable")
+	# Bound body before JSON parsing, including chunked requests.
+	chunks = bytearray()
+	async for chunk in request.stream():
+		chunks.extend(chunk)
+		if len(chunks) > 65536:
+			raise HTTPException(413, "Review payload too large")
+	try:
+		body = json.loads(chunks)
+	except (ValueError, UnicodeDecodeError) as error:
+		raise HTTPException(422, "Invalid review payload") from error
+	if not isinstance(body, dict):
+		raise HTTPException(422, "Invalid review payload")
+	queue = ReviewQueue(research_corpus)
+	try:
+		action = body.get("action")
+		if action == "list":
+			return await run_in_threadpool(
+				queue.listing, body.get("status", "pending"), body.get("offset", 0)
+			)
+		if action == "detail":
+			return await run_in_threadpool(queue.detail, body.get("id"), body.get("reviewer"))
+		if action == "audio":
+			payload = await run_in_threadpool(queue.audio, body.get("id"))
+			return Response(payload, media_type="audio/wav")
+		if action == "save":
+			return await run_in_threadpool(
+				queue.save,
+				body.get("id"),
+				body.get("reviewer"),
+				body.get("revision"),
+				body.get("status"),
+				body.get("annotation"),
+			)
+		raise ReviewError(422, "Invalid action")
+	except ReviewError as error:
+		raise HTTPException(error.status, str(error)) from error
 
 
 def _get_pipeline():
