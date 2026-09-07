@@ -678,6 +678,7 @@ html[lang="ru"] .trust-grid h3 {
 
 .site-footer { display: grid; grid-template-columns: 1.2fr .55fr .55fr 1.1fr; gap: 42px; padding: 70px max(24px,calc((100vw - var(--content))/2)) 28px; color: rgba(255,255,255,.7); background: #071f1a; }
 .site-footer .brand { color: #fff; }
+.site-footer .footer-wordmark { width: clamp(160px,15vw,200px); box-shadow: 0 0 0 1px rgba(255,255,255,.1),0 12px 28px rgba(0,0,0,.18); }
 .footer-brand > p { margin-top: 24px; color: var(--gold-light); font: 22px "SF Arabic",serif; }
 .footer-column { display: grid; align-content: start; gap: 13px; }
 .footer-column strong { margin-bottom: 5px; color: #fff; font-size: 11px; }
