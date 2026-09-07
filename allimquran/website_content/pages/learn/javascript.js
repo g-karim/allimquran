@@ -967,10 +967,149 @@
 (function () {
   "use strict";
 
+  function text(ru, en, ar) {
+    return Object.freeze({ ru: ru, en: en, ar: ar });
+  }
+
+  function finding(id, benefit, action, alternativeAction) {
+    return Object.freeze({ id: id, benefit: benefit, actions: Object.freeze([action, alternativeAction || action]) });
+  }
+
+  window.QuranCompanionFawaid = Object.freeze({
+    entries: Object.freeze({
+      "92:1": Object.freeze({
+        sources: Object.freeze([
+          Object.freeze({
+            id: "ibn-uthaymeen-92-1-4",
+            scholar: text("Шейх Мухаммад ибн Салих аль-Усаймин", "Shaykh Muhammad ibn Salih al-Uthaymeen", "الشيخ محمد بن صالح العثيمين"),
+            work: text("Тафсир суры «Аль-Лейль»", "Tafsir of Surah al-Layl", "تفسير سورة الليل"),
+            scope: "92:1–4",
+            url: "https://quranpedia.net/surah/1/92/book/27804",
+            findings: Object.freeze([
+              finding(
+                "contrast-and-striving",
+                text(
+                  "Противопоставление ночи и дня, мужчины и женщины соответствует различию человеческих дел: среди них есть праведные, дурные и смешанные. Шейх называет это соответствие частью красноречия Корана.",
+                  "The contrast between night and day, male and female corresponds to the divergence of human deeds: righteous, corrupt and mixed. The Shaykh identifies this correspondence as part of the Qur’an’s eloquence.",
+                  "تقابل الليل والنهار والذكر والأنثى يناسب اختلاف أعمال العباد؛ فمنها الصالح والفاسد والمختلط، وذكر الشيخ أن هذا التناسب من بلاغة القرآن."
+                ),
+                text(
+                  "проверю один сегодняшний поступок и назову, к какому виду стремления он относится",
+                  "review one action from today and identify what kind of striving it belongs to",
+                  "أراجع عملًا واحدًا من أعمال اليوم وأحدد إلى أي نوع من السعي ينتمي"
+                ),
+                text(
+                  "выберу одно завтрашнее дело, относящееся к праведному стремлению, и запишу его первым пунктом",
+                  "choose one action for tomorrow that belongs to righteous striving and put it first on my list",
+                  "أختار عملًا واحدًا للغد من السعي الصالح وأجعله أول ما أبدأ به"
+                )
+              ),
+              finding(
+                "read-oath-with-answer",
+                text(
+                  "Смысл клятв в 92:1–3 раскрывается вместе с ответом клятвы в 92:4: как явно различаются ночь и день, так различаются и дела людей. Поэтому первый аят не следует толковать изолированно.",
+                  "The oaths in 92:1–3 are clarified by their answer in 92:4: just as night and day visibly differ, human deeds also differ. The first verse should therefore not be interpreted in isolation.",
+                  "يتضح معنى الأقسام في الآيات ١–٣ مع جواب القسم في الآية ٤؛ فكما يظهر اختلاف الليل والنهار تختلف أعمال الناس، فلا تُفهم الآية الأولى بمعزل عن السياق."
+                ),
+                text(
+                  "прочитаю аяты 92:1–4 как единый отрывок и исправлю свой вывод по ответу клятвы",
+                  "read 92:1–4 as one passage and correct my conclusion in light of the oath’s answer",
+                  "أقرأ الآيات ٩٢:١–٤ مقطعًا واحدًا وأصحح استنتاجي على ضوء جواب القسم"
+                ),
+                text(
+                  "перед следующим выводом об аяте найду в отрывке ответ клятвы и запишу связь одной фразой",
+                  "find the oath’s answer in the passage before forming my next conclusion, and record the link in one sentence",
+                  "أبحث قبل استنتاجي القادم عن جواب القسم في المقطع وأسجل الصلة في جملة واحدة"
+                )
+              )
+            ])
+          }),
+          Object.freeze({
+            id: "al-saadi-92-1-4",
+            scholar: text("Шейх Абдуррахман ас-Са‘ди", "Shaykh Abd al-Rahman al-Sa‘di", "الشيخ عبد الرحمن السعدي"),
+            work: text("«Тайсир аль-Карим ар-Рахман»", "Taysir al-Karim al-Rahman", "تيسير الكريم الرحمن"),
+            scope: "92:1–4",
+            url: "https://quranpedia.net/surah/1/92/book/3",
+            findings: Object.freeze([
+              finding(
+                "night-rest-and-deeds",
+                text(
+                  "Ночь охватывает творения тьмой: люди возвращаются в жилища и отдыхают от труда. Ночь и день — время, в котором совершаются различающиеся поступки людей.",
+                  "Night covers creation in darkness: people return to their dwellings and rest from labour. Night and day are the time in which people perform their differing deeds.",
+                  "يغشى الليل الخلق بظلامه، فيأوون إلى مساكنهم ويستريحون من الكد، والليل والنهار زمن تقع فيه أعمال الناس على اختلافها."
+                ),
+                text(
+                  "дам себе своевременный отдых и назову дело, ради которого хочу восстановить силы",
+                  "take timely rest and name the duty for which I want to restore my strength",
+                  "أستريح في الوقت المناسب وأحدد العمل الذي أستعيد قوتي لأجله"
+                ),
+                text(
+                  "отложу телефон на десять минут и дам себе отдохнуть от сегодняшнего труда",
+                  "put my phone aside for ten minutes and allow myself to rest from today’s labour",
+                  "أضع هاتفي جانبًا عشر دقائق وأستريح من كد اليوم"
+                )
+              )
+            ])
+          }),
+          Object.freeze({
+            id: "al-jazairi-92-1-11",
+            scholar: text("Шейх Абу Бакр аль-Джазаири", "Shaykh Abu Bakr al-Jaza’iri", "الشيخ أبو بكر الجزائري"),
+            work: text("«Айсар ат-тафасир» · «Наставления аятов»", "Aysar al-Tafasir · Guidance of the verses", "أيسر التفاسير · هداية الآيات"),
+            scope: "92:1–11",
+            url: "https://quranpedia.net/surah/1/92/book/201",
+            findings: Object.freeze([
+              finding(
+                "signs-require-worship",
+                text(
+                  "Ночь и день указывают на величие, могущество и знание Аллаха; признание Его господства требует поклонения Ему одному.",
+                  "Night and day point to Allah’s greatness, power and knowledge; affirming His lordship requires worshipping Him alone.",
+                  "يدل الليل والنهار على عظمة الله وقدرته وعلمه، وربوبيته سبحانه تقتضي عبادته وحده دون سواه."
+                ),
+                text(
+                  "назову одно знамение могущества Аллаха и обновлю намерение поклоняться Ему одному",
+                  "name one sign of Allah’s power and renew my intention to worship Him alone",
+                  "أذكر آية من آيات قدرة الله وأجدد نية عبادته وحده"
+                ),
+                text(
+                  "вспомню о смене ночи и дня как о знамении могущества Аллаха перед одним поклонением",
+                  "remember the alternation of night and day as a sign of Allah’s power during one act of worship",
+                  "أستحضر تعاقب الليل والنهار آيةً على قدرة الله في عبادة واحدة"
+                )
+              ),
+              finding(
+                "seek-obedience",
+                text(
+                  "По установленному Аллахом порядку содействие в благом связано с тем, что человек желает послушания, ищет его, выбирает его и направляет к нему себя и свои способности.",
+                  "In Allah’s established order, being enabled to do good is connected to a person desiring obedience, seeking and choosing it, and directing the self and one’s abilities toward it.",
+                  "بحسب سنة الله يرتبط التوفيق للطاعة برغبة العبد فيها وطلبها والحرص عليها واختيارها وتسخير النفس والجوارح لها."
+                ),
+                text(
+                  "выберу одно посильное благое дело и начну его в обозначенный момент, не ограничиваясь намерением",
+                  "choose one manageable good deed and begin it at the chosen cue instead of stopping at intention",
+                  "أختار طاعة يسيرة وأبدأها عند الإشارة المحددة ولا أقف عند مجرد النية"
+                ),
+                text(
+                  "уберу одно конкретное препятствие, которое откладывает выбранное благое дело",
+                  "remove one concrete obstacle that has been delaying the good deed I chose",
+                  "أزيل عائقًا محددًا يؤخر الطاعة التي اخترتها"
+                )
+              )
+            ])
+          })
+        ])
+      })
+    })
+  });
+}());
+
+
+(function () {
+  "use strict";
+
   function setBrandFavicon() {
     var iconUrl = window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
       ? "allim-brand-icon.png"
-      : "/assets/allimquran/media/allim-brand-icon.png?v=77";
+      : "/files/allim-brand-icon.png?v=77";
     document.querySelectorAll('head link[rel~="icon"],head link[rel="apple-touch-icon"]').forEach(function (node) { node.remove(); });
     ["icon", "apple-touch-icon"].forEach(function (relation) {
       var link = document.createElement("link");
@@ -1568,6 +1707,84 @@
   });
 
   Object.assign(translations.ru, {
+    lifeFawaidEyebrow: "ФАВАЙД АЯТА", lifeFawaidTitle: "Выводы учёных о пользе аята", lifeFawaidSource: "Источник",
+    lifeFawaidAvailableText: "Ниже — краткие редакционные формулировки по указанным источникам, не дословные цитаты. Выберите один вывод как основу: AI не смешивает слова разных учёных.",
+    lifeFawaidUnavailableText: "Для этого аята проверенные выводы учёных пока не подключены. AI не будет составлять их из одного перевода.",
+    lifeFawaidScope: "Относится к аятам {scope}", lifeFawaidUse: "Взять за основу", lifeFawaidSelected: "Основа выбрана",
+    lifeFawaidChooseFirst: "Сначала выберите один вывод учёного выше. После этого помощник предложит действие именно на его основе.",
+    lifeAiTitle: "AI-наставник проверяет замысел, а не повторяет его",
+    lifeAiBoundary: "Сначала вы выбираете конкретный вывод учёного. Затем помощник проверяет личную связь и конкретность действия — не придумывая смысл аята и не повторяя вашу заметку.",
+    lifePromptLegend: "02 · Выберите направление действия",
+    lifeScopeLabel: "Где это проявится?", lifeScopeSelf: "В моих привычках", lifeScopeFamily: "В семье", lifeScopeWork: "В работе или учёбе", lifeScopeCommunity: "В отношении к людям",
+    lifeTriggerLabel: "02 · Когда начать?", lifeTriggerPrayer: "После ближайшей молитвы", lifeTriggerConversation: "При следующем разговоре", lifeTriggerDifficult: "В трудный момент", lifeTriggerEvening: "До конца дня",
+    lifeAiReviewTitle: "Разбор замысла", lifeAiReviewText: "Помощник покажет, чего не хватает, и даст три разных варианта.", lifeAiSuggest: "Разобрать и предложить",
+    lifeAiSuggestionIdle: "Сначала будет проверена личная связь, затем — конкретный шаг, момент начала и реальный объём.", lifeAiChecksLabel: "Проверка плана",
+    lifeAiCheckPersonal: "Личная связь", lifeAiCheckDistinct: "Не дублирует заметку", lifeAiCheckConcrete: "Конкретный поступок", lifeAiCheckCue: "Есть момент начала",
+    lifeAiNeedReflection: "Я не буду придумывать вывод вместо вас. Сначала запишите, что лично вас касается в этом аяте.",
+    lifeAiObservation: "Пока это наблюдение об аяте, а не личный вывод. Поэтому помощник предлагает сначала проверить контекст, а не выдумывать искусственное действие.",
+    lifeAiDuplicate: "План повторяет заметку, но не отвечает на вопрос «что именно сделать?». Ниже — три разных способа превратить намерение в поступок.",
+    lifeAiImprove: "Основа уже есть. Проверьте три варианта: короткий шаг, план по сигналу и безопасное уточнение смысла.",
+    lifeAiReady: "План уже достаточно конкретный. Варианты ниже помогут сделать его легче для начала или проверить понимание.",
+    lifeAiChoicesTitle: "Выберите один план — только после выбора он попадёт в поле действия.", lifeAiUsePlan: "Выбрать этот план", lifeAiPlanApplied: "План выбран. Проверьте, что он действительно ваш, и при необходимости измените слова.",
+    lifeAiVerifiedTitle: "Шаг на основе выбранного вывода", lifeAiVerifiedReason: "Действие — отдельная редакционная подсказка: оно опирается на выбранный вывод, но не приписывается учёному.",
+    lifeAiVerifiedSecondTitle: "Другое применение той же пользы", lifeAiVerifiedSecondReason: "Даёт второй путь без добавления нового смысла к аяту.",
+    lifeActionTitle: "Ваш план «когда → тогда»", lifeActionPlaceholder: "Например: после ближайшей молитвы я напишу одному человеку и предложу конкретную помощь.",
+    lifeReturnTitle: "Когда проверить результат?", lifeReturnText: "Возвращение показывает, состоялся ли поступок, а не только намерение.", lifeSave: "Сохранить план", lifeComplete: "Действие выполнено"
+  });
+
+  Object.assign(translations.en, {
+    lifeFawaidEyebrow: "VERSE BENEFITS", lifeFawaidTitle: "Scholars’ conclusions about the verse’s benefits", lifeFawaidSource: "Source",
+    lifeFawaidAvailableText: "These are concise editorial formulations based on the linked sources, not verbatim quotations. Choose one conclusion as the basis; the AI does not blend different scholars’ words.",
+    lifeFawaidUnavailableText: "Verified scholarly conclusions are not yet available for this verse. The AI will not construct them from a translation alone.",
+    lifeFawaidScope: "Covers verses {scope}", lifeFawaidUse: "Use as basis", lifeFawaidSelected: "Basis selected",
+    lifeFawaidChooseFirst: "First choose one scholarly conclusion above. The mentor will then suggest an action based specifically on it.",
+    lifeAiTitle: "The AI mentor tests the intention instead of repeating it",
+    lifeAiBoundary: "First choose one specific scholarly conclusion. The mentor then checks the personal link and whether the action is concrete—without inventing the verse’s meaning or repeating your note.",
+    lifePromptLegend: "02 · Choose the direction of action",
+    lifeScopeLabel: "Where will this show up?", lifeScopeSelf: "In my habits", lifeScopeFamily: "In my family", lifeScopeWork: "At work or study", lifeScopeCommunity: "In how I treat people",
+    lifeTriggerLabel: "02 · When will I begin?", lifeTriggerPrayer: "After the next prayer", lifeTriggerConversation: "In the next conversation", lifeTriggerDifficult: "At a difficult moment", lifeTriggerEvening: "Before the end of today",
+    lifeAiReviewTitle: "Intention review", lifeAiReviewText: "The mentor shows what is missing and offers three genuinely different options.", lifeAiSuggest: "Review and suggest",
+    lifeAiSuggestionIdle: "It will first check the personal link, then the concrete step, starting cue and realistic scope.", lifeAiChecksLabel: "Plan review",
+    lifeAiCheckPersonal: "Personal link", lifeAiCheckDistinct: "Does not copy the note", lifeAiCheckConcrete: "Concrete behaviour", lifeAiCheckCue: "Has a starting cue",
+    lifeAiNeedReflection: "I will not invent a conclusion for you. First write what touches you personally in this verse.",
+    lifeAiObservation: "This is currently an observation about the verse, not yet a personal conclusion. The mentor therefore suggests checking the context instead of inventing an artificial action.",
+    lifeAiDuplicate: "The plan repeats the note but does not answer “what exactly will I do?”. Below are three different ways to turn the intention into behaviour.",
+    lifeAiImprove: "The foundation is there. Compare a short step, a cue-based plan and a safe way to verify the meaning.",
+    lifeAiReady: "The plan is already concrete. The options below can make it easier to start or help verify your understanding.",
+    lifeAiChoicesTitle: "Choose one plan. It enters the action field only after you select it.", lifeAiUsePlan: "Use this plan", lifeAiPlanApplied: "Plan selected. Make sure it is truly yours and edit the wording if needed.",
+    lifeAiVerifiedTitle: "A step based on the selected conclusion", lifeAiVerifiedReason: "The action is a separate editorial prompt: it is grounded in the selected conclusion but is not attributed to the scholar.",
+    lifeAiVerifiedSecondTitle: "Another application of the benefit", lifeAiVerifiedSecondReason: "Offers a second path without adding a new meaning to the verse.",
+    lifeActionTitle: "Your “when → then” plan", lifeActionPlaceholder: "For example: after the next prayer, I will message one person and offer one specific kind of help.",
+    lifeReturnTitle: "When will you check the result?", lifeReturnText: "Returning reveals whether the behaviour happened, not only the intention.", lifeSave: "Save plan", lifeComplete: "Action completed"
+  });
+
+  Object.assign(translations.ar, {
+    lifeFawaidEyebrow: "فَوَائِدُ الآيَةِ", lifeFawaidTitle: "استنباطات العلماء من فوائد الآية", lifeFawaidSource: "المصدر",
+    lifeFawaidAvailableText: "هذه صياغات تحريرية موجزة مبنية على المصادر المرتبطة وليست اقتباسات حرفية. اختر استنباطًا واحدًا أصلًا للعمل؛ ولا يخلط المرشد بين كلام العلماء.",
+    lifeFawaidUnavailableText: "لم تُربط بهذه الآية استنباطات موثقة للعلماء بعد، ولن ينشئها المرشد من ترجمة واحدة.",
+    lifeFawaidScope: "يشمل الآيات {scope}", lifeFawaidUse: "اجعله أصلًا", lifeFawaidSelected: "تم اختيار الأصل",
+    lifeFawaidChooseFirst: "اختر أولًا استنباطًا واحدًا من كلام العلماء أعلاه، ثم يقترح المرشد عملًا مبنيًا عليه بعينه.",
+    lifeAiTitle: "يراجع المرشد الذكي القصد ولا يكرّر كلماتك",
+    lifeAiBoundary: "تختار أولًا استنباطًا محددًا لعالم، ثم يراجع المرشد الصلة الشخصية ووضوح العمل من غير اختراع معنى للآية أو تكرار ملاحظتك.",
+    lifePromptLegend: "٠٢ · اختر اتجاه العمل",
+    lifeScopeLabel: "أين سيظهر هذا؟", lifeScopeSelf: "في عاداتي", lifeScopeFamily: "في أسرتي", lifeScopeWork: "في العمل أو الدراسة", lifeScopeCommunity: "في تعاملي مع الناس",
+    lifeTriggerLabel: "٠٢ · متى أبدأ؟", lifeTriggerPrayer: "بعد الصلاة القادمة", lifeTriggerConversation: "في الحديث القادم", lifeTriggerDifficult: "عند موقف صعب", lifeTriggerEvening: "قبل نهاية اليوم",
+    lifeAiReviewTitle: "مراجعة القصد", lifeAiReviewText: "يوضح المرشد ما ينقص ويعرض ثلاثة خيارات مختلفة حقًا.", lifeAiSuggest: "راجع واقترح",
+    lifeAiSuggestionIdle: "سيتحقق أولًا من الصلة الشخصية، ثم من العمل المحدد ووقت البدء وحجمه الواقعي.", lifeAiChecksLabel: "مراجعة الخطة",
+    lifeAiCheckPersonal: "صلة شخصية", lifeAiCheckDistinct: "لا يكرّر الملاحظة", lifeAiCheckConcrete: "عمل محدد", lifeAiCheckCue: "له وقت بدء",
+    lifeAiNeedReflection: "لن أضع نتيجة من عندي. اكتب أولًا ما الذي يمسّك شخصيًا في هذه الآية.",
+    lifeAiObservation: "هذه الآن ملاحظة عن الآية وليست بعدُ نتيجة شخصية؛ لذلك يقترح المرشد التحقق من السياق بدل اختراع عمل مصطنع.",
+    lifeAiDuplicate: "الخطة تكرّر الملاحظة ولا تجيب: ما العمل المحدد؟ ستجد أدناه ثلاث طرق مختلفة لتحويل القصد إلى عمل.",
+    lifeAiImprove: "الأصل موجود. قارن بين خطوة قصيرة، وخطة مرتبطة بإشارة، وطريقة آمنة للتحقق من الفهم.",
+    lifeAiReady: "الخطة محددة بالفعل. تساعدك الخيارات أدناه على تسهيل البداية أو التحقق من الفهم.",
+    lifeAiChoicesTitle: "اختر خطة واحدة؛ لن تنتقل إلى خانة العمل إلا بعد اختيارك.", lifeAiUsePlan: "اختر هذه الخطة", lifeAiPlanApplied: "تم اختيار الخطة. تأكد أنها تعبّر عنك وعدّل كلماتها عند الحاجة.",
+    lifeAiVerifiedTitle: "خطوة مبنية على الاستنباط المختار", lifeAiVerifiedReason: "العمل مقترح تحريري مستقل، مبني على الاستنباط المختار ولا يُنسب إلى العالم.",
+    lifeAiVerifiedSecondTitle: "تطبيق آخر للفائدة نفسها", lifeAiVerifiedSecondReason: "يعرض مسارًا ثانيًا من غير إضافة معنى جديد إلى الآية.",
+    lifeActionTitle: "خطتك «متى ← أفعل»", lifeActionPlaceholder: "مثال: بعد الصلاة القادمة سأرسل إلى شخص واحد وأعرض مساعدة محددة.",
+    lifeReturnTitle: "متى تتحقق من النتيجة؟", lifeReturnText: "تكشف العودة هل وقع العمل فعلًا، لا مجرد النية.", lifeSave: "احفظ الخطة", lifeComplete: "تم إنجاز العمل"
+  });
+
+  Object.assign(translations.ru, {
     pageRecallEyebrow: "ПРОВЕРКА СТРАНИЦЫ", pageRecallTitle: "Следующий уровень: прочитайте страницу наизусть", pageRecallIntro: "Сохраняем расположение строк и номера аятов, но скрываем текст. Правильные слова проявляются по порядку; ошибка останавливает продвижение до исправления.", pageRecallSteps: "Этапы проверки страницы", pageRecallStepHide: "Текст скрыт, геометрия страницы сохранена", pageRecallStepCheck: "Микрофон ведёт по аятам без повторного запуска", pageRecallStepCorrect: "Ошибка блокирует переход до исправления", pageRecallSelected: "ВЫБРАНО ДЛЯ ПРОВЕРКИ", pageRecallStart: "Начать проверку страницы", pageRecallReady: "Читайте страницу наизусть", pageRecallStatus: "Страница {page} · проверено {done} из {total} аятов", pageRecallShowText: "Показать текст", pageRecallHideText: "Скрыть текст", pageRecallFinish: "Завершить", pageRecallStarted: "Страница скрыта. Нажмите микрофон и читайте с первого аята.", pageRecallComplete: "Страница прочитана полностью по памяти.", pageRecallStopped: "Проверка страницы завершена. Результат сессии сохранён.", pageRecallLoading: "Готовлю страницу для проверки…", pageRecallWrongOrder: "Продолжите с активного аята — порядок страницы сохранён.", lifeJournalVisible: "Дневник аята всегда доступен здесь", recognitionInstant: "Базовый", recognitionInstantText: "Порядок слов и явные ошибки", recognitionCareful: "Тщательно", recognitionCarefulText: "Более строгая проверка слов после остановки", recognitionScopeNote: "Сейчас проверяются порядок и совпадение слов. Таджвид и интонация этим режимом не оцениваются."
   });
 
@@ -1657,83 +1874,7 @@
 
   var corpus = window.QuranCompanionData && window.QuranCompanionData.surahs ? window.QuranCompanionData.surahs : [];
   var tafsirData = window.QuranCompanionTafsir || { source: {}, entries: {} };
-  // Stage-one feedback describes text evidence, never certified pronunciation.
-  Object.assign(translations.ru, {
-    enhancedRecognition: "Браузер · основной вариант",
-    micDisclosure: "Сверяем слова. Произношение и таджвид пока не проверяются по звуку.",
-    comparisonDisclaimer: "Зелёный — совпало слово в расшифровке; серый — неуверенное сопоставление; красный — несовпадение текста. Это не оценка произношения.",
-    recognitionComplete: "Слова аята сопоставлены",
-    recognitionCompleteSub: "Последовательность слов совпала. Произношение, огласовки и таджвид по звуку не подтверждены.",
-    summaryComplete: "Все слова сопоставлены. Это не подтверждение правильного произношения.",
-    recognitionUncertain: "Не удалось уверенно сопоставить чтение",
-    recognitionUncertainSub: "Это не подтверждённая ошибка чтения. Проверьте звук и повторите отмеченный фрагмент.",
-    recognitionExtrasSub: "В расшифровке остались лишние слова. Прочитайте весь аят ещё раз для проверки.",
-    correctionTailSub: "Прочитайте от «{word}» до конца аята. Уже подтверждённое начало сохранено.",
-    correctionRequired: "Нужно проверить несовпадение текста",
-    correctionStatus: "Слова пока не совпали",
-    correctionStatusSub: "Повторите отмеченный фрагмент. Распознаватель тоже может ошибаться.",
-    quranAudioTooLong: "Запись длиннее 60 секунд",
-    quranAudioTooLongSub: "Прочитайте более короткий фрагмент. Запись не была засчитана или обрезана для проверки.",
-    quranAudioInvalid: "Не удалось прочитать аудиозапись",
-    quranAudioInvalidSub: "Запишите фрагмент ещё раз. Это техническая проблема, а не ошибка чтения.",
-    quranBusy: "Сервис распознавания занят",
-    quranBusySub: "Подождите немного и повторите. Эта попытка не засчитана.",
-    memoryComplete: "Слова аята сопоставлены",
-    memoryWordCorrect: "Слово совпало в расшифровке",
-    heartReadCredit: "Слова сопоставлены; повторение засчитано: {count} из 300.",
-    memorizeIntro: "Слово открывается после окончательного сопоставления текста. Произношение по звуку пока не проверяется."
-  });
-  Object.assign(translations.en, {
-    enhancedRecognition: "Browser · top hypothesis",
-    micDisclosure: "Word matching only. Pronunciation and tajwid are not acoustically assessed yet.",
-    comparisonDisclaimer: "Green: matching transcript word. Grey: uncertain alignment. Red: text mismatch. This is not a pronunciation assessment.",
-    recognitionComplete: "Verse words matched",
-    recognitionCompleteSub: "The word sequence matched. Pronunciation, vowels and tajwid are not acoustically verified.",
-    summaryComplete: "All words matched; this does not verify pronunciation.",
-    recognitionUncertain: "Could not confidently match the recitation",
-    recognitionUncertainSub: "This is not a confirmed reading mistake. Check the audio and repeat the marked passage.",
-    recognitionExtrasSub: "There are unmatched extra words. Recite the whole verse again to verify it.",
-    correctionTailSub: "Recite from “{word}” to the end. The confirmed beginning is retained.",
-    correctionRequired: "Check the text mismatch",
-    correctionStatus: "The words have not matched yet",
-    correctionStatusSub: "Repeat the marked passage. The recognizer can also make mistakes.",
-    quranAudioTooLong: "Recording exceeds 60 seconds",
-    quranAudioTooLongSub: "Record a shorter passage. This attempt was not credited or silently truncated.",
-    quranAudioInvalid: "Could not decode the recording",
-    quranAudioInvalidSub: "Record the passage again. This is a technical problem, not a reading mistake.",
-    quranBusy: "Recognition is busy",
-    quranBusySub: "Wait briefly and try again. This attempt has not been credited.",
-    memoryComplete: "Verse words matched",
-    memoryWordCorrect: "Word matched in the transcript",
-    heartReadCredit: "Words matched; repetition counted: {count} of 300.",
-    memorizeIntro: "Words open after final text matching. Pronunciation is not acoustically assessed yet."
-  });
-  Object.assign(translations.ar, {
-    enhancedRecognition: "المتصفح · النتيجة الأساسية",
-    heartReadCredit: "تطابقت الكلمات؛ احتُسب التكرار: {count} من ٣٠٠.",
-    micDisclosure: "نطابق الكلمات فقط. لا نقيّم النطق والتجويد صوتيًا بعد.",
-    comparisonDisclaimer: "الأخضر: كلمة مطابقة في النص. الرمادي: مطابقة غير مؤكدة. الأحمر: اختلاف نصي. هذه ليست نتيجة لتقييم النطق.",
-    recognitionComplete: "تمت مطابقة كلمات الآية",
-    recognitionCompleteSub: "تطابق ترتيب الكلمات. لم يتم التحقق صوتيًا من النطق والحركات والتجويد.",
-    summaryComplete: "تمت مطابقة الكلمات، وهذا لا يؤكد صحة النطق.",
-    recognitionUncertain: "تعذرت مطابقة التلاوة بثقة",
-    recognitionUncertainSub: "هذا ليس خطأ قراءة مؤكدًا. تحقق من الصوت وأعد المقطع المحدد.",
-    recognitionExtrasSub: "بقيت كلمات إضافية غير مطابقة. أعد قراءة الآية كاملة للتحقق.",
-    correctionTailSub: "اقرأ من «{word}» إلى نهاية الآية. تم الاحتفاظ بالبداية المطابقة.",
-    correctionRequired: "تحقق من الاختلاف النصي",
-    correctionStatus: "لم تتطابق الكلمات بعد",
-    correctionStatusSub: "أعد المقطع المحدد. قد يخطئ نظام التعرف أيضًا.",
-    quranAudioTooLong: "التسجيل أطول من ٦٠ ثانية",
-    quranAudioTooLongSub: "سجّل مقطعًا أقصر. لم تُحتسب المحاولة ولم يُقتطع التسجيل للتحقق.",
-    quranAudioInvalid: "تعذرت قراءة التسجيل الصوتي",
-    quranAudioInvalidSub: "أعد تسجيل المقطع. هذه مشكلة تقنية وليست خطأ في القراءة.",
-    quranBusy: "خدمة التعرف مشغولة",
-    quranBusySub: "انتظر قليلًا ثم حاول مجددًا. لم تُحتسب هذه المحاولة.",
-    memoryComplete: "تمت مطابقة كلمات الآية",
-    memoryWordCorrect: "تطابقت الكلمة في النص",
-    memorizeIntro: "تظهر الكلمات بعد المطابقة النهائية للنص. لا نقيّم النطق صوتيًا بعد."
-  });
-
+  var fawaidData = window.QuranCompanionFawaid || { entries: {} };
   var state = loadState();
   var launchParams = new URLSearchParams(window.location.search);
   var teacherAssessmentRequested = launchParams.get("assessment") === "teacher";
@@ -1821,7 +1962,7 @@
   var pageRecallShowText = false;
   var pageRecallAccessLevel = "checking";
   var pageRecallAccessPromise = null;
-  var selectedLifePrompt = "benefit";
+  var selectedFawaidId = "";
   var activeLifeEntryId = "";
   var audioDownloadController = null;
   var memorySessionCounted = false;
@@ -1848,7 +1989,6 @@
   var memoryVadSpeechDetected = false;
   var memoryHadError = false;
   var memoryLastTranscript = "";
-  var memoryLastOutcome = "uncertain";
   var memoryFullVerseMatched = false;
   var autoAdvanceTimer = null;
   var autoAdvanceInterval = null;
@@ -1866,9 +2006,6 @@
   var MIC_REQUEST_TIMEOUT = 15000;
   var correctionIndex = -1;
   var correctionStatuses = [];
-  var correctionRequiresFullVerse = false;
-  var recognitionFallbackTimer = null;
-  var quranSubmitTimer = null;
   var verseAudioPlaying = false;
   var verseAudioPaused = false;
   var activeAudioObjectUrl = "";
@@ -1903,22 +2040,6 @@
       return false;
     }
   }
-
-  var contribution = window.AllimContribution ? window.AllimContribution({
-    language: function () { return state.language; },
-    stop: function () { stopRecognitionImmediately(); pauseMemoryRecognition(); }
-  }) : null;
-  [
-    ["ru", "Без отдельного согласия аудио Quran AI удаляется после обработки. Участием в сборе можно управлять в настройках.", "Проверяем последовательность слов. Сохранение для проекта — только с отдельного согласия.", "Подтвердите доступ к микрофону в браузере."],
-    ["en", "Without separate consent, Quran AI audio is deleted after processing. Manage contribution in settings.", "We check word sequence. Saving for the project requires separate consent.", "Confirm microphone access in your browser."],
-    ["ar", "دون موافقة منفصلة يُحذف صوت Quran AI بعد المعالجة. تُدار المشاركة من الإعدادات.", "نقارن تسلسل الكلمات. يتطلب الحفظ للمشروع موافقة منفصلة.", "اسمح بالوصول إلى الميكروفون في المتصفح."]
-  ].forEach(function (entry) {
-    translations[entry[0]].privacyText = entry[1];
-    translations[entry[0]].quranServiceReady = entry[1];
-    translations[entry[0]].micDisclosure = entry[2];
-    translations[entry[0]].requestingMicSub = entry[3];
-    translations[entry[0]].memoryRequestingSub = entry[3];
-  });
 
   function t(key) {
     var current = translations[state.language] || translations.ru;
@@ -2077,7 +2198,6 @@
   }
 
   function setLanguage(language) {
-    if (contribution) window.setTimeout(function () { contribution.refresh(); }, 0);
     if (!translations[language]) return;
     clearAutoAdvance();
     state.language = language;
@@ -2124,6 +2244,14 @@
     updateVerseActions();
     var openHeartDialog = document.getElementById("heart-page-dialog");
     if (openHeartDialog && openHeartDialog.open && heartCurrentPageData) renderHeartPageDialog(heartCurrentPageData);
+    var openLifeDialog = document.getElementById("life-practice-dialog");
+    if (openLifeDialog && openLifeDialog.open && currentSurah && currentVerse) {
+      document.getElementById("life-verse-reference").textContent = currentSurah.names[state.language] + " · " + getVerseKey(currentSurah, currentVerse);
+      document.getElementById("life-verse-meaning").textContent = localized(currentVerse.meaning);
+      renderLifeFawaid();
+      renderLifeHistory();
+      resetLifeAiReview();
+    }
     updatePageRecallAccessUi();
     saveState();
   }
@@ -3328,6 +3456,20 @@
     if (streak) streak.textContent = formatMetric(lifePracticeStreak());
   }
 
+  function completeLifeEntry(entry) {
+    if (!entry || entry.completed) return;
+    entry.completed = true;
+    entry.completedAt = new Date().toISOString();
+    entry.updatedAt = entry.completedAt;
+    saveState();
+    renderLifeHistory();
+    renderLifePracticeSummary();
+    updateProgress();
+    var activeButton = document.getElementById("life-complete");
+    if (activeButton && entry.id === activeLifeEntryId) activeButton.hidden = true;
+    showToast(t("lifeCompleted"));
+  }
+
   function renderLifeHistory() {
     var list = document.getElementById("life-history-list");
     if (!list) return;
@@ -3354,11 +3496,329 @@
       reflection.textContent = entry.reflection || entry.action || "—";
       var action = document.createElement("small");
       action.textContent = (entry.completed ? "✓ " : "→ ") + (entry.action || t("lifeDraftStatus"));
+      var footer = document.createElement("div");
+      var status = document.createElement("small");
+      if (entry.completed) status.textContent = t("lifeDoneStatus").replace("{date}", formatLifeDate(entry.completedAt || entry.updatedAt || entry.reviewAt));
+      else if (entry.reviewAt && new Date(entry.reviewAt).getTime() <= Date.now()) status.textContent = t("lifeDueNow");
+      else status.textContent = t("lifePlannedFor").replace("{date}", formatLifeDate(entry.reviewAt));
+      footer.appendChild(status);
+      if (!entry.completed && entry.action) {
+        var complete = document.createElement("button");
+        complete.type = "button";
+        complete.className = "text-button";
+        complete.textContent = t("lifeComplete");
+        complete.addEventListener("click", function () { completeLifeEntry(entry); });
+        footer.appendChild(complete);
+      }
       item.appendChild(meta);
       item.appendChild(reflection);
       item.appendChild(action);
+      item.appendChild(footer);
       list.appendChild(item);
     });
+  }
+
+  function normalizeLifeText(value) {
+    return String(value || "").toLocaleLowerCase().replace(/[“”„'’`«».,!?;:()\[\]{}—–\-]/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  function lifeTextHasAny(value, fragments) {
+    var normalized = normalizeLifeText(value);
+    return fragments.some(function (fragment) { return normalized.indexOf(fragment) >= 0; });
+  }
+
+  function lifeActionCopiesReflection(reflection, action) {
+    var normalizedReflection = normalizeLifeText(reflection);
+    var normalizedAction = normalizeLifeText(action);
+    if (!normalizedReflection || !normalizedAction) return false;
+    if (normalizedAction.indexOf(normalizedReflection) >= 0) return true;
+    if (lifeTextHasAny(normalizedAction, ["шаг по этому размышлению", "шаг по этому наблюдению", "step from this reflection", "step from this thought", "خطوة من هذا التدبر", "خطوة من هذه الملاحظة"])) return true;
+    var stopWords = ["этот", "эта", "это", "сегодня", "один", "буду", "сделаю", "потому", "который", "this", "that", "today", "will", "from", "with", "then", "هذه", "هذا", "اليوم", "سوف", "الذي", "التي", "على"];
+    var reflectionTokens = normalizedReflection.split(" ").filter(function (word) { return word.length > 3 && stopWords.indexOf(word) < 0; });
+    var actionTokens = normalizedAction.split(" ").filter(function (word) { return word.length > 3 && stopWords.indexOf(word) < 0; });
+    if (reflectionTokens.length < 3 || actionTokens.length < 3) return false;
+    var actionSet = {};
+    actionTokens.forEach(function (word) { actionSet[word] = true; });
+    var shared = reflectionTokens.filter(function (word) { return actionSet[word]; }).length;
+    return shared / reflectionTokens.length >= 0.68;
+  }
+
+  function analyzeLifePlan(reflection, action) {
+    var personalText = normalizeLifeText(reflection);
+    var personal = /(^|\s)(я|мне|меня|мой|моя|моё|мои|хочу|нужно|буду|i|me|my|want|need|أنا|نفسي|لي|أريد|عليّ)(\s|$)/i.test(personalText) || personalText.indexOf("سأ") >= 0;
+    var hasAction = normalizeLifeText(action).length >= 10;
+    var vague = lifeTextHasAny(action, ["сделаю шаг", "что то сделаю", "постараюсь", "буду лучше", "take a step", "do something", "try to", "be better", "سأفعل خطوة", "سأحاول", "أكون أفضل"]);
+    var concrete = hasAction && !vague && lifeTextHasAny(action, ["напиш", "позвон", "спрошу", "помог", "прочита", "свер", "скажу", "заверш", "выдел", "удел", "останов", "удерж", "поблагодар", "выслуш", "провер", "вернусь", "message", "call", "ask", "help", "read", "check", "say", "finish", "pause", "thank", "listen", "return", "write", "give", "contact", "avoid", "send", "continue", "complete", "أكتب", "أتصل", "أسأل", "أساعد", "أقرأ", "أتحقق", "أقول", "أنهي", "أنجز", "أتم", "أعطي", "أواصل", "أتوقف", "أشكر", "أستمع", "أتواصل", "أراجع", "أخصص", "أعود", "لا أرد", "لا أرسل", "لا أنقل"]);
+    var cue = hasAction && lifeTextHasAny(action, ["сегодня", "после", "когда", "перед", "при следующ", "до конца", "в ближай", "через", "today", "after", "when", "before", "next ", "within", "اليوم", "بعد", "عندما", "عند", "إذا", "قبل", "القادم"]);
+    return {
+      reflection: normalizeLifeText(reflection),
+      personal: personal,
+      hasAction: hasAction,
+      distinct: hasAction ? !lifeActionCopiesReflection(reflection, action) : null,
+      concrete: hasAction ? concrete : null,
+      cue: hasAction ? cue : null
+    };
+  }
+
+  function getLifePlanCopy() {
+    var copies = {
+      ru: {
+        cues: {
+          "next-prayer": { lead: "После ближайшей молитвы", condition: "закончится ближайшая молитва" },
+          "next-conversation": { lead: "При следующем разговоре", condition: "начнётся следующий разговор" },
+          "difficult-moment": { lead: "В ближайший трудный момент", condition: "я замечу привычную резкую реакцию" },
+          "before-evening": { lead: "До конца сегодняшнего дня", condition: "наступит вечер" }
+        },
+        actions: {
+          benefit: { self: "завершу один небольшой полезный шаг, который откладываю", family: "спрошу одного близкого, какая небольшая помощь нужна сегодня, и сразу выполню её", work: "завершу одну небольшую задачу, которая облегчит работу другому человеку", community: "свяжусь с одним человеком и предложу конкретную посильную помощь" },
+          restraint: { self: "остановлюсь на 60 секунд и не последую первой автоматической реакции", family: "не отвечу резко: сначала сделаю паузу и скажу одну спокойную фразу", work: "не отправлю поспешный ответ: перечитаю его и уберу лишнюю резкость", community: "не стану передавать непроверенные слова, пока не сверю источник" },
+          continue: { self: "вернусь к уже начатому полезному делу и уделю ему 10 минут", family: "уделю близкому 10 минут без телефона и внимательно выслушаю", work: "продолжу важную задачу ровно 10 минут, начав со следующего видимого шага", community: "доведу до конца один небольшой шаг, который обещал другому человеку" }
+        },
+        themes: { gratitude: "назову одну конкретную милость и поблагодарю человека, через которого пришло это благо", patience: "сделаю паузу на 60 секунд и выберу спокойный ответ вместо первой реакции", speech: "перечитаю ближайший ответ перед отправкой и уберу из него всё резкое или лишнее", help: "спрошу одного человека, какая небольшая помощь нужна сегодня, и выполню один посильный шаг", family: "уделю одному близкому 10 минут внимания без телефона", knowledge: "сверю один возникший вопрос с проверенным источником и запишу подтверждённый вывод", prayer: "вернусь к выбранному аяту после молитвы и запишу одну честную просьбу к Аллаху" },
+        shortTitle: "Малый шаг", shortReason: "Учитывает выбранную сферу и остаётся выполнимым за 5–15 минут.",
+        cueTitle: "План «если → тогда»", cueReason: "Привязывает поступок к заметному моменту, чтобы не полагаться только на память.",
+        studyTitle: "Сначала проверить смысл", studyReason: "Если личный вывод ещё неясен, лучше проверить контекст, чем принимать AI-догадку.",
+        contextTitle: "Прочитать контекст", contextReason: "Помогает увидеть, куда ведёт мысль, прежде чем выбирать действие.",
+        sourceTitle: "Сверить один источник", sourceReason: "Сохраняет границу между вашим размышлением и подтверждённым толкованием.",
+        returnTitle: "Вернуться с вопросом", returnReason: "Даёт личному выводу созреть без искусственного ответа.",
+        studyAction: "Сегодня я прочитаю {reference} вместе с соседними аятами и запишу, к чему ведёт общий смысл.",
+        sourceAction: "Сегодня я сверю {reference} с одним проверенным тафсиром и запишу один подтверждённый вывод своими словами.",
+        returnAction: "Сегодня вечером я вернусь к {reference} и отвечу одной фразой: что этот аят просит изменить именно во мне?"
+      },
+      en: {
+        cues: {
+          "next-prayer": { lead: "After the next prayer", condition: "the next prayer is complete" },
+          "next-conversation": { lead: "In the next conversation", condition: "the next conversation begins" },
+          "difficult-moment": { lead: "At the next difficult moment", condition: "I notice my usual sharp reaction" },
+          "before-evening": { lead: "Before the end of today", condition: "evening arrives" }
+        },
+        actions: {
+          benefit: { self: "finish one small useful step I have been postponing", family: "ask one family member what small help they need today and do it", work: "finish one small task that makes another person's work easier", community: "contact one person and offer one specific, manageable kind of help" },
+          restraint: { self: "pause for 60 seconds and not follow my first automatic reaction", family: "avoid a sharp reply, pause, and say one calm sentence first", work: "not send a rushed response, reread it, and remove unnecessary sharpness", community: "not pass on an unverified claim until I check its source" },
+          continue: { self: "return to a useful task already in progress and give it 10 minutes", family: "give one family member 10 phone-free minutes and listen carefully", work: "continue one important task for exactly 10 minutes, beginning with the next visible step", community: "finish one small step I promised to another person" }
+        },
+        themes: { gratitude: "name one specific blessing and thank a person through whom that good reached me", patience: "pause for 60 seconds and choose a calm response instead of my first reaction", speech: "reread my next message before sending and remove anything sharp or unnecessary", help: "ask one person what small help they need today and complete one manageable step", family: "give one family member 10 minutes of attention without my phone", knowledge: "check one question against a verified source and record only the supported conclusion", prayer: "return to the selected verse after prayer and write one honest request to Allah" },
+        shortTitle: "Small step", shortReason: "Fits the chosen setting and stays achievable within 5–15 minutes.",
+        cueTitle: "If → then plan", cueReason: "Links the behaviour to a visible cue instead of relying on memory alone.",
+        studyTitle: "Verify the meaning first", studyReason: "When the personal conclusion is unclear, checking context is better than accepting an AI guess.",
+        contextTitle: "Read the context", contextReason: "Shows where the passage is going before you choose an action.",
+        sourceTitle: "Check one source", sourceReason: "Keeps your reflection distinct from verified interpretation.",
+        returnTitle: "Return with one question", returnReason: "Allows a personal insight to mature without an artificial answer.",
+        studyAction: "Today I will read {reference} with the surrounding verses and note where the passage's overall meaning leads.",
+        sourceAction: "Today I will check {reference} against one verified tafsir and write one supported conclusion in my own words.",
+        returnAction: "This evening I will return to {reference} and answer in one sentence: what does this verse ask me personally to change?"
+      },
+      ar: {
+        cues: {
+          "next-prayer": { lead: "بعد الصلاة القادمة", condition: "انتهت الصلاة القادمة" },
+          "next-conversation": { lead: "في الحديث القادم", condition: "بدأ الحديث القادم" },
+          "difficult-moment": { lead: "عند أقرب موقف صعب", condition: "لاحظت رد فعلي الحاد المعتاد" },
+          "before-evening": { lead: "قبل نهاية اليوم", condition: "جاء المساء" }
+        },
+        actions: {
+          benefit: { self: "أنجز خطوة نافعة صغيرة كنت أؤجلها", family: "أسأل شخصًا من أسرتي عن مساعدة صغيرة يحتاجها اليوم ثم أقوم بها", work: "أنهي مهمة صغيرة تجعل عمل شخص آخر أسهل", community: "أتواصل مع شخص واحد وأعرض عليه مساعدة محددة أقدر عليها" },
+          restraint: { self: "أتوقف ستين ثانية ولا أتبع أول رد فعل تلقائي", family: "لا أرد بحدة، بل أتوقف أولًا وأقول جملة هادئة", work: "لا أرسل ردًا متعجلًا، بل أراجعه وأحذف منه ما لا يلزم من الشدة", community: "لا أنقل كلامًا غير متحقق منه حتى أراجع مصدره" },
+          continue: { self: "أعود إلى عمل نافع بدأته وأخصص له عشر دقائق", family: "أعطي شخصًا من أسرتي عشر دقائق من الانتباه بلا هاتف", work: "أواصل مهمة مهمة عشر دقائق بدءًا من الخطوة الواضحة التالية", community: "أتم خطوة صغيرة وعدت بها شخصًا آخر" }
+        },
+        themes: { gratitude: "أذكر نعمة محددة وأشكر شخصًا وصلني الخير عن طريقه", patience: "أتوقف ستين ثانية وأختار ردًا هادئًا بدل أول رد فعل", speech: "أراجع رسالتي القادمة قبل إرسالها وأحذف منها كل حدة أو زيادة", help: "أسأل شخصًا واحدًا عن مساعدة صغيرة يحتاجها اليوم ثم أنجز خطوة أقدر عليها", family: "أعطي شخصًا من أسرتي عشر دقائق من الانتباه بلا هاتف", knowledge: "أراجع سؤالًا واحدًا في مصدر موثوق ولا أكتب إلا النتيجة المدعومة", prayer: "أعود إلى الآية المختارة بعد الصلاة وأكتب دعاءً صادقًا واحدًا" },
+        shortTitle: "خطوة صغيرة", shortReason: "تراعي المجال المختار ويمكن إنجازها خلال خمس إلى خمس عشرة دقيقة.",
+        cueTitle: "خطة «إذا ← فسوف»", cueReason: "تربط العمل بإشارة واضحة بدل الاعتماد على التذكر وحده.",
+        studyTitle: "تحقق من المعنى أولًا", studyReason: "إذا لم تتضح النتيجة الشخصية فمراجعة السياق خير من قبول تخمين آلي.",
+        contextTitle: "اقرأ السياق", contextReason: "يساعدك على رؤية اتجاه الكلام قبل اختيار العمل.",
+        sourceTitle: "راجع مصدرًا واحدًا", sourceReason: "يفصل بين تدبرك الشخصي والتفسير الموثق.",
+        returnTitle: "عُد بسؤال واحد", returnReason: "يمنح النتيجة الشخصية وقتًا بلا جواب مصطنع.",
+        studyAction: "سأقرأ اليوم {reference} مع الآيات القريبة وأسجل إلى أين يقود المعنى العام للسياق.",
+        sourceAction: "سأراجع اليوم {reference} في تفسير موثوق واحد وأكتب نتيجة مدعومة بكلماتي.",
+        returnAction: "سأعود هذا المساء إلى {reference} وأجيب بجملة واحدة: ما الذي تطلب هذه الآية أن أغيّره في نفسي؟"
+      }
+    };
+    return copies[state.language] || copies.ru;
+  }
+
+  function detectLifeTheme(reflection) {
+    var source = reflection + " " + (currentVerse ? localized(currentVerse.meaning) : "");
+    var themes = [
+      { name: "gratitude", words: ["благодар", "милост", "дар", "grateful", "gratitude", "blessing", "شكر", "نعمة", "حمد"] },
+      { name: "patience", words: ["терпен", "спокой", "гнев", "patient", "patience", "calm", "anger", "صبر", "غضب", "هدوء"] },
+      { name: "speech", words: ["говор", "ответ", "сообщени", "речь", "speech", "reply", "message", "قول", "كلام", "رد"] },
+      { name: "help", words: ["помо", "польз", "поддерж", "help", "benefit", "support", "نفع", "مساعدة", "عون"] },
+      { name: "family", words: ["семь", "родител", "близк", "family", "parent", "relative", "أسرة", "والد", "أهل"] },
+      { name: "knowledge", words: ["знан", "понять", "изуч", "тафсир", "knowledge", "understand", "study", "tafsir", "علم", "فهم", "تفسير"] },
+      { name: "prayer", words: ["молит", "намаз", "дуа", "prayer", "salah", "dua", "صلاة", "دعاء"] }
+    ];
+    var found = themes.find(function (theme) { return lifeTextHasAny(source, theme.words); });
+    return found ? found.name : "";
+  }
+
+  function makeLifeSentence(copy, cue, phrase, conditional) {
+    if (state.language === "ar") return conditional ? "إذا " + cue.condition + " فسوف " + phrase + "." : cue.lead + " سوف " + phrase + ".";
+    if (state.language === "en") return conditional ? "If " + cue.condition + ", I will " + phrase + "." : cue.lead + ", I will " + phrase + ".";
+    return conditional ? "Если " + cue.condition + ", я " + phrase + "." : cue.lead + " я " + phrase + ".";
+  }
+
+  function getCurrentFawaidEntry() {
+    var entry = fawaidData.entries && fawaidData.entries[getVerseKey(currentSurah, currentVerse)];
+    return entry && Array.isArray(entry.sources) && entry.sources.length ? entry : null;
+  }
+
+  function getSelectedFawaidFinding() {
+    var entry = getCurrentFawaidEntry();
+    if (!entry || !selectedFawaidId) return null;
+    for (var sourceIndex = 0; sourceIndex < entry.sources.length; sourceIndex += 1) {
+      var source = entry.sources[sourceIndex];
+      for (var findingIndex = 0; findingIndex < source.findings.length; findingIndex += 1) {
+        if (source.findings[findingIndex].id === selectedFawaidId) return { source: source, finding: source.findings[findingIndex] };
+      }
+    }
+    return null;
+  }
+
+  function renderLifeFawaid() {
+    var entry = getCurrentFawaidEntry();
+    var content = document.getElementById("life-fawaid-content");
+    var note = document.getElementById("life-fawaid-note");
+    if (!content || !note) return;
+    content.textContent = "";
+    content.hidden = !entry;
+    if (!entry) {
+      note.textContent = t("lifeFawaidUnavailableText");
+      return;
+    }
+    note.textContent = t("lifeFawaidAvailableText");
+    entry.sources.forEach(function (source) {
+      var card = document.createElement("article");
+      var header = document.createElement("header");
+      var identity = document.createElement("div");
+      var scholar = document.createElement("strong");
+      var work = document.createElement("small");
+      var scope = document.createElement("span");
+      var list = document.createElement("div");
+      scholar.textContent = localized(source.scholar);
+      work.textContent = localized(source.work);
+      scope.textContent = formatText("lifeFawaidScope", { scope: source.scope });
+      identity.appendChild(scholar);
+      identity.appendChild(work);
+      header.appendChild(identity);
+      header.appendChild(scope);
+      card.appendChild(header);
+      source.findings.forEach(function (finding) {
+        var item = document.createElement("section");
+        var benefit = document.createElement("p");
+        var actions = document.createElement("div");
+        var link = document.createElement("a");
+        var use = document.createElement("button");
+        benefit.textContent = localized(finding.benefit);
+        link.className = "text-button";
+        link.href = source.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = t("lifeFawaidSource");
+        use.type = "button";
+        use.className = "tertiary-button";
+        use.setAttribute("data-fawaid-id", finding.id);
+        use.setAttribute("aria-pressed", String(finding.id === selectedFawaidId));
+        use.textContent = finding.id === selectedFawaidId ? t("lifeFawaidSelected") : t("lifeFawaidUse");
+        use.addEventListener("click", function () {
+          selectedFawaidId = finding.id;
+          renderLifeFawaid();
+          resetLifeAiReview();
+          document.getElementById("life-ai-suggestion").textContent = t("lifeAiSuggestionIdle");
+        });
+        actions.appendChild(link);
+        actions.appendChild(use);
+        item.appendChild(benefit);
+        item.appendChild(actions);
+        list.appendChild(item);
+      });
+      card.appendChild(list);
+      content.appendChild(card);
+    });
+  }
+
+  function buildLifePlans(analysis, reflection) {
+    var copy = getLifePlanCopy();
+    var reference = currentSurah && currentVerse ? currentSurah.names[state.language] + " · " + getVerseKey(currentSurah, currentVerse) : "—";
+    var studyPlans = [
+      { title: copy.contextTitle, reason: copy.contextReason, action: copy.studyAction.replace("{reference}", reference) },
+      { title: copy.sourceTitle, reason: copy.sourceReason, action: copy.sourceAction.replace("{reference}", reference) },
+      { title: copy.returnTitle, reason: copy.returnReason, action: copy.returnAction.replace("{reference}", reference) }
+    ];
+    var selectedFinding = getSelectedFawaidFinding();
+    if (!selectedFinding || !analysis.reflection || !analysis.personal) return studyPlans;
+    var trigger = document.getElementById("life-trigger").value || "next-prayer";
+    var cue = copy.cues[trigger] || copy.cues["next-prayer"];
+    var primaryAction = localized(selectedFinding.finding.actions[0]);
+    var alternativeAction = localized(selectedFinding.finding.actions[1]);
+    return [
+      { title: t("lifeAiVerifiedTitle"), reason: t("lifeAiVerifiedReason"), action: makeLifeSentence(copy, cue, primaryAction, false) },
+      { title: copy.cueTitle, reason: copy.cueReason, action: makeLifeSentence(copy, cue, alternativeAction, true) },
+      { title: copy.studyTitle, reason: copy.studyReason, action: copy.sourceAction.replace("{reference}", reference) }
+    ];
+  }
+
+  function renderLifeAiChecks(analysis) {
+    ["personal", "distinct", "concrete", "cue"].forEach(function (name) {
+      var node = document.querySelector('[data-life-check="' + name + '"]');
+      if (!node) return;
+      var value = analysis[name];
+      node.setAttribute("data-state", value === null ? "idle" : (value ? "pass" : "needs-work"));
+      var icon = node.querySelector("i");
+      if (icon) icon.textContent = value === null ? "○" : (value ? "✓" : "!");
+    });
+  }
+
+  function renderLifeAiOptions(plans) {
+    var container = document.getElementById("life-ai-options");
+    container.textContent = "";
+    var heading = document.createElement("p");
+    heading.className = "life-ai-options-title";
+    heading.textContent = t("lifeAiChoicesTitle");
+    container.appendChild(heading);
+    plans.forEach(function (plan, index) {
+      var card = document.createElement("article");
+      var head = document.createElement("div");
+      var number = document.createElement("span");
+      var title = document.createElement("strong");
+      var reason = document.createElement("small");
+      var action = document.createElement("p");
+      var button = document.createElement("button");
+      number.textContent = String(index + 1).padStart(2, "0");
+      title.textContent = plan.title;
+      reason.textContent = plan.reason;
+      action.textContent = plan.action;
+      button.type = "button";
+      button.className = "tertiary-button";
+      button.textContent = t("lifeAiUsePlan");
+      button.addEventListener("click", function () {
+        document.getElementById("life-action").value = plan.action.slice(0, 280);
+        container.querySelectorAll("article").forEach(function (item) { item.classList.toggle("is-selected", item === card); });
+        document.getElementById("life-ai-suggestion").textContent = t("lifeAiPlanApplied");
+        renderLifeAiChecks(analyzeLifePlan(document.getElementById("life-reflection").value.trim(), plan.action));
+        document.getElementById("life-action").focus();
+      });
+      head.appendChild(number);
+      head.appendChild(title);
+      card.appendChild(head);
+      card.appendChild(reason);
+      card.appendChild(action);
+      card.appendChild(button);
+      container.appendChild(card);
+    });
+    container.hidden = false;
+  }
+
+  function resetLifeAiReview() {
+    var output = document.getElementById("life-ai-suggestion");
+    var options = document.getElementById("life-ai-options");
+    if (output) {
+      output.textContent = t("lifeAiSuggestionIdle");
+      output.classList.remove("is-ready");
+    }
+    if (options) {
+      options.textContent = "";
+      options.hidden = true;
+    }
+    renderLifeAiChecks({ personal: null, distinct: null, concrete: null, cue: null });
   }
 
   function openLifePracticeDialog() {
@@ -3376,12 +3836,11 @@
     document.getElementById("life-verse-meaning").textContent = currentVerse.meaning[state.language];
     document.getElementById("life-reflection").value = existing ? existing.reflection || "" : "";
     document.getElementById("life-action").value = existing ? existing.action || "" : "";
-    document.getElementById("life-ai-suggestion").textContent = t("lifeAiSuggestionIdle");
-    document.getElementById("life-ai-suggestion").classList.remove("is-ready");
-    selectedLifePrompt = existing && existing.prompt ? existing.prompt : "benefit";
-    document.querySelectorAll("[data-life-prompt]").forEach(function (button) {
-      button.setAttribute("aria-pressed", String(button.getAttribute("data-life-prompt") === selectedLifePrompt));
-    });
+    document.getElementById("life-trigger").value = existing && existing.trigger ? existing.trigger : "next-prayer";
+    document.getElementById("life-complete").hidden = !existing || existing.completed || !existing.action;
+    selectedFawaidId = existing && existing.fawaidId ? existing.fawaidId : "";
+    renderLifeFawaid();
+    resetLifeAiReview();
     renderLifeHistory();
     dialog.hidden = false;
     if (!dialog.open) dialog.showModal();
@@ -3411,7 +3870,12 @@
     entry.reference = currentSurah.names[state.language] + " · " + entry.verseKey;
     entry.reflection = reflection;
     entry.action = action;
-    entry.prompt = selectedLifePrompt;
+    var selectedFinding = getSelectedFawaidFinding();
+    entry.fawaidId = selectedFinding ? selectedFinding.finding.id : "";
+    entry.fawaidScholar = selectedFinding ? localized(selectedFinding.source.scholar) : "";
+    entry.fawaidBenefit = selectedFinding ? localized(selectedFinding.finding.benefit) : "";
+    entry.fawaidSourceUrl = selectedFinding ? selectedFinding.source.url : "";
+    entry.trigger = document.getElementById("life-trigger").value;
     entry.reviewAt = getLifeReviewAt(document.getElementById("life-review-delay").value);
     entry.updatedAt = now;
     if (completed) entry.completed = true;
@@ -3425,12 +3889,26 @@
 
   function suggestLifeAction() {
     var reflection = document.getElementById("life-reflection").value.trim();
-    var key = selectedLifePrompt === "restraint" ? "lifeAiRestraint" : (selectedLifePrompt === "continue" ? "lifeAiContinue" : "lifeAiBenefit");
-    var suggestion = reflection ? formatText("lifeAiFromReflection", { reflection: reflection.slice(0, 150) }) : t(key);
-    document.getElementById("life-action").value = suggestion;
+    var action = document.getElementById("life-action").value.trim();
+    var analysis = analyzeLifePlan(reflection, action);
     var output = document.getElementById("life-ai-suggestion");
-    output.textContent = t("lifeAiReady");
+    if (getCurrentFawaidEntry() && !getSelectedFawaidFinding()) {
+      output.textContent = t("lifeFawaidChooseFirst");
+      output.classList.add("is-ready");
+      renderLifeAiChecks(analysis);
+      var options = document.getElementById("life-ai-options");
+      options.textContent = "";
+      options.hidden = true;
+      return;
+    }
+    if (!analysis.reflection) output.textContent = t("lifeAiNeedReflection");
+    else if (!analysis.personal) output.textContent = t("lifeAiObservation");
+    else if (analysis.distinct === false) output.textContent = t("lifeAiDuplicate");
+    else if (!analysis.hasAction || !analysis.concrete || !analysis.cue) output.textContent = t("lifeAiImprove");
+    else output.textContent = t("lifeAiReady");
     output.classList.add("is-ready");
+    renderLifeAiChecks(analysis);
+    renderLifeAiOptions(buildLifePlans(analysis, reflection));
   }
 
   function renderMemoryVerse() {
@@ -3914,17 +4392,14 @@
     gate.hidden = !correctionLocked;
     if (!correctionLocked) return;
     var word = currentWords[correctionIndex] ? currentWords[correctionIndex].ar : "";
-    var uncertain = !correctionRequiresFullVerse && correctionStatuses[correctionIndex] !== "error";
-    gate.classList.toggle("is-uncertain", uncertain);
-    document.getElementById("correction-gate-title").textContent = t(uncertain ? "recognitionUncertain" : "correctionRequired");
-    document.getElementById("correction-gate-text").textContent = correctionRequiresFullVerse ? t("recognitionExtrasSub") : formatText("correctionTailSub", { word: word });
+    document.getElementById("correction-gate-title").textContent = t("correctionRequired");
+    document.getElementById("correction-gate-text").textContent = formatText("correctionRequiredSub", { word: word });
   }
 
   function clearCorrectionLock() {
     correctionLocked = false;
     correctionIndex = -1;
     correctionStatuses = [];
-    correctionRequiresFullVerse = false;
     var gate = document.getElementById("correction-gate");
     if (gate) {
       gate.hidden = true;
@@ -3935,21 +4410,19 @@
 
   function activateCorrectionLock(alignment) {
     if (!state.strictCorrection || !alignment || alignment.complete) return false;
-    correctionRequiresFullVerse = alignment.extras > 0;
-    var targetIndex = correctionRequiresFullVerse ? 0 : findCorrectionIndex(alignment.statuses, 0);
+    var targetIndex = findCorrectionIndex(alignment.statuses, 0);
     if (targetIndex < 0) return false;
     correctionLocked = true;
     correctionIndex = targetIndex;
-    correctionStatuses = correctionRequiresFullVerse ? currentWords.map(function () { return "pending"; }) : alignment.statuses.slice();
+    correctionStatuses = alignment.statuses.slice();
     clearAutoAdvance();
     renderCorrectionGate(false);
     updateNextButton();
-    var hasMismatch = alignment.outcome === "mismatch";
-    setRecognitionStatus(hasMismatch ? "correctionStatus" : "recognitionUncertain", hasMismatch ? "correctionStatusSub" : "recognitionUncertainSub", hasMismatch);
-    document.getElementById("recitation-subtitle").textContent = correctionRequiresFullVerse ? t("recognitionExtrasSub") : formatText("correctionTailSub", {
+    setRecognitionStatus("correctionStatus", "correctionStatusSub", true);
+    document.getElementById("recitation-subtitle").textContent = formatText("correctionRequiredSub", {
       word: currentWords[correctionIndex] ? currentWords[correctionIndex].ar : ""
     });
-    if (hasMismatch) playErrorCue();
+    playErrorCue();
     return true;
   }
 
@@ -3985,8 +4458,6 @@
   }
 
   function stopContinuousSession() {
-    window.clearTimeout(recognitionFallbackTimer);
-    recognitionFallbackTimer = null;
     continuousSessionActive = false;
     continuousResumePending = false;
     clearContinuousRestart();
@@ -4138,7 +4609,7 @@
     document.getElementById("summary-matched").textContent = formatMetric(matched);
     document.getElementById("summary-review").textContent = formatMetric(review);
     document.getElementById("summary-extra").textContent = formatMetric(extras);
-    var messageKey = !alignment ? "summaryIdle" : (alignment.complete ? "summaryComplete" : (isFinal ? (alignment.outcome === "uncertain" ? "recognitionUncertainSub" : "summaryFinal") : "summaryLive"));
+    var messageKey = !alignment ? "summaryIdle" : (alignment.complete ? "summaryComplete" : (isFinal ? "summaryFinal" : "summaryLive"));
     document.getElementById("summary-message").textContent = t(messageKey);
     document.getElementById("reading-summary").classList.toggle("has-results", Boolean(alignment));
     updateTeacherAssessmentUi(alignment);
@@ -5219,16 +5690,196 @@
       .trim();
   }
 
+  function firstArabicCluster(value) {
+    var compact = String(value || "").normalize("NFC").replace(/^[^\u0621-\u063A\u0641-\u064A]+/, "");
+    if (!compact) return "";
+    var end = 1;
+    while (end < compact.length && !/[\u0621-\u063A\u0641-\u064A]/.test(compact.charAt(end))) end += 1;
+    return compact.slice(0, end);
+  }
+
+  function lastArabicCluster(value) {
+    var compact = String(value || "").normalize("NFC").replace(/[^\u0621-\u063A\u0641-\u064A\u064B-\u065F\u0670\u06D6-\u06ED]/g, "");
+    if (!compact) return "";
+    var start = compact.length - 1;
+    while (start >= 0 && !/[\u0621-\u063A\u0641-\u064A]/.test(compact.charAt(start))) start -= 1;
+    return start >= 0 ? compact.slice(start) : "";
+  }
+
+  function idghamJoinVariants(leftWord, rightWord) {
+    var leftRaw = typeof leftWord === "string" ? leftWord : leftWord && leftWord.ar;
+    var rightRaw = typeof rightWord === "string" ? rightWord : rightWord && rightWord.ar;
+    var left = normalizeArabic(leftRaw);
+    var right = normalizeArabic(rightRaw);
+    if (!left || !right) return [];
+    var leftCluster = lastArabicCluster(leftRaw);
+    var rightCluster = firstArabicCluster(rightRaw);
+    var rightLetter = normalizeArabic(rightCluster).charAt(0);
+    var hasTanween = /[\u064B-\u064D]/.test(leftCluster);
+    var hasAssimilatedNun = left.endsWith("ن") && !/[\u064E-\u0650\u0652]/.test(leftCluster);
+    if (!(hasTanween || hasAssimilatedNun) || "يرملون".indexOf(rightLetter) < 0) return [];
+    var spokenLeft = hasAssimilatedNun ? left.slice(0, -1) : left;
+    return [spokenLeft + right, left + right].filter(function (variant, index, variants) {
+      return variant && variants.indexOf(variant) === index;
+    });
+  }
+
+  function idghamJoinSimilarity(leftWord, rightWord, heardWord) {
+    return idghamJoinVariants(leftWord, rightWord).reduce(function (best, variant) {
+      return Math.max(best, wordSimilarity(variant, heardWord));
+    }, 0);
+  }
+
+  function idghamJoinThreshold() {
+    return Math.max(0.8, recognitionMatchThreshold());
+  }
+
+  function levenshtein(left, right) {
+    var a = String(left || "");
+    var b = String(right || "");
+    var previous = Array.from({ length: b.length + 1 }, function (_, index) { return index; });
+    for (var i = 1; i <= a.length; i += 1) {
+      var current = [i];
+      for (var j = 1; j <= b.length; j += 1) {
+        current[j] = Math.min(
+          current[j - 1] + 1,
+          previous[j] + 1,
+          previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+        );
+      }
+      previous = current;
+    }
+    return previous[b.length];
+  }
+
+  function wordSimilarity(left, right) {
+    var a = normalizeArabic(left);
+    var b = normalizeArabic(right);
+    if (!a || !b) return 0;
+    return 1 - (levenshtein(a, b) / Math.max(a.length, b.length));
+  }
+
+  function recognitionMatchThreshold() {
+    return getEffectiveRecognitionMode() === "quran" ? 0.8 : 0.72;
+  }
+
   function alignExpectedWords(expectedWords, transcript, isFinal) {
-    return window.AllimRecitation.align(expectedWords, transcript, isFinal);
+    var expected = expectedWords.map(function (word) {
+      return normalizeArabic(typeof word === "string" ? word : word.ar);
+    });
+    var heard = normalizeArabic(transcript).split(/\s+/).filter(Boolean);
+    var rows = expected.length + 1;
+    var columns = heard.length + 1;
+    var costs = Array.from({ length: rows }, function () { return Array(columns).fill(0); });
+    var moves = Array.from({ length: rows }, function () { return Array(columns).fill(""); });
+    var i;
+    var j;
+    for (i = 1; i < rows; i += 1) {
+      costs[i][0] = i;
+      moves[i][0] = "delete";
+    }
+    for (j = 1; j < columns; j += 1) {
+      costs[0][j] = j;
+      moves[0][j] = "insert";
+    }
+    for (i = 1; i < rows; i += 1) {
+      for (j = 1; j < columns; j += 1) {
+        var similarity = wordSimilarity(expected[i - 1], heard[j - 1]);
+        var substitutionCost = similarity >= 0.88 ? 0 : (similarity >= 0.58 ? 0.45 : 1);
+        var substitute = costs[i - 1][j - 1] + substitutionCost;
+        var remove = costs[i - 1][j] + 1;
+        var insert = costs[i][j - 1] + 1;
+        var best = Math.min(substitute, remove, insert);
+        costs[i][j] = best;
+        moves[i][j] = best === substitute ? "substitute" : (best === remove ? "delete" : "insert");
+        if (i >= 2) {
+          var joinedSimilarity = idghamJoinSimilarity(expectedWords[i - 2], expectedWords[i - 1], heard[j - 1]);
+          if (joinedSimilarity >= idghamJoinThreshold()) {
+            var joinedCost = joinedSimilarity >= 0.88 ? 0 : 0.45;
+            var joined = costs[i - 2][j - 1] + joinedCost;
+            if (joined < costs[i][j]) {
+              costs[i][j] = joined;
+              moves[i][j] = "idgham-join";
+            }
+          }
+        }
+      }
+    }
+    var statuses = Array(expected.length).fill("pending");
+    var extras = 0;
+    i = expected.length;
+    j = heard.length;
+    while (i > 0 || j > 0) {
+      var move = moves[i][j];
+      if (i >= 2 && j > 0 && move === "idgham-join") {
+        var joinedScore = idghamJoinSimilarity(expectedWords[i - 2], expectedWords[i - 1], heard[j - 1]);
+        var joinedStatus = joinedScore >= idghamJoinThreshold() ? "recognized" : "warning";
+        statuses[i - 2] = joinedStatus;
+        statuses[i - 1] = joinedStatus;
+        i -= 2;
+        j -= 1;
+      } else if (i > 0 && j > 0 && move === "substitute") {
+        var score = wordSimilarity(expected[i - 1], heard[j - 1]);
+        statuses[i - 1] = score >= recognitionMatchThreshold() ? "recognized" : "warning";
+        i -= 1;
+        j -= 1;
+      } else if (i > 0 && (move === "delete" || j === 0)) {
+        statuses[i - 1] = isFinal ? "error" : "pending";
+        i -= 1;
+      } else {
+        extras += 1;
+        j -= 1;
+      }
+    }
+    return {
+      statuses: statuses,
+      matched: statuses.filter(function (status) { return status === "recognized"; }).length,
+      warnings: statuses.filter(function (status) { return status === "warning"; }).length,
+      errors: statuses.filter(function (status) { return status === "error"; }).length,
+      extras: extras,
+      score: (statuses.filter(function (status) { return status === "recognized"; }).length * 4) +
+        (statuses.filter(function (status) { return status === "warning"; }).length * 1.5) -
+        (statuses.filter(function (status) { return status === "error"; }).length * .5) -
+        (Math.max(0, heard.length - expected.length) * .25),
+      complete: statuses.length > 0 && statuses.every(function (status) { return status === "recognized"; })
+    };
   }
 
   function alignRecognizedWords(transcript, isFinal) {
     return alignExpectedWords(currentWords, transcript, isFinal);
   }
 
-  function chooseBestTranscript(event) {
-    return window.AllimRecitation.chooseTranscript(event);
+  function chooseBestTranscript(event, expectedWords) {
+    var targetWords = expectedWords && expectedWords.length ? expectedWords : currentWords;
+    var candidates = [{ text: "", confidence: 0 }];
+    var finalResult = true;
+    for (var resultIndex = 0; resultIndex < event.results.length; resultIndex += 1) {
+      var result = event.results[resultIndex];
+      if (!result.isFinal) finalResult = false;
+      var alternatives = [];
+      for (var alternativeIndex = 0; alternativeIndex < Math.min(result.length, 5); alternativeIndex += 1) {
+        alternatives.push({
+          text: result[alternativeIndex].transcript,
+          confidence: Number(result[alternativeIndex].confidence || 0)
+        });
+      }
+      if (!alternatives.length) alternatives.push({ text: "", confidence: 0 });
+      var expanded = [];
+      candidates.forEach(function (candidate) {
+        alternatives.forEach(function (alternative) {
+          var text = (candidate.text + " " + alternative.text).trim();
+          var alignment = alignExpectedWords(targetWords, text, finalResult);
+          expanded.push({
+            text: text,
+            confidence: candidate.confidence + alternative.confidence,
+            rank: alignment.score + ((candidate.confidence + alternative.confidence) * .05)
+          });
+        });
+      });
+      expanded.sort(function (left, right) { return right.rank - left.rank; });
+      candidates = expanded.slice(0, 8);
+    }
+    return { transcript: candidates.length ? candidates[0].text : "", isFinal: finalResult };
   }
 
   function setRecognitionButton(listening) {
@@ -5394,7 +6045,7 @@
         return;
       }
       if (!quranVadSpeechDetected && elapsed >= 10000) {
-        // The meter can miss quiet speech. Let the server assess the captured audio.
+        recorder._noSpeech = true;
         try { recorder.stop(); } catch (error) { handleRecognitionError("audio-capture"); }
         return;
       }
@@ -5457,82 +6108,47 @@
     return {};
   }
 
-  function readQuranAsrResponse(response) {
-    return response.json().then(function (data) {
-      if (!response.ok) {
-        var error = new Error("quran-asr-unavailable");
-        error.code = data && data.detail && data.detail.code || (response.status === 429 ? "rate_limited" : "asr_failed");
-        throw error;
-      }
-      return data;
-    });
-  }
-
-  function showQuranSubmissionError(error) {
-    var key = error && error.code === "audio_too_long" ? "quranAudioTooLong" :
-      error && error.code === "invalid_audio" ? "quranAudioInvalid" :
-      error && ["rate_limited", "asr_busy"].indexOf(error.code) >= 0 ? "quranBusy" : "quranRecognitionError";
-    setRecognitionStatus(key, key + "Sub", true);
-    stopContinuousSession();
-  }
-
-  function submitQuranAudio(blob, mimeType, contributionContext) {
+  function submitQuranAudio(blob, mimeType) {
     var form = new FormData();
     var extension = mimeType.indexOf("mp4") >= 0 ? "m4a" : "webm";
     var alignmentResult = null;
     var controller = new window.AbortController();
-    var requestId = recognitionRequestId;
-    var verseKey = currentSurah.id + ":" + currentVerse.ayah;
-    var timedOut = false;
-    function isCurrent() {
-      return quranSubmitController === controller && recognitionRequestId === requestId &&
-        currentSurah.id + ":" + currentVerse.ayah === verseKey;
-    }
     if (quranSubmitController) quranSubmitController.abort();
-    window.clearTimeout(quranSubmitTimer);
     quranSubmitController = controller;
     quranSubmitting = true;
     clearContinuousRestart();
     form.append("audio", blob, "recitation." + extension);
-    form.append("verse_key", verseKey);
+    form.append("verse_key", currentSurah.id + ":" + currentVerse.ayah);
     setRecognitionStatus("quranProcessing", "quranProcessingSub", false);
     document.getElementById("recognition-engine").textContent = t("quranRecognition");
     setRecognitionControlsDisabled(false);
     setRecognitionButton(true);
-    quranSubmitTimer = window.setTimeout(function () {
-      if (isCurrent()) { timedOut = true; controller.abort(); }
-    }, 90000);
     return window.fetch("/api/quran-asr", {
-      method: "POST", body: form, signal: controller.signal,
-      headers: contribution ? contribution.append(form, contributionContext, "read") : { "X-Requested-With": "QuranCompanion" }
-    }).then(readQuranAsrResponse).then(function (data) {
-      if (!isCurrent() || controller.signal.aborted) return;
-      if (data.verse_key !== verseKey) throw new Error("stale-asr-verse");
-      var result = window.AllimRecitation.parseResponse(data);
-      if (result.issue) {
+      method: "POST",
+      body: form,
+      signal: controller.signal,
+      headers: { "X-Requested-With": "QuranCompanion" }
+    }).then(function (response) {
+      if (!response.ok) throw new Error("quran-asr-unavailable");
+      return response.json();
+    }).then(function (data) {
+      var transcript = data && data.transcript ? String(data.transcript) : "";
+      if (!transcript.trim()) {
         continuousFailureCount += 1;
-        if (result.issue === "no-speech") handleRecognitionError("no-speech");
-        else {
-          setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
-          document.getElementById("live-transcript-text").textContent = result.transcript || t("recognitionUncertain");
-        }
+        handleRecognitionError("no-speech");
         return;
       }
       continuousFailureCount = 0;
-      alignmentResult = correctionLocked ? applyCorrectionTranscript(result.transcript, true) : applyTranscript(result.transcript, true);
-      if (alignmentResult.complete) recordRecognitionSession(alignmentResult.matched);
-      if (!alignmentResult.complete && !(state.strictCorrection && correctionLocked)) {
-        setRecognitionStatus(alignmentResult.outcome === "uncertain" ? "recognitionUncertain" : "recognitionStopped",
-          alignmentResult.outcome === "uncertain" ? "recognitionUncertainSub" : "recognitionStoppedSub", false);
-      }
+      alignmentResult = correctionLocked ? applyCorrectionTranscript(transcript, true) : applyTranscript(transcript, true);
+      recordRecognitionSession(alignmentResult.matched);
+      if (!alignmentResult.complete && !(state.strictCorrection && correctionLocked)) setRecognitionStatus("recognitionStopped", "recognitionStoppedSub", false);
     }).catch(function (error) {
-      if (!isCurrent() || (error && error.name === "AbortError" && !timedOut)) return;
+      if (error && error.name === "AbortError") return;
       continuousFailureCount += 1;
-      showQuranSubmissionError(error);
+      setRecognitionStatus("quranRecognitionError", "quranRecognitionErrorSub", true);
+      document.getElementById("recognition-engine").textContent = t("quranRecognitionError");
     }).then(function () {
-      if (!isCurrent()) return;
-      window.clearTimeout(quranSubmitTimer);
-      quranSubmitTimer = null;
+      if (quranSubmitController !== controller) return;
       quranSubmitController = null;
       quranSubmitting = false;
       setRecognitionControlsDisabled(false);
@@ -5543,17 +6159,11 @@
     });
   }
 
-  function startQuranRecognition(consentChecked) {
+  function startQuranRecognition() {
     if (!quranAsrAvailable || !window.MediaRecorder) {
       setRecognitionStatus("quranRecognitionError", "quranRecognitionErrorSub", true);
       return;
     }
-    if (contribution && !consentChecked) {
-      var pendingId = recognitionRequestId;
-      contribution.beforeStart(function () { if (pendingId === recognitionRequestId) startQuranRecognition(true); });
-      return;
-    }
-    var contributionContext = contribution ? contribution.context() : null;
     var requestId = beginRecognitionStart();
     startAudioMeter(requestId).then(function (meterReady) {
       if (!meterReady || !micStream || !finishRecognitionStart(requestId)) return;
@@ -5571,14 +6181,11 @@
         if (event.data && event.data.size > 0) chunks.push(event.data);
       };
       recorder.onerror = function () {
-        if (quranRecorder !== recorder) return;
-        recorder._discard = true;
         continuousFailureCount += 1;
         stopAudioMeter();
         handleRecognitionError("audio-capture");
       };
       recorder.onstart = function () {
-        if (quranRecorder !== recorder || requestId !== recognitionRequestId) return;
         isListening = true;
         if (!(state.recitationFlow === "continuous" && continuousSessionActive)) playStartCue();
         setRecognitionControlsDisabled(false);
@@ -5589,23 +6196,28 @@
         startQuranVad(recorder);
       };
       recorder.onstop = function () {
-        if (quranRecorder !== recorder || requestId !== recognitionRequestId) return;
         isListening = false;
         quranRecorder = null;
         document.getElementById("recitation-panel").classList.remove("is-listening");
         setRecognitionButton(false);
         stopAudioMeter();
         if (recorder._discard) return;
+        if (recorder._noSpeech) {
+          continuousFailureCount += 1;
+          handleRecognitionError("no-speech");
+          queueContinuousRestart(620);
+          return;
+        }
         var mimeType = recorder.mimeType || chunks[0] && chunks[0].type || "audio/webm";
         var blob = new Blob(chunks, { type: mimeType });
         chunks.length = 0;
         if (!blob.size) {
           continuousFailureCount += 1;
-          handleRecognitionError("audio-capture");
+          handleRecognitionError("no-speech");
           queueContinuousRestart(620);
           return;
         }
-        submitQuranAudio(blob, mimeType, contributionContext);
+        submitQuranAudio(blob, mimeType);
       };
       recorder.start(500);
     }).catch(function (error) {
@@ -5618,10 +6230,6 @@
   }
 
   function resetRecognitionView() {
-    window.clearTimeout(recognitionFallbackTimer);
-    recognitionFallbackTimer = null;
-    window.clearTimeout(quranSubmitTimer);
-    quranSubmitTimer = null;
     clearContinuousRestart();
     recognitionRequestId += 1;
     clearRecognitionStartTimer();
@@ -5673,7 +6281,7 @@
   }
 
   function recordRecognitionSession(matchedWords) {
-    if (recognitionSessionCounted || !lastTranscript.trim() || !lastAlignmentFinal || !lastAlignment || !lastAlignment.complete) return;
+    if (recognitionSessionCounted || !lastTranscript.trim()) return;
     recognitionSessionCounted = true;
     state.sessions += 1;
     state.wordsReviewed += matchedWords;
@@ -5684,6 +6292,20 @@
     updateVerseActions();
   }
 
+  function makeAlignmentFromStatuses(statuses, extras) {
+    var matched = statuses.filter(function (status) { return status === "recognized"; }).length;
+    var warnings = statuses.filter(function (status) { return status === "warning"; }).length;
+    var errors = statuses.filter(function (status) { return status === "error" || status === "pending"; }).length;
+    return {
+      statuses: statuses.slice(),
+      matched: matched,
+      warnings: warnings,
+      errors: errors,
+      extras: Number(extras) || 0,
+      score: (matched * 4) + (warnings * 1.5) - (errors * .5),
+      complete: statuses.length > 0 && statuses.every(function (status) { return status === "recognized"; })
+    };
+  }
 
   function renderRecognitionAlignment(alignment, isFinal) {
     lastMatchedCount = alignment.matched;
@@ -5697,7 +6319,7 @@
       var status = alignment.statuses[index];
       if (status === "recognized") button.classList.add("is-recognized");
       if (status === "warning") button.classList.add("is-warning");
-      if (status === "error") button.classList.add("is-error");
+      if (status === "error" || (isFinal && status === "pending")) button.classList.add("is-error");
     });
     if (mushafSelectedVerseKey) {
       var mushafWords = Array.prototype.slice.call(document.querySelectorAll('[data-verse-key="' + mushafSelectedVerseKey + '"]:not(.is-ayah-end)'));
@@ -5706,7 +6328,7 @@
         var status = alignment.statuses[index];
         if (status === "recognized") button.classList.add("is-recognized");
         if (status === "warning") button.classList.add("is-warning");
-        if (status === "error") button.classList.add("is-error");
+        if (status === "error" || (isFinal && status === "pending")) button.classList.add("is-error");
       });
     }
     document.querySelector("#recognition-progress span").style.width = Math.round((alignment.matched / Math.max(currentWords.length, 1)) * 100) + "%";
@@ -5716,7 +6338,6 @@
   }
 
   function completeRecognizedVerse(alignment) {
-    if (!alignment || !alignment.complete || !lastAlignmentFinal) return;
     continuousFailureCount = 0;
     var shouldCredit = !recognitionSessionCounted;
     var heartResult = null;
@@ -5749,10 +6370,8 @@
     document.getElementById("recitation-panel").classList.remove("is-listening");
     setRecognitionButton(false);
     if (recognition) {
-      var finishedRecognition = recognition;
-      recognition = null;
       userStoppedRecognition = true;
-      try { finishedRecognition.stop(); } catch (error) { /* no-op */ }
+      try { recognition.stop(); } catch (error) { /* no-op */ }
     }
     if (state.recitationFlow === "continuous" && continuousSessionActive) {
       userStoppedRecognition = false;
@@ -5778,11 +6397,8 @@
     document.getElementById("live-transcript-text").textContent = lastTranscript || t("waitingSpeech");
     var alignment = alignRecognizedWords(lastTranscript, isFinal);
     renderRecognitionAlignment(alignment, isFinal);
-    if (isFinal && alignment.complete) completeRecognizedVerse(alignment);
-    else if (isFinal && !alignment.complete && !activateCorrectionLock(alignment)) {
-      if (alignment.outcome === "mismatch") playErrorCue();
-      else setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
-    }
+    if (alignment.complete) completeRecognizedVerse(alignment);
+    else if (isFinal && !alignment.complete && !activateCorrectionLock(alignment)) playErrorCue();
     return alignment;
   }
 
@@ -5790,21 +6406,50 @@
     if (!state.strictCorrection || !correctionLocked) return applyTranscript(transcript, isFinal);
     lastTranscript = String(transcript || "").trim();
     document.getElementById("live-transcript-text").textContent = lastTranscript || t("waitingSpeech");
-    var alignment = window.AllimRecitation.alignCorrection(currentWords, lastTranscript,
-      correctionStatuses, isFinal, correctionRequiresFullVerse);
+    var heard = normalizeArabic(lastTranscript).split(/\s+/).filter(Boolean);
+    var statuses = correctionStatuses.length ? correctionStatuses.slice() : Array(currentWords.length).fill("error");
+    var targetIndex = findCorrectionIndex(statuses, correctionIndex);
+    var resolved = 0;
+    var startedCorrection = false;
+    var extras = 0;
+    heard.forEach(function (heardWord) {
+      if (targetIndex < 0) {
+        extras += 1;
+        return;
+      }
+      var score = wordSimilarity(currentWords[targetIndex].ar, heardWord);
+      if (score >= recognitionMatchThreshold()) {
+        statuses[targetIndex] = "recognized";
+        resolved += 1;
+        startedCorrection = true;
+        targetIndex = findCorrectionIndex(statuses, targetIndex + 1);
+      } else if (startedCorrection) {
+        extras += 1;
+      }
+    });
+    var alignment = makeAlignmentFromStatuses(statuses, extras);
+    correctionStatuses = statuses.slice();
     renderRecognitionAlignment(alignment, isFinal);
-    if (!isFinal) return alignment;
     if (alignment.complete) {
       completeRecognizedVerse(alignment);
       return alignment;
     }
-    activateCorrectionLock(alignment);
+    correctionIndex = findCorrectionIndex(statuses, correctionIndex);
+    correctionLocked = true;
+    renderCorrectionGate(false);
+    updateNextButton();
+    setRecognitionStatus("correctionStatus", "correctionStatusSub", true);
+    document.getElementById("recitation-subtitle").textContent = formatText("correctionRequiredSub", {
+      word: currentWords[correctionIndex] ? currentWords[correctionIndex].ar : ""
+    });
+    if (isFinal && resolved === 0) playErrorCue();
     return alignment;
   }
 
   function canAutoFallbackToServer(errorCode) {
     return state.recognitionMode === "auto" &&
       !autoServerFallback &&
+      !browserRecognitionSupported() &&
       quranRecognitionSupported() &&
       ["network", "phrases-not-supported", "start-failed", "unsupported"].indexOf(errorCode) >= 0;
   }
@@ -5818,20 +6463,12 @@
     setRecognitionControlsDisabled(false);
     setRecognitionButton(false);
     if (canAutoFallbackToServer(errorCode)) {
-      var failedRecognition = recognition;
       recognition = null;
-      if (failedRecognition) {
-        try { failedRecognition.abort(); } catch (error) { /* no-op */ }
-      }
       recognitionHadError = false;
       autoServerFallback = true;
       updateRecognitionModeUi();
       setRecognitionStatus("recognitionAutoFallback", "recognitionAutoFallbackSub", false);
-      var fallbackRequestId = recognitionRequestId;
-      recognitionFallbackTimer = window.setTimeout(function () {
-        recognitionFallbackTimer = null;
-        if (recognitionRequestId === fallbackRequestId && !userStoppedRecognition) startRecognition(true);
-      }, 280);
+      window.setTimeout(function () { startRecognition(true); }, 280);
       return;
     }
     if (errorCode === "not-allowed" || errorCode === "service-not-allowed") {
@@ -5862,7 +6499,7 @@
     instance.lang = "ar-SA";
     instance.continuous = false;
     instance.interimResults = true;
-    instance.maxAlternatives = 1;
+    instance.maxAlternatives = 5;
     /* Keep the baseline recognizer free of experimental phrase and grammar hints.
        Some Chromium-based browsers expose these APIs but reject them at runtime. */
     instance.onstart = function () {
@@ -5901,20 +6538,16 @@
       setRecognitionControlsDisabled(false);
       setRecognitionButton(false);
       if (recognitionHadError) return;
-      // onend is not a final result. An abandoned interim hypothesis cannot earn credit.
       if (lastTranscript && !lastAlignmentFinal) {
-        setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
-        queueContinuousRestart(900);
-        return;
+        var alignment = correctionLocked ? applyCorrectionTranscript(lastTranscript, true) : applyTranscript(lastTranscript, true);
+        recordRecognitionSession(alignment.matched);
       }
       if (recognitionSessionCounted && !correctionLocked) {
         if (state.recitationFlow === "continuous" && continuousSessionActive && !userStoppedRecognition && (!lastAlignment || !lastAlignment.complete)) queueContinuousRestart(420);
         return;
       }
       if (state.strictCorrection && correctionLocked) {
-        var uncertain = lastAlignment && lastAlignment.outcome === "uncertain";
-        setRecognitionStatus(uncertain ? "recognitionUncertain" : "correctionStatus",
-          uncertain ? "recognitionUncertainSub" : "correctionStatusSub", !uncertain);
+        setRecognitionStatus("correctionStatus", "correctionStatusSub", true);
         queueContinuousRestart(320);
         return;
       }
@@ -5933,8 +6566,6 @@
     userStoppedRecognition = true;
     stopContinuousSession();
     clearAutoAdvance();
-    window.clearTimeout(quranSubmitTimer);
-    quranSubmitTimer = null;
     recognitionRequestId += 1;
     clearRecognitionStartTimer();
     recognitionStartPending = false;
@@ -5965,16 +6596,6 @@
   }
 
   function startRecognition(internalRestart) {
-    if (!window.AllimRecitation) {
-      setRecognitionStatus("recognitionError", "recognitionErrorSub", true);
-      return;
-    }
-    if (recognitionFallbackTimer) {
-      userStoppedRecognition = true;
-      stopContinuousSession();
-      setRecognitionStatus("recognitionStopped", "recognitionStoppedSub", false);
-      return;
-    }
     if (recognitionStartPending) {
       cancelRecognitionStart(true);
       return;
@@ -6053,7 +6674,7 @@
   function checkRecognitionSupport() {
     var secureRuntime = updateRuntimeContextUi();
     var effectiveMode = getEffectiveRecognitionMode();
-    var supported = secureRuntime && Boolean(window.AllimRecitation) && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
+    var supported = secureRuntime && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
     setRecognitionControlsDisabled(!supported);
     if (!secureRuntime) {
       setRecognitionStatus("secureMicStatus", "secureMicStatusSub", true);
@@ -6173,7 +6794,7 @@
         return;
       }
       if (!memoryVadSpeechDetected && elapsed >= 10000) {
-        // The meter alone cannot distinguish silence from a quiet recitation.
+        recorder._noSpeech = true;
         try { recorder.stop(); } catch (error) { handleMemoryRecognitionError("audio-capture"); }
         return;
       }
@@ -6227,14 +6848,13 @@
     var button = document.getElementById("start-memory-recognition");
     if (!button) return false;
     var effectiveMode = getEffectiveRecognitionMode();
-    var supported = hasSecureAudioContext() && Boolean(window.AllimRecitation) && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
+    var supported = hasSecureAudioContext() && (effectiveMode === "quran" ? quranRecognitionSupported() : browserRecognitionSupported());
     button.disabled = !supported || memoryPipelineActive();
     if (!supported) setMemoryStatus("memoryUnsupported", "memoryUnsupportedSub", true);
     return supported;
   }
 
   function prepareMemoryAttempt() {
-    memoryLastOutcome = "uncertain";
     getMemoryWordElements().forEach(function (word) {
       word.classList.remove("is-revealed", "is-correct", "is-hint", "is-incorrect", "is-current");
     });
@@ -6255,10 +6875,7 @@
       setMemoryButton(false);
       return;
     }
-    var uncertain = afterError === "uncertain";
-    setMemorySeriesPhase(uncertain ? "ready" : afterError ? "error" : "accepted",
-      uncertain ? "recognitionUncertain" : afterError ? "memorySeriesError" : "memorySeriesAccepted",
-      uncertain ? "recognitionUncertainSub" : afterError ? "memorySeriesErrorSub" : "memorySeriesAcceptedSub");
+    setMemorySeriesPhase(afterError ? "error" : "accepted", afterError ? "memorySeriesError" : "memorySeriesAccepted", afterError ? "memorySeriesErrorSub" : "memorySeriesAcceptedSub");
     memoryRestartTimer = window.setTimeout(function () {
       memoryRestartTimer = null;
       if (!memorySeriesActive) return;
@@ -6326,17 +6943,10 @@
     memoryLastTranscript = cleanTranscript;
     document.getElementById("memory-transcript-text").textContent = cleanTranscript;
     var fullAlignment = alignExpectedWords(splitVerseWords(currentVerse.text), cleanTranscript, Boolean(isFinal));
-    if (isFinal && fullAlignment.complete) memoryFullVerseMatched = true;
+    if (fullAlignment.complete) memoryFullVerseMatched = true;
     var remainingWords = getRemainingMemoryWords();
     if (!remainingWords.length) return null;
     var alignment = alignExpectedWords(remainingWords, cleanTranscript, Boolean(isFinal));
-    memoryLastOutcome = alignment.outcome;
-    if (!isFinal) return alignment;
-    if (fullAlignment.complete) alignment = window.AllimRecitation.summarize(remainingWords.map(function () { return "recognized"; }), 0, true);
-    if (alignment.extras > 0) {
-      setMemoryStatus("memoryWordRetry", "recognitionExtrasSub", true);
-      return alignment;
-    }
     var elements = getMemoryWordElements();
     var opened = 0;
     for (var index = 0; index < alignment.statuses.length; index += 1) {
@@ -6347,16 +6957,14 @@
     if (memorySessionCounted) return alignment;
     var current = elements[memoryRevealedCount];
     if (current) {
-      current.classList.toggle("is-incorrect", alignment.outcome === "mismatch" && opened === 0);
+      current.classList.toggle("is-incorrect", Boolean(isFinal) && opened === 0);
       current.classList.add("is-current");
     }
     if (opened > 0) {
       setMemoryStatus("memoryWordCorrect", "memoryWordCorrectSub", false);
     } else if (isFinal) {
-      var uncertain = alignment.outcome === "uncertain";
-      setMemoryStatus(uncertain ? "recognitionUncertain" : "memoryWordRetry",
-        uncertain ? "recognitionUncertainSub" : "memoryWordRetrySub", !uncertain);
-      if (!uncertain) playErrorCue();
+      setMemoryStatus("memoryWordRetry", "memoryWordRetrySub", true);
+      playErrorCue();
     }
     return alignment;
   }
@@ -6407,7 +7015,7 @@
     instance.lang = "ar-SA";
     instance.continuous = false;
     instance.interimResults = true;
-    instance.maxAlternatives = 1;
+    instance.maxAlternatives = 5;
     instance.onstart = function () {
       if (memoryRecognition !== instance) return;
       if (instance._allimRequestId !== memoryRequestId || !memorySeriesActive) {
@@ -6439,17 +7047,17 @@
       clearMemoryStartTimer();
       setMemoryButton(false);
       if (memorySessionCounted || memoryHadError) return;
-      // Only onresult may provide a final hypothesis; onend must not promote interim text.
+      if (memoryLastTranscript) applyMemoryTranscript(memoryLastTranscript, true);
       if (!memorySessionCounted && memorySeriesActive) {
         var needsCorrection = Boolean(document.querySelector(".memory-stage.has-memory-error")) || !memoryLastTranscript;
         if (!needsCorrection) setMemoryStatus("memoryPaused", "memoryPausedSub", false);
-        queueMemoryRestart(needsCorrection ? 900 : 520, memoryLastOutcome === "uncertain" ? "uncertain" : needsCorrection);
+        queueMemoryRestart(needsCorrection ? 900 : 520, needsCorrection);
       }
     };
     return instance;
   }
 
-  function submitMemoryQuranAudio(blob, mimeType, contributionContext) {
+  function submitMemoryQuranAudio(blob, mimeType) {
     var form = new FormData();
     var extension = mimeType.indexOf("mp4") >= 0 ? "m4a" : "webm";
     var controller = window.AbortController ? new window.AbortController() : null;
@@ -6463,31 +7071,29 @@
     setMemoryButton(false);
     memorySubmitTimer = window.setTimeout(function () {
       if (memorySubmitController === controller && controller) controller.abort();
-    }, 90000);
+    }, 45000);
     return window.fetch("/api/quran-asr", {
       method: "POST",
       body: form,
-      headers: contribution ? contribution.append(form, contributionContext, "memory") : { "X-Requested-With": "QuranCompanion" },
+      headers: { "X-Requested-With": "QuranCompanion" },
       signal: controller ? controller.signal : undefined
-    }).then(readQuranAsrResponse).then(function (data) {
+    }).then(function (response) {
+      if (!response.ok) throw new Error("quran-asr-unavailable");
+      return response.json();
+    }).then(function (data) {
       if (submitToken !== memoryRequestId || !memorySeriesActive) return;
-      if (data.verse_key !== currentSurah.id + ":" + currentVerse.ayah) throw new Error("stale-asr-verse");
-      var result = window.AllimRecitation.parseResponse(data);
-      if (result.issue) {
-        if (result.issue === "no-speech") handleMemoryRecognitionError("no-speech");
-        else {
-          setMemoryStatus("recognitionUncertain", "recognitionUncertainSub", false);
-          queueMemoryRestart(900, "uncertain");
-        }
+      var transcript = data && data.transcript ? String(data.transcript) : "";
+      if (!transcript.trim()) {
+        handleMemoryRecognitionError("no-speech");
         return;
       }
-      applyMemoryTranscript(result.transcript, true);
+      applyMemoryTranscript(transcript, true);
       if (!memorySessionCounted && memorySeriesActive) {
         var needsCorrection = Boolean(document.querySelector(".memory-stage.has-memory-error"));
-        queueMemoryRestart(needsCorrection ? 900 : 620, memoryLastOutcome === "uncertain" ? "uncertain" : needsCorrection);
+        queueMemoryRestart(needsCorrection ? 900 : 620, needsCorrection);
       }
     }).catch(function (error) {
-      if (!memorySeriesActive || submitToken !== memoryRequestId) return;
+      if (error && error.name === "AbortError" && (!memorySeriesActive || submitToken !== memoryRequestId)) return;
       handleMemoryRecognitionError("quran-asr-unavailable");
     }).then(function () {
       if (memorySubmitController === controller) {
@@ -6501,13 +7107,7 @@
     });
   }
 
-  function startMemoryQuranRecognition(consentChecked) {
-    if (contribution && !consentChecked) {
-      var pendingId = memoryRequestId;
-      contribution.beforeStart(function () { if (pendingId === memoryRequestId && memorySeriesActive) startMemoryQuranRecognition(true); });
-      return;
-    }
-    var contributionContext = contribution ? contribution.context() : null;
+  function startMemoryQuranRecognition() {
     var requestId = ++memoryRequestId;
     memoryStartPending = true;
     setMemoryStatus("memoryRequesting", "memoryRequestingSub", false);
@@ -6554,10 +7154,14 @@
         stopMemoryMicStream();
         setMemoryButton(false);
         if (recorder._discard) return;
+        if (recorder._noSpeech) {
+          handleMemoryRecognitionError("no-speech");
+          return;
+        }
         var mimeType = recorder.mimeType || chunks[0] && chunks[0].type || "audio/webm";
         var blob = new Blob(chunks, { type: mimeType });
-        if (!blob.size) handleMemoryRecognitionError("audio-capture");
-        else submitMemoryQuranAudio(blob, mimeType, contributionContext);
+        if (!blob.size) handleMemoryRecognitionError("no-speech");
+        else submitMemoryQuranAudio(blob, mimeType);
       };
       recorder.start(500);
     }).catch(function (error) {
@@ -7099,12 +7703,13 @@
       if (saveLifePractice(true)) lifePracticeDialog.close();
     });
     document.getElementById("life-ai-suggest").addEventListener("click", suggestLifeAction);
-    document.querySelectorAll("[data-life-prompt]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        selectedLifePrompt = button.getAttribute("data-life-prompt") || "benefit";
-        document.querySelectorAll("[data-life-prompt]").forEach(function (item) {
-          item.setAttribute("aria-pressed", String(item === button));
-        });
+    ["life-trigger"].forEach(function (id) {
+      document.getElementById(id).addEventListener("change", resetLifeAiReview);
+    });
+    ["life-reflection", "life-action"].forEach(function (id) {
+      document.getElementById(id).addEventListener("input", function () {
+        var options = document.getElementById("life-ai-options");
+        if (!options.hidden) renderLifeAiChecks(analyzeLifePlan(document.getElementById("life-reflection").value.trim(), document.getElementById("life-action").value.trim()));
       });
     });
 
@@ -7197,7 +7802,6 @@
     if (["ru", "en", "ar"].indexOf(launchLanguage) >= 0) state.language = launchLanguage;
     applyMushafAppearance();
     initializeEvents();
-    if (contribution) contribution.mount();
     document.documentElement.style.setProperty("--arabic-size", state.arabicSize + "px");
     document.getElementById("arabic-size").value = String(state.arabicSize);
     document.getElementById("daily-goal").value = String(state.dailyGoal);

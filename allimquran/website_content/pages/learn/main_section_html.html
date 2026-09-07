@@ -1,7 +1,4 @@
-<script src="/assets/allimquran/js/recitation-core.js?v=1"></script>
-<script src="/assets/allimquran/js/recitation-consent.js?v=1"></script>
-<link rel="stylesheet" href="/assets/allimquran/css/recitation-consent.css?v=1">
-<link rel="icon" href="/assets/allimquran/media/allim-brand-icon.png?v=80" type="image/png"><link rel="apple-touch-icon" href="/assets/allimquran/media/allim-brand-icon.png?v=80"><div class="allim-web-root"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
+<link rel="icon" href="/files/allim-brand-icon.png?v=81" type="image/png"><link rel="apple-touch-icon" href="/files/allim-brand-icon.png?v=81"><div class="allim-web-root" data-allim-release="81-fawaid-scholars"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
 
   <div class="allim-system-intro" id="allim-system-intro" data-stage="ornament" role="status" aria-live="polite" aria-label="Подготовка ALLIM">
     <div class="system-intro-frame">
@@ -74,7 +71,7 @@
   <div class="app-shell">
     <aside class="sidebar" aria-label="Основная навигация" data-i18n-aria="mainNav">
       <a class="brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home">
-        <img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=80" alt="" aria-hidden="true">
+        <img class="brand-mark" src="/files/allim-brand-icon.png?v=81" alt="" aria-hidden="true">
         <span class="brand-copy"><strong>ALLIM</strong><small>Qur’an Companion</small><span class="brand-dua-mini" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span></span>
       </a>
 
@@ -109,7 +106,7 @@
 
     <div class="workspace">
       <header class="topbar">
-        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=80" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
+        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/files/allim-brand-icon.png?v=81" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
         <div class="topbar-context">
           <span class="eyebrow topbar-dua" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span>
           <h1 id="view-title" data-i18n="todayTitle">Сегодня</h1>
@@ -208,7 +205,7 @@
 
           <aside class="trust-note">
             <svg><use href="#i-shield"/></svg>
-            <div><strong data-i18n="privacyFirst">Приватность по умолчанию</strong><span data-i18n="privacyText">Без отдельного согласия аудио Quran AI удаляется после обработки. Участием в сборе можно управлять в настройках.</span></div>
+            <div><strong data-i18n="privacyFirst">Приватность по умолчанию</strong><span data-i18n="privacyText">Прогресс хранится на устройстве. Браузер может обрабатывать речь своей службой; локальный Quran AI удаляет временный аудиофрагмент после обработки.</span></div>
           </aside>
         </section>
 
@@ -805,9 +802,17 @@
         <small id="life-verse-meaning"></small>
       </section>
 
+      <section class="life-fawaid" id="life-fawaid" aria-labelledby="life-fawaid-title">
+        <header>
+          <div><span class="kicker" data-i18n="lifeFawaidEyebrow">ФАВАЙД АЯТА</span><strong id="life-fawaid-title" data-i18n="lifeFawaidTitle">Выводы учёных о пользе аята</strong></div>
+        </header>
+        <p id="life-fawaid-note" data-i18n="lifeFawaidUnavailableText">Для этого аята проверенные выводы учёных пока не подключены.</p>
+        <div class="life-fawaid-content" id="life-fawaid-content" hidden></div>
+      </section>
+
       <aside class="life-ai-boundary">
         <span><svg><use href="#i-spark"/></svg></span>
-        <div><strong data-i18n="lifeAiTitle">AI-наставник помогает сформулировать</strong><small data-i18n="lifeAiBoundary">Он работает только с выбранным аятом и вашими словами: не придумывает толкование и не заменяет тафсир или учителя.</small></div>
+        <div><strong data-i18n="lifeAiTitle">AI-наставник проверяет замысел, а не повторяет его</strong><small data-i18n="lifeAiBoundary">Сначала вы выбираете конкретный вывод учёного. Затем помощник проверяет личную связь и конкретность действия — не придумывая смысл аята и не повторяя вашу заметку.</small></div>
       </aside>
 
       <form id="life-practice-form" class="life-practice-form">
@@ -816,25 +821,34 @@
           <textarea id="life-reflection" maxlength="500" rows="4" placeholder="Запишите одной-двумя фразами без стремления к красивому тексту." data-i18n-placeholder="lifeReflectionPlaceholder"></textarea>
         </label>
 
-        <fieldset class="life-prompt-field">
-          <legend data-i18n="lifePromptLegend">Если трудно начать, выберите направление</legend>
-          <button type="button" data-life-prompt="benefit" data-i18n="lifePromptBenefit">Принести пользу</button>
-          <button type="button" data-life-prompt="restraint" data-i18n="lifePromptRestraint">От чего удержаться</button>
-          <button type="button" data-life-prompt="continue" data-i18n="lifePromptContinue">Что продолжить</button>
-        </fieldset>
-
-        <label class="life-field" for="life-action">
-          <span><b>02</b><strong data-i18n="lifeActionTitle">Одно малое направленное действие</strong></span>
-          <textarea id="life-action" maxlength="220" rows="3" placeholder="Конкретно: что, когда и для кого — так, чтобы выполнить за 5–15 минут." data-i18n-placeholder="lifeActionPlaceholder"></textarea>
-        </label>
-
-        <div class="life-ai-compose">
-          <button class="secondary-button" id="life-ai-suggest" type="button"><svg><use href="#i-spark"/></svg><span data-i18n="lifeAiSuggest">Помоги сформулировать</span></button>
-          <p id="life-ai-suggestion" role="status" aria-live="polite" data-i18n="lifeAiSuggestionIdle">Помощник предложит форму действия, не объясняя аят от себя.</p>
+        <div class="life-plan-context">
+          <label for="life-trigger"><span data-i18n="lifeTriggerLabel">02 · Когда начать?</span><select id="life-trigger"><option value="next-prayer" data-i18n="lifeTriggerPrayer">После ближайшей молитвы</option><option value="next-conversation" data-i18n="lifeTriggerConversation">При следующем разговоре</option><option value="difficult-moment" data-i18n="lifeTriggerDifficult">В трудный момент</option><option value="before-evening" data-i18n="lifeTriggerEvening">До конца дня</option></select></label>
         </div>
 
+        <section class="life-ai-compose" aria-labelledby="life-ai-review-title">
+          <div class="life-ai-compose-head">
+            <div><strong id="life-ai-review-title" data-i18n="lifeAiReviewTitle">Разбор замысла</strong><small data-i18n="lifeAiReviewText">Помощник покажет, чего не хватает, и даст три разных варианта.</small></div>
+            <button class="secondary-button" id="life-ai-suggest" type="button"><svg><use href="#i-spark"/></svg><span data-i18n="lifeAiSuggest">Разобрать и предложить</span></button>
+          </div>
+          <div class="life-ai-result">
+            <p id="life-ai-suggestion" role="status" aria-live="polite" data-i18n="lifeAiSuggestionIdle">Сначала будет проверена личная связь, затем — конкретный шаг, момент начала и реальный объём.</p>
+            <div class="life-ai-checks" aria-label="Проверка плана" data-i18n-aria="lifeAiChecksLabel">
+              <span data-life-check="personal" data-state="idle"><i aria-hidden="true">○</i><b data-i18n="lifeAiCheckPersonal">Личная связь</b></span>
+              <span data-life-check="distinct" data-state="idle"><i aria-hidden="true">○</i><b data-i18n="lifeAiCheckDistinct">Не дублирует заметку</b></span>
+              <span data-life-check="concrete" data-state="idle"><i aria-hidden="true">○</i><b data-i18n="lifeAiCheckConcrete">Конкретный поступок</b></span>
+              <span data-life-check="cue" data-state="idle"><i aria-hidden="true">○</i><b data-i18n="lifeAiCheckCue">Есть момент начала</b></span>
+            </div>
+            <div class="life-ai-options" id="life-ai-options" hidden></div>
+          </div>
+        </section>
+
+        <label class="life-field" for="life-action">
+          <span><b>03</b><strong data-i18n="lifeActionTitle">Ваш план «когда → тогда»</strong></span>
+          <textarea id="life-action" maxlength="280" rows="3" placeholder="Например: после ближайшей молитвы я напишу одному человеку и предложу конкретную помощь." data-i18n-placeholder="lifeActionPlaceholder"></textarea>
+        </label>
+
         <label class="life-review-field" for="life-review-delay">
-          <span><b>03</b><span><strong data-i18n="lifeReturnTitle">Когда вернуться к записи?</strong><small data-i18n="lifeReturnText">Возвращение связывает смысл, память и поступок.</small></span></span>
+          <span><b>04</b><span><strong data-i18n="lifeReturnTitle">Когда проверить результат?</strong><small data-i18n="lifeReturnText">Возвращение показывает, состоялся ли поступок, а не только намерение.</small></span></span>
           <select id="life-review-delay">
             <option value="evening" data-i18n="lifeReturnEvening">Сегодня вечером</option>
             <option value="1" data-i18n="lifeReturnTomorrow">Завтра</option>
@@ -844,8 +858,8 @@
         </label>
 
         <div class="life-form-actions">
-          <button class="secondary-button" id="life-complete" type="button"><svg><use href="#i-check"/></svg><span data-i18n="lifeComplete">Отметить выполненным</span></button>
-          <button class="primary-button" type="submit"><span data-i18n="lifeSave">Сохранить и вернуться</span><svg><use href="#i-arrow"/></svg></button>
+          <button class="secondary-button" id="life-complete" type="button" hidden><svg><use href="#i-check"/></svg><span data-i18n="lifeComplete">Действие выполнено</span></button>
+          <button class="primary-button" type="submit"><span data-i18n="lifeSave">Сохранить план</span><svg><use href="#i-arrow"/></svg></button>
         </div>
       </form>
 
