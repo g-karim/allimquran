@@ -11,6 +11,7 @@ before_migrate = "allimquran.setup.preflight"
 after_migrate = [
 	"allimquran.setup.sync",
 	"allimquran.search_intelligence.after_migrate",
+	"allimquran.review_portal.ensure_role",
 ]
 
 # ALLIM SEARCH INTELLIGENCE START

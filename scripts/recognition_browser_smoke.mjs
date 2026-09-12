@@ -16,7 +16,15 @@ const [markup, css, javascript, core] = await Promise.all([
 ]);
 const document = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style></head><body>${markup}<script>${javascript.replaceAll('</script', '<\\/script')}</script></body></html>`;
 const server = http.createServer((request, response) => {
-  if (request.url.startsWith('/assets/allimquran/js/recitation-core.js')) {
+  if (request.url.startsWith('/assets/allimquran/js/recitation-consent.js')) {
+    fs.readFile(path.join(root, 'allimquran/public/js/recitation-consent.js')).then(data => {
+      response.writeHead(200, { 'Content-Type': 'text/javascript' }); response.end(data);
+    });
+  } else if (request.url.startsWith('/assets/allimquran/css/recitation-consent.css')) {
+    fs.readFile(path.join(root, 'allimquran/public/css/recitation-consent.css')).then(data => {
+      response.writeHead(200, { 'Content-Type': 'text/css' }); response.end(data);
+    });
+  } else if (request.url.startsWith('/assets/allimquran/js/recitation-core.js')) {
     response.writeHead(200, { 'Content-Type': 'text/javascript' }); response.end(core);
   } else if (request.url.startsWith('/learn')) {
     response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' }); response.end(document);
@@ -32,6 +40,7 @@ try {
     ['interim', 'ru', 1440], ['correct', 'ru', 1440], ['late-final', 'ru', 1440], ['extra', 'ru', 390],
     ['uncertain', 'en', 1440], ['correction', 'ar', 390], ['fallback', 'ru', 1440],
     ['server-uncertain', 'ru', 390], ['server-error', 'en', 1440],
+    ['server-contribution-accept', 'ru', 390], ['server-contribution-decline', 'en', 1440],
     ['server-cancel', 'ru', 390], ['browser-cancel', 'ar', 390],
   ]) {
     const context = await browser.newContext({ viewport: { width, height: 950 }, permissions: ['microphone'] });
@@ -61,8 +70,12 @@ try {
       const url = new URL(route.request().url());
       const json = value => route.fulfill({ contentType: 'application/json', body: JSON.stringify(value) });
       if (url.pathname === '/api/quran-asr/health') return json({ ready: true });
+      if (url.pathname === '/api/quran-asr/research') return json(route.request().method() === 'POST'
+        ? { granted: true, version: '2026-09-07-v1', expires: Date.now() / 1000 + 86400 }
+        : { enabled: name.includes('contribution'), version: '2026-09-07-v1' });
       if (route.request().method() === 'POST') {
         assert.equal(url.pathname, '/api/quran-asr');
+        assert.equal(Boolean(route.request().headers()['x-allim-contribution']), name === 'server-contribution-accept');
         posts.push(url.pathname);
         if (name === 'server-error') return route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ detail: { code: 'asr_failed' } }) });
         return json({ transcript: name === 'server-uncertain' ? '' : 'بسم الله الرحمن الرحيم',
@@ -77,7 +90,7 @@ try {
     });
     await page.route('**/assets/**', async route => {
       const url = new URL(route.request().url());
-      if (url.pathname.startsWith('/assets/allimquran/js/')) return route.continue();
+      if (url.pathname.startsWith('/assets/allimquran/js/') || url.pathname.startsWith('/assets/allimquran/css/')) return route.continue();
       const response = await route.fetch({ url: 'https://allimquran.com' + url.pathname + url.search });
       return route.fulfill({ response });
     });
@@ -92,6 +105,18 @@ try {
     }, { text, final });
     const sessions = () => page.evaluate(() => JSON.parse(localStorage.getItem('quran-companion-prototype-v4')).sessions || 0);
     await start();
+    if (name.includes('contribution')) {
+      await page.waitForSelector('#allim-contribution-dialog[open]');
+      assert.equal(await page.evaluate(() => window.__recorders.length), 0);
+      if (process.env.RECOGNITION_SCREENSHOTS) {
+        await fs.mkdir(process.env.RECOGNITION_SCREENSHOTS, { recursive: true });
+        await page.screenshot({ path: path.join(process.env.RECOGNITION_SCREENSHOTS, name + '-dialog.png') });
+      }
+      if (name.endsWith('accept')) {
+        await page.check('#contribution-adult');
+        await page.click('#contribution-agree');
+      } else await page.click('#contribution-decline');
+    }
     if (!name.startsWith('server-')) await page.waitForFunction(() => document.getElementById('start-recognition').getAttribute('aria-pressed') === 'true');
     if (name === 'browser-cancel') {
       await result('بسم الله الرحمن الرحيم', false);
@@ -142,7 +167,7 @@ try {
       await page.waitForFunction(() => document.getElementById('start-recognition').getAttribute('aria-pressed') === 'false');
       await page.waitForTimeout(150);
       assert.equal(posts.length, name === 'server-cancel' ? 0 : 1);
-      assert.equal(await sessions(), name === 'fallback' ? 1 : 0);
+      assert.equal(await sessions(), name === 'fallback' || name.includes('contribution') ? 1 : 0);
     }
     assert.deepEqual(errors, [], name);
     checks += 1;

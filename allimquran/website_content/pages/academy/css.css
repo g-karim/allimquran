@@ -34,7 +34,7 @@ body:has(.allim-academy-root) { margin: 0 !important; background: #f4f2ec !impor
 .academy-entry-steps li.is-complete{color:#376b5e}
 .academy-entry-steps li.is-complete>span{color:#fff;border-color:#5d9384;background:#5d9384}
 .academy-entry-actions{position:relative;z-index:1;grid-column:1/-1;display:flex;gap:14px;align-items:center;padding-top:4px;border-top:1px solid rgba(42,91,77,.12)}
-.academy-entry-actions[hidden]{display:none!important}
+.academy-entry-actions[hidden],#review-queue-link[hidden]{display:none!important}
 .academy-entry-actions small{max-width:480px;color:var(--muted);font-size:9px;line-height:1.45}
 .academy-route-result{position:relative;z-index:1;grid-column:1/-1;display:grid;grid-template-columns:minmax(240px,.75fr) minmax(320px,1.25fr);gap:12px 22px;padding:20px;border:1px solid rgba(45,102,86,.2);border-radius:18px;background:rgba(255,253,248,.78)}
 .academy-route-result[hidden]{display:none}

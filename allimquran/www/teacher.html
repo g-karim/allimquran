@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+  <meta name="csrf-token" content="{{ csrf_token | e }}">
+  <title>Проверка чтения · ALLIM Qur’an</title>
+  <link rel="icon" href="/assets/allimquran/media/allim-brand-icon.png">
+  <link rel="stylesheet" href="/assets/allimquran/css/teacher-review.css?v=1">
+  <script src="/assets/allimquran/js/teacher-review.js?v=1" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="/academy"><img src="/assets/allimquran/media/allim-header-logo.png" alt="ALLIM Qur’an"></a><nav aria-label="Кабинет"><a href="/academy">Мой кабинет</a><a href="/logout">Выйти</a></nav></header>
+  <main>
+    <div class="intro"><span class="eyebrow">ЗАКРЫТАЯ ОЧЕРЕДЬ · ПРЕПОДАВАТЕЛЬ</span><h1>Помогаем слышать точнее</h1><p>Ваша независимая разметка помогает находить ошибки распознавания и ложные подсказки. Сначала слушайте запись: результат ИИ намеренно скрыт.</p></div>
+    <details class="privacy"><summary>Правила работы с записями</summary><p>Только записи взрослых участников с действующим согласием. Не скачивайте, не публикуйте и не передавайте записи внешним ИИ. Голос может быть узнаваем: отсутствие имени не делает его полностью анонимным.</p><p>Пишите то, что действительно произнесено, включая повторы и ошибки. Ожидаемый текст — только слышимый фрагмент, не автоматически весь аят. Не указывайте имена или другие личные сведения. Неразборчивую запись отмечайте соответствующим итогом. Разметка пока предназначена только для внутренней оценки, не для обучения модели.</p><p>При отзыве согласия или истечении срока хранения запись и разметка удаляются. Уже услышанное или скопированное технически отозвать невозможно. Для спорного случая нужен другой проверяющий.</p></details>
+    <p id="notice" role="status" aria-live="polite"></p>
+    <div class="workspace">
+      <aside class="card queue" aria-label="Очередь записей">
+        <div class="row"><h2>Записи</h2><button id="refresh" type="button" class="secondary">Обновить</button></div>
+        <label for="status">Статус</label><select id="status"><option value="pending">Новые</option><option value="draft">Черновики</option><option value="reviewed">Проверены</option><option value="disputed">Спорные</option><option value="adjudicated">Согласованы повторно</option></select>
+        <p id="counts" class="muted" aria-live="polite">Загрузка…</p><div id="queue-list"></div>
+        <div class="pagination"><button id="previous" type="button" class="secondary" disabled>Назад</button><span id="page-number"></span><button id="next" type="button" class="secondary" disabled>Далее</button></div>
+      </aside>
+      <section class="card editor" aria-label="Разметка записи">
+        <div id="empty"><h2>Выберите запись</h2><p>Здесь появятся аудио и поля для разметки. Если очередь пуста, новых записей с согласием пока нет.</p></div>
+        <form id="review-form" hidden>
+          <div class="row"><h2 id="clip-title"></h2><span id="clip-state" class="badge"></span></div><p id="clip-meta" class="muted"></p>
+          <audio id="player" controls controlslist="nodownload" preload="none"></audio>
+          <div class="row"><label>Скорость <select id="speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option></select></label><span class="muted">Аудио не сохраняется в браузерном хранилище.</span></div>
+          <label for="spoken">Что действительно произнесено</label><textarea id="spoken" dir="auto" lang="ar" maxlength="4000" rows="3" placeholder="Дословно, включая повторы и ошибочные слова"></textarea>
+          <label for="expected">Ожидаемый текст слышимого фрагмента</label><textarea id="expected" dir="auto" lang="ar" maxlength="4000" rows="2" placeholder="Не включайте слова до начала или после конца записи"></textarea>
+          <p id="word-guide" class="muted" dir="auto"></p>
+          <div class="field-grid"><div><label for="verdict">Итог</label><select id="verdict"><option value="">Выберите итог</option><option value="correct">Верно</option><option value="incorrect">Есть ошибки чтения</option><option value="unscorable">Нельзя достоверно оценить</option></select></div><div><label for="riwayah">Риваят</label><input id="riwayah" maxlength="80" placeholder="Например: Хафс от Асима"></div></div>
+          <fieldset><legend>Особенности записи</legend><div id="tags" class="tags"><label><input type="checkbox" value="noise"> Шум</label><label><input type="checkbox" value="clipped"> Обрезанный фрагмент</label><label><input type="checkbox" value="repeat"> Повтор</label><label><input type="checkbox" value="self_correction"> Самоисправление</label><label><input type="checkbox" value="other_speech"> Посторонняя речь</label></div></fieldset>
+          <div class="row"><h3>Ошибки чтения</h3><button id="add-error" type="button" class="secondary">+ Ошибка</button></div><p class="muted">Номер слова — с 1. Для вставки в конце можно указать номер после последнего слова. Время — в секундах от начала фрагмента; для пропуска отметьте точку.</p><div id="errors"></div>
+          <label for="notes">Комментарий</label><textarea id="notes" maxlength="1000" rows="2" placeholder="Обязателен для спорной или не поддающейся оценке записи"></textarea>
+          <div class="actions"><button type="submit" value="reviewed">Завершить проверку</button><button type="submit" value="draft" class="secondary">Сохранить черновик</button><button type="submit" value="disputed" class="secondary">На вторую проверку</button></div>
+          <p id="review-hint" class="muted"></p>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
