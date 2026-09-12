@@ -5,9 +5,11 @@ This source preview contains page and khatm tracking, manual paper-mushaf entrie
 Run from the repository root:
 
 ```sh
-python3 -m http.server 4187 --bind 127.0.0.1 --directory companion-workspace
+python3 -m venv .venv-preview
+.venv-preview/bin/pip install -r companion-workspace/requirements-preview.txt
+QURAN_ASR_ENABLED=0 QURAN_COMPANION_PREVIEW=1 QURAN_MUSHAF_CACHE=/tmp/allim-mushaf-cache QURAN_ASR_ALLOWED_ORIGIN=http://127.0.0.1:4187 .venv-preview/bin/python -m uvicorn allimquran.asr.server:app --host 127.0.0.1 --port 4187
 ```
 
-Open `http://127.0.0.1:4187/?view=read&lang=en` (also `ar` and `ru`). The static preview supports manual page logging. Quran page and microphone services require the existing backend; account sync requires installation of the new schema and methods.
+Open `http://127.0.0.1:4187/?view=read&lang=en` (also `ar` and `ru`). Use Python 3.10 or newer. This preview serves real Quran pages and manual page logging without loading the speech model. Browser speech recognition depends on browser support. Account sync requires installation of the new schema and methods. A plain `http.server` cannot serve Quran API routes and causes the “page unavailable” error. Stop any existing server on port 4187 before starting this one.
 
 See [account sync](../docs/reading-account-sync.md) for installation, privacy, tests, conflict handling and limits. No learner records or audio recordings are included.
