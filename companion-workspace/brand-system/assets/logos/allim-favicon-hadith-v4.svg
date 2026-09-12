@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM compact favicon</title>
+  <desc id="desc">Simplified neon embrace and open Book.</desc>
+  <rect width="64" height="64" rx="15" fill="#061713"/>
+  <path d="M22 13C13 18 11 28 15 37C19 45 27 50 36 52C41 53 46 52 51 49M42 13C51 18 53 28 49 37C45 45 37 50 28 52C23 53 18 52 13 49" fill="none" stroke="#52F2A4" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M20 23L32 27L44 23V39L32 45L20 39V23ZM32 27V45" fill="none" stroke="#F3F6F0" stroke-width="3.5" stroke-linejoin="round"/>
+  <circle cx="32" cy="47.5" r="1.8" fill="#62E8FF"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM Embrace Ribbons symbol</title>
+  <desc id="desc">Two open ribbons bend inward like an embrace and resolve into book pages.</desc>
+  <path d="M28 33H53V87C53 108 63 124 80 136" fill="none" stroke="#0B3D33" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M132 33H107V87C107 108 97 124 80 136" fill="none" stroke="#0B3D33" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M53 59L80 72L107 59" fill="none" stroke="#C8A96B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM Embrace Page monochrome symbol</title>
+  <desc id="desc">Single-color compact version for small sizes and production.</desc>
+  <g fill="#0B3D33">
+    <path d="M62 132C40 128 24 115 17 95C9 72 16 46 38 28L52 46C38 58 34 74 40 89C44 100 53 108 65 112L62 132Z"/>
+    <path d="M98 132C120 128 136 115 143 95C151 72 144 46 122 28L108 46C122 58 126 74 120 89C116 100 107 108 95 112L98 132Z"/>
+    <path d="M74 119C60 108 53 91 54 71C55 54 62 40 74 31V119Z"/>
+    <path d="M86 119C100 108 107 91 106 71C105 54 98 40 86 31V119Z"/>
+  </g>
+</svg>

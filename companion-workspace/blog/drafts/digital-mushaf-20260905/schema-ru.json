@@ -1,0 +1,71 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://allimquran.com/ru/blog/cifrovoj-mushaf-chtenie-ponimanie-zapominanie#article",
+      "headline": "Не просто Коран на экране: цифровой мусхаф для чтения, понимания и запоминания",
+      "description": "Как цифровой мусхаф сохраняет точность текста и память страницы, помогая читать, понимать слова, запоминать аяты и возвращаться к повторению.",
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "inLanguage": "ru",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://allimquran.com/ru/blog/cifrovoj-mushaf-chtenie-ponimanie-zapominanie"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Команда обучения ALLIM",
+        "url": "https://allimquran.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ALLIM QURAN",
+        "url": "https://allimquran.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://allimquran.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Материалы", "item": "https://allimquran.com/ru/blog"},
+        {"@type": "ListItem", "position": 3, "name": "Цифровой мусхаф", "item": "https://allimquran.com/ru/blog/cifrovoj-mushaf-chtenie-ponimanie-zapominanie"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Что такое цифровой мусхаф?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Это проверенное цифровое представление Корана, которое учитывает текст, огласовки и знаки, выбранное издание, распределение по строкам и страницам, а также безопасное взаимодействие с аятами и словами."}
+        },
+        {
+          "@type": "Question",
+          "name": "Почему недостаточно показать сканы страниц?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Скан хорошо сохраняет внешний вид, но плохо масштабируется и почти не позволяет надёжно работать с отдельным словом. Для обучения нужен слой данных, который поддерживает поиск, выделение, понимание и проверку памяти."}
+        },
+        {
+          "@type": "Question",
+          "name": "Не разрушит ли увеличение шрифта память о странице?",
+          "acceptedAnswer": {"@type": "Answer", "text": "В точном страничном режиме геометрия должна оставаться стабильной. Для сильного увеличения лучше отдельный режим аята, который сохраняет место чтения, но даёт тексту свободно перестраиваться без обрезки."}
+        },
+        {
+          "@type": "Question",
+          "name": "Может ли ИИ окончательно оценить таджвид?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Нет. Он может помочь заметить вероятный пропуск, повтор или несовпадение, но тонкая оценка таджвида, махраджа и кираатов требует квалифицированного преподавателя."}
+        },
+        {
+          "@type": "Question",
+          "name": "Зачем нажимать на отдельное слово?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Чтобы связать написание, звучание и значение, услышать слово, увидеть контекстный перевод или добавить его в повторение — не покидая текущий аят."}
+        },
+        {
+          "@type": "Question",
+          "name": "Как понять, что цифровому мусхафу можно доверять?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Сервис должен указывать издание и источник коранического текста, отделять Коран от переводов и комментариев, называть источники тафсира и привлекать квалифицированных специалистов к проверке текста и терминологии."}
+        }
+      ]
+    }
+  ]
+}

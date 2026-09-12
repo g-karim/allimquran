@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="520" viewBox="0 0 1600 520" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM English logo</title>
+  <desc id="desc">Modern green ALLIM wordmark and double-L brand symbol.</desc>
+  <defs>
+    <linearGradient id="allim-green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#32E6B1"/>
+      <stop offset="0.52" stop-color="#00C88D"/>
+      <stop offset="1" stop-color="#008C69"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(58 70)">
+    <path d="M48 254V106c0-32 22-54 54-54h24v202c0 41 24 65 65 65h15v61h-34c-78 0-124-47-124-126Z" fill="#073B31"/>
+    <path d="M145 254V54c0-32 22-54 54-54h24v254c0 41 24 65 65 65h20v61h-39c-78 0-124-47-124-126Z" fill="url(#allim-green)"/>
+    <path d="M61 19 123 0c12-4 23 5 23 18v20L61 65Z" fill="#24DBA6"/>
+    <path d="M162 19 224 0c12-4 23 5 23 18v20l-85 27Z" fill="#24DBA6"/>
+  </g>
+
+  <text x="445" y="337"
+        fill="#073B31"
+        font-family="Avenir Next, SF Pro Display, Avenir, Helvetica Neue, Arial, sans-serif"
+        font-size="248"
+        font-weight="700"
+        letter-spacing="2">A</text>
+  <text x="636" y="337"
+        fill="url(#allim-green)"
+        font-family="Avenir Next, SF Pro Display, Avenir, Helvetica Neue, Arial, sans-serif"
+        font-size="248"
+        font-weight="700"
+        letter-spacing="-7">LL</text>
+  <text x="920" y="337"
+        fill="#073B31"
+        font-family="Avenir Next, SF Pro Display, Avenir, Helvetica Neue, Arial, sans-serif"
+        font-size="248"
+        font-weight="700"
+        letter-spacing="2">IM</text>
+</svg>

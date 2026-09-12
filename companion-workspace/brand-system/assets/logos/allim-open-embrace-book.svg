@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM Open Embrace Book symbol</title>
+  <desc id="desc">An open protective arc holds a clearly opened book.</desc>
+  <path d="M48 27C27 39 17 60 21 83C26 112 48 132 80 138C112 132 134 112 139 83C143 60 133 39 112 27" fill="none" stroke="#0B3D33" stroke-width="16" stroke-linecap="round"/>
+  <path d="M42 54C57 54 69 59 80 69C91 59 103 54 118 54V108C102 108 90 114 80 125C70 114 58 108 42 108V54Z" fill="none" stroke="#0B3D33" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M80 69V125" fill="none" stroke="#C8A96B" stroke-width="4" stroke-linecap="round"/>
+</svg>

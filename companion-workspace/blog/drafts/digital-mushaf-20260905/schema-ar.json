@@ -1,0 +1,71 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://allimquran.com/ar/blog/al-mushaf-al-raqami-qiraa-fahm-hifz#article",
+      "headline": "أبعد من صفحة على شاشة: مصحف رقمي للقراءة والفهم والحفظ",
+      "description": "كيف يحفظ المصحف الرقمي دقة النص وذاكرة الصفحة، ويدعم القراءة وفهم الكلمات وحفظ الآيات والمراجعة في وقتها؟",
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "inLanguage": "ar",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://allimquran.com/ar/blog/al-mushaf-al-raqami-qiraa-fahm-hifz"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "فريق التعلّم في ALLIM",
+        "url": "https://allimquran.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ALLIM QURAN",
+        "url": "https://allimquran.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://allimquran.com/"},
+        {"@type": "ListItem", "position": 2, "name": "الأدلة", "item": "https://allimquran.com/ar/blog"},
+        {"@type": "ListItem", "position": 3, "name": "المصحف الرقمي", "item": "https://allimquran.com/ar/blog/al-mushaf-al-raqami-qiraa-fahm-hifz"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ما المصحف الرقمي؟",
+          "acceptedAnswer": {"@type": "Answer", "text": "هو تمثيل رقمي متحقق للقرآن يراعي النص والحركات والعلامات، وطبعة المصحف المختارة، وتوزيع السطور والصفحات، والتفاعل الآمن مع الآيات والكلمات."}
+        },
+        {
+          "@type": "Question",
+          "name": "لماذا لا تكفي صور الصفحات؟",
+          "acceptedAnswer": {"@type": "Answer", "text": "تحفظ الصورة شكل الصفحة، لكنها لا تتكيف جيدًا مع التكبير ولا تتيح تفاعلًا موثوقًا مع الكلمة. ويحتاج التعلم إلى طبقة بيانات للبحث والتحديد والفهم واختبار الحفظ."}
+        },
+        {
+          "@type": "Question",
+          "name": "هل يفسد تكبير الخط ذاكرة الصفحة؟",
+          "acceptedAnswer": {"@type": "Answer", "text": "ينبغي لوضع الصفحة الدقيق أن يحفظ الهندسة. وعند التكبير الشديد يمكن استخدام وضع آية مستقل يحفظ موضع المتعلّم ويسمح للنص بإعادة التدفق من غير اقتطاع."}
+        },
+        {
+          "@type": "Question",
+          "name": "هل يستطيع الذكاء الاصطناعي إصدار حكم نهائي في التجويد؟",
+          "acceptedAnswer": {"@type": "Answer", "text": "لا. يمكنه التنبيه إلى حذف أو تكرار أو اختلاف محتمل، أما دقائق التجويد والمخارج والقراءات فتحتاج إلى معلّم مؤهّل."}
+        },
+        {
+          "@type": "Question",
+          "name": "ما فائدة التفاعل مع كل كلمة؟",
+          "acceptedAnswer": {"@type": "Answer", "text": "يساعد ذلك على وصل الرسم بالصوت والمعنى السياقي، وسماع الكلمة، وفتح شرح موثق، أو إضافتها إلى المراجعة من غير مغادرة الآية."}
+        },
+        {
+          "@type": "Question",
+          "name": "كيف يعرف القارئ أن المصحف الرقمي موثوق؟",
+          "acceptedAnswer": {"@type": "Answer", "text": "ينبغي للخدمة أن تبيّن طبعة المصحف ومصدر النص القرآني، وأن تفصل القرآن عن الترجمات والشروح، وتذكر مصادر التفسير، وتستعين بمختصين مؤهلين لمراجعة النص والمصطلحات."}
+        }
+      ]
+    }
+  ]
+}

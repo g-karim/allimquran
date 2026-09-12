@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="{{LANG}}" dir="{{DIR}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{META_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="insights-page" data-locale="{{LOCALE}}" data-lang="{{LANG}}" data-dir="{{DIR}}">
+    <a class="skip-link" href="#content">{{SKIP}}</a>
+    <header class="insights-header">
+      <a class="insights-brand" href="/"><span aria-hidden="true">ع</span><strong>ALLIM<small>QUR’AN</small></strong></a>
+      <nav aria-label="{{NAV_LABEL}}">
+        <a href="/">{{NAV_HOME}}</a>
+        <a href="/learn">{{NAV_COMPANION}}</a>
+        <a href="/academy">{{NAV_ACADEMY}}</a>
+        <a class="is-current" href="{{HUB_ROUTE}}" aria-current="page">{{NAV_INSIGHTS}}</a>
+      </nav>
+      <div class="locale-switch" aria-label="{{LANGUAGE_LABEL}}">
+        {{HUB_LOCALE_LINKS}}
+      </div>
+      <button class="menu-toggle" type="button" aria-label="{{MENU_LABEL}}" aria-expanded="false"><span></span><span></span></button>
+    </header>
+
+    <main id="content">
+      <section class="insights-hero">
+        <div>
+          <p class="eyebrow">{{EYEBROW}}</p>
+          <h1>{{TITLE}}</h1>
+        </div>
+        <p class="hero-lead">{{LEAD}}</p>
+      </section>
+
+      <section class="featured" aria-labelledby="featured-title">
+        <article class="featured-card">
+          <div class="featured-copy">
+            <p class="article-kind">{{FEATURED_KIND}}</p>
+            <h2 id="featured-title">{{FEATURED_TITLE}}</h2>
+            <p>{{FEATURED_EXCERPT}}</p>
+            <a class="button primary" href="{{FEATURED_ROUTE}}">{{READ_GUIDE}} <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="lesson-visual" aria-label="{{FEATURED_VISUAL_LABEL}}">
+            {{FEATURED_VISUAL}}
+            <p>{{FEATURED_VISUAL_TEXT}}</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="article-section" aria-labelledby="latest-title">
+        <div class="section-heading"><p class="eyebrow">{{LIBRARY_EYEBROW}}</p><h2 id="latest-title">{{LIBRARY_TITLE}}</h2></div>
+        <div class="article-grid">
+          {{ARTICLE_CARDS}}
+        </div>
+      </section>
+
+      <section class="editorial-note">
+        <div><p class="eyebrow">{{TRUST_EYEBROW}}</p><h2>{{TRUST_TITLE}}</h2></div>
+        <div class="trust-points">
+          <p><strong>01</strong><span>{{TRUST_ONE}}</span></p>
+          <p><strong>02</strong><span>{{TRUST_TWO}}</span></p>
+          <p><strong>03</strong><span>{{TRUST_THREE}}</span></p>
+        </div>
+      </section>
+
+      <section class="insights-cta">
+        <div><p class="eyebrow">ALLIM QUR’AN ACADEMY</p><h2>{{CTA_TITLE}}</h2><p>{{CTA_TEXT}}</p></div>
+        <a class="button primary" href="/academy">{{CTA_ACTION}} <span aria-hidden="true">→</span></a>
+      </section>
+    </main>
+
+    <footer class="insights-footer"><span>ALLIM Qur’an</span><p lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</p><a href="/">{{BACK_HOME}}</a></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

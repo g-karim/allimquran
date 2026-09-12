@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM Open Embrace app icon</title>
+  <desc id="desc">An open protective arc holds an opened Book on a deep emerald field.</desc>
+  <rect width="256" height="256" rx="56" fill="#0B3D33"/>
+  <g transform="translate(48 48)">
+    <path d="M48 27C27 39 17 60 21 83C26 112 48 132 80 138C112 132 134 112 139 83C143 60 133 39 112 27" fill="none" stroke="#F4F0E7" stroke-width="16" stroke-linecap="round"/>
+    <path d="M42 54C57 54 69 59 80 69C91 59 103 54 118 54V108C102 108 90 114 80 125C70 114 58 108 42 108V54Z" fill="none" stroke="#F4F0E7" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M80 69V125" fill="none" stroke="#C8A96B" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

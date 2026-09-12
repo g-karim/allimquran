@@ -1,0 +1,29 @@
+{
+  "doctype": "DocType",
+  "name": "ALLIM Search Audit",
+  "module": "ALLIM Quran",
+  "autoname": "format:ALLIM-AUDIT-{YYYY}-{#####}",
+  "title_field": "route",
+  "track_changes": 1,
+  "sort_field": "audited_at",
+  "sort_order": "DESC",
+  "field_order": ["route", "page_type", "locale", "status", "score", "http_status", "page_title", "audited_at", "batch_id", "metrics_json", "issues_json", "response_sha256"],
+  "fields": [
+    {"fieldname": "route", "label": "Route", "fieldtype": "Data", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1},
+    {"fieldname": "page_type", "label": "Page Type", "fieldtype": "Data", "in_list_view": 1},
+    {"fieldname": "locale", "label": "Locale", "fieldtype": "Data", "in_list_view": 1},
+    {"fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Healthy\nNeeds work\nCritical", "in_list_view": 1, "in_standard_filter": 1},
+    {"fieldname": "score", "label": "Score", "fieldtype": "Int", "in_list_view": 1},
+    {"fieldname": "http_status", "label": "HTTP Status", "fieldtype": "Int"},
+    {"fieldname": "page_title", "label": "Page Title", "fieldtype": "Data"},
+    {"fieldname": "audited_at", "label": "Audited At", "fieldtype": "Datetime", "reqd": 1, "in_list_view": 1},
+    {"fieldname": "batch_id", "label": "Batch ID", "fieldtype": "Data", "reqd": 1, "in_standard_filter": 1},
+    {"fieldname": "metrics_json", "label": "Metrics JSON", "fieldtype": "Code", "options": "JSON"},
+    {"fieldname": "issues_json", "label": "Issues JSON", "fieldtype": "Code", "options": "JSON"},
+    {"fieldname": "response_sha256", "label": "Response SHA-256", "fieldtype": "Data", "read_only": 1}
+  ],
+  "permissions": [
+    {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1},
+    {"role": "Website Manager", "read": 1, "report": 1, "export": 1}
+  ]
+}

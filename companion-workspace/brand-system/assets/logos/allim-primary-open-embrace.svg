@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM QURAN primary logo with Open Embrace symbol</title>
+  <desc id="desc">A protective open arc holds an opened Book beside the ALLIM QURAN wordmark.</desc>
+  <g transform="translate(28 30) scale(.86)">
+    <path d="M48 27C27 39 17 60 21 83C26 112 48 132 80 138C112 132 134 112 139 83C143 60 133 39 112 27" fill="none" stroke="#0B3D33" stroke-width="16" stroke-linecap="round"/>
+    <path d="M42 54C57 54 69 59 80 69C91 59 103 54 118 54V108C102 108 90 114 80 125C70 114 58 108 42 108V54Z" fill="none" stroke="#0B3D33" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M80 69V125" fill="none" stroke="#C8A96B" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g fill="none" stroke="#0B3D33" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M206 158L238 62L270 158M219 121H257"/>
+    <path d="M310 62V158H365"/>
+    <path d="M405 62V158H460"/>
+    <path d="M500 62V158"/>
+    <path d="M545 158V62L580 123L615 62V158"/>
+  </g>
+  <g transform="translate(682 72)" fill="none" stroke="#0B3D33" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M15 0C5 0 0 8 0 20V49C0 61 5 69 15 69C25 69 30 61 30 49V20C30 8 25 0 15 0ZM17 52L34 74"/>
+    <path d="M55 0V49C55 62 61 69 71 69C81 69 87 62 87 49V0"/>
+    <path d="M113 69V0H129C141 0 147 7 147 19V25C147 36 141 42 130 42H113M130 42L150 69"/>
+    <path d="M171 69L188 0L205 69M178 43H198"/>
+    <path d="M230 69V0L262 69V0"/>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 360" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM reverse wordmark with QURAN carved inside</title>
+  <desc id="desc">Warm white ALLIM lettering with transparent Q U R A N cutouts for dark backgrounds.</desc>
+  <defs>
+    <mask id="a-mask" maskUnits="userSpaceOnUse" x="30" y="50" width="190" height="260"><rect x="30" y="50" width="190" height="260" fill="#000"/><path d="M80 60Q74 60 73 67L40 292Q39 300 47 300H94L99 270H149L154 300H201Q209 300 208 292L175 67Q174 60 168 60Z" fill="#fff"/><path d="M109 54V194C109 214 115 225 124 225C133 225 139 214 139 194V54M126 214L139 231" fill="none" stroke="#000" stroke-width="11" stroke-linecap="butt" stroke-linejoin="round"/><path d="M108 300L113 270H135L140 300Z" fill="#000"/></mask>
+    <mask id="l1-mask" maskUnits="userSpaceOnUse" x="250" y="50" width="195" height="260"><rect x="250" y="50" width="195" height="260" fill="#000"/><path d="M266 60H318Q324 60 324 66V242H426Q432 242 432 248V294Q432 300 426 300H260V66Q260 60 266 60Z" fill="#fff"/><path d="M279 54V194C279 214 284 225 292 225C300 225 305 214 305 194V54" fill="none" stroke="#000" stroke-width="11" stroke-linecap="butt"/></mask>
+    <mask id="l2-mask" maskUnits="userSpaceOnUse" x="474" y="50" width="195" height="260"><rect x="474" y="50" width="195" height="260" fill="#000"/><path d="M490 60H542Q548 60 548 66V242H650Q656 242 656 248V294Q656 300 650 300H484V66Q484 60 490 60Z" fill="#fff"/><path d="M502 226V54M502 68H516C528 68 535 78 535 96V119C535 136 528 147 516 147H502M516 147L538 226" fill="none" stroke="#000" stroke-width="10" stroke-linecap="butt" stroke-linejoin="round"/></mask>
+    <mask id="i-mask" maskUnits="userSpaceOnUse" x="698" y="50" width="84" height="260"><rect x="698" y="50" width="84" height="260" fill="#000"/><rect x="708" y="60" width="64" height="240" rx="6" fill="#fff"/><path d="M720 226L740 54L760 226M727 171H753" fill="none" stroke="#000" stroke-width="9" stroke-linecap="butt" stroke-linejoin="round"/></mask>
+    <mask id="m-mask" maskUnits="userSpaceOnUse" x="814" y="50" width="240" height="260"><rect x="814" y="50" width="240" height="260" fill="#000"/><path d="M854 60H1014Q1020 60 1021 67L1044 292Q1045 300 1037 300H831Q823 300 824 292L847 67Q848 60 854 60Z" fill="#fff"/><path d="M908 226V54L958 226V54" fill="none" stroke="#000" stroke-width="10" stroke-linecap="butt" stroke-linejoin="round"/><path d="M917 300L934 282L951 300Z" fill="#000"/></mask>
+  </defs>
+  <g fill="#F4F3EE">
+    <rect x="30" y="50" width="190" height="260" mask="url(#a-mask)"/>
+    <rect x="250" y="50" width="195" height="260" mask="url(#l1-mask)"/>
+    <rect x="474" y="50" width="195" height="260" mask="url(#l2-mask)"/>
+    <rect x="698" y="50" width="84" height="260" mask="url(#i-mask)"/>
+    <rect x="814" y="50" width="240" height="260" mask="url(#m-mask)"/>
+  </g>
+</svg>

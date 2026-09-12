@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM Q Embrace symbol</title>
+  <desc id="desc">An open Q shaped embrace contains two pages and a subtle tail.</desc>
+  <path d="M122 113C111 127 95 135 78 135C47 135 22 110 22 79C22 48 47 23 78 23C109 23 134 48 134 79C134 90 131 100 126 109" fill="none" stroke="#0B3D33" stroke-width="18" stroke-linecap="round"/>
+  <path d="M104 104L136 136" fill="none" stroke="#0B3D33" stroke-width="18" stroke-linecap="round"/>
+  <path d="M76 111C62 101 56 87 57 70C58 56 64 45 76 37V111ZM84 111C98 101 104 87 103 70C102 56 96 45 84 37V111Z" fill="#0B3D33"/>
+  <path d="M80 41V113" fill="none" stroke="#C8A96B" stroke-width="4" stroke-linecap="round"/>
+</svg>

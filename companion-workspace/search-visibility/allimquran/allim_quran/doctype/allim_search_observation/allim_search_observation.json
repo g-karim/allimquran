@@ -1,0 +1,27 @@
+{
+  "doctype": "DocType",
+  "name": "ALLIM Search Observation",
+  "module": "ALLIM Quran",
+  "autoname": "format:ALLIM-OBS-{YYYY}-{#####}",
+  "title_field": "provider",
+  "track_changes": 1,
+  "sort_field": "observed_at",
+  "sort_order": "DESC",
+  "field_order": ["prompt", "provider", "observed_at", "mentioned", "cited", "citation_url", "sentiment", "competitors_json", "answer_excerpt", "raw_response_json"],
+  "fields": [
+    {"fieldname": "prompt", "label": "Prompt", "fieldtype": "Link", "options": "ALLIM Search Prompt", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1},
+    {"fieldname": "provider", "label": "Answer Engine", "fieldtype": "Select", "options": "OpenAI\nGemini\nPerplexity\nGoogle AI Overview\nBing Copilot\nOther", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1},
+    {"fieldname": "observed_at", "label": "Observed At", "fieldtype": "Datetime", "reqd": 1, "in_list_view": 1},
+    {"fieldname": "mentioned", "label": "Brand Mentioned", "fieldtype": "Check", "in_list_view": 1},
+    {"fieldname": "cited", "label": "ALLIM URL Cited", "fieldtype": "Check", "in_list_view": 1},
+    {"fieldname": "citation_url", "label": "Citation URL", "fieldtype": "Data"},
+    {"fieldname": "sentiment", "label": "Sentiment", "fieldtype": "Select", "options": "Positive\nNeutral\nNegative\nUnclassified"},
+    {"fieldname": "competitors_json", "label": "Competitors JSON", "fieldtype": "Code", "options": "JSON"},
+    {"fieldname": "answer_excerpt", "label": "Answer Excerpt", "fieldtype": "Long Text"},
+    {"fieldname": "raw_response_json", "label": "Raw Response JSON", "fieldtype": "Code", "options": "JSON", "read_only": 1}
+  ],
+  "permissions": [
+    {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1},
+    {"role": "Website Manager", "read": 1, "report": 1, "export": 1}
+  ]
+}

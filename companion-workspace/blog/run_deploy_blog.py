@@ -1,0 +1,1 @@
+namespace = {}; exec(compile(open("/tmp/allim-blog-v50-digital-mushaf/deploy_blog_server.py", encoding="utf-8").read(), "/tmp/allim-blog-v50-digital-mushaf/deploy_blog_server.py", "exec"), namespace, namespace)

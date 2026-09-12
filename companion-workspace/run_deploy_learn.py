@@ -1,0 +1,1 @@
+namespace = {}; exec(compile(open("/tmp/allim-v86-personal-hifz/deploy_learn_server.py", encoding="utf-8").read(), "/tmp/allim-v86-personal-hifz/deploy_learn_server.py", "exec"), namespace, namespace)

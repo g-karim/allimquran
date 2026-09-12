@@ -1,0 +1,71 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://allimquran.com/blog/digital-mushaf-reading-understanding-remembering#article",
+      "headline": "Beyond a page on a screen: a digital Mushaf for reading, understanding and remembering",
+      "description": "How a digital Mushaf can preserve Qur’anic text and page memory while supporting reading, word understanding, memorisation and timely review.",
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "inLanguage": "en",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://allimquran.com/blog/digital-mushaf-reading-understanding-remembering"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "ALLIM Learning Team",
+        "url": "https://allimquran.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ALLIM QURAN",
+        "url": "https://allimquran.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://allimquran.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://allimquran.com/blog"},
+        {"@type": "ListItem", "position": 3, "name": "Digital Mushaf", "item": "https://allimquran.com/blog/digital-mushaf-reading-understanding-remembering"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a digital Mushaf?",
+          "acceptedAnswer": {"@type": "Answer", "text": "It is a verified digital representation of the Qur’an that accounts for text, vowels and recitation signs, a selected Mushaf edition, line and page mapping, and safe interaction with ayat and words."}
+        },
+        {
+          "@type": "Question",
+          "name": "Why are scanned pages not enough?",
+          "acceptedAnswer": {"@type": "Answer", "text": "A scan preserves appearance but scales poorly and offers little dependable word-level interaction. Learning features require a data layer for search, highlighting, understanding and recall practice."}
+        },
+        {
+          "@type": "Question",
+          "name": "Will larger text disrupt page memory?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Exact page mode should preserve geometry. For strong enlargement, a separate ayah mode can retain the learner’s position while allowing text to reflow without clipping."}
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI make a final tajwid assessment?",
+          "acceptedAnswer": {"@type": "Answer", "text": "No. It can help identify a likely omission, repetition or mismatch, but subtle tajwid, makhraj and qira’at assessment requires a qualified teacher."}
+        },
+        {
+          "@type": "Question",
+          "name": "Why make individual words interactive?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Word interaction can connect spelling, sound and contextual meaning, play pronunciation, open a sourced explanation or add the word to review without leaving the ayah."}
+        },
+        {
+          "@type": "Question",
+          "name": "How can a reader know that a digital Mushaf is trustworthy?",
+          "acceptedAnswer": {"@type": "Answer", "text": "The service should identify its Mushaf edition and Qur’anic text source, keep the Qur’an distinct from translations and commentary, name tafsir sources and involve qualified specialists in reviewing the text and terminology."}
+        }
+      ]
+    }
+  ]
+}

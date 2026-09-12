@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM QURAN Hadith Embrace identity v4</title>
+  <desc id="desc">Logo system derived from the user's sketch: crossing embrace ribbons, open Book, digital knowledge point and modern mint palette.</desc>
+  <rect width="1600" height="1120" fill="#EFF4EF"/>
+  <g font-family="Avenir Next, Helvetica Neue, Arial, sans-serif">
+    <text x="82" y="72" fill="#0A4A3F" font-size="18" font-weight="600" letter-spacing="4">ALLIM QURAN · IDENTITY DEVELOPMENT</text>
+    <text x="82" y="122" fill="#071E19" font-size="40" font-weight="500">Hadith Embrace · From sketch to digital symbol</text>
+    <text x="1518" y="84" text-anchor="end" fill="#667A73" font-size="15" letter-spacing="2">V4 · PRIMARY SYMBOL</text>
+
+    <rect x="64" y="174" width="1472" height="310" rx="42" fill="#061713"/>
+    <image href="assets/logos/allim-primary-hadith-v4-dark.svg" x="106" y="215" width="940" height="207"/>
+    <text x="1130" y="268" fill="#78FF9F" font-size="15" font-weight="600" letter-spacing="3">MEANING</text>
+    <text x="1130" y="310" fill="#F3F6F0" font-size="22">Two gestures meet.</text>
+    <text x="1130" y="344" fill="#F3F6F0" font-size="22">The Book is held.</text>
+    <text x="1130" y="378" fill="#F3F6F0" font-size="22">Knowledge is transmitted.</text>
+    <path d="M1130 412H1452" stroke="#35F3BD" stroke-width="2"/>
+
+    <g transform="translate(64 532)">
+      <rect width="430" height="376" rx="34" fill="#061713"/>
+      <image href="assets/logos/allim-app-icon-hadith-v4.svg" x="91" y="30" width="248" height="248"/>
+      <text x="36" y="326" fill="#F3F6F0" font-size="22" font-weight="600">App icon · digital</text>
+      <text x="36" y="354" fill="#78FF9F" font-size="15" letter-spacing="2">NEON ONLY ON DARK UI</text>
+    </g>
+
+    <g transform="translate(526 532)">
+      <rect width="430" height="376" rx="34" fill="#FFFFFF"/>
+      <image href="assets/logos/allim-hadith-embrace-symbol-light.svg" x="91" y="30" width="248" height="248"/>
+      <text x="36" y="326" fill="#0A4A3F" font-size="22" font-weight="600">Light surfaces</text>
+      <text x="36" y="354" fill="#16896F" font-size="15" letter-spacing="2">FLAT · CALM · PREMIUM</text>
+    </g>
+
+    <g transform="translate(988 532)">
+      <rect width="548" height="376" rx="34" fill="#FFFFFF"/>
+      <text x="34" y="48" fill="#0A4A3F" font-size="15" font-weight="600" letter-spacing="3">FAVICON SCALE TEST</text>
+      <rect x="34" y="82" width="160" height="160" rx="38" fill="#061713"/>
+      <image href="assets/logos/allim-favicon-hadith-v4.svg" x="34" y="82" width="160" height="160"/>
+      <rect x="235" y="130" width="96" height="96" rx="24" fill="#061713"/>
+      <image href="assets/logos/allim-favicon-hadith-v4.svg" x="235" y="130" width="96" height="96"/>
+      <rect x="370" y="162" width="64" height="64" rx="16" fill="#061713"/>
+      <image href="assets/logos/allim-favicon-hadith-v4.svg" x="370" y="162" width="64" height="64"/>
+      <rect x="466" y="194" width="32" height="32" rx="8" fill="#061713"/>
+      <image href="assets/logos/allim-favicon-hadith-v4.svg" x="466" y="194" width="32" height="32"/>
+      <text x="34" y="292" fill="#0A4A3F" font-size="22" font-weight="600">Responsive mark</text>
+      <text x="34" y="326" fill="#667A73" font-size="16">One geometry, simplified detail below 32 px.</text>
+      <text x="34" y="354" fill="#667A73" font-size="16">No hearts. No human silhouette.</text>
+    </g>
+
+    <g transform="translate(64 952)">
+      <rect width="1472" height="112" rx="32" fill="#FFFFFF"/>
+      <text x="34" y="39" fill="#0A4A3F" font-size="14" font-weight="600" letter-spacing="3">PALETTE</text>
+      <circle cx="48" cy="76" r="18" fill="#061713"/><text x="78" y="82" fill="#071E19" font-size="15">Night #061713</text>
+      <circle cx="267" cy="76" r="18" fill="#0A4A3F"/><text x="297" y="82" fill="#071E19" font-size="15">Jade #0A4A3F</text>
+      <circle cx="478" cy="76" r="18" fill="#52F2A4"/><text x="508" y="82" fill="#071E19" font-size="15">Signal #52F2A4</text>
+      <circle cx="716" cy="76" r="18" fill="#62E8FF"/><text x="746" y="82" fill="#071E19" font-size="15">AI pulse #62E8FF</text>
+      <circle cx="958" cy="76" r="18" fill="#F3F6F0" stroke="#D8E0DA"/><text x="988" y="82" fill="#071E19" font-size="15">Paper #F3F6F0</text>
+      <text x="1434" y="69" text-anchor="end" fill="#0A4A3F" font-size="14" font-weight="600" letter-spacing="2">CORE: FLAT</text>
+      <text x="1434" y="91" text-anchor="end" fill="#667A73" font-size="13">Glow is a motion/UI effect</text>
+    </g>
+  </g>
+</svg>

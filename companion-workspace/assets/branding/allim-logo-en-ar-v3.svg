@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="700" viewBox="0 0 1800 700" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM bilingual logo</title>
+  <desc id="desc">Modern emerald ALLIM logo with the Arabic word عَلِّمْ.</desc>
+
+  <defs>
+    <linearGradient id="emerald" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#19D89F"/>
+      <stop offset="0.48" stop-color="#00B982"/>
+      <stop offset="1" stop-color="#087D61"/>
+    </linearGradient>
+    <linearGradient id="emerald-soft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#37E6B4"/>
+      <stop offset="1" stop-color="#00A978"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Standalone mark: the double LL becomes a rising path; the two strokes above echo the Arabic shadda. -->
+  <g id="mark" transform="translate(88 90)">
+    <path d="M82 380V154c0-41 29-70 71-70h30v296c0 31 18 50 49 50h20v82h-45c-79 0-125-48-125-132Z" fill="#082A24"/>
+    <path d="M225 380V92c0-42 29-72 72-72h31v360c0 31 18 50 49 50h25v82h-51c-80 0-126-48-126-132Z" fill="url(#emerald)"/>
+    <path d="M102 36 181 4c14-6 29 4 29 19v27l-108 43Z" fill="url(#emerald-soft)"/>
+    <path d="M235 36 314 4c14-6 29 4 29 19v27L235 93Z" fill="url(#emerald-soft)"/>
+  </g>
+
+  <!-- English wordmark. The doubled LL is accented to make the pronunciation and brand spelling unmistakable. -->
+  <g id="latin-wordmark" transform="translate(530 0)">
+    <text x="0" y="358"
+          fill="#082A24"
+          font-family="SF Pro Display, Avenir Next, Avenir, Helvetica Neue, Arial, sans-serif"
+          font-size="222"
+          font-weight="700"
+          letter-spacing="4">A</text>
+    <text x="174" y="358"
+          fill="url(#emerald)"
+          font-family="SF Pro Display, Avenir Next, Avenir, Helvetica Neue, Arial, sans-serif"
+          font-size="222"
+          font-weight="750"
+          letter-spacing="-5">LL</text>
+    <text x="424" y="358"
+          fill="#082A24"
+          font-family="SF Pro Display, Avenir Next, Avenir, Helvetica Neue, Arial, sans-serif"
+          font-size="222"
+          font-weight="700"
+          letter-spacing="4">IM</text>
+  </g>
+
+  <!-- Exact Arabic spelling: ع + fatha, ل + shadda + kasra, م + sukun. -->
+  <text id="arabic-wordmark"
+        x="1515" y="548"
+        fill="#087D61"
+        font-family="SF Arabic, Geeza Pro, Damascus, Arial, sans-serif"
+        font-size="142"
+        font-weight="700"
+        text-anchor="end"
+        direction="rtl"
+        unicode-bidi="bidi-override"
+        lang="ar">عَلِّمْ</text>
+
+  <rect x="530" y="435" width="730" height="8" rx="4" fill="#19D89F" opacity="0.9"/>
+</svg>

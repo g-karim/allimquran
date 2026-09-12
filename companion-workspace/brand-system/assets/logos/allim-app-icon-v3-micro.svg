@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM QURAN micro app icon v3</title>
+  <desc id="desc">Single-color compact open embrace and Book symbol.</desc>
+  <rect width="256" height="256" rx="56" fill="#0B3D33"/>
+  <g transform="translate(48 48)">
+    <path d="M58 29C37 37 25 57 26 80C27 103 42 120 64 130M102 29C123 37 135 57 134 80C133 103 118 120 96 130" fill="none" stroke="#F4F0E7" stroke-width="17" stroke-linecap="round"/>
+    <path d="M45 61L80 74L115 61V101L80 119L45 101V61ZM80 74V119" fill="none" stroke="#F4F0E7" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+</svg>

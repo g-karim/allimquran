@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM QURAN Hadith Embrace primary logo for light backgrounds</title>
+  <desc id="desc">The Hadith Embrace symbol with the ALLIM QURAN wordmark.</desc>
+  <g transform="translate(28 30) scale(.86)">
+    <path d="M49 25C28 35 18 55 22 78C27 106 49 124 77 132C91 136 106 137 126 129" fill="none" stroke="#0A4A3F" stroke-width="14" stroke-linecap="round"/>
+    <path d="M111 25C132 35 142 55 138 78C133 106 111 124 83 132C69 136 54 137 34 129" fill="none" stroke="#0A4A3F" stroke-width="14" stroke-linecap="round"/>
+    <path d="M45 49C58 49 70 53 80 61C90 53 102 49 115 49V94C101 94 89 100 80 109C71 100 59 94 45 94V49Z" fill="none" stroke="#0A4A3F" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M80 62V101" fill="none" stroke="#16896F" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="80" cy="115" r="4.5" fill="#16DFA2"/>
+  </g>
+  <g fill="none" stroke="#0A4A3F" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M206 158L238 62L270 158M219 121H257"/>
+    <path d="M310 62V158H365"/>
+    <path d="M405 62V158H460"/>
+    <path d="M500 62V158"/>
+    <path d="M545 158V62L580 123L615 62V158"/>
+  </g>
+  <g transform="translate(682 72)" fill="none" stroke="#0A4A3F" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M15 0C5 0 0 8 0 20V49C0 61 5 69 15 69C25 69 30 61 30 49V20C30 8 25 0 15 0ZM17 52L34 74"/>
+    <path d="M55 0V49C55 62 61 69 71 69C81 69 87 62 87 49V0"/>
+    <path d="M113 69V0H129C141 0 147 7 147 19V25C147 36 141 42 130 42H113M130 42L150 69"/>
+    <path d="M171 69L188 0L205 69M178 43H198"/>
+    <path d="M230 69V0L262 69V0"/>
+  </g>
+</svg>

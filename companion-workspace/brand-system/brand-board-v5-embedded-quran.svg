@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1800 1200" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM refined embedded QURAN identity</title>
+  <desc id="desc">Final monochrome wordmark and AQ app icon shown on dark and light backgrounds.</desc>
+
+  <rect width="1800" height="1200" fill="#EEECE5"/>
+
+  <rect x="48" y="48" width="1704" height="652" rx="34" fill="#080A09"/>
+  <text x="104" y="118" fill="#8D918D" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="4">ALLIM / MASTER WORDMARK</text>
+  <text x="1696" y="118" fill="#8D918D" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="3" text-anchor="end">V5 / REFINED</text>
+  <image x="128" y="174" width="1544" height="505" xlink:href="assets/logos/allim-embedded-quran-v5-reverse.svg" preserveAspectRatio="xMidYMid meet"/>
+
+  <rect x="48" y="732" width="1170" height="420" rx="30" fill="#F8F7F2"/>
+  <text x="96" y="798" fill="#8A8D89" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="3">LIGHT FIELD</text>
+  <image x="78" y="812" width="1110" height="363" xlink:href="assets/logos/allim-embedded-quran-v5.svg" preserveAspectRatio="xMidYMid meet"/>
+
+  <rect x="1250" y="732" width="502" height="420" rx="30" fill="#DAD8D1"/>
+  <text x="1298" y="798" fill="#777B77" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="3">AQ / APP ICON</text>
+  <image x="1335" y="830" width="250" height="250" xlink:href="assets/logos/allim-aq-favicon-v5.svg"/>
+  <image x="1615" y="916" width="72" height="72" xlink:href="assets/logos/allim-aq-favicon-v5.svg"/>
+  <image x="1702" y="936" width="32" height="32" xlink:href="assets/logos/allim-aq-favicon-v5.svg"/>
+  <text x="1460" y="1112" fill="#777B77" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="2" text-anchor="middle">PRIMARY</text>
+  <text x="1651" y="1014" fill="#777B77" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" text-anchor="middle">64</text>
+  <text x="1718" y="990" fill="#777B77" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="600" text-anchor="middle">32</text>
+</svg>

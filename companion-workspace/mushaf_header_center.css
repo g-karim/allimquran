@@ -1,0 +1,119 @@
+/* ALLIM_MUSHAF_HEADER_CENTER_V1_START */
+/* Keep the full-screen Mushaf command bar visually grouped and centered.
+   All desktop controls share one height so native selects, buttons and
+   disclosure controls sit on the same optical baseline. */
+@media (min-width: 621px) {
+  body.mushaf-view .mushaf-toolbar {
+    grid-template-columns: max-content max-content max-content;
+    justify-content: center;
+    gap: 8px;
+  }
+  body.mushaf-view .verse-pickers,
+  body.mushaf-view .reader-tools,
+  body.mushaf-view .mushaf-page-toolbar {
+    width: max-content;
+    flex: 0 0 auto;
+    align-items: center;
+    align-self: center;
+  }
+  body.mushaf-view .verse-pickers label,
+  body.mushaf-view .mushaf-page-toolbar label {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    margin: 0;
+    line-height: 1;
+  }
+  body.mushaf-view .quran-search-trigger,
+  body.mushaf-view .verse-pickers select,
+  body.mushaf-view .heart-page-trigger,
+  body.mushaf-view .mushaf-page-toolbar > .icon-button,
+  body.mushaf-view .mushaf-page-toolbar input,
+  body.mushaf-view .mushaf-page-toolbar > details > summary {
+    height: 40px;
+    min-height: 40px;
+  }
+  body.mushaf-view #verse-reference {
+    display: inline-flex;
+    height: 40px;
+    align-items: center;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  body.mushaf-view .mushaf-toolbar {
+    grid-template-columns: max-content max-content;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 920px) {
+  body.mushaf-view .verse-pickers select { max-width: 150px; }
+  body.mushaf-view #ayah-select { width: 74px; }
+  body.mushaf-view #verse-reference { display: none; }
+  body.mushaf-view .mushaf-page-toolbar label > span { display: none; }
+  body.mushaf-view .mushaf-appearance-picker summary {
+    width: 40px;
+    padding: 0;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 0;
+  }
+  body.mushaf-view .mushaf-appearance-picker summary::before {
+    content: "◐";
+    font-size: 17px;
+  }
+  body.mushaf-view .reader-mode-picker summary {
+    width: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+  body.mushaf-view .reader-mode-picker summary span { display: none; }
+}
+
+@media (min-width: 621px) and (max-width: 760px) {
+  body.mushaf-view { --mushaf-command-height: 94px; }
+  body.mushaf-view .mushaf-toolbar {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 40px;
+    justify-items: center;
+    gap: 4px;
+    padding: 5px 8px;
+  }
+  body.mushaf-view .verse-pickers {
+    height: 40px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 5px !important;
+    padding: 0;
+  }
+  body.mushaf-view .quran-search-trigger {
+    width: 40px;
+    min-width: 40px;
+    padding: 0;
+  }
+  body.mushaf-view .quran-search-trigger span,
+  body.mushaf-view #verse-reference,
+  body.mushaf-view .mushaf-page-toolbar label > span,
+  body.mushaf-view .reader-tools { display: none !important; }
+  body.mushaf-view .verse-pickers select { max-width: 150px; }
+  body.mushaf-view #ayah-select { width: 74px; }
+  body.mushaf-view .mushaf-page-toolbar { justify-content: center; }
+  body.mushaf-view .mushaf-appearance-picker summary {
+    width: 40px;
+    padding: 0;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 0;
+  }
+  body.mushaf-view .mushaf-appearance-picker summary::before {
+    content: "◐";
+    font-size: 17px;
+  }
+  body.mushaf-view .reader-mode-picker summary {
+    width: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+  body.mushaf-view .reader-mode-picker summary span { display: none; }
+}
+/* ALLIM_MUSHAF_HEADER_CENTER_V1_END */
