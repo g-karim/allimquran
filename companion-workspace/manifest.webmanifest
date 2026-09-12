@@ -1,0 +1,20 @@
+{
+  "name": "ALLIM Qur’an Companion — اللَّهُمَّ عَلِّمْهُ الْكِتَابَ",
+  "short_name": "ALLIM",
+  "description": "Чтение, хифз и понимание Писания. В основе — дуа Пророка ﷺ за Ибн Аббаса.",
+  "lang": "ru",
+  "dir": "auto",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f5ef",
+  "theme_color": "#123d34",
+  "icons": [
+    {
+      "src": "app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

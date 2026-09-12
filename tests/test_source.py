@@ -87,6 +87,7 @@ class SourceTests(unittest.TestCase):
 			schemas,
 			{
 				"ALLIM Trial Lesson Request",
+				"ALLIM Reading Journal",
 				"ALLIM Search Audit",
 				"ALLIM Search Observation",
 				"ALLIM Search Opportunity",

@@ -27,6 +27,9 @@ from allimquran.asr.research import RETENTION_DAYS, VERSION, Corpus
 from allimquran.asr.review import ReviewError, ReviewQueue
 
 APP_ROOT = Path(__file__).resolve().parents[1]
+ASR_ENABLED = os.getenv("QURAN_ASR_ENABLED", "1") != "0"
+if os.getenv("QURAN_COMPANION_PREVIEW", "0") == "1":
+	APP_ROOT = Path(__file__).resolve().parents[2] / "companion-workspace"
 MODEL_ID = os.getenv("QURAN_ASR_MODEL", "tarteel-ai/whisper-tiny-ar-quran")
 MAX_AUDIO_BYTES = int(os.getenv("QURAN_ASR_MAX_AUDIO_BYTES", str(12 * 1024 * 1024)))
 ALLOWED_ORIGIN = os.getenv("QURAN_ASR_ALLOWED_ORIGIN", "https://allimquran.com").rstrip("/")
@@ -58,6 +61,12 @@ PUBLIC_FILES = {
 	"styles.css",
 	"app.js",
 	"quran-data.js",
+	"reading-journal.js",
+	"reading-sync.js",
+	"tafsir-data.js",
+	"fawaid-data.js",
+	"allim-brand-icon.png",
+	"assets/audio/allim-dua-ar-v2.m4a",
 	"sw.js",
 	"manifest.webmanifest",
 	"app-icon.svg",
@@ -92,7 +101,9 @@ async def security_headers(request, call_next):
 	response = await call_next(request)
 	response.headers["X-Content-Type-Options"] = "nosniff"
 	response.headers["Referrer-Policy"] = "no-referrer"
-	if request.url.path.startswith("/api/quran/translation/"):
+	if request.url.path.startswith("/api/") and response.status_code >= 400:
+		response.headers["Cache-Control"] = "no-store"
+	elif request.url.path.startswith("/api/quran/translation/"):
 		response.headers["Cache-Control"] = "public, max-age=3600, stale-while-revalidate=86400"
 	elif request.url.path.startswith("/api/mushaf/") or request.url.path.startswith("/api/quran/words/"):
 		response.headers["Cache-Control"] = "public, max-age=86400, stale-while-revalidate=604800"
@@ -154,6 +165,8 @@ async def internal_review(request: Request):
 
 def _get_pipeline():
 	global _pipeline
+	if not ASR_ENABLED:
+		raise HTTPException(status_code=503, detail="Speech recognition is disabled on this reading server")
 	if _pipeline is not None:
 		return _pipeline
 	with _pipeline_lock:
@@ -259,7 +272,8 @@ def _validate_request(request: Request, x_requested_with: str | None) -> None:
 
 @app.on_event("startup")
 def warm_model() -> None:
-	_get_pipeline()
+	if ASR_ENABLED:
+		_get_pipeline()
 	if research_corpus:
 		_research_stop.clear()
 		threading.Thread(target=_research_maintenance, daemon=True).start()

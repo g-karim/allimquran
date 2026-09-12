@@ -1,0 +1,14 @@
+{
+ "doctype": "DocType", "name": "ALLIM Reading Journal", "module": "ALLIM Quran",
+ "autoname": "prompt", "allow_rename": 0, "track_changes": 0, "allow_import": 0,
+ "has_web_view": 0, "index_web_pages_for_search": 0, "engine": "InnoDB",
+ "field_order": ["account", "revision", "journal_json", "last_operation", "last_digest"],
+ "fields": [
+  {"fieldname": "account", "label": "Account", "fieldtype": "Link", "options": "User", "reqd": 1, "unique": 1, "read_only": 1},
+  {"fieldname": "revision", "label": "Revision", "fieldtype": "Int", "reqd": 1, "read_only": 1},
+  {"fieldname": "journal_json", "label": "Journal", "fieldtype": "Long Text", "reqd": 1, "read_only": 1},
+  {"fieldname": "last_operation", "label": "Last operation", "fieldtype": "Data", "read_only": 1},
+  {"fieldname": "last_digest", "label": "Digest", "fieldtype": "Data", "read_only": 1}
+ ],
+ "permissions": [{"role": "System Manager", "read": 1}]
+}
