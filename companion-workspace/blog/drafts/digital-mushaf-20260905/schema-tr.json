@@ -1,0 +1,71 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://allimquran.com/tr/blog/dijital-mushaf-okuma-anlama-hatirlama#article",
+      "headline": "Ekrandaki bir sayfadan fazlası: Okumak, anlamak ve hatırlamak için dijital mushaf",
+      "description": "Dijital mushafın Kur’an metnini ve sayfa hafızasını korurken okuma, kelime anlama, ezber ve zamanında tekrarı nasıl destekleyebileceği.",
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "inLanguage": "tr",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://allimquran.com/tr/blog/dijital-mushaf-okuma-anlama-hatirlama"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "ALLIM Eğitim Ekibi",
+        "url": "https://allimquran.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ALLIM QURAN",
+        "url": "https://allimquran.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://allimquran.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Rehberler", "item": "https://allimquran.com/tr/blog"},
+        {"@type": "ListItem", "position": 3, "name": "Dijital Mushaf", "item": "https://allimquran.com/tr/blog/dijital-mushaf-okuma-anlama-hatirlama"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Dijital mushaf nedir?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Kur’an metnini, hareke ve tilavet işaretlerini, seçilen mushaf neşrini, satır ve sayfa düzenini ve ayetlerle güvenli etkileşimi birlikte ele alan doğrulanmış dijital gösterimdir."}
+        },
+        {
+          "@type": "Question",
+          "name": "Sayfa taramaları neden yeterli değildir?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Tarama görünümü korur; ancak kötü ölçeklenir ve güvenilir kelime düzeyinde etkileşim sunmaz. Arama, işaretleme, anlama ve hatırlama çalışması için yapılandırılmış bir veri katmanı gerekir."}
+        },
+        {
+          "@type": "Question",
+          "name": "Yazıyı büyütmek sayfa hafızasını bozar mı?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Tam sayfa modunda geometri sabit kalmalıdır. Daha güçlü büyütmede ise öğrencinin yerini koruyan, metni kesmeden yeniden akıtan ayrı bir ayet modu kullanılabilir."}
+        },
+        {
+          "@type": "Question",
+          "name": "Yapay zekâ tecvid hakkında nihai değerlendirme yapabilir mi?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Hayır. Muhtemel atlama, tekrar veya uyuşmazlığı gösterebilir; fakat tecvid, mahreç ve kıraatın ince değerlendirmesi yetkin bir öğretmen gerektirir."}
+        },
+        {
+          "@type": "Question",
+          "name": "Tek tek kelimeler neden etkileşimli olmalı?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Öğrenci ayetten ayrılmadan yazılışı, sesi ve bağlama uygun anlamı birleştirebilir; telaffuzu dinleyebilir, kaynaklı açıklama açabilir veya kelimeyi tekrara ekleyebilir."}
+        },
+        {
+          "@type": "Question",
+          "name": "Bir okuyucu dijital mushafa güvenebileceğini nasıl anlar?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Hizmet, kullandığı mushaf neşrini ve Kur’an metni kaynağını belirtmeli; Kur’an’ı meal ve yorumdan ayırmalı; tefsir kaynaklarını göstermeli ve metin ile terminolojiyi yetkin uzmanlara inceletmelidir."}
+        }
+      ]
+    }
+  ]
+}

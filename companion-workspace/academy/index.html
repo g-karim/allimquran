@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ru" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="Личный кабинет ученика ALLIM Qur’an Academy: план, прогресс, курсы и сопровождение преподавателя.">
+  <title>Кабинет ученика — ALLIM Qur’an Academy</title>
+  <link rel="stylesheet" href="styles.css?v=77">
+</head>
+<body>
+  <a class="skip-link" href="#academy-main" data-copy="skip">К содержанию</a>
+
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H12v18H7.5A3.5 3.5 0 0 0 4 23Z"/><path d="M20 5.5A3.5 3.5 0 0 0 16.5 2H12v18h4.5A3.5 3.5 0 0 1 20 23Z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-teacher" viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5Z"/><path d="M6 10v5c3 3 9 3 12 0v-5M22 8v7"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4m-4 0h8"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.2 8 11 4.6-1.8 8-6 8-11V5Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M4 4v6h6M5.5 15a7 7 0 1 0 .5-7"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M4.9 4.9 7 7m10 10 2.1 2.1M2 12h3m14 0h3M4.9 19.1 7 17m10-10 2.1-2.1"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2c.8 5.1 4 8.2 9 9-5 .8-8.2 3.9-9 9-.8-5.1-4-8.2-9-9 5-.8 8.2-3.9 9-9Z"/></symbol>
+  </svg>
+
+  <div class="academy-app">
+    <aside class="academy-sidebar" aria-label="Навигация кабинета" data-copy-aria="cabinetNav">
+      <a class="brand" href="/" aria-label="ALLIM home">
+        <span class="brand-mark" aria-hidden="true">ع</span>
+        <span><strong>ALLIM</strong><small>QUR’AN ACADEMY</small></span>
+      </a>
+      <nav class="side-nav">
+        <button class="nav-button is-active" type="button" data-panel="overview"><svg><use href="#i-home"/></svg><span data-copy="navOverview">Мой путь</span></button>
+        <button class="nav-button" type="button" data-panel="courses"><svg><use href="#i-book"/></svg><span data-copy="navCourses">Мои курсы</span></button>
+        <button class="nav-button" type="button" data-panel="teacher"><svg><use href="#i-teacher"/></svg><span data-copy="navTeacher">Преподаватель</span></button>
+        <button class="nav-button" type="button" data-panel="progress"><svg><use href="#i-chart"/></svg><span data-copy="navProgress">Прогресс</span></button>
+      </nav>
+      <div class="sidebar-dua"><span lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span><small data-copy="duaMeaning">О Аллах, научи его Писанию.</small></div>
+      <a class="sidebar-link" href="/learn"><svg><use href="#i-book"/></svg><span data-copy="openCompanion">Открыть Companion</span></a>
+    </aside>
+
+    <div class="academy-workspace">
+      <header class="academy-topbar">
+        <a class="mobile-brand" href="/"><span class="brand-mark" aria-hidden="true">ع</span><strong>ALLIM</strong></a>
+        <div class="topbar-copy"><span class="eyebrow" data-copy="studentCabinet">КАБИНЕТ УЧЕНИКА</span><h1 data-copy="pageTitle">Ваш путь в Коране</h1></div>
+        <div class="topbar-actions">
+          <span class="sync-status" id="sync-status"><i></i><span data-copy="deviceProgress">Прогресс на устройстве</span></span>
+          <button class="language-button" id="language-button" type="button" aria-label="Сменить язык" data-copy-aria="changeLanguage">RU</button>
+          <a class="account-button" id="account-button" href="/login?redirect-to=%2Facademy"><svg><use href="#i-user"/></svg><span data-copy="signIn">Войти</span></a>
+        </div>
+      </header>
+
+      <main id="academy-main" tabindex="-1">
+        <section class="cabinet-panel is-active" data-panel-content="overview">
+          <div class="welcome-row">
+            <div>
+              <span class="access-pill" id="access-pill"><i></i><span data-copy="basicAccess">Базовый доступ</span></span>
+              <h2><span data-copy="salam">Ас-саляму ‘аляйкум</span><span id="student-name"></span></h2>
+              <p data-copy="welcomeText">Сегодня достаточно одного ясного шага: прочитать, вспомнить, понять и вернуться вовремя.</p>
+            </div>
+            <button class="secondary-button" id="edit-plan" type="button"><svg><use href="#i-settings"/></svg><span data-copy="editPlan">Настроить план</span></button>
+          </div>
+
+          <section class="academy-entry-card" id="academy-entry-card" aria-labelledby="academy-entry-title">
+            <div class="academy-entry-copy">
+              <span class="eyebrow" data-diagnostic-copy="eyebrow">ПЕРВЫЙ ВХОД В ACADEMY</span>
+              <h3 id="academy-entry-title" data-diagnostic-copy="title">Сначала определим вашу точку старта.</h3>
+              <p data-diagnostic-copy="lead">Короткая диагностика займёт около двух минут. После неё вы получите понятный маршрут и сможете записаться на пробный урок.</p>
+            </div>
+            <ol class="academy-entry-steps" aria-label="Путь начала обучения" data-diagnostic-aria="stepsLabel">
+              <li class="is-active" data-entry-step="diagnostic"><span>01</span><div><strong data-diagnostic-copy="stepDiagnostic">Диагностика</strong><small data-diagnostic-copy="stepDiagnosticHint">Уровень и цель</small></div></li>
+              <li data-entry-step="route"><span>02</span><div><strong data-diagnostic-copy="stepRoute">Личный маршрут</strong><small data-diagnostic-copy="stepRouteHint">Темп и программа</small></div></li>
+              <li data-entry-step="trial"><span>03</span><div><strong data-diagnostic-copy="stepTrial">Пробный урок</strong><small data-diagnostic-copy="stepTrialHint">Живое знакомство</small></div></li>
+              <li data-entry-step="learning"><span>04</span><div><strong data-diagnostic-copy="stepLearning">Обучение</strong><small data-diagnostic-copy="stepLearningHint">План и сопровождение</small></div></li>
+            </ol>
+            <div class="academy-entry-actions" id="academy-entry-actions">
+              <button class="primary-button" id="start-diagnostic" type="button"><span data-diagnostic-copy="startDiagnostic">Пройти диагностику</span><svg><use href="#i-arrow"/></svg></button>
+              <small data-diagnostic-copy="privacy">Ответы сохраняются на этом устройстве. Заявка на урок отправляется отдельно.</small>
+            </div>
+            <article class="academy-route-result" id="academy-route-result" hidden tabindex="-1" aria-live="polite">
+              <div class="academy-route-result-head"><span class="route-symbol" aria-hidden="true"><svg><use href="#i-spark"/></svg></span><div><span class="eyebrow" data-diagnostic-copy="routeReady">ВАШ МАРШРУТ ГОТОВ</span><h4 id="diagnostic-route-title"></h4></div></div>
+              <p id="diagnostic-route-summary"></p>
+              <div class="academy-route-modules" id="diagnostic-route-modules"></div>
+              <div class="academy-route-actions">
+                <a class="primary-button" id="book-trial-lesson" href="/academy-trial/new"><span data-diagnostic-copy="bookTrial">Записаться на пробный урок</span><svg><use href="#i-arrow"/></svg></a>
+                <button class="secondary-button" id="retake-diagnostic" type="button" data-diagnostic-copy="retake">Пройти заново</button>
+              </div>
+            </article>
+          </section>
+
+          <div class="overview-grid">
+            <article class="today-plan-card">
+              <div class="card-heading">
+                <div><span class="eyebrow" data-copy="todayPlan">ПЛАН НА СЕГОДНЯ</span><h3><span id="plan-minutes">15</span> <span data-copy="minutes">минут внимания</span></h3></div>
+                <span class="plan-ring" id="plan-ring"><strong id="today-count">0</strong><small id="goal-count">/ 1</small></span>
+              </div>
+              <div class="plan-flow">
+                <a href="/learn?view=read"><span>01</span><svg><use href="#i-user"/></svg><strong data-copy="recite">Чтение вслух</strong><small data-copy="reciteHint">Продолжить с выбранного аята</small><svg class="arrow"><use href="#i-arrow"/></svg></a>
+                <a href="/learn?view=memorize"><span>02</span><svg><use href="#i-heart"/></svg><strong data-copy="memorize">Вспомнить без текста</strong><small data-copy="memorizeHint">Укрепить страницу в сердце</small><svg class="arrow"><use href="#i-arrow"/></svg></a>
+                <a href="/learn?view=tafsir"><span>03</span><svg><use href="#i-spark"/></svg><strong data-copy="understand">Понять аят</strong><small data-copy="understandHint">Слово, корень и тафсир</small><svg class="arrow"><use href="#i-arrow"/></svg></a>
+                <a href="/learn?view=progress"><span>04</span><svg><use href="#i-refresh"/></svg><strong data-copy="review">Вернуться вовремя</strong><small><span id="review-plan-count">0</span> <span data-copy="ayahForReview">аятов в повторении</span></small><svg class="arrow"><use href="#i-arrow"/></svg></a>
+              </div>
+              <a class="primary-button" href="/learn?view=read"><span data-copy="startLesson">Начать занятие</span><svg><use href="#i-arrow"/></svg></a>
+            </article>
+
+            <div class="metrics-column">
+              <article class="metric-card"><span><svg><use href="#i-clock"/></svg></span><div><small data-copy="todaySessions">Сегодня</small><strong id="metric-today">0</strong><p data-copy="completedSessions">завершённых сессий</p></div></article>
+              <article class="metric-card"><span><svg><use href="#i-chart"/></svg></span><div><small data-copy="streak">Серия</small><strong><span id="metric-streak">0</span> <em data-copy="days">дней</em></strong><p data-copy="streakHint">регулярного возвращения</p></div></article>
+              <article class="metric-card"><span><svg><use href="#i-book"/></svg></span><div><small data-copy="myCourses">Мои курсы</small><strong id="metric-courses">0</strong><p data-copy="courseHint">активных учебных путей</p></div></article>
+            </div>
+          </div>
+
+          <div class="lower-grid">
+            <article class="heart-card">
+              <div class="heart-copy"><span class="eyebrow" data-copy="heartBook">КНИГА ХИФЗА</span><h3 data-copy="heartTitle">Коран в сердце</h3><p data-copy="heartText">Страницы проявляются правильными повторениями и сохраняются регулярным возвращением.</p><a href="/learn?view=memorize" class="text-link"><span data-copy="continueHifz">Продолжить собирать</span><svg><use href="#i-arrow"/></svg></a></div>
+              <div class="heart-stats"><div><strong id="heart-repetitions">0</strong><small data-copy="acceptedRepeats">принято повторений</small></div><div><strong id="heart-pages">0</strong><small data-copy="securedAyat">аятов закреплено</small></div><div><strong id="heart-due">0</strong><small data-copy="dueForReview">пора повторить</small></div></div>
+            </article>
+            <article class="access-card" aria-labelledby="access-levels-title">
+              <span class="eyebrow" id="access-levels-title" data-copy="threeLevels">ТРИ УРОВНЯ ОДНОГО ПУТИ</span>
+              <div class="access-line" id="open-access-line"><span><strong>01</strong></span><div><strong data-copy="openTitle">Открытый доступ</strong><p data-copy="openText">Коран, чтение и базовая проверка слов — свободно, без регистрации.</p></div><em data-copy="alwaysOpen">Всегда открыт</em></div>
+              <div class="access-line" id="basic-access-line"><span><strong>02</strong></span><div><strong data-copy="basicTitle">Базовый кабинет</strong><p data-copy="basicText">Личный план, первичное обучение, «Коран в сердце», проверка страницы наизусть, курсы и история прогресса.</p></div><em id="basic-status" data-copy="signIn">Войти</em></div>
+              <div class="access-line" id="guided-access-line"><span><strong>03</strong></span><div><strong data-copy="guidedTitle">ALLIM Academy с преподавателем</strong><p data-copy="guidedText">Живое исправление чтения, задания, расписание, личная обратная связь и сопровождение преподавателя.</p></div><em id="guided-status" data-copy="notConnected">Не подключён</em></div>
+              <button class="text-button" type="button" data-open-panel="teacher"><span data-copy="seeGuided">Посмотреть сопровождение</span><svg><use href="#i-arrow"/></svg></button>
+            </article>
+          </div>
+          <article class="advanced-recall-card" id="advanced-recall-card" data-access-state="locked" aria-labelledby="advanced-recall-title" tabindex="-1">
+            <div class="advanced-recall-number" aria-hidden="true">02</div>
+            <div class="advanced-recall-copy">
+              <span class="eyebrow" data-copy="advancedRecallEyebrow">ПРАКТИКА ХИФЗА В БАЗОВОМ КАБИНЕТЕ</span>
+              <h3 id="advanced-recall-title" data-copy="advancedRecallTitle">Проверка страницы наизусть</h3>
+              <p data-copy="advancedRecallText">Настоящая геометрия мусхафа остаётся на экране, текст скрывается, а правильные слова проявляются по порядку. Результат сохраняется в личной истории.</p>
+              <ul>
+                <li data-copy="advancedRecallPoint1">Связное чтение всей страницы</li>
+                <li data-copy="advancedRecallPoint2">Остановка на ошибке до исправления</li>
+                <li data-copy="advancedRecallPoint3">История самостоятельных проверок</li>
+              </ul>
+            </div>
+            <div class="advanced-recall-action">
+              <span class="access-pill muted" id="advanced-recall-status"><i></i><span data-copy="secondAccessLocked">Войдите в базовый кабинет</span></span>
+              <a class="primary-button" id="advanced-recall-action" href="/login?redirect-to=/academy"><span data-copy="signInAndOpen">Войти и открыть</span><svg><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+        </section>
+
+        <section class="cabinet-panel" data-panel-content="courses" hidden>
+          <div class="section-head"><div><span class="eyebrow" data-copy="learningPaths">УЧЕБНЫЕ ПУТИ</span><h2 data-copy="coursesTitle">Мои курсы и программы</h2><p data-copy="coursesLead">Здесь появляются только реальные зачисления и фактический прогресс.</p></div><a class="secondary-button" href="/lms/courses"><span data-copy="browseCourses">Посмотреть программы</span><svg><use href="#i-arrow"/></svg></a></div>
+          <div class="course-list" id="course-list"><article class="empty-state"><span><svg><use href="#i-book"/></svg></span><h3 data-copy="loadingCourses">Проверяю ваши курсы…</h3><p data-copy="loadingCoursesText">Базовое обучение в Companion доступно уже сейчас.</p></article></div>
+        </section>
+
+        <section class="cabinet-panel" data-panel-content="teacher" hidden>
+          <div class="section-head"><div><span class="eyebrow" data-copy="guidedAcademy">ACADEMY С ПРЕПОДАВАТЕЛЕМ</span><h2 data-copy="teacherTitle">Живое сопровождение</h2><p data-copy="teacherLead">Преподаватель, расписание и обратная связь открываются только после реального зачисления в группу.</p></div><span class="access-pill muted" id="guided-pill"><i></i><span data-copy="checkingAccess">Проверяю доступ</span></span></div>
+          <div class="teacher-grid">
+            <article class="teacher-profile"><div class="teacher-avatar"><svg><use href="#i-teacher"/></svg></div><span class="eyebrow" data-copy="yourTeacher">ВАШ ПРЕПОДАВАТЕЛЬ</span><h3 id="teacher-name" data-copy="teacherUnassigned">Пока не назначен</h3><p id="teacher-description" data-copy="teacherEmpty">После зачисления здесь появятся имя преподавателя, программа и способы связи внутри Академии.</p><a class="primary-button" id="teacher-action" href="/lms/batches"><span data-copy="findProgram">Выбрать программу</span><svg><use href="#i-arrow"/></svg></a></article>
+            <div class="teacher-details">
+              <article><span><svg><use href="#i-calendar"/></svg></span><div><small data-copy="nextLesson">Следующее занятие</small><strong id="next-class" data-copy="notScheduled">Не запланировано</strong><p id="next-class-meta" data-copy="scheduleAppears">Дата и время появятся после подтверждения группы.</p></div></article>
+              <article><span><svg><use href="#i-check"/></svg></span><div><small data-copy="latestAssignment">Последнее задание</small><strong id="latest-assignment" data-copy="noAssignments">Нет активных заданий</strong><p id="latest-assignment-meta" data-copy="assignmentAppears">Задания и результаты проверки будут собраны здесь.</p></div></article>
+              <article><span><svg><use href="#i-message"/></svg></span><div><small data-copy="feedback">Обратная связь</small><strong id="feedback-status" data-copy="noFeedback">Новых комментариев нет</strong><p data-copy="feedbackHint">Комментарии относятся к конкретному заданию или чтению.</p></div></article>
+            </div>
+          </div>
+          <article class="strict-assessment-card" id="strict-assessment-card" data-access-state="locked" aria-labelledby="strict-assessment-title" tabindex="-1">
+            <div class="strict-assessment-head">
+              <span class="strict-assessment-mark" aria-hidden="true"><svg><use href="#i-mic"/></svg></span>
+              <div>
+                <span class="eyebrow" data-copy="strictAssessmentEyebrow">УРОВЕНЬ 3 · С ПРЕПОДАВАТЕЛЕМ</span>
+                <h3 id="strict-assessment-title" data-copy="strictAssessmentTitle">Строгая проверка произношения и таджвида</h3>
+              </div>
+              <span class="access-pill muted" id="strict-assessment-status"><i></i><span data-copy="strictAssessmentLocked">Доступен после зачисления</span></span>
+            </div>
+            <p class="strict-assessment-lead" data-copy="strictAssessmentText">Система строит предварительную карту чтения, а преподаватель подтверждает оценку и даёт точное задание на исправление.</p>
+            <div class="strict-assessment-flow" aria-label="Этапы строгой проверки" data-copy-aria="strictAssessmentFlowLabel">
+              <span><b>01</b><svg><use href="#i-mic"/></svg><strong data-copy="strictAssessmentWords">Порядок слов</strong><small data-copy="strictAssessmentWordsText">Пропуски и замены</small></span>
+              <span><b>02</b><svg><use href="#i-spark"/></svg><strong data-copy="strictAssessmentPhonetics">Фонетическая карта</strong><small data-copy="strictAssessmentPhoneticsText">Махрадж и сифаты</small></span>
+              <span><b>03</b><svg><use href="#i-shield"/></svg><strong data-copy="strictAssessmentRules">Правила таджвида</strong><small data-copy="strictAssessmentRulesText">Мадд, гунна, калькала, идгам и васл</small></span>
+              <span><b>04</b><svg><use href="#i-teacher"/></svg><strong data-copy="strictAssessmentTeacher">Вывод преподавателя</strong><small data-copy="strictAssessmentTeacherText">Интонация, паузы и личное задание</small></span>
+            </div>
+            <div class="strict-assessment-foot">
+              <p><svg><use href="#i-check"/></svg><span data-copy="strictAssessmentBoundary">Автооценка не становится итоговой, пока её не подтвердит преподаватель.</span></p>
+              <a class="primary-button" id="strict-assessment-action" href="/lms/batches"><span data-copy="strictAssessmentChooseProgram">Выбрать программу</span><svg><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <aside class="trust-banner"><svg><use href="#i-teacher"/></svg><p><strong data-copy="humanTrust">Преподаватель остаётся центральным.</strong><span data-copy="humanTrustText">Автоматическая проверка помогает между уроками, но не заменяет живое исправление и не выдаёт иджазу.</span></p></aside>
+        </section>
+
+        <section class="cabinet-panel" data-panel-content="progress" hidden>
+          <div class="section-head"><div><span class="eyebrow" data-copy="evidenceTitle">ТОЛЬКО ФАКТИЧЕСКИЕ ДАННЫЕ</span><h2 data-copy="progressTitle">Ваш прогресс</h2><p data-copy="progressLead">Показатели Companion на этом устройстве и прогресс зачисленных курсов показаны раздельно.</p></div></div>
+          <div class="progress-grid">
+            <article class="progress-summary"><h3 data-copy="companionProgress">Companion на этом устройстве</h3><div class="big-number" id="total-sessions">0</div><p data-copy="allSessions">всего завершённых сессий</p><div class="mini-metrics"><span><strong id="saved-count">0</strong><small data-copy="savedAyat">сохранено аятов</small></span><span><strong id="review-count">0</strong><small data-copy="reviewQueue">в очереди повторения</small></span><span><strong id="words-reviewed">0</strong><small data-copy="reviewedWords">проверено слов</small></span></div></article>
+            <article class="activity-card"><h3 data-copy="fiveWeeks">Последние пять недель</h3><div class="activity-grid" id="activity-grid" aria-label="Активность за пять недель"></div><p data-copy="activityHint">Цвет означает число завершённых сессий за день.</p></article>
+            <article class="server-progress"><h3 data-copy="courseProgress">Прогресс курсов</h3><div id="server-course-progress"><p class="muted-copy" data-copy="courseProgressEmpty">Войдите в аккаунт, чтобы увидеть серверный прогресс зачисленных курсов.</p></div></article>
+          </div>
+        </section>
+      </main>
+
+      <nav class="mobile-nav" aria-label="Навигация кабинета" data-copy-aria="cabinetNav">
+        <button class="is-active" type="button" data-panel="overview"><svg><use href="#i-home"/></svg><span data-copy="navOverview">Мой путь</span></button>
+        <button type="button" data-panel="courses"><svg><use href="#i-book"/></svg><span data-copy="navCourses">Курсы</span></button>
+        <button type="button" data-panel="teacher"><svg><use href="#i-teacher"/></svg><span data-copy="navTeacher">Учитель</span></button>
+        <button type="button" data-panel="progress"><svg><use href="#i-chart"/></svg><span data-copy="navProgress">Прогресс</span></button>
+      </nav>
+    </div>
+  </div>
+
+  <dialog id="plan-dialog" aria-labelledby="plan-dialog-title">
+    <form method="dialog" id="plan-form">
+      <div class="dialog-head"><div><span class="eyebrow" data-copy="personalPlan">ЛИЧНЫЙ ПЛАН</span><h2 id="plan-dialog-title" data-copy="planDialogTitle">Настройте ритм обучения</h2></div><button class="close-button" value="cancel" type="submit" aria-label="Закрыть">×</button></div>
+      <label><span data-copy="dailyTime">Время в день</span><select id="plan-minutes-input"><option value="10">10 минут</option><option value="15">15 минут</option><option value="20">20 минут</option><option value="30">30 минут</option><option value="45">45 минут</option></select></label>
+      <label><span data-copy="mainFocus">Главный фокус</span><select id="plan-focus-input"><option value="recitation" data-copy="focusRecitation">Чтение</option><option value="memorization" data-copy="focusMemorization">Заучивание</option><option value="arabic" data-copy="focusArabic">Коранический арабский</option><option value="tafsir" data-copy="focusTafsir">Тафсир</option></select></label>
+      <label><span data-copy="currentTarget">Текущая цель</span><input id="plan-target-input" maxlength="80" autocomplete="off" data-copy-placeholder="targetPlaceholder" placeholder="Например: укрепить суру Аль-Мульк"></label>
+      <p class="dialog-note" data-copy="planPrivacy">План остаётся личным. Подключение синхронизации с аккаунтом будет показано отдельно.</p>
+      <div class="dialog-actions"><button class="secondary-button" value="cancel" type="submit" data-copy="cancel">Отмена</button><button class="primary-button" id="save-plan" value="default" type="submit"><span data-copy="savePlan">Сохранить план</span><svg><use href="#i-check"/></svg></button></div>
+    </form>
+  </dialog>
+
+  <dialog id="diagnostic-dialog" aria-labelledby="diagnostic-dialog-title">
+    <form id="diagnostic-form">
+      <div class="dialog-head"><div><span class="eyebrow" data-diagnostic-copy="dialogEyebrow">ДИАГНОСТИКА</span><h2 id="diagnostic-dialog-title" data-diagnostic-copy="dialogTitle">Три вопроса для точного старта</h2></div><button class="close-button" id="close-diagnostic" type="button" aria-label="Закрыть" data-diagnostic-aria="close">×</button></div>
+      <p class="dialog-intro" data-diagnostic-copy="dialogLead">Это не экзамен. Мы определяем первый посильный шаг, а преподаватель уточнит маршрут на пробном уроке.</p>
+      <fieldset>
+        <legend><span>01</span><span data-diagnostic-copy="levelQuestion">Как вы читаете сейчас?</span></legend>
+        <label class="diagnostic-option"><input type="radio" name="level" value="letters" required><span><strong data-diagnostic-copy="levelLetters">Только начинаю</strong><small data-diagnostic-copy="levelLettersHint">Не знаю все буквы или соединения</small></span></label>
+        <label class="diagnostic-option"><input type="radio" name="level" value="assisted"><span><strong data-diagnostic-copy="levelAssisted">Читаю с помощью</strong><small data-diagnostic-copy="levelAssistedHint">Читаю медленно и часто сомневаюсь</small></span></label>
+        <label class="diagnostic-option"><input type="radio" name="level" value="independent"><span><strong data-diagnostic-copy="levelIndependent">Читаю самостоятельно</strong><small data-diagnostic-copy="levelIndependentHint">Хочу улучшить точность и беглость</small></span></label>
+      </fieldset>
+      <fieldset>
+        <legend><span>02</span><span data-diagnostic-copy="goalQuestion">Что важнее сейчас?</span></legend>
+        <label class="diagnostic-option"><input type="radio" name="goal" value="reading" required><span><strong data-diagnostic-copy="goalReading">Научиться читать</strong><small data-diagnostic-copy="goalReadingHint">Буквы, соединения и чтение аятов</small></span></label>
+        <label class="diagnostic-option"><input type="radio" name="goal" value="tajwid"><span><strong data-diagnostic-copy="goalTajwid">Исправить чтение</strong><small data-diagnostic-copy="goalTajwidHint">Махрадж, правила и плавность</small></span></label>
+        <label class="diagnostic-option"><input type="radio" name="goal" value="hifz"><span><strong data-diagnostic-copy="goalHifz">Заучивать Коран</strong><small data-diagnostic-copy="goalHifzHint">Повторение, связки и проверка</small></span></label>
+      </fieldset>
+      <label class="diagnostic-time"><span><b>03</b><span data-diagnostic-copy="timeQuestion">Сколько времени удобно заниматься ежедневно?</span></span><select name="minutes" required><option value="10">10 минут</option><option value="15" selected>15 минут</option><option value="20">20 минут</option><option value="30">30 минут</option></select></label>
+      <div class="dialog-actions"><button class="secondary-button" id="cancel-diagnostic" type="button" data-diagnostic-copy="cancel">Отмена</button><button class="primary-button" type="submit"><span data-diagnostic-copy="buildRoute">Составить маршрут</span><svg><use href="#i-arrow"/></svg></button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js?v=77" defer></script>
+</body>
+</html>

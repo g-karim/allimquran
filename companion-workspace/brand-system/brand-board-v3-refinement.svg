@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 920" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM QURAN Open Embrace refinement</title>
+  <desc id="desc">Three refined constructions of the open embrace and Book symbol.</desc>
+  <rect width="1500" height="920" fill="#F4F0E7"/>
+  <g font-family="Avenir Next, Helvetica Neue, Arial, sans-serif">
+    <text x="80" y="76" fill="#0B3D33" font-size="18" font-weight="600" letter-spacing="4">ALLIM QURAN · SYMBOL STUDY</text>
+    <text x="80" y="128" fill="#0B3D33" font-size="40" font-weight="500">Embrace, care and the opened Book</text>
+    <text x="1420" y="86" text-anchor="end" fill="#71807B" font-size="15" letter-spacing="2">GEOMETRY REFINEMENT · V3</text>
+
+    <g transform="translate(80 184)">
+      <rect width="420" height="500" rx="32" fill="#FFFFFF"/>
+      <image href="assets/logos/allim-embrace-v3-refined.svg" x="88" y="38" width="244" height="244"/>
+      <text x="38" y="334" fill="#0B3D33" font-size="27" font-weight="600">A · Refined Embrace</text>
+      <text x="38" y="371" fill="#176653" font-size="18">Book floats inside two gestures</text>
+      <text x="38" y="405" fill="#71807B" font-size="16">Balanced and immediately readable.</text>
+      <rect x="38" y="442" width="176" height="36" rx="18" fill="#0B3D33"/>
+      <text x="126" y="466" text-anchor="middle" fill="#F4F0E7" font-size="13" font-weight="600" letter-spacing="2">RECOMMENDED</text>
+    </g>
+
+    <g transform="translate(540 184)">
+      <rect width="420" height="500" rx="32" fill="#FFFFFF"/>
+      <image href="assets/logos/allim-embrace-v3-double-l.svg" x="88" y="38" width="244" height="244"/>
+      <text x="38" y="334" fill="#0B3D33" font-size="27" font-weight="600">B · Double L Embrace</text>
+      <text x="38" y="371" fill="#176653" font-size="18">Two L forms become the embrace</text>
+      <text x="38" y="405" fill="#71807B" font-size="16">More ownable, more abstract.</text>
+    </g>
+
+    <g transform="translate(1000 184)">
+      <rect width="420" height="500" rx="32" fill="#FFFFFF"/>
+      <image href="assets/logos/allim-embrace-v3-compact.svg" x="88" y="38" width="244" height="244"/>
+      <text x="38" y="334" fill="#0B3D33" font-size="27" font-weight="600">C · Compact Mark</text>
+      <text x="38" y="371" fill="#176653" font-size="18">Single-color production version</text>
+      <text x="38" y="405" fill="#71807B" font-size="16">Best for favicon and embossing.</text>
+    </g>
+
+    <g transform="translate(80 728)">
+      <rect width="1340" height="122" rx="30" fill="#0B3D33"/>
+      <text x="40" y="49" fill="#F4F0E7" font-size="16" font-weight="600" letter-spacing="3">WHAT CHANGED</text>
+      <text x="40" y="84" fill="#DEC995" font-size="17">No closed oval · lighter lower area · wider opening · clearer book · consistent stroke system</text>
+      <circle cx="1115" cy="61" r="29" fill="#F4F0E7"/>
+      <image href="assets/logos/allim-embrace-v3-refined.svg" x="1088" y="34" width="54" height="54"/>
+      <circle cx="1205" cy="61" r="21" fill="#F4F0E7"/>
+      <image href="assets/logos/allim-embrace-v3-compact.svg" x="1186" y="42" width="38" height="38"/>
+      <circle cx="1277" cy="61" r="15" fill="#F4F0E7"/>
+      <image href="assets/logos/allim-embrace-v3-compact.svg" x="1263" y="47" width="28" height="28"/>
+    </g>
+  </g>
+</svg>

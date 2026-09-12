@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM Held Pages symbol</title>
+  <desc id="desc">Two curved brackets hold angular open pages without a closed central shape.</desc>
+  <path d="M64 25C39 31 23 50 23 78C23 105 39 124 64 135" fill="none" stroke="#0B3D33" stroke-width="18" stroke-linecap="round"/>
+  <path d="M96 25C121 31 137 50 137 78C137 105 121 124 96 135" fill="none" stroke="#0B3D33" stroke-width="18" stroke-linecap="round"/>
+  <path d="M47 61L80 75L113 61V111L80 126L47 111V61Z" fill="none" stroke="#0B3D33" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M80 75V126" fill="none" stroke="#C8A96B" stroke-width="4" stroke-linecap="round"/>
+</svg>

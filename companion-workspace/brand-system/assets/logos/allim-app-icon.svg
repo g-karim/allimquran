@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM app icon</title>
+  <desc id="desc">Ivory embrace and open pages on a deep emerald field.</desc>
+  <rect width="256" height="256" rx="56" fill="#0B3D33"/>
+  <g fill="#F4F0E7" transform="translate(48 48)">
+    <path d="M62 132C40 128 24 115 17 95C9 72 16 46 38 28L52 46C38 58 34 74 40 89C44 100 53 108 65 112L62 132Z"/>
+    <path d="M98 132C120 128 136 115 143 95C151 72 144 46 122 28L108 46C122 58 126 74 120 89C116 100 107 108 95 112L98 132Z"/>
+    <path d="M75 119C61 108 54 91 55 71C56 54 63 40 75 31V119Z"/>
+    <path d="M85 119C99 108 106 91 105 71C104 54 97 40 85 31V119Z"/>
+  </g>
+  <path d="M128 83V169" fill="none" stroke="#C8A96B" stroke-width="4" stroke-linecap="round"/>
+</svg>

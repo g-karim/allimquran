@@ -1,0 +1,31 @@
+[Unit]
+Description=ALLIM Quran Recitation Recognition
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=allim-asr
+Group=allim-asr
+WorkingDirectory=/opt/allim-asr
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=TOKENIZERS_PARALLELISM=false
+Environment=HF_HOME=/opt/allim-asr/cache
+Environment=QURAN_ASR_DEVICE=-1
+Environment=QURAN_ASR_MODEL=tarteel-ai/whisper-tiny-ar-quran
+Environment=QURAN_ASR_ALLOWED_ORIGIN=https://allimquran.com
+Environment=QURAN_ASR_RATE_LIMIT=12
+ExecStart=/opt/allim-asr/venv/bin/uvicorn asr.server:app --host 127.0.0.1 --port 4175 --workers 1 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=600
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/allim-asr/cache
+MemoryMax=6G
+
+[Install]
+WantedBy=multi-user.target

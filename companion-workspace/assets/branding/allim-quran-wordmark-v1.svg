@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="620" viewBox="0 0 1900 620" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM Quran wordmark</title>
+  <desc id="desc">Premium ALLIM wordmark with q, u, r, a and n embedded respectively inside A, L, L, I and M.</desc>
+
+  <defs>
+    <linearGradient id="emerald" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#063D33"/>
+      <stop offset="0.5" stop-color="#075D4B"/>
+      <stop offset="1" stop-color="#043229"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4CF0BE"/>
+      <stop offset="1" stop-color="#00C88A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Bold custom-spaced master wordmark -->
+  <g id="wordmark"
+     font-family="Avenir Next, SF Pro Display, Helvetica Neue, Arial, sans-serif"
+     font-size="500" font-weight="900">
+    <text x="56" y="486" fill="url(#emerald)">A</text>
+    <text x="400" y="486" fill="url(#emerald)">L</text>
+    <text x="706" y="486" fill="url(#emerald)">L</text>
+    <text x="1012" y="486" fill="url(#emerald)">I</text>
+    <text x="1190" y="486" fill="url(#emerald)">M</text>
+  </g>
+
+  <!-- Embedded q-u-r-a-n sequence. Each small letter maps to its ALLIM host letter. -->
+  <g id="embedded-quran"
+     font-family="Avenir Next, SF Pro Display, Helvetica Neue, Arial, sans-serif"
+     font-size="108" font-weight="650" text-anchor="middle" fill="#2FE0AD">
+    <g transform="translate(225 340)">
+      <text x="0" y="35">q</text>
+    </g>
+    <g transform="translate(478 400)">
+      <text x="0" y="35">u</text>
+    </g>
+    <g transform="translate(784 400)">
+      <text x="0" y="35">r</text>
+    </g>
+    <g transform="translate(1095 338)">
+      <text x="0" y="35">a</text>
+    </g>
+    <g transform="translate(1392 338)">
+      <text x="0" y="35">n</text>
+    </g>
+  </g>
+</svg>

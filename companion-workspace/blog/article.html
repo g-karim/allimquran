@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="{{LANG}}" dir="{{DIR}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{META_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="insights-page article-page" data-locale="{{LOCALE}}" data-lang="{{LANG}}" data-dir="{{DIR}}">
+    <a class="skip-link" href="#article">{{SKIP}}</a>
+    <header class="insights-header">
+      <a class="insights-brand" href="/"><span aria-hidden="true">ع</span><strong>ALLIM<small>QUR’AN</small></strong></a>
+      <nav aria-label="{{NAV_LABEL}}"><a href="/">{{NAV_HOME}}</a><a href="/learn">{{NAV_COMPANION}}</a><a href="/academy">{{NAV_ACADEMY}}</a><a class="is-current" href="{{HUB_ROUTE}}">{{NAV_INSIGHTS}}</a></nav>
+      <div class="locale-switch" aria-label="{{LANGUAGE_LABEL}}">{{LOCALE_LINKS}}</div>
+      <button class="menu-toggle" type="button" aria-label="{{MENU_LABEL}}" aria-expanded="false"><span></span><span></span></button>
+    </header>
+
+    <main id="article">
+      <article class="article-shell">
+        <header class="article-hero">
+          <nav class="breadcrumbs" aria-label="{{BREADCRUMB_LABEL}}"><a href="{{HUB_ROUTE}}">{{NAV_INSIGHTS}}</a><span aria-hidden="true">/</span><span>{{CATEGORY}}</span></nav>
+          <p class="eyebrow">{{CATEGORY}}</p>
+          <h1>{{TITLE}}</h1>
+          <p class="article-deck">{{DECK}}</p>
+          <div class="article-meta"><span>{{AUTHOR}}</span><time datetime="{{DATE_ISO}}">{{DATE_LABEL}}</time><span>{{READ_TIME}}</span></div>
+        </header>
+
+        <div class="article-layout">
+          <aside class="article-aside">
+            <strong>{{IN_THIS_GUIDE}}</strong>
+            <nav>{{TOC}}</nav>
+            <div class="method-note"><span>✓</span><p>{{METHOD_NOTE}}</p></div>
+          </aside>
+          <div class="article-body">
+            <section class="answer-first"><p class="eyebrow">{{SHORT_ANSWER_LABEL}}</p><p>{{SHORT_ANSWER}}</p></section>
+            {{BODY}}
+            <section class="faq-section" aria-labelledby="faq-title"><p class="eyebrow">{{FAQ_LABEL}}</p><h2 id="faq-title">{{FAQ_TITLE}}</h2>{{FAQ}}</section>
+            <section class="sources"><h2>{{SOURCES_TITLE}}</h2>{{SOURCES}}</section>
+            <section class="authorship"><strong>{{AUTHORSHIP_TITLE}}</strong><p>{{AUTHORSHIP_TEXT}}</p></section>
+          </div>
+        </div>
+      </article>
+
+      <section class="article-next"><div><p class="eyebrow">{{NEXT_EYEBROW}}</p><h2>{{NEXT_TITLE}}</h2></div><a class="button primary" href="{{NEXT_ROUTE}}">{{NEXT_ACTION}} <span aria-hidden="true">→</span></a></section>
+    </main>
+    <footer class="insights-footer"><span>ALLIM Qur’an</span><p lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</p><a href="{{HUB_ROUTE}}">{{BACK_BLOG}}</a></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM QURAN reversed horizontal logo</title>
+  <desc id="desc">Ivory primary logo on a deep emerald field.</desc>
+  <rect width="1000" height="220" rx="28" fill="#0B3D33"/>
+  <g transform="translate(28 30) scale(.86)">
+    <g fill="#F4F0E7">
+      <path d="M62 132C40 128 24 115 17 95C9 72 16 46 38 28L52 46C38 58 34 74 40 89C44 100 53 108 65 112L62 132Z"/>
+      <path d="M98 132C120 128 136 115 143 95C151 72 144 46 122 28L108 46C122 58 126 74 120 89C116 100 107 108 95 112L98 132Z"/>
+      <path d="M75 119C61 108 54 91 55 71C56 54 63 40 75 31V119Z"/>
+      <path d="M85 119C99 108 106 91 105 71C104 54 97 40 85 31V119Z"/>
+    </g>
+    <path d="M80 35V121" fill="none" stroke="#C8A96B" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g fill="none" stroke="#F4F0E7" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M206 158L238 62L270 158M219 121H257"/>
+    <path d="M310 62V158H365"/>
+    <path d="M405 62V158H460"/>
+    <path d="M500 62V158"/>
+    <path d="M545 158V62L580 123L615 62V158"/>
+  </g>
+  <g transform="translate(682 72)" fill="none" stroke="#F4F0E7" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M15 0C5 0 0 8 0 20V49C0 61 5 69 15 69C25 69 30 61 30 49V20C30 8 25 0 15 0ZM17 52L34 74"/>
+    <path d="M55 0V49C55 62 61 69 71 69C81 69 87 62 87 49V0"/>
+    <path d="M113 69V0H129C141 0 147 7 147 19V25C147 36 141 42 130 42H113M130 42L150 69"/>
+    <path d="M171 69L188 0L205 69M178 43H198"/>
+    <path d="M230 69V0L262 69V0"/>
+  </g>
+</svg>

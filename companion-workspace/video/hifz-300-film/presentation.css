@@ -1,0 +1,162 @@
+:root {
+  --forest: #17483d;
+  --forest-deep: #0c2d27;
+  --mint: #e3f1eb;
+  --gold: #c89d4b;
+  --ink: #16302a;
+  --muted: #6d7d77;
+  --paper: #f8f6ef;
+  --line: rgba(23, 72, 61, .16);
+}
+
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { color: var(--ink); background: var(--paper); font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+
+html[dir="rtl"] body { font-family: "Geeza Pro", "Noto Sans Arabic", Tahoma, Arial, sans-serif; }
+
+.stage {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  padding: 42px 68px 34px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 18%, rgba(200, 224, 213, .72), transparent 31%),
+    linear-gradient(135deg, #fbfaf5 0%, #f6f3ea 60%, #edf4ef 100%);
+}
+
+.paper-texture {
+  position: absolute;
+  inset: 0;
+  opacity: .38;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(circle at 28% 38%, rgba(22, 48, 42, .024) 0 1px, transparent 1px 5px),
+    linear-gradient(105deg, transparent 0 46%, rgba(255,255,255,.46) 50%, transparent 54%);
+}
+
+.mushaf-frame {
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(200,157,75,.26);
+  border-radius: 34px;
+  box-shadow: inset 0 0 0 6px rgba(255,255,255,.26), inset 0 0 0 7px rgba(23,72,61,.06);
+  pointer-events: none;
+}
+
+.brandbar {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 82px;
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 15px; }
+.brand-mark { display: grid; width: 54px; height: 54px; place-items: center; border-radius: 16px; color: #fffaf0; background: linear-gradient(145deg,#2c7f78,#3b72ac); box-shadow: 0 9px 24px rgba(23,72,61,.14); font: 800 29px/.9 Georgia, serif; }
+.brand strong { display: block; font: 600 30px/.92 Georgia, "Times New Roman", serif; letter-spacing: .11em; }
+.brand small { display: block; margin-top: 7px; color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .22em; }
+.film-name { color: var(--forest); font-size: 11px; font-weight: 900; letter-spacing: .22em; }
+.chapter { justify-self: end; padding: 11px 17px; border: 1px solid var(--line); border-radius: 999px; color: var(--forest); background: rgba(255,255,255,.5); font-size: 13px; font-weight: 850; letter-spacing: .14em; }
+
+.scene {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 690px minmax(0,1fr);
+  gap: 78px;
+  align-items: center;
+  height: 870px;
+}
+.copy { padding-left: 14px; }
+.eyebrow { display: flex; align-items: center; gap: 12px; color: var(--forest); font-size: 14px; font-weight: 900; letter-spacing: .18em; }
+.eyebrow::before { width: 35px; height: 3px; background: var(--gold); content: ""; }
+h1 { max-width: 690px; margin: 27px 0 23px; font: 500 68px/.99 Georgia, "Times New Roman", serif; letter-spacing: -.042em; }
+.copy p { max-width: 650px; margin: 0; color: var(--muted); font-size: 24px; line-height: 1.52; }
+.feature-list { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 33px; }
+.feature-list span { display: flex; align-items: center; gap: 10px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 16px; color: var(--forest); background: rgba(255,255,255,.7); box-shadow: 0 10px 28px rgba(21,55,47,.05); font-size: 14px; font-weight: 760; }
+.feature-list span::before { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(200,157,75,.12); content: ""; }
+
+.visual { position: relative; min-width: 0; }
+.screen-frame { position: relative; z-index: 2; margin: 0; overflow: hidden; border: 1px solid rgba(23,72,61,.18); border-radius: 27px; background: #fff; box-shadow: 0 38px 88px rgba(18,55,46,.18); }
+.windowbar { display: flex; align-items: center; gap: 8px; height: 43px; padding: 0 17px; color: #7f8e88; background: #f8f7f2; border-bottom: 1px solid rgba(23,72,61,.09); font-size: 11px; }
+.windowbar i { width: 8px; height: 8px; border-radius: 50%; background: #d5b76f; }
+.windowbar i:nth-child(2) { background: #89b6a8; }
+.windowbar i:nth-child(3) { background: #d4d8d3; }
+.windowbar span { margin-left: 7px; }
+.screen-frame img { display: block; width: 100%; height: 650px; object-fit: cover; object-position: center top; }
+.metric { position: absolute; z-index: 5; right: -18px; bottom: -28px; display: grid; grid-template-columns: auto auto; gap: 13px; align-items: center; min-width: 218px; padding: 17px 21px; border: 1px solid rgba(23,72,61,.14); border-radius: 20px; background: rgba(255,255,255,.96); box-shadow: 0 20px 46px rgba(18,55,46,.17); }
+.metric strong { color: var(--forest); font: 600 33px/1 Georgia, "Times New Roman", serif; }
+.metric span { max-width: 105px; color: var(--muted); font-size: 11px; font-weight: 850; line-height: 1.25; letter-spacing: .07em; text-transform: uppercase; }
+
+.intro-heart, .flow { display: none; }
+.is-intro .screen-frame, .is-intro .flow { display: none; }
+.is-intro .intro-heart { position: relative; display: grid; width: 610px; height: 610px; margin: 0 auto; place-items: center; border: 1px solid rgba(23,72,61,.15); border-radius: 50%; background: radial-gradient(circle,#fff 0 27%,#edf5f0 28% 39%,#f8f5e9 40% 52%,rgba(255,255,255,.5) 53% 67%,transparent 68%); box-shadow: 0 45px 100px rgba(23,72,61,.12); }
+.intro-heart::before, .intro-heart::after { position: absolute; inset: 86px; border: 1px solid rgba(200,157,75,.34); border-radius: 50%; content: ""; }
+.intro-heart::after { inset: 154px; border-color: rgba(23,72,61,.2); }
+.intro-heart strong { margin-top: -8px; color: var(--forest); font: 600 112px/1 Georgia, serif; }
+.intro-heart small { position: absolute; top: 363px; color: var(--muted); font-size: 12px; font-weight: 900; letter-spacing: .21em; }
+.intro-heart em { position: absolute; top: 418px; color: var(--gold); font-size: 54px; font-style: normal; }
+.rings { position: absolute; top: 94px; display: flex; gap: 21px; }
+.rings span { display: grid; width: 83px; height: 83px; place-items: center; border: 2px solid var(--forest); border-radius: 50%; color: var(--forest); background: rgba(255,255,255,.85); font-size: 18px; font-weight: 850; }
+.rings span:nth-child(2) { border-color: var(--gold); color: #986d23; }
+.is-intro .metric { right: 28px; bottom: 17px; }
+
+.is-recall .screen-frame img { object-position: center top; }
+.is-journal .screen-frame img { object-position: center center; }
+
+.is-flow .screen-frame, .is-flow .intro-heart { display: none; }
+.is-flow .scene { grid-template-columns: 650px minmax(0,1fr); }
+.is-flow .flow { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
+.flow article { display: grid; min-height: 186px; align-content: center; padding: 29px; border: 1px solid var(--line); border-radius: 25px; background: rgba(255,255,255,.82); box-shadow: 0 18px 48px rgba(18,55,46,.09); }
+.flow article:nth-of-type(3), .flow article:nth-of-type(4) { transform: translateX(120px); }
+.flow b { color: var(--gold); font-size: 12px; letter-spacing: .14em; }
+.flow strong { margin-top: 13px; color: var(--forest); font: 500 31px/1.1 Georgia, serif; }
+.flow small { margin-top: 9px; color: var(--muted); font-size: 14px; }
+.flow > span { color: var(--gold); font-size: 30px; }
+.is-flow .metric { bottom: -12px; }
+
+.is-final { color: #fffaf0; background: radial-gradient(circle at 50% 44%, rgba(230,192,110,.18), transparent 24%), radial-gradient(circle at 82% 30%, #32705e, transparent 39%), linear-gradient(135deg,#0b2b25,#174b3e 58%,#0b2923); }
+.is-final .mushaf-frame { border-color: rgba(241,210,146,.25); box-shadow: inset 0 0 0 6px rgba(255,255,255,.025), inset 0 0 0 7px rgba(241,210,146,.08); }
+.is-final .brandbar, .is-final .footerline { border-color: rgba(255,255,255,.15); }
+.is-final .brand small, .is-final .chapter, .is-final .footerline small { color: rgba(255,255,255,.72); }
+.is-final .chapter { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.06); }
+.is-final .film-name, .is-final .eyebrow { color: #eccd89; }
+.is-final .scene { grid-template-columns: 1fr; text-align: center; }
+.is-final .copy { padding: 0 250px; }
+.is-final .eyebrow, .is-final .feature-list { justify-content: center; }
+.is-final h1 { max-width: 1200px; margin: 34px auto 28px; font-size: 104px; }
+.is-final .copy p { max-width: 920px; margin: 0 auto; color: rgba(255,255,255,.8); font-size: 28px; }
+.is-final .feature-list span { color: #fffaf0; border-color: rgba(255,255,255,.17); background: rgba(255,255,255,.07); }
+.is-final .visual { display: none; }
+
+.footerline { position: relative; z-index: 4; display: flex; align-items: center; justify-content: flex-end; height: 52px; border-top: 1px solid var(--line); }
+.footerline small { color: rgba(23,72,61,.58); font: 18px Georgia, "Times New Roman", serif; }
+.progress { position: absolute; left: 0; top: -1px; width: 100%; height: 3px; background: rgba(23,72,61,.06); }
+.progress i { display: block; width: 16.667%; height: 100%; background: linear-gradient(90deg,var(--forest),var(--gold)); }
+
+html[dir="rtl"] .brandbar,
+html[dir="rtl"] .scene,
+html[dir="rtl"] .footerline { direction: rtl; }
+html[dir="rtl"] .brand { direction: ltr; justify-self: start; }
+html[dir="rtl"] .chapter { direction: ltr; justify-self: end; }
+html[dir="rtl"] .copy { padding-left: 0; padding-right: 14px; text-align: right; }
+html[dir="rtl"] .eyebrow { justify-content: flex-start; letter-spacing: 0; font-size: 18px; }
+html[dir="rtl"] h1 { font-family: "Geeza Pro", "Noto Naskh Arabic", Tahoma, serif; font-size: 72px; line-height: 1.18; letter-spacing: 0; }
+html[dir="rtl"] .copy p { line-height: 1.7; }
+html[dir="rtl"] .feature-list { justify-content: flex-start; }
+html[dir="rtl"] .feature-list span { font-size: 16px; }
+html[dir="rtl"] .windowbar { direction: ltr; }
+html[dir="rtl"] .metric { right: auto; left: -18px; }
+html[dir="rtl"] .metric span { letter-spacing: 0; text-transform: none; }
+html[dir="rtl"] .is-intro .metric { right: auto; left: 28px; }
+html[dir="rtl"] .flow { direction: rtl; }
+html[dir="rtl"] .flow article:nth-of-type(3),
+html[dir="rtl"] .flow article:nth-of-type(4) { transform: translateX(-120px); }
+html[dir="rtl"] .flow strong { font-family: "Geeza Pro", "Noto Naskh Arabic", Tahoma, serif; }
+html[dir="rtl"] .is-final .copy { padding: 0 250px; text-align: center; }
+html[dir="rtl"] .is-final .eyebrow,
+html[dir="rtl"] .is-final .feature-list { justify-content: center; }
+html[dir="rtl"] .is-final h1 { font-size: 108px; line-height: 1.2; }

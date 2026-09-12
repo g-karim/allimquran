@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" role="img" aria-labelledby="title desc">
+  <title id="title">ALLIM QURAN primary logo v3</title>
+  <desc id="desc">Refined open embrace symbol with ALLIM and narrow uppercase QURAN.</desc>
+  <g transform="translate(28 30) scale(.86)">
+    <path d="M57 27C35 35 23 56 24 80C25 104 41 122 63 132" fill="none" stroke="#0B3D33" stroke-width="15" stroke-linecap="round"/>
+    <path d="M103 27C125 35 137 56 136 80C135 104 119 122 97 132" fill="none" stroke="#0B3D33" stroke-width="15" stroke-linecap="round"/>
+    <path d="M43 58C58 58 70 63 80 72C90 63 102 58 117 58V101C101 101 90 107 80 118C70 107 59 101 43 101V58Z" fill="none" stroke="#0B3D33" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M80 73V113" fill="none" stroke="#C8A96B" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+  <g fill="none" stroke="#0B3D33" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M206 158L238 62L270 158M219 121H257"/>
+    <path d="M310 62V158H365"/>
+    <path d="M405 62V158H460"/>
+    <path d="M500 62V158"/>
+    <path d="M545 158V62L580 123L615 62V158"/>
+  </g>
+  <g transform="translate(682 72)" fill="none" stroke="#0B3D33" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M15 0C5 0 0 8 0 20V49C0 61 5 69 15 69C25 69 30 61 30 49V20C30 8 25 0 15 0ZM17 52L34 74"/>
+    <path d="M55 0V49C55 62 61 69 71 69C81 69 87 62 87 49V0"/>
+    <path d="M113 69V0H129C141 0 147 7 147 19V25C147 36 141 42 130 42H113M130 42L150 69"/>
+    <path d="M171 69L188 0L205 69M178 43H198"/>
+    <path d="M230 69V0L262 69V0"/>
+  </g>
+</svg>
