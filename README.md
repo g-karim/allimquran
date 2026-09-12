@@ -99,7 +99,7 @@ GitHub workflow permission. The template never deploys to production.
 
 ## Next steps
 
-Account-backed progress with explicit local-storage import, real Academy programs,
+Account-backed reading progress is available as a [reviewable source preview](docs/reading-account-sync.md); it has not been deployed to the live learner route. Remaining work includes real-account staging, real Academy programs,
 teacher workflows, reviewed recitation evaluations and attributed content.
 Feature development should now happen in this repository.
 
