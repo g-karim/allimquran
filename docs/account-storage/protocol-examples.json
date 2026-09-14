@@ -1,0 +1,186 @@
+{
+  "protocol_version": 1,
+  "status": "illustrative_not_executed",
+  "all_identifiers_are_synthetic": true,
+  "lost_response": {
+    "initial_last_seq": 0,
+    "request": {
+      "protocol_version": 1,
+      "expected_account_id": "01875d46-c17c-4973-8fdc-5b2b4ea88661",
+      "epoch": "2d3a6933-2029-4de3-9d4d-b1f2d1ba5e03",
+      "session_binding": "EXAMPLE_ONLY_NOT_A_SESSION",
+      "device_id": "f5f2a28a-347a-45a2-b7ac-e763cf42b7bc",
+      "operations": [
+        {
+          "op_id": "b5b02c7d-2cce-4100-8c1b-cd7d9909acbd",
+          "action": "create",
+          "kind": "bookmark",
+          "id": "2:255",
+          "base_version": 0,
+          "value": {
+            "position": 0
+          }
+        }
+      ]
+    },
+    "first_response": {
+      "message": {
+        "account_id": "01875d46-c17c-4973-8fdc-5b2b4ea88661",
+        "epoch": "2d3a6933-2029-4de3-9d4d-b1f2d1ba5e03",
+        "results": [
+          {
+            "op_id": "b5b02c7d-2cce-4100-8c1b-cd7d9909acbd",
+            "outcome": "applied",
+            "replayed": false,
+            "changed": [
+              {
+                "kind": "bookmark",
+                "id": "2:255",
+                "version": 1,
+                "change_seq": 1
+              }
+            ]
+          }
+        ],
+        "last_seq": 1
+      }
+    },
+    "retry_request": "byte-identical operation; fresh transport session_binding may be obtained after same-account login",
+    "retry_response": {
+      "message": {
+        "account_id": "01875d46-c17c-4973-8fdc-5b2b4ea88661",
+        "epoch": "2d3a6933-2029-4de3-9d4d-b1f2d1ba5e03",
+        "results": [
+          {
+            "op_id": "b5b02c7d-2cce-4100-8c1b-cd7d9909acbd",
+            "outcome": "applied",
+            "replayed": true,
+            "changed": [
+              {
+                "kind": "bookmark",
+                "id": "2:255",
+                "version": 1,
+                "change_seq": 1
+              }
+            ]
+          }
+        ],
+        "last_seq": 1
+      }
+    }
+  },
+  "goal_conflict": {
+    "initial": {
+      "kind": "daily_goal",
+      "id": "current",
+      "version": 2,
+      "change_seq": 7,
+      "value": {
+        "sessions": 1
+      }
+    },
+    "request_a": {
+      "protocol_version": 1,
+      "expected_account_id": "01875d46-c17c-4973-8fdc-5b2b4ea88661",
+      "epoch": "2d3a6933-2029-4de3-9d4d-b1f2d1ba5e03",
+      "session_binding": "EXAMPLE_ONLY_NOT_A_SESSION",
+      "device_id": "f5f2a28a-347a-45a2-b7ac-e763cf42b7bc",
+      "operations": [
+        {
+          "op_id": "253601f9-5382-40f6-aab3-f17e2e3b1b36",
+          "action": "put",
+          "kind": "daily_goal",
+          "id": "current",
+          "base_version": 2,
+          "value": {
+            "sessions": 3
+          }
+        }
+      ]
+    },
+    "response_a": {
+      "message": {
+        "account_id": "01875d46-c17c-4973-8fdc-5b2b4ea88661",
+        "epoch": "2d3a6933-2029-4de3-9d4d-b1f2d1ba5e03",
+        "results": [
+          {
+            "op_id": "253601f9-5382-40f6-aab3-f17e2e3b1b36",
+            "outcome": "applied",
+            "replayed": false,
+            "changed": [
+              {
+                "kind": "daily_goal",
+                "id": "current",
+                "version": 3,
+                "change_seq": 8
+              }
+            ]
+          }
+        ],
+        "last_seq": 8
+      }
+    },
+    "request_b": {
+      "protocol_version": 1,
+      "expected_account_id": "01875d46-c17c-4973-8fdc-5b2b4ea88661",
+      "epoch": "2d3a6933-2029-4de3-9d4d-b1f2d1ba5e03",
+      "session_binding": "EXAMPLE_ONLY_NOT_A_SESSION",
+      "device_id": "f5f2a28a-347a-45a2-b7ac-e763cf42b7bc",
+      "operations": [
+        {
+          "op_id": "25ff73d7-d31a-4ee0-b41a-6f70e3cfac32",
+          "action": "put",
+          "kind": "daily_goal",
+          "id": "current",
+          "base_version": 2,
+          "value": {
+            "sessions": 5
+          }
+        }
+      ]
+    },
+    "response_b": {
+      "message": {
+        "account_id": "01875d46-c17c-4973-8fdc-5b2b4ea88661",
+        "epoch": "2d3a6933-2029-4de3-9d4d-b1f2d1ba5e03",
+        "results": [
+          {
+            "op_id": "25ff73d7-d31a-4ee0-b41a-6f70e3cfac32",
+            "outcome": "conflict",
+            "replayed": false,
+            "changed": [
+              {
+                "kind": "conflict",
+                "id": "2460f2c7-1503-4890-9f3c-5144ca089bf1",
+                "version": 1,
+                "change_seq": 9
+              }
+            ],
+            "conflict_id": "2460f2c7-1503-4890-9f3c-5144ca089bf1"
+          }
+        ],
+        "last_seq": 9
+      }
+    },
+    "resulting_goal": {
+      "kind": "daily_goal",
+      "id": "current",
+      "version": 3,
+      "change_seq": 8,
+      "value": {
+        "sessions": 3
+      }
+    },
+    "preserved_conflict_value": {
+      "target_kind": "daily_goal",
+      "target_id": "current",
+      "base_version": 2,
+      "observed_version": 3,
+      "proposed_value": {
+        "sessions": 5
+      },
+      "source_op_id": "25ff73d7-d31a-4ee0-b41a-6f70e3cfac32",
+      "status": "open"
+    }
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "contract_version": 1,
+  "status": "design_only",
+  "source_commit": "6a9775e064d9d22a0ba6eb224d6e7a3734347979",
+  "common_source_key": "quran-companion-prototype-v4",
+  "common_fields": [
+    {
+      "source": "language",
+      "storage": "account",
+      "targets": [
+        "preference/language"
+      ]
+    },
+    {
+      "source": "arabicSize",
+      "storage": "account",
+      "targets": [
+        "preference/arabic_size"
+      ]
+    },
+    {
+      "source": "showMeaning",
+      "storage": "account",
+      "targets": [
+        "preference/show_meaning"
+      ]
+    },
+    {
+      "source": "sessions",
+      "storage": "account",
+      "targets": [
+        "activity_baseline/totals.sessions"
+      ]
+    },
+    {
+      "source": "wordsReviewed",
+      "storage": "account",
+      "targets": [
+        "activity_baseline/totals.words_reviewed"
+      ]
+    },
+    {
+      "source": "hints",
+      "storage": "account",
+      "targets": [
+        "activity_baseline/totals.hints"
+      ]
+    },
+    {
+      "source": "selectedSurah",
+      "storage": "account",
+      "targets": [
+        "reading_position/last.verse_key"
+      ]
+    },
+    {
+      "source": "selectedAyah",
+      "storage": "account",
+      "targets": [
+        "reading_position/last.verse_key"
+      ]
+    },
+    {
+      "source": "recognitionMode",
+      "storage": "device",
+      "targets": [
+        "device/recognition.mode"
+      ]
+    },
+    {
+      "source": "recognitionModeExplicit",
+      "storage": "device",
+      "targets": [
+        "device/recognition.explicit"
+      ]
+    },
+    {
+      "source": "selectedReciter",
+      "storage": "account",
+      "targets": [
+        "preference/selected_reciter"
+      ]
+    },
+    {
+      "source": "audioRepeat",
+      "storage": "account",
+      "targets": [
+        "preference/audio_repeat"
+      ]
+    },
+    {
+      "source": "showInterlinear",
+      "storage": "account",
+      "targets": [
+        "preference/show_interlinear"
+      ]
+    },
+    {
+      "source": "mushafFont",
+      "storage": "account",
+      "targets": [
+        "preference/mushaf_font"
+      ]
+    },
+    {
+      "source": "mushafPaper",
+      "storage": "account",
+      "targets": [
+        "preference/mushaf_paper"
+      ]
+    },
+    {
+      "source": "mushafInk",
+      "storage": "account",
+      "targets": [
+        "preference/mushaf_ink"
+      ]
+    },
+    {
+      "source": "recitationFlow",
+      "storage": "account",
+      "targets": [
+        "preference/recitation_flow.selected.mode"
+      ]
+    },
+    {
+      "source": "recitationFlowExplicit",
+      "storage": "account",
+      "targets": [
+        "preference/recitation_flow.selected.explicit"
+      ]
+    },
+    {
+      "source": "autoAdvance",
+      "storage": "account",
+      "targets": [
+        "preference/auto_advance"
+      ]
+    },
+    {
+      "source": "soundCues",
+      "storage": "account",
+      "targets": [
+        "preference/sound_cues"
+      ]
+    },
+    {
+      "source": "strictCorrection",
+      "storage": "account",
+      "targets": [
+        "preference/strict_correction"
+      ]
+    },
+    {
+      "source": "dailyGoal",
+      "storage": "account",
+      "targets": [
+        "daily_goal/current.sessions"
+      ]
+    },
+    {
+      "source": "savedVerses",
+      "storage": "account",
+      "targets": [
+        "bookmark/<verse_key>"
+      ]
+    },
+    {
+      "source": "reviewQueue",
+      "storage": "account",
+      "targets": [
+        "review_item/<verse_key>"
+      ]
+    },
+    {
+      "source": "activity",
+      "storage": "account",
+      "targets": [
+        "activity_day_baseline/<local_date>"
+      ]
+    },
+    {
+      "source": "heartMushaf",
+      "storage": "account",
+      "targets": [
+        "hifz_unit_baseline/<verse_key>",
+        "hifz_day_baseline/<verse_key>/<local_date>",
+        "hifz_page_baseline/<page>"
+      ]
+    },
+    {
+      "source": "lifePractice",
+      "storage": "account",
+      "targets": [
+        "reflection/<stable_import_id>"
+      ]
+    }
+  ],
+  "other_keys": [
+    {
+      "source": "allim-academy-plan-v1",
+      "storage": "account",
+      "targets": [
+        "academy_plan/current"
+      ]
+    },
+    {
+      "source": "allim-academy-diagnostic-v1",
+      "storage": "account",
+      "targets": [
+        "academy_diagnostic/current"
+      ]
+    },
+    {
+      "source": "allim-language-preference-v1",
+      "storage": "account",
+      "targets": [
+        "preference/language"
+      ]
+    },
+    {
+      "source": "allim-system-intro-seen-v1",
+      "storage": "device",
+      "targets": [
+        "device/intro_seen"
+      ]
+    },
+    {
+      "source": "allim-hero-recitation-demo-seen-v2",
+      "storage": "device",
+      "targets": [
+        "device/hero_seen"
+      ]
+    },
+    {
+      "source": "allim-recitation-contribution-v1",
+      "storage": "separate_consent",
+      "targets": [
+        "existing_consent_flow"
+      ]
+    },
+    {
+      "source": "allim-quran-audio-v1",
+      "storage": "device",
+      "targets": [
+        "existing_public_audio_cache"
+      ]
+    }
+  ],
+  "preview_only": [
+    {
+      "source": "allim-reading-journal-v1",
+      "storage": "account_after_owner_check_and_explicit_import",
+      "targets": [
+        "reading_cycle/<stable_import_id>",
+        "reading_entry/<stable_import_id>",
+        "reading_plan/current",
+        "reading_past/baseline"
+      ]
+    },
+    {
+      "source": "allim-reading-sync-v1",
+      "storage": "local_ownership_evidence_only",
+      "targets": []
+    },
+    {
+      "source": "allim-reading-recovery-v1",
+      "storage": "local_backup_only",
+      "targets": []
+    },
+    {
+      "source": "allim-lawh-library-v1",
+      "storage": "deferred_preserve_in_place",
+      "targets": []
+    },
+    {
+      "source": "quran-companion-prototype-v4 preview additions",
+      "storage": "deferred_preserve_raw_backup",
+      "targets": []
+    },
+    {
+      "source": "quran-companion-prototype-v87 / quran-companion-prototype-v88",
+      "storage": "device_cache",
+      "targets": []
+    }
+  ],
+  "import_rules": {
+    "default": "explicit selection, never infer legacy owner from the current login",
+    "language_collision": "if home and learn preferences differ, show both at import; page fallback never overwrites the preferred locale",
+    "aggregate_collision": "skip and report conflicting aggregates; preserve source locally; never sum, max or replace automatically",
+    "unknown_fields": "preserve raw local backup, report unsupported fields, do not upload arbitrary source JSON",
+    "device_settings": "recognition mode and its explicit flag stay together in device scope",
+    "legacy_sync_owner": "bound preview history can only be recovered to its verified original account"
+  }
+}
