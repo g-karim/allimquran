@@ -12,10 +12,15 @@ after_migrate = [
 	"allimquran.setup.sync",
 	"allimquran.search_intelligence.after_migrate",
 	"allimquran.review_portal.ensure_role",
+	"allimquran.account_storage.install",
 ]
+
+after_request = ["allimquran.account_storage.after_request"]
+doc_events = {"User": {"on_trash": "allimquran.account_storage.delete_user_progress"}}
 
 # ALLIM SEARCH INTELLIGENCE START
 scheduler_events = {
+	"hourly": ["allimquran.account_storage.cleanup"],
 	"daily_long": ["allimquran.search_intelligence.run_scheduled_audit"],
 }
 update_website_context = ["allimquran.search_intelligence.extend_website_context"]

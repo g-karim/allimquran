@@ -1,0 +1,47 @@
+{
+  "doctype": "DocType",
+  "name": "ALLIM Progress Reset",
+  "module": "ALLIM Quran",
+  "autoname": "hash",
+  "engine": "InnoDB",
+  "track_changes": 0,
+  "allow_rename": 0,
+  "allow_import": 0,
+  "allow_copy": 0,
+  "index_web_pages_for_search": 0,
+  "show_name_in_global_search": 0,
+  "fields": [
+    {
+      "fieldname": "account",
+      "label": "Account",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "ALLIM Account State"
+    },
+    {
+      "fieldname": "reset_id",
+      "label": "Reset Id",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "old_epoch",
+      "label": "Old Epoch",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "new_epoch",
+      "label": "New Epoch",
+      "fieldtype": "Data",
+      "read_only": 1
+    }
+  ],
+  "field_order": [
+    "account",
+    "reset_id",
+    "old_epoch",
+    "new_epoch"
+  ],
+  "permissions": []
+}

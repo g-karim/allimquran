@@ -1,0 +1,54 @@
+{
+  "doctype": "DocType",
+  "name": "ALLIM Progress Export",
+  "module": "ALLIM Quran",
+  "autoname": "hash",
+  "engine": "InnoDB",
+  "track_changes": 0,
+  "allow_rename": 0,
+  "allow_import": 0,
+  "allow_copy": 0,
+  "index_web_pages_for_search": 0,
+  "show_name_in_global_search": 0,
+  "fields": [
+    {
+      "fieldname": "account",
+      "label": "Account",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "ALLIM Account State"
+    },
+    {
+      "fieldname": "epoch",
+      "label": "Epoch",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "through_seq",
+      "label": "Through Seq",
+      "fieldtype": "Long Int",
+      "read_only": 1
+    },
+    {
+      "fieldname": "expires_at",
+      "label": "Expires At",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "file_name",
+      "label": "File Name",
+      "fieldtype": "Data",
+      "read_only": 1
+    }
+  ],
+  "field_order": [
+    "account",
+    "epoch",
+    "through_seq",
+    "expires_at",
+    "file_name"
+  ],
+  "permissions": []
+}

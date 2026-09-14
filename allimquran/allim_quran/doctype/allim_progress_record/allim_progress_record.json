@@ -1,0 +1,103 @@
+{
+  "doctype": "DocType",
+  "name": "ALLIM Progress Record",
+  "module": "ALLIM Quran",
+  "autoname": "hash",
+  "engine": "InnoDB",
+  "track_changes": 0,
+  "allow_rename": 0,
+  "allow_import": 0,
+  "allow_copy": 0,
+  "index_web_pages_for_search": 0,
+  "show_name_in_global_search": 0,
+  "fields": [
+    {
+      "fieldname": "account",
+      "label": "Account",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "ALLIM Account State"
+    },
+    {
+      "fieldname": "epoch",
+      "label": "Epoch",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "kind",
+      "label": "Kind",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "record_key",
+      "label": "Record Key",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "record_version",
+      "label": "Record Version",
+      "fieldtype": "Long Int",
+      "read_only": 1
+    },
+    {
+      "fieldname": "change_seq",
+      "label": "Change Seq",
+      "fieldtype": "Long Int",
+      "read_only": 1
+    },
+    {
+      "fieldname": "deleted",
+      "label": "Deleted",
+      "fieldtype": "Check",
+      "read_only": 1
+    },
+    {
+      "fieldname": "created_at",
+      "label": "Created At",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "updated_at",
+      "label": "Updated At",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "value_json",
+      "label": "Value Json",
+      "fieldtype": "Long Text",
+      "read_only": 1
+    },
+    {
+      "fieldname": "event_key",
+      "label": "Event Key",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "import_item_id",
+      "label": "Import Item Id",
+      "fieldtype": "Data",
+      "read_only": 1
+    }
+  ],
+  "field_order": [
+    "account",
+    "epoch",
+    "kind",
+    "record_key",
+    "record_version",
+    "change_seq",
+    "deleted",
+    "created_at",
+    "updated_at",
+    "value_json",
+    "event_key",
+    "import_item_id"
+  ],
+  "permissions": []
+}

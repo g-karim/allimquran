@@ -1,0 +1,68 @@
+{
+  "contract_version": 1,
+  "source_commit": "6a9775e064d9d22a0ba6eb224d6e7a3734347979",
+  "language": [
+    "ar",
+    "en",
+    "ru",
+    "tr",
+    "bs",
+    "fr",
+    "zh",
+    "ja",
+    "es",
+    "de",
+    "ms",
+    "id",
+    "ur",
+    "hi",
+    "pt",
+    "sw"
+  ],
+  "selected_reciter": [
+    "husary",
+    "alafasy",
+    "minshawi",
+    "abdulbasit",
+    "muaiqly",
+    "sudais",
+    "basfar",
+    "luhaidan",
+    "salman-utaybi",
+    "shatri",
+    "dussary"
+  ],
+  "mushaf_font": [
+    "classic",
+    "modern",
+    "readable"
+  ],
+  "mushaf_paper": [
+    "ivory",
+    "white",
+    "sage",
+    "mist",
+    "sky"
+  ],
+  "mushaf_ink": [
+    "charcoal",
+    "emerald",
+    "navy",
+    "sepia"
+  ],
+  "recitation_flow": [
+    "continuous",
+    "single"
+  ],
+  "device_recognition_mode": [
+    "auto",
+    "browser",
+    "quran"
+  ],
+  "life_trigger": [
+    "next-prayer",
+    "next-conversation",
+    "difficult-moment",
+    "before-evening"
+  ]
+}

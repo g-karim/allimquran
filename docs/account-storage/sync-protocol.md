@@ -1,6 +1,6 @@
 # Протокол обмена личным прогрессом, версия 1
 
-Проект этапа 2. [Данные](data-contract.md), [клиентские переходы](client-lifecycle.md). Методы ниже ещё не реализованы. Корень будущего API: `/api/method/allimquran.account_storage.`; работающий endpoint не следует предполагать по этому документу.
+Проект этапа 2. [Данные](data-contract.md), [клиентские переходы](client-lifecycle.md). Серверная реализация и уточнения этапа 3 описаны в [implementation-stage3.md](implementation-stage3.md). Корень будущего API: `/api/method/allimquran.account_storage.`; развёртывание на production этим документом не подтверждается.
 
 ## Сессия и транспорт
 

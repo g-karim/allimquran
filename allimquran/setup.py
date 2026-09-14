@@ -112,4 +112,8 @@ def after_install():
 	from allimquran.review_portal import ensure_role
 
 	ensure_role()
-	return sync()
+	result = sync()
+	from allimquran.account_storage import install
+
+	install()
+	return result

@@ -1,0 +1,54 @@
+{
+  "doctype": "DocType",
+  "name": "ALLIM Progress Operation",
+  "module": "ALLIM Quran",
+  "autoname": "hash",
+  "engine": "InnoDB",
+  "track_changes": 0,
+  "allow_rename": 0,
+  "allow_import": 0,
+  "allow_copy": 0,
+  "index_web_pages_for_search": 0,
+  "show_name_in_global_search": 0,
+  "fields": [
+    {
+      "fieldname": "account",
+      "label": "Account",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "ALLIM Account State"
+    },
+    {
+      "fieldname": "epoch",
+      "label": "Epoch",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "op_id",
+      "label": "Op Id",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "digest",
+      "label": "Digest",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "result_json",
+      "label": "Result Json",
+      "fieldtype": "Long Text",
+      "read_only": 1
+    }
+  ],
+  "field_order": [
+    "account",
+    "epoch",
+    "op_id",
+    "digest",
+    "result_json"
+  ],
+  "permissions": []
+}
