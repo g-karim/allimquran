@@ -1,0 +1,319 @@
+{
+  "base_commit": "6a9775e064d9d22a0ba6eb224d6e7a3734347979",
+  "origin_scope": "The web origin on which the browser data was created; file names do not identify its owner.",
+  "source": "allimquran/website_content/pages/learn/javascript.js",
+  "storage_key": "quran-companion-prototype-v4",
+  "top_level_fields": [
+    {
+      "name": "language",
+      "type": "string",
+      "default": "ru",
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "arabicSize",
+      "type": "number",
+      "default": 48,
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "showMeaning",
+      "type": "boolean",
+      "default": true,
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "sessions",
+      "type": "number",
+      "default": 0,
+      "group": "legacy_activity_totals",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "wordsReviewed",
+      "type": "number",
+      "default": 0,
+      "group": "legacy_activity_totals",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "hints",
+      "type": "number",
+      "default": 0,
+      "group": "legacy_activity_totals",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "selectedSurah",
+      "type": "number",
+      "default": 2,
+      "group": "last_reading_position",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "selectedAyah",
+      "type": "number",
+      "default": 2,
+      "group": "last_reading_position",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "recognitionMode",
+      "type": "string",
+      "default": "auto",
+      "group": "device_recognition_preferences",
+      "future_storage": "device"
+    },
+    {
+      "name": "recognitionModeExplicit",
+      "type": "boolean",
+      "default": false,
+      "group": "device_recognition_preferences",
+      "future_storage": "device"
+    },
+    {
+      "name": "selectedReciter",
+      "type": "string",
+      "default": "husary",
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "audioRepeat",
+      "type": "boolean",
+      "default": false,
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "showInterlinear",
+      "type": "boolean",
+      "default": false,
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "mushafFont",
+      "type": "string",
+      "default": "classic",
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "mushafPaper",
+      "type": "string",
+      "default": "ivory",
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "mushafInk",
+      "type": "string",
+      "default": "charcoal",
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "recitationFlow",
+      "type": "string",
+      "default": "continuous",
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "recitationFlowExplicit",
+      "type": "boolean",
+      "default": false,
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "autoAdvance",
+      "type": "boolean",
+      "default": true,
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "soundCues",
+      "type": "boolean",
+      "default": true,
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "strictCorrection",
+      "type": "boolean",
+      "default": true,
+      "group": "learning_preferences",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "dailyGoal",
+      "type": "number",
+      "default": 1,
+      "group": "goal",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "savedVerses",
+      "type": "array",
+      "default": [],
+      "group": "bookmarks",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "reviewQueue",
+      "type": "array",
+      "default": [],
+      "group": "review_queue",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "activity",
+      "type": "object",
+      "default": {},
+      "group": "legacy_activity_totals",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "heartMushaf",
+      "type": "object",
+      "default": {
+        "units": {},
+        "pages": {}
+      },
+      "group": "hifz",
+      "future_storage": "account after explicit legacy import"
+    },
+    {
+      "name": "lifePractice",
+      "type": "object",
+      "default": {
+        "entries": []
+      },
+      "group": "reflections",
+      "future_storage": "account after explicit legacy import"
+    }
+  ],
+  "other_storage": [
+    {
+      "key": "allim-academy-plan-v1",
+      "backend": "localStorage",
+      "source": "allimquran/website_content/pages/academy/javascript.js",
+      "fields": [
+        "minutes",
+        "focus",
+        "target"
+      ],
+      "future": "account"
+    },
+    {
+      "key": "allim-academy-diagnostic-v1",
+      "backend": "localStorage",
+      "source": "allimquran/website_content/pages/academy/javascript.js",
+      "fields": [
+        "level",
+        "goal",
+        "minutes",
+        "createdAt",
+        "route"
+      ],
+      "future": "account"
+    },
+    {
+      "key": "allim-language-preference-v1",
+      "backend": "localStorage",
+      "source": "allimquran/website_content/pages/home/javascript.js",
+      "type": "string",
+      "future": "reconcile with account language; standalone homepage supports more locales than learn"
+    },
+    {
+      "key": "allim-system-intro-seen-v1",
+      "backend": "localStorage",
+      "type": "string flag",
+      "future": "device only"
+    },
+    {
+      "key": "allim-hero-recitation-demo-seen-v2",
+      "backend": "localStorage",
+      "type": "string flag",
+      "future": "device only"
+    },
+    {
+      "key": "allim-recitation-contribution-v1",
+      "backend": "localStorage",
+      "source": "allimquran/public/js/recitation-consent.js",
+      "future": "separate research consent; exclude tokens and consent state from progress import"
+    },
+    {
+      "key": "allim-quran-audio-v1",
+      "backend": "CacheStorage",
+      "source": "allimquran/website_content/pages/learn/javascript.js",
+      "future": "device only; downloadable public audio, not learner recordings"
+    }
+  ],
+  "preview_only": [
+    {
+      "key": "allim-reading-journal-v1",
+      "backend": "localStorage",
+      "fields": [
+        "version",
+        "past",
+        "cycle",
+        "deadline",
+        "entries"
+      ],
+      "future": "import only if present; check old sync owner before treating as guest history"
+    },
+    {
+      "key": "allim-reading-sync-v1",
+      "backend": "localStorage",
+      "fields": [
+        "user",
+        "revision",
+        "base",
+        "pending",
+        "conflict"
+      ],
+      "future": "ownership and recovery evidence only, never adopt as the new sync protocol"
+    },
+    {
+      "key": "allim-reading-recovery-v1",
+      "backend": "localStorage",
+      "fields": [
+        "savedAt",
+        "book"
+      ],
+      "future": "separate preserved backups; do not concatenate into reading history"
+    },
+    {
+      "key": "allim-lawh-library-v1",
+      "backend": "IndexedDB",
+      "object_store": "pages",
+      "future": "preserve in place; Lawh deferred"
+    },
+    {
+      "key": "quran-companion-prototype-v4",
+      "backend": "localStorage",
+      "additional_fields": [
+        "memorizationMethod",
+        "hifzCoach",
+        "heartMushaf.linked33Pages",
+        "heartMushaf.turkishWallPages",
+        "heartMushaf.lawhPages"
+      ],
+      "future": "preserve raw backup; new methods deferred and must not be silently normalized away"
+    },
+    {
+      "key": "quran-companion-prototype-v87 / quran-companion-prototype-v88",
+      "backend": "CacheStorage",
+      "future": "preview application assets only; never import as user progress"
+    }
+  ],
+  "ownership": "Legacy production progress has no account owner or record revision; do not infer ownership from current login or field names.",
+  "unknown_fields": "Preserve the untouched source backup and report unknown fields before normalization; do not auto-upload secrets or drop unsupported progress."
+}

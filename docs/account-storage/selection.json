@@ -1,0 +1,104 @@
+{
+  "stage": 1,
+  "base_commit": "6a9775e064d9d22a0ba6eb224d6e7a3734347979",
+  "branch": "codex/account-storage-foundation",
+  "pull_requests": [
+    {
+      "number": 1,
+      "head_commit": "f94fb7fda236ace2a00921c1e96292e1a1282845",
+      "archive_branch": "codex/archive-allim-pr1-20260914"
+    },
+    {
+      "number": 2,
+      "head_commit": "5a5a9365f8e44dbdb0ea0d5012122649bbb22661",
+      "archive_branch": "codex/archive-allim-pr2-20260914"
+    }
+  ],
+  "candidates": [
+    {
+      "source": "companion-workspace/reading-journal.js",
+      "source_commit": "f94fb7fda236ace2a00921c1e96292e1a1282845",
+      "source_blob": "d9e456e3df0c25ddf714e323c288702e694f44ec",
+      "source_sha256": "60045ccc7931b2c40d467cc13771ca2ea9d35dd96d40378fe1735a676af07d6c",
+      "target": "proposals/account-storage/reading-journal-v1.cjs",
+      "selection": [
+        "TOTAL",
+        "fresh",
+        "integer",
+        "validDate",
+        "validate",
+        "summary"
+      ],
+      "adaptation": [
+        "CommonJS-only; no browser side effects",
+        "Remove letter totals from summary; preserve legacy letters field validation"
+      ],
+      "excluded": [
+        "countLetters",
+        "pagePart",
+        "UI and translations",
+        "localStorage and sync wiring",
+        "reward estimates"
+      ],
+      "target_sha256": "9b88602f5594c7b2cc40d037ac48d565dd3eb973e52eab69dcdcdfdc03cef875"
+    },
+    {
+      "source": "allimquran/reading_journal_core.py",
+      "source_commit": "f94fb7fda236ace2a00921c1e96292e1a1282845",
+      "source_blob": "b0b2270b71631b41de58a368a7067c771362024f",
+      "source_sha256": "6e2aed2eed04b8790c16dc97f6ac49e838fc42b2b064e5195876882a3ded5210",
+      "target": "proposals/account-storage/reading_journal_v1.py",
+      "selection": "entire pure legacy-v1 module, unchanged",
+      "limitations": [
+        "Snapshot format is a legacy import candidate, not the target account storage schema",
+        "decide remembers only the last operation; it is not the future synchronization protocol",
+        "Does not verify page/word membership against canonical Quran data"
+      ],
+      "target_sha256": "6e2aed2eed04b8790c16dc97f6ac49e838fc42b2b064e5195876882a3ded5210"
+    }
+  ],
+  "deferred": [
+    {
+      "source": "allimquran/reading_journal.py",
+      "decision": "Reimplement account-wide API after the data contract; reuse reviewed session ownership, CSRF and transactional concurrency requirements"
+    },
+    {
+      "source": "allimquran/allim_quran/doctype/allim_reading_journal/",
+      "decision": "Do not install snapshot-specific schema before the account-wide data contract"
+    },
+    {
+      "source": "allimquran/reading_journal_install.py",
+      "decision": "Do not expose installation for the old snapshot schema"
+    },
+    {
+      "source": "companion-workspace/reading-sync.js",
+      "decision": "Replace with automatic account-wide sync and coordinated account transitions"
+    },
+    {
+      "source": "companion-workspace/app.js",
+      "decision": "Keep current learn client and recitation-core; selectively wire selected functions in later stages"
+    },
+    {
+      "source": "allimquran/asr/server.py",
+      "decision": "Keep current ASR; preview hosting switches are not needed for extraction"
+    },
+    {
+      "source": "companion-workspace/",
+      "pr": 2,
+      "decision": "Preserved in local archive branch; media, course, localization, UI and deployment helpers are separate work"
+    }
+  ],
+  "runtime_integration": "none",
+  "future_integration_points": [
+    "allimquran/website_content/pages/learn/javascript.js",
+    "allimquran/website_content/pages/learn/main_section_html.html",
+    "allimquran/website_content/pages/learn/css.css",
+    "allimquran/website_content/pages/academy/javascript.js",
+    "allimquran/website_content/pages/academy/main_section_html.html"
+  ],
+  "invariants": [
+    "Current app, deployment and recognition files remain byte-for-byte unchanged",
+    "No Frappe schema, hooks, endpoints or production changes in stage 1",
+    "No learner data imported or exported during preparation"
+  ]
+}
