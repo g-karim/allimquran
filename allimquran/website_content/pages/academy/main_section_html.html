@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="/assets/allimquran/css/account-storage.css?v=1">
+<script src="/assets/allimquran/js/account-storage.js?v=1"></script>
+<script src="/assets/allimquran/js/account-progress.js?v=1"></script>
+<script src="/assets/allimquran/js/account-storage-ui.js?v=1"></script>
 <div class="allim-academy-root"><a class="skip-link" href="#academy-main" data-copy="skip">К содержанию</a>
 
   <svg class="icon-sprite" aria-hidden="true">
@@ -72,7 +76,7 @@
             </ol>
             <div class="academy-entry-actions" id="academy-entry-actions">
               <button class="primary-button" id="start-diagnostic" type="button"><span data-diagnostic-copy="startDiagnostic">Пройти диагностику</span><svg><use href="#i-arrow"/></svg></button>
-              <small data-diagnostic-copy="privacy">Ответы сохраняются на этом устройстве. Заявка на урок отправляется отдельно.</small>
+              <small data-diagnostic-copy="privacy">Без аккаунта ответы остаются на устройстве, после входа — сохраняются в аккаунте. Заявка на урок отправляется отдельно.</small>
             </div>
             <article class="academy-route-result" id="academy-route-result" hidden tabindex="-1" aria-live="polite">
               <div class="academy-route-result-head"><span class="route-symbol" aria-hidden="true"><svg><use href="#i-spark"/></svg></span><div><span class="eyebrow" data-diagnostic-copy="routeReady">ВАШ МАРШРУТ ГОТОВ</span><h4 id="diagnostic-route-title"></h4></div></div>
@@ -179,9 +183,9 @@
         </section>
 
         <section class="cabinet-panel" data-panel-content="progress" hidden>
-          <div class="section-head"><div><span class="eyebrow" data-copy="evidenceTitle">ТОЛЬКО ФАКТИЧЕСКИЕ ДАННЫЕ</span><h2 data-copy="progressTitle">Ваш прогресс</h2><p data-copy="progressLead">Показатели Companion на этом устройстве и прогресс зачисленных курсов показаны раздельно.</p></div></div>
+          <div class="section-head"><div><span class="eyebrow" data-copy="evidenceTitle">ТОЛЬКО ФАКТИЧЕСКИЕ ДАННЫЕ</span><h2 data-copy="progressTitle">Ваш прогресс</h2><p data-copy="progressLead">Показатели Companion и прогресс зачисленных курсов показаны раздельно.</p></div></div>
           <div class="progress-grid">
-            <article class="progress-summary"><h3 data-copy="companionProgress">Companion на этом устройстве</h3><div class="big-number" id="total-sessions">0</div><p data-copy="allSessions">всего завершённых сессий</p><div class="mini-metrics"><span><strong id="saved-count">0</strong><small data-copy="savedAyat">сохранено аятов</small></span><span><strong id="review-count">0</strong><small data-copy="reviewQueue">в очереди повторения</small></span><span><strong id="words-reviewed">0</strong><small data-copy="reviewedWords">проверено слов</small></span></div></article>
+            <article class="progress-summary"><h3 data-copy="companionProgress">Прогресс Companion</h3><div class="big-number" id="total-sessions">0</div><p data-copy="allSessions">всего завершённых сессий</p><div class="mini-metrics"><span><strong id="saved-count">0</strong><small data-copy="savedAyat">сохранено аятов</small></span><span><strong id="review-count">0</strong><small data-copy="reviewQueue">в очереди повторения</small></span><span><strong id="words-reviewed">0</strong><small data-copy="reviewedWords">проверено слов</small></span></div></article>
             <article class="activity-card"><h3 data-copy="fiveWeeks">Последние пять недель</h3><div class="activity-grid" id="activity-grid" aria-label="Активность за пять недель"></div><p data-copy="activityHint">Цвет означает число завершённых сессий за день.</p></article>
             <article class="server-progress"><h3 data-copy="courseProgress">Прогресс курсов</h3><div id="server-course-progress"><p class="muted-copy" data-copy="courseProgressEmpty">Войдите в аккаунт, чтобы увидеть серверный прогресс зачисленных курсов.</p></div></article>
           </div>
@@ -203,7 +207,7 @@
       <label><span data-copy="dailyTime">Время в день</span><select id="plan-minutes-input"><option value="10">10 минут</option><option value="15">15 минут</option><option value="20">20 минут</option><option value="30">30 минут</option><option value="45">45 минут</option></select></label>
       <label><span data-copy="mainFocus">Главный фокус</span><select id="plan-focus-input"><option value="recitation" data-copy="focusRecitation">Чтение</option><option value="memorization" data-copy="focusMemorization">Заучивание</option><option value="arabic" data-copy="focusArabic">Коранический арабский</option><option value="tafsir" data-copy="focusTafsir">Тафсир</option></select></label>
       <label><span data-copy="currentTarget">Текущая цель</span><input id="plan-target-input" maxlength="80" autocomplete="off" data-copy-placeholder="targetPlaceholder" placeholder="Например: укрепить суру Аль-Мульк"></label>
-      <p class="dialog-note" data-copy="planPrivacy">План остаётся личным. Подключение синхронизации с аккаунтом будет показано отдельно.</p>
+      <p class="dialog-note" data-copy="planPrivacy">Без аккаунта план остаётся на устройстве. После входа изменения автоматически сохраняются в аккаунте.</p>
       <div class="dialog-actions"><button class="secondary-button" value="cancel" type="submit" data-copy="cancel">Отмена</button><button class="primary-button" id="save-plan" value="default" type="submit"><span data-copy="savePlan">Сохранить план</span><svg><use href="#i-check"/></svg></button></div>
     </form>
   </dialog>

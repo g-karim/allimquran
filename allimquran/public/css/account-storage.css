@@ -1,0 +1,15 @@
+/* Storage controls sit outside the personal screen so recovery remains accessible. */
+.allim-data-hidden { visibility: hidden !important; }
+#allim-storage-panel { position: fixed; z-index: 12000; bottom: max(8px, env(safe-area-inset-bottom)); inset-inline-end: 12px; display: flex; gap: 12px; align-items: center; max-width: calc(100vw - 24px); padding: 10px 14px; border: 1px solid #c9d7cf; border-radius: 12px; color: #173e33; background: #fffdf7; box-shadow: 0 3px 18px #12332622; font: 14px/1.5 system-ui, sans-serif; }
+#allim-storage-panel > span { max-width: 28rem; }
+#allim-storage-panel summary { cursor: pointer; white-space: nowrap; }
+#allim-storage-panel details > div { position: absolute; bottom: calc(100% + 8px); inset-inline-end: 0; width: min(540px, calc(100vw - 24px)); max-height: min(72vh, 700px); overflow: auto; padding: 18px; box-sizing: border-box; border-radius: 12px; border: 1px solid #c9d7cf; background: #fffdf7; box-shadow: 0 3px 18px #12332622; }
+#allim-storage-panel p { margin: 0 0 12px; }
+#allim-storage-panel button, #allim-storage-panel a { font: inherit; color: #173e33; background: #edf4ef; border: 1px solid #b9cdc0; border-radius: 8px; padding: 8px 12px; cursor: pointer; text-decoration: none; display: inline-block; }
+#allim-storage-panel button:focus-visible, #allim-storage-panel a:focus-visible, #allim-storage-panel summary:focus-visible { outline: 2px solid #237858; outline-offset: 3px; }
+.allim-data-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.allim-data-conflict { border-top: 1px solid #c9d7cf; margin-top: 16px; padding-top: 8px; }
+.allim-data-conflict pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; background: #f1f3eb; padding: 10px; }
+.allim-data-conflict button { margin: 4px; }
+#allim-storage-panel[data-state="storage_error"], #allim-storage-panel[data-state="account_locked"] { border-color: #b45a37; }
+@media (max-width: 600px) { #allim-storage-panel { bottom: max(78px, calc(env(safe-area-inset-bottom) + 70px)); font-size: 12px; padding: 7px 10px; gap: 8px; } #allim-storage-panel > span { max-width: 65vw; } }

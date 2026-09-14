@@ -380,9 +380,13 @@ def validate_event(value):
 		words = verse(value["verse_key"])
 		integer(value["matched_words"], 1, len(words))
 		integer(value["hints_used"], 0, len(words))
-		require(value["mode"] in ("read", "memory") and value["evidence"] == "client_alignment")
+		require(value["mode"] in ("read", "memory"))
+		if value["evidence"] == "assisted_completion":
+			require(value["mode"] == "memory" and not value["full_verse"] and not value["alignment_complete"])
+		else:
+			require(value["evidence"] == "client_alignment" and value["alignment_complete"])
 		require(type(value["full_verse"]) is bool and type(value["alignment_complete"]) is bool)
-		require(value["alignment_complete"] and (value["mode"] == "memory" or value["full_verse"]))
+		require(value["mode"] == "memory" or value["full_verse"])
 		require(not value["full_verse"] or value["matched_words"] == len(words))
 		require(value["ruleset"] == "current-300-v1")
 	elif kind == "hint_used":

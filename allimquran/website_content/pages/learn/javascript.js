@@ -1322,7 +1322,6 @@
 
   setupSystemIntro({ warm: ["/academy"] });
 
-  var storageKey = "quran-companion-prototype-v4";
   var defaultState = {
     language: "ru",
     arabicSize: 48,
@@ -2104,22 +2103,51 @@
     settings: "settingsTitle"
   };
 
+  var personalBridge = null;
+  var personalInitializing = true;
+  var readAttemptId = null;
+  var memoryAttemptId = null;
+
   function loadState() {
-    try {
-      var saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
-      return Object.assign({}, defaultState, saved);
-    } catch (error) {
-      return Object.assign({}, defaultState);
-    }
+    // Personal state is loaded asynchronously after the session owner is known.
+    return JSON.parse(JSON.stringify(defaultState));
   }
 
   function saveState() {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(state));
-      return true;
-    } catch (error) {
-      return false;
-    }
+    if (!personalBridge || personalInitializing) return Promise.resolve();
+    return personalBridge.save(state);
+  }
+
+  function saveLearningEvent(type, values) {
+    if (personalBridge && !personalInitializing) personalBridge.event(type, values);
+  }
+
+  function applyPersonalState(next) {
+    // Server progress updates must not reset a running recognition attempt or its text.
+    var selectedSurah = state.selectedSurah;
+    var selectedAyah = state.selectedAyah;
+    var displayLanguage = state.language;
+    Object.assign(state, next);
+    // A remote last-position or locale update is restored on the next page load;
+    // it must not move the currently displayed passage underneath a reader.
+    state.selectedSurah = selectedSurah;
+    state.selectedAyah = selectedAyah;
+    state.language = displayLanguage;
+    personalBridge.rebase(state);
+    document.getElementById("arabic-size").value = String(state.arabicSize);
+    document.documentElement.style.setProperty("--arabic-size", state.arabicSize + "px");
+    document.getElementById("daily-goal").value = String(state.dailyGoal);
+    document.getElementById("auto-advance-toggle").checked = state.autoAdvance !== false;
+    document.getElementById("sound-cues-toggle").checked = state.soundCues !== false;
+    document.getElementById("strict-correction-toggle").checked = state.strictCorrection !== false;
+    applyMushafAppearance();
+    updateRecitationFlowUi();
+    updateProgress();
+    updateVerseActions();
+    renderHeartMushaf();
+    renderHeartReadCounter();
+    renderLifeHistory();
+    renderLifePracticeSummary();
   }
 
   var contribution = window.AllimContribution ? window.AllimContribution({
@@ -2297,6 +2325,7 @@
   function setLanguage(language) {
     if (contribution) window.setTimeout(function () { contribution.refresh(); }, 0);
     if (!translations[language]) return;
+    translations[language].clearProgress = {ru: "Очистить данные устройства", en: "Clear device data", ar: "مسح بيانات الجهاز"}[language];
     clearAutoAdvance();
     state.language = language;
     document.documentElement.lang = language;
@@ -3220,7 +3249,8 @@
     }
     var page = getHeartPageUnit(pageNumber);
     page.connectedAttempts += 1;
-    linkedPageSession = { pageNumber: pageNumber, keys: summary.keys.slice(), nextIndex: 0, reviewing: page.permanent };
+    linkedPageSession = { pageNumber: pageNumber, keys: summary.keys.slice(), nextIndex: 0, reviewing: page.permanent, attemptId: crypto.randomUUID() };
+    saveLearningEvent("connected_started", { attempt_id: linkedPageSession.attemptId, page: pageNumber, ruleset: "current-300-v1" });
     state.recitationFlow = "continuous";
     state.recitationFlowExplicit = true;
     state.autoAdvance = true;
@@ -3453,6 +3483,8 @@
       page.sealedAt = now;
       page.permanent = true;
     }
+    saveLearningEvent("connected_completed", { attempt_id: linkedPageSession.attemptId, page: linkedPageSession.pageNumber,
+      ruleset: "current-300-v1", ordered_verse_keys: linkedPageSession.keys.slice(), without_hints: true, alignment_complete: true });
     linkedPageSession = null;
     saveState();
     renderHeartReadCounter();
@@ -3554,12 +3586,12 @@
     if (streak) streak.textContent = formatMetric(lifePracticeStreak());
   }
 
-  function completeLifeEntry(entry) {
+  async function completeLifeEntry(entry) {
     if (!entry || entry.completed) return;
     entry.completed = true;
     entry.completedAt = new Date().toISOString();
     entry.updatedAt = entry.completedAt;
-    saveState();
+    try { await saveState(); } catch (error) { return; }
     renderLifeHistory();
     renderLifePracticeSummary();
     updateProgress();
@@ -3929,6 +3961,7 @@
       return entry.verseKey === key && entry.createdAt && dateKey(new Date(entry.createdAt)) === today;
     });
     activeLifeEntryId = existing ? existing.id : "";
+    if (existing) personalBridge.beginEdit("reflection", existing.id);
     document.getElementById("life-verse-reference").textContent = currentSurah.names[state.language] + " · " + key;
     document.getElementById("life-verse-arabic").textContent = currentVerse.text;
     document.getElementById("life-verse-meaning").textContent = currentVerse.meaning[state.language];
@@ -3944,7 +3977,7 @@
     if (!dialog.open) dialog.showModal();
   }
 
-  function saveLifePractice(completed) {
+  async function saveLifePractice(completed) {
     if (!currentSurah || !currentVerse) return false;
     var reflection = document.getElementById("life-reflection").value.trim();
     var action = document.getElementById("life-action").value.trim();
@@ -3960,7 +3993,7 @@
     var entry = activeLifeEntryId ? entries.find(function (item) { return item.id === activeLifeEntryId; }) : null;
     var now = new Date().toISOString();
     if (!entry) {
-      entry = { id: "life-" + Date.now(), createdAt: now };
+      entry = { id: crypto.randomUUID(), createdAt: now };
       entries.push(entry);
       activeLifeEntryId = entry.id;
     }
@@ -3976,8 +4009,8 @@
     entry.trigger = document.getElementById("life-trigger").value;
     entry.reviewAt = getLifeReviewAt(document.getElementById("life-review-delay").value);
     entry.updatedAt = now;
-    if (completed) entry.completed = true;
-    saveState();
+    if (completed) { entry.completed = true; entry.completedAt = entry.completedAt || now; }
+    try { await saveState(); } catch (error) { return false; }
     renderLifeHistory();
     renderLifePracticeSummary();
     updateProgress();
@@ -4010,6 +4043,7 @@
   }
 
   function renderMemoryVerse() {
+    memoryAttemptId = crypto.randomUUID();
     if (!currentSurah || !currentVerse) return;
     memorySeriesActive = false;
     stopMemoryRecognition(true);
@@ -6194,6 +6228,7 @@
   }
 
   function resetRecognitionView() {
+    readAttemptId = crypto.randomUUID();
     window.clearTimeout(recognitionFallbackTimer);
     recognitionFallbackTimer = null;
     window.clearTimeout(quranSubmitTimer);
@@ -6251,6 +6286,9 @@
   function recordRecognitionSession(matchedWords) {
     if (recognitionSessionCounted || !lastTranscript.trim() || !lastAlignmentFinal || !lastAlignment || !lastAlignment.complete) return;
     recognitionSessionCounted = true;
+    saveLearningEvent("verse_completed", { attempt_id: readAttemptId || (readAttemptId = crypto.randomUUID()),
+      verse_key: getVerseKey(currentSurah, currentVerse), mode: "read", matched_words: matchedWords,
+      hints_used: 0, full_verse: true, alignment_complete: true, evidence: "client_alignment", ruleset: "current-300-v1" });
     state.sessions += 1;
     state.wordsReviewed += matchedWords;
     logActivity();
@@ -6810,6 +6848,7 @@
   }
 
   function prepareMemoryAttempt() {
+    memoryAttemptId = crypto.randomUUID();
     memoryLastOutcome = "uncertain";
     getMemoryWordElements().forEach(function (word) {
       word.classList.remove("is-revealed", "is-correct", "is-hint", "is-incorrect", "is-current");
@@ -6855,6 +6894,10 @@
     var heartResult = null;
     var reviewIndex = state.reviewQueue.indexOf(key);
     var qualifiesForHeart = memoryHintsThisAttempt === 0 && memoryFullVerseMatched;
+    saveLearningEvent("verse_completed", { attempt_id: memoryAttemptId || (memoryAttemptId = crypto.randomUUID()),
+      verse_key: key, mode: "memory", matched_words: memoryFullVerseMatched ? splitVerseWords(currentVerse.text).length : getMemoryWordElements().length,
+      hints_used: memoryHintsThisAttempt, full_verse: memoryFullVerseMatched, alignment_complete: memoryFullVerseMatched,
+      evidence: memoryFullVerseMatched ? "client_alignment" : "assisted_completion", ruleset: "current-300-v1" });
     if (qualifiesForHeart) {
       heartResult = recordHeartRecitation(key);
       if (reviewIndex >= 0) state.reviewQueue.splice(reviewIndex, 1);
@@ -7234,6 +7277,8 @@
     memoryHadError = false;
     memoryHintsThisAttempt += 1;
     state.hints += 1;
+    saveLearningEvent("hint_used", { attempt_id: memoryAttemptId || (memoryAttemptId = crypto.randomUUID()),
+      verse_key: getVerseKey(currentSurah, currentVerse), hint_index: memoryHintsThisAttempt });
     revealMemoryWord(next, true);
     if (!memorySessionCounted) {
       setMemoryStatus("memoryMicReady", "memoryHintOpened", false);
@@ -7531,21 +7576,7 @@
       });
     });
     document.getElementById("clear-progress").addEventListener("click", function () {
-      if (!window.confirm(t("confirmClear"))) return;
-      state.sessions = 0;
-      state.wordsReviewed = 0;
-      state.hints = 0;
-      state.activity = {};
-      state.heartMushaf = { units: {}, pages: {} };
-      linkedPageSession = null;
-      heartCurrentPageData = null;
-      heartPageCache = {};
-      heartVersePageCache = {};
-      saveState();
-      updateProgress();
-      renderHeartMushaf();
-      renderHeartReadCounter();
-      showToast(t("progressCleared"));
+      window.AllimAccountUI.clearLocal().catch(function (error) { window.AllimStorage.setError(error); });
     });
     document.querySelectorAll("[data-reader-mode]").forEach(function (button) {
       button.addEventListener("click", function () {
@@ -7667,12 +7698,12 @@
     });
     document.getElementById("close-life-practice").addEventListener("click", function () { lifePracticeDialog.close(); });
     lifePracticeDialog.addEventListener("click", function (event) { if (event.target === lifePracticeDialog) lifePracticeDialog.close(); });
-    document.getElementById("life-practice-form").addEventListener("submit", function (event) {
+    document.getElementById("life-practice-form").addEventListener("submit", async function (event) {
       event.preventDefault();
-      if (saveLifePractice(false)) lifePracticeDialog.close();
+      if (await saveLifePractice(false)) lifePracticeDialog.close();
     });
-    document.getElementById("life-complete").addEventListener("click", function () {
-      if (saveLifePractice(true)) lifePracticeDialog.close();
+    document.getElementById("life-complete").addEventListener("click", async function () {
+      if (await saveLifePractice(true)) lifePracticeDialog.close();
     });
     document.getElementById("life-ai-suggest").addEventListener("click", suggestLifeAction);
     ["life-trigger"].forEach(function (id) {
@@ -7759,9 +7790,15 @@
     guide.addEventListener("click", function (event) { if (event.target === guide) guide.close(); });
   }
 
-  function initialize() {
+  async function initialize() {
     if (window.__allimLearnInitialized) return;
     window.__allimLearnInitialized = true;
+    personalBridge = new window.AllimAccountUI.LearnBridge(defaultState, applyPersonalState, function () {
+      stopRecognitionImmediately(); pauseMemoryRecognition(); stopVerseAudio(false);
+      linkedPageSession = null; pageRecallSession = null; readAttemptId = null; memoryAttemptId = null;
+    });
+    try { state = await personalBridge.open(); }
+    catch (error) { window.AllimStorage.setError(error); return; }
     var isFilePreview = window.location.protocol === "file:";
     var isLocalPreview = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
     document.querySelectorAll("[data-home-link]").forEach(function (link) {
@@ -7806,6 +7843,10 @@
     var requestedView = new URLSearchParams(window.location.search).get("view");
     if (Object.prototype.hasOwnProperty.call(viewTitles, requestedView)) navigate(requestedView);
     initializeTeacherAssessmentMode();
+    personalBridge.rebase(state);
+    personalInitializing = false;
+    document.getElementById("clear-progress").textContent = window.AllimAccountUI.t("clear");
+    window.AllimAccountUI.block(false);
     if ("serviceWorker" in navigator && isLocalPreview) {
       navigator.serviceWorker.register("sw.js?v=80").catch(function () {
         return null;

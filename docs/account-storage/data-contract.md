@@ -8,7 +8,7 @@
 
 Владелец определяется из существующей сессии Frappe. Отдельная регистрация, таблица паролей или публичный идентификатор пользователя в URL не нужны. Сервер сопоставляет `frappe.session.user` с постоянным случайным `account_id`; переименование User не меняет этот ID, удаление и новая регистрация создают другой. Переданный клиентом `expected_account_id` служит проверкой совпадения, но не выбирает владельца.
 
-Запись в аккаунте не является оценкой преподавателя. `self_reported`, `client_alignment` и `legacy_import` обозначают происхождение, а не доверенную оценку. Текущие курсы, зачисления, заявки и оценки Frappe/LMS остаются в своих таблицах. Микрофонные записи, исследовательское согласие и его токены, фото Ляуха и секреты авторизации не входят в этот контракт.
+Запись в аккаунте не является оценкой преподавателя. `self_reported`, `client_alignment`, `assisted_completion` и `legacy_import` обозначают происхождение, а не доверенную оценку. Текущие курсы, зачисления, заявки и оценки Frappe/LMS остаются в своих таблицах. Микрофонные записи, исследовательское согласие и его токены, фото Ляуха и секреты авторизации не входят в этот контракт.
 
 ## Общий формат
 
@@ -78,10 +78,12 @@
 
 | `event_type` | Дополнительные поля и эффект |
 |---|---|
-| `verse_completed` | `verse_key`, `mode: read/memory`, `matched_words`, `hints_used`, `full_verse`, `alignment_complete`, `evidence: client_alignment`, `ruleset: current-300-v1`. +1 session, +matched_words, +1 activity за local_date; хифз только при тех же условиях, что в действующем клиенте |
+| `verse_completed` | `verse_key`, `mode: read/memory`, `matched_words`, `hints_used`, `full_verse`, `alignment_complete`, `evidence: client_alignment/assisted_completion`, `ruleset: current-300-v1`. +1 session, +matched_words, +1 activity за local_date; хифз только при тех же условиях, что в действующем клиенте |
 | `hint_used` | `verse_key`, `hint_index >= 1`; +1 hint независимо от последующего завершения попытки |
 | `connected_started` | `page`, `ruleset`; +1 connected_attempts |
 | `connected_completed` | `page`, `ruleset`, `ordered_verse_keys`, `without_hints`, `alignment_complete`; закрепление/повтор страницы по текущим условиям |
+
+При evidence=assisted_completion допустим только mode=memory, full_verse=false и alignment_complete=false: существующий интерфейс может завершить упражнение по частям или подсказкам без сопоставления всего аята. Такое занятие увеличивает активность, но не хифз. При client_alignment требуется alignment_complete=true.
 
 Сервер проверяет согласованность флагов, канонические ссылки, предел matched_words и допустимые переходы; он не выполняет повторное распознавание по этим полям и не называет результат проверкой преподавателя. Журнал, закладка и событие завершения — разные сущности: запись страницы вручную не увеличивает хифз или sessions. Автоматическое снятие из review_queue — отдельная CAS-операция; её конфликт не откатывает состоявшееся чтение.
 

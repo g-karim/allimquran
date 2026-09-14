@@ -63,6 +63,7 @@ class Client:
 		)
 		assert response.status_code == status, (method_name, response.status_code, response.text[:300])
 		assert "no-store" in response.headers.get("Cache-Control", ""), method_name
+		assert "Set-Cookie" not in response.headers, method_name
 		return response.json().get("message", {})
 
 	def apply(self, *operations):

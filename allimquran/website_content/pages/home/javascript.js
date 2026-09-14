@@ -2367,7 +2367,6 @@ window.ALLIM_LANGUAGE_META = {
   });
 
   var supportedLanguages = ["ar", "en", "ru", "tr", "bs", "fr", "zh", "ja", "es", "de", "ms", "id", "ur", "hi", "pt", "sw"];
-  var languagePreferenceKey = "allim-language-preference-v1";
   var selectedLanguageMode = "detected";
 
   function normalizeSupportedLanguage(value) {
@@ -2418,30 +2417,10 @@ window.ALLIM_LANGUAGE_META = {
     return languageFromTimeZone();
   }
 
-  function readLanguagePreference() {
-    var params;
-    try {
-      params = new URLSearchParams(window.location.search);
-      var queryLanguage = normalizeSupportedLanguage(params.get("lang"));
-      if (queryLanguage) return queryLanguage;
-    } catch (error) {
-      params = null;
-    }
-    try {
-      var saved = normalizeSupportedLanguage(window.localStorage.getItem(languagePreferenceKey));
-      if (saved) return saved;
-    } catch (error) {
-      return "";
-    }
-    return "";
-  }
-
   function persistLanguagePreference(value) {
-    try {
-      window.localStorage.setItem(languagePreferenceKey, value);
-    } catch (error) {
-      return;
-    }
+    languageFromLink = "";
+    window.AllimStorage.mutate({kind: "preference", id: "language", value: {selected: value}})
+      .catch(function (error) { window.AllimStorage.setError(error); });
   }
 
   var heartFilmMedia = {
@@ -2960,11 +2939,29 @@ window.ALLIM_LANGUAGE_META = {
 
   var localHomepage = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
   configureProductLinks();
-  var initialLanguagePreference = readLanguagePreference();
-  applyLanguage(
-    initialLanguagePreference || detectAutomaticLanguage(),
-    { mode: initialLanguagePreference ? "manual" : "detected", persist: false }
-  );
+  // The public page can render immediately; personal preferences wait for their owner.
+  var languageFromLink = normalizeSupportedLanguage(new URLSearchParams(window.location.search).get("lang"));
+  applyLanguage(languageFromLink || detectAutomaticLanguage(), { mode: languageFromLink ? "manual" : "detected", persist: false });
+  document.getElementById("language-switch").disabled = true;
+  var personalLanguageGeneration;
+  async function refreshPersonalLanguage() {
+    var snapshot = await window.AllimStorage.snapshot();
+    if (personalLanguageGeneration !== undefined && personalLanguageGeneration !== snapshot.generation) {
+      window.location.reload(); return;
+    }
+    personalLanguageGeneration = snapshot.generation;
+    var stored = snapshot.records.find(function (row) { return row.kind === "preference" && row.id === "language" && !row.deleted; });
+    var preferred = languageFromLink || normalizeSupportedLanguage(stored ? stored.value.selected : snapshot.legacy.home_language);
+    applyLanguage(preferred || detectAutomaticLanguage(), { mode: preferred ? "manual" : "detected", persist: false });
+    document.getElementById("language-switch").disabled = !snapshot.scope;
+  }
+  window.AllimAccountUI.ready.then(function () {
+    window.AllimAccountUI.initialized = true;
+    refreshPersonalLanguage().catch(function (error) { window.AllimStorage.setError(error); });
+    window.AllimStorage.subscribe(function (status, reason) {
+      if (reason === "records" || reason === "owner") refreshPersonalLanguage().catch(function (error) { window.AllimStorage.setError(error); });
+    });
+  }).catch(function () { /* Public content remains readable; saving error is visible. */ });
   setupIntelligenceMap();
   setupSystemIntro({ warm: localHomepage ? ["../?v=57", "../academy/"] : ["/learn", "/academy"] });
   setupHeroRecitationDemo();

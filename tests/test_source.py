@@ -36,9 +36,13 @@ class SourceTests(unittest.TestCase):
 		self.assertTrue(all(not doc["show_list"] and not doc["allow_edit"] for doc in forms))
 
 	def test_progress_keys_preserved(self):
-		text = json.dumps(self.pages, ensure_ascii=False)
-		self.assertIn("quran-companion-prototype-v4", text)
-		self.assertIn("allim-academy-plan-v1", text)
+		# Legacy sources now belong to the shared adapter, not individual pages.
+		adapter = (CONTENT.parent / "public" / "js" / "account-storage.js").read_text()
+		self.assertIn("quran-companion-prototype-v4", adapter)
+		self.assertIn("allim-academy-plan-v1", adapter)
+		for page in self.pages:
+			if page["route"] in {"home", "learn", "academy"}:
+				self.assertIn("/assets/allimquran/js/account-storage.js", page["main_section_html"])
 
 	def test_media_references_resolve(self):
 		text = json.dumps(self.records, ensure_ascii=False)

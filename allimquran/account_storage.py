@@ -54,6 +54,14 @@ CONTEXT_FIELDS = {"expected_account_id", "epoch", "session_binding"}
 def after_request(response):
 	if getattr(frappe.local, "request", None) and frappe.request.path.startswith(PREFIX):
 		response.headers.update(PRIVATE_HEADERS)
+		# Frappe normally reissues sid on every response. A delayed background
+		# reply from A must not overwrite B's newer login cookie. Login remains
+		# owned by Frappe's login route; logout invalidates the session on the server.
+		manager = getattr(frappe.local, "cookie_manager", None)
+		if manager:
+			manager.cookies.clear()
+			manager.to_delete.clear()
+		response.headers.remove("Set-Cookie")
 	return response
 
 
