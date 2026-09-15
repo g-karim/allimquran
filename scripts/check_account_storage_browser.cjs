@@ -5,7 +5,7 @@ const {randomUUID} = require("node:crypto");
 const playwright = require(process.env.ALLIM_PLAYWRIGHT || "playwright");
 const engine = process.env.ALLIM_TEST_BROWSER || "chromium";
 if (!["chromium", "webkit", "firefox"].includes(engine)) throw Error("Unknown browser");
-const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {})};
+const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {}), ...(engine === "firefox" ? {firefoxUserPrefs: {"network.proxy.type": 0}} : {})};
 const base = process.env.ALLIM_TEST_URL || "http://127.0.0.1:18133";
 if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) throw Error("Local fixture URL required");
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
@@ -214,10 +214,17 @@ function event() {
     await a.evaluate(() => AllimStorage.resumeAccount());
     release(); await run;
     await a.unroute("**/api/method/allimquran.account_storage.apply");
-    await sync(a);
+    await signedIn(a, "b"); await sync(a);
+    assert.ok((await snapshot(a)).scope.startsWith("account:"));
+    assert.notEqual((await snapshot(a)).scope, scopeA);
     assert.equal((await snapshot(a)).records.filter(row => row.kind === "learning_event").length, 0);
     console.log("PASS delayed committed response cannot populate another account");
 
+    // Finish the owner-switch scenario before injecting an unrelated quota fault.
+    // A late sibling-tab notification can otherwise change readiness mid-probe.
+    await a2.close(); await remote.close(); await other.close();
+    await a.reload(); await a.evaluate(() => fixtureReady);
+    await signedIn(a, "b");
     await a.waitForFunction(() => AllimStorage.state === "account_ready" && !AllimStorage.paused).catch(async error => {
       console.log("Readiness diagnostic",await a.evaluate(()=>({state:AllimStorage.state,paused:AllimStorage.paused,running:AllimStorage.running,error:AllimStorage.lastError,locked:AllimStorage.control.locked,scope:AllimStorage.control.scope})));
       throw error;
@@ -230,7 +237,13 @@ function event() {
         return window.realTransaction(names, mode, work);
       };
     });
-    await assert.rejects(mutate(a, setting("mushaf_ink", "sepia")), /QuotaExceededError/);
+    // Inspect the native exception before Playwright serializes it; Firefox's
+    // transport does not include DOMException.name in the error message.
+    const quotaError = await a.evaluate(async intent => {
+      try { await AllimStorage.mutate(intent); return null; }
+      catch (error) { return {name: error.name, message: error.message}; }
+    }, setting("mushaf_ink", "sepia"));
+    assert.equal(quotaError?.name, "QuotaExceededError");
     const backup = await a.evaluate(() => AllimStorage.exportLocal());
     assert.equal(backup.not_durably_saved.length, 1);
     assert.equal((await snapshot(a)).pending.length, 0);
@@ -240,7 +253,6 @@ function event() {
     console.log("PASS IndexedDB failure leaves an exportable draft without claiming a durable save");
 
     // Verify actual UI wiring, including guest/user separation and Academy fields.
-    await a2.close(); await remote.close(); await other.close();
     await login(first, "a"); await signedIn(a, "a"); await sync(a);
     await a.goto(base + "/learn", {waitUntil: "domcontentloaded"});
     await a.waitForFunction(() => AllimAccountUI.initialized === true);

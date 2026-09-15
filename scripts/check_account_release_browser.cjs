@@ -9,7 +9,7 @@ const base = process.env.ALLIM_TEST_URL || 'http://127.0.0.1:18143';
 assert.ok(['chromium','webkit','firefox'].includes(engine));
 assert.ok(['127.0.0.1','localhost'].includes(new URL(base).hostname));
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
-const options = {headless:true, ...(engine==='chromium'?{channel:'chrome'}:{}), viewport:{width:390,height:844}, timezoneId:'UTC'};
+const options = {headless:true, ...(engine==='chromium'?{channel:'chrome'}:{}), ...(engine==='firefox'?{firefoxUserPrefs:{'network.proxy.type':0}}:{}), viewport:{width:390,height:844}, timezoneId:'UTC'};
 (async()=>{
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'allim-release-profile-'));
  let context;

@@ -7,7 +7,7 @@ assert.equal(base,'http://127.0.0.1:18143');
 assert.ok(['chromium','webkit','firefox'].includes(engine));
 const credentials=JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
 (async()=>{
- const browser=await pw[engine].launch({headless:true,...(engine==='chromium'?{channel:'chrome'}:{})});
+ const browser=await pw[engine].launch({headless:true,...(engine==='chromium'?{channel:'chrome'}:{}),...(engine==='firefox'?{firefoxUserPrefs:{'network.proxy.type':0}}:{})});
  try{
   const context=await browser.newContext({viewport:{width:390,height:844},timezoneId:'UTC'});
   await context.addInitScript(origin=>{if(location.origin===origin)localStorage.setItem('allim-system-intro-seen-v1','1');},new URL(base).origin);

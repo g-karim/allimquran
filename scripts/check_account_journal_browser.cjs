@@ -5,7 +5,7 @@ const {randomUUID} = require("node:crypto");
 const playwright = require(process.env.ALLIM_PLAYWRIGHT || "playwright");
 const engine = process.env.ALLIM_TEST_BROWSER || "chromium";
 if (!["chromium", "webkit", "firefox"].includes(engine)) throw Error("Unknown browser");
-const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {})};
+const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {}), ...(engine === "firefox" ? {firefoxUserPrefs: {"network.proxy.type": 0}} : {})};
 const base = process.env.ALLIM_TEST_URL || "http://127.0.0.1:18133";
 if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) throw Error("Local fixture URL required");
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
@@ -160,12 +160,12 @@ async function addManual(page,from,to){
   assert.ok(await second.locator('#allim-journal-dialog').evaluate(element=>element.scrollWidth<=element.clientWidth));
   await second.screenshot({path:`/tmp/allim-journal-mobile-ar-${engine}.png`});
   await login(other,'b');
-  await Promise.all([
-   second.waitForNavigation({waitUntil:'domcontentloaded'}),
-   sync(second).catch(error=>{if(!error.message.includes('Execution context was destroyed'))throw error;})
-  ]);
-  await second.evaluate(()=>AllimAccountUI.ready);
-  await second.waitForFunction(()=>!document.querySelector('#allim-journal-dialog'));
+  // Owner changes may replace an in-flight navigation. Assert the resulting
+  // owner and hidden private form instead of depending on one navigation event.
+  await sync(second).catch(error=>{if(!error.message.includes('Execution context was destroyed'))throw error;});
+  await second.waitForFunction(user=>window.AllimAccountUI?.initialized===true &&
+   AllimStorage.state==='account_ready' && AllimStorage.auth?.legacy_owner===user &&
+   !document.querySelector('#allim-journal-dialog'),credentials.b.user);
   assert.ok(!(await entries(second)).some(row=>row.id===id));
   console.log('PASS Arabic mobile journal fits; account switch closes private form and hides old entries');
   const oldBook={version:1,past:2,cycle:1,deadline:'2026-10-01',entries:[{id:'legacy-reading',date:'2026-09-14',cycle:1,source:'paper',parts:[{page:1,full:true,keys:[],total:29,letters:null}]}]};

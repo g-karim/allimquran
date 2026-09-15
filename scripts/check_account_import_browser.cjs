@@ -5,7 +5,7 @@ const {randomUUID} = require("node:crypto");
 const playwright = require(process.env.ALLIM_PLAYWRIGHT || "playwright");
 const engine = process.env.ALLIM_TEST_BROWSER || "chromium";
 if (!["chromium", "webkit", "firefox"].includes(engine)) throw Error("Unknown browser");
-const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {})};
+const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {}), ...(engine === "firefox" ? {firefoxUserPrefs: {"network.proxy.type": 0}} : {})};
 const base = process.env.ALLIM_TEST_URL || "http://127.0.0.1:18133";
 if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) throw Error("Local fixture URL required");
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));

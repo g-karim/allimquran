@@ -1,0 +1,92 @@
+{
+  "checked_at_utc": "2026-09-15T10:09:59.191423+00:00",
+  "application_commit": "6ffdad0",
+  "site": "allim-release.localhost",
+  "playwright": "1.63.0",
+  "firefox": "155.0",
+  "macos": "27.0 (26A428)",
+  "release_ready": false,
+  "browser_runs": [
+    {
+      "engine": "firefox",
+      "suite": "storage",
+      "status": "failed",
+      "passed_groups": 15,
+      "expected_groups": 20,
+      "failure": "http_400 during simultaneous first account opens",
+      "log": "/tmp/allim-followup-firefox-storage.log",
+      "sha256": "7db3e5053057f207faaa1e845719bebc153ad7bdc445a7c3c13ecd645841fb5a"
+    },
+    {
+      "engine": "firefox",
+      "suite": "import",
+      "status": "passed",
+      "passed_groups": 7,
+      "expected_groups": 7,
+      "failure": null,
+      "log": "/tmp/allim-followup-firefox-import.log",
+      "sha256": "d0b02f1dc41d1c04bd55fd1891df5592bb6fd0ed61c6896666e1b57af96a5215"
+    },
+    {
+      "engine": "firefox",
+      "suite": "journal",
+      "status": "passed",
+      "passed_groups": 5,
+      "expected_groups": 5,
+      "failure": null,
+      "log": "/tmp/allim-followup-firefox-journal.log",
+      "sha256": "009b8964d3bfca3a22d904a92c35abe5dcf377625d8b9ebb90f7cacb591eee8b"
+    },
+    {
+      "engine": "firefox",
+      "suite": "release",
+      "status": "passed",
+      "passed_groups": 4,
+      "expected_groups": 4,
+      "failure": null,
+      "log": "/tmp/allim-followup-firefox-release.log",
+      "sha256": "51ab831f1c94bfa7f49841bdcbaa0cc6cf2c53df5e47018f46c76ea34caa528b"
+    },
+    {
+      "engine": "webkit",
+      "suite": "storage",
+      "status": "passed",
+      "passed_groups": 20,
+      "expected_groups": 20,
+      "failure": null,
+      "log": "/tmp/allim-followup-webkit-storage.log",
+      "sha256": "0bbb41d94c9794db7bcd153113516a348dd8de08ba91e676dabb534cc52c7000"
+    },
+    {
+      "engine": "webkit",
+      "suite": "journal",
+      "status": "passed",
+      "passed_groups": 5,
+      "expected_groups": 5,
+      "failure": null,
+      "log": "/tmp/allim-followup-webkit-journal.log",
+      "sha256": "cf4eb6d61b493ae4ae1f171241dab6616daa57bef4cc68dce54378fab77089be"
+    }
+  ],
+  "session_start_regression": {
+    "status": "failed",
+    "parallel_contexts": 6,
+    "distinct_csrf_tokens": 6,
+    "http_400": 5,
+    "http_200": 1,
+    "exception": "CSRFTokenError",
+    "log": "/tmp/allim-followup-csrf-regression.log",
+    "sha256": "94a61011fb984fe55a9111259e98b214769171f35f725a543a2f743e26127c28"
+  },
+  "native_safari": {
+    "version": "27.0 (22625.1.29.11.27)",
+    "status": "not_tested",
+    "reason": "Remote Automation is disabled; session creation refused"
+  },
+  "physical_ios": {
+    "status": "not_tested",
+    "reason": "No device result or device-accessible isolated HTTPS fixture site"
+  },
+  "production_changes": false,
+  "application_fixes": false
+}
