@@ -1,0 +1,131 @@
+{
+  "checked_at_utc": "2026-09-15T09:57:57.360646+00:00",
+  "candidate_commit": "6ffdad0",
+  "deployed_commit": "6a9775e",
+  "audit_mode": "read_only_transaction",
+  "release_ready": false,
+  "site": "allimquran.com",
+  "versions": {
+    "frappe": "16.25.0",
+    "payments": "0.0.1",
+    "lms": "2.62.1",
+    "allimquran": "0.1.0"
+  },
+  "database_version": "10.6.23-MariaDB-0ubuntu0.22.04.1",
+  "candidate_records": 69,
+  "changes": [
+    "DocType:ALLIM Account State",
+    "DocType:ALLIM Progress Change",
+    "DocType:ALLIM Progress Export",
+    "DocType:ALLIM Progress Operation",
+    "DocType:ALLIM Progress Record",
+    "DocType:ALLIM Progress Reset",
+    "Web Page:allim-qur’an-academy-—-student-cabinet",
+    "Web Page:allim-qur’an",
+    "Web Page:allim-qur’an-companion"
+  ],
+  "drift": [
+    {
+      "record": "Web Page:allim-qur’an",
+      "fields_changed_since_deployed_source": [
+        "main_section_html",
+        "css",
+        "javascript"
+      ],
+      "route": "/",
+      "evidence": {
+        "main_section_html": {
+          "source_lines": 425,
+          "live_lines": 490,
+          "source_sha256": "92f80740222cd295658d90c2fb01b18c57342cbe8e02fe15d4e81bba09b08a56",
+          "live_sha256": "94d2a89557c2db6c807a6df939bbcef0e2dbcf442fbe0dd0f3e3b57a8d7f1ffa"
+        },
+        "css": {
+          "source_lines": 1562,
+          "live_lines": 2284,
+          "source_sha256": "2e15b935d0f95980fada1a636e0bf4fee903b3d15993af3b2eecd99e3105c9c5",
+          "live_sha256": "d906cf012e960e52a5b62470c53265022a9c4de63ef9cf1db45230925033a6d3"
+        },
+        "javascript": {
+          "source_lines": 2971,
+          "live_lines": 4146,
+          "source_sha256": "6fc91db97ed11143917199710288e4aac3860d164a66f26daf7b6dd52a1e7d54",
+          "live_sha256": "30726539dcf56896c1214a0488b1c01cf132381f9d1aa7ba31bd20f8a3ae4412"
+        }
+      }
+    },
+    {
+      "record": "Web Page:allim-qur’an-companion",
+      "fields_changed_since_deployed_source": [
+        "main_section_html",
+        "css",
+        "javascript"
+      ],
+      "route": "/learn",
+      "evidence": {
+        "main_section_html": {
+          "source_lines": 946,
+          "live_lines": 1055,
+          "source_sha256": "52c56d2283e42bf1193f15e6651c63379a506aed4b6a60e23969a518cc40c239",
+          "live_sha256": "1f06f31157bc48b9480889ef0b1d1821d8e4842097572174575bc1ad567ef831"
+        },
+        "css": {
+          "source_lines": 2868,
+          "live_lines": 2998,
+          "source_sha256": "c7bcf042a20c0026a88054245559c398e602339352c096cc20aa1e3c726f8763",
+          "live_sha256": "0ffcd12d9fcb8d5972be18f491148c1cabbc54bbf90e19237e0cd6cebd0a457c"
+        },
+        "javascript": {
+          "source_lines": 7821,
+          "live_lines": 9126,
+          "source_sha256": "2cd2df59ab56c522d75adaae8093bb920dc7ae88acb879ea2c8f3cce3a2a3bf5",
+          "live_sha256": "479c97c941da0db74ccd5194e9d31e9873410bbd0d1014a85b6f62418b30427f"
+        }
+      }
+    }
+  ],
+  "missing": [
+    "DocType:ALLIM Account State",
+    "DocType:ALLIM Progress Change",
+    "DocType:ALLIM Progress Export",
+    "DocType:ALLIM Progress Operation",
+    "DocType:ALLIM Progress Record",
+    "DocType:ALLIM Progress Reset"
+  ],
+  "counts": {
+    "User": 10,
+    "ALLIM Trial Lesson Request": 1,
+    "LMS Course": 1,
+    "LMS Enrollment": 0,
+    "File": 2,
+    "ALLIM Account State": null,
+    "ALLIM Progress Record": null
+  },
+  "private_file_count": 0,
+  "settings": {
+    "System Settings": {
+      "session_expiry": "170:00",
+      "allow_login_using_mobile_number": 1,
+      "login_with_email_link": 1,
+      "enable_two_factor_auth": 0
+    },
+    "Website Settings": {
+      "disable_signup": 0
+    },
+    "LMS Settings": {
+      "disable_signup": 1
+    }
+  },
+  "configuration": {
+    "db_type": "mariadb",
+    "maintenance_mode": 0,
+    "pause_scheduler": 0,
+    "ignore_csrf": null,
+    "disable_session_cache": null,
+    "host_name": null,
+    "allow_cors": null,
+    "rate_limit": null,
+    "encryption_key_present": true,
+    "backup_encryption_key_present": false
+  }
+}
