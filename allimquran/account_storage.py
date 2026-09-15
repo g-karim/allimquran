@@ -208,7 +208,12 @@ def context(params):
 	authenticated()
 	from frappe.sessions import get_csrf_token
 
-	return {"mode": "account", "csrf_token": get_csrf_token(), "session_binding": binding()}
+	return {
+		"mode": "account",
+		"csrf_token": get_csrf_token(),
+		"session_binding": binding(),
+		"legacy_owner": frappe.session.user,
+	}
 
 
 @endpoint("POST")

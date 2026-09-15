@@ -396,8 +396,11 @@
           (await request(stores.outbox.index("scope").getAll(IDBKeyRange.bound(stamp.scope.split(":").slice(0, 2).join(":") + ":", stamp.scope.split(":").slice(0, 2).join(":") + ":\uffff")))).filter(row => row.scope !== stamp.scope) : [];
         const guestMeta = await request(stores.scopes.get(this.control.guest_scope));
         const legacyPresent = Object.values(guestMeta?.legacy || {}).some(value => value && (typeof value !== "object" || Object.keys(value).length));
-        const hasGuestData = !!legacyPresent || (await request(stores.records.index("scope").count(this.control.guest_scope))) > 0;
-        return {hasGuestData, recovery, scope: stamp.scope, generation: stamp.generation, records: [...visible.values()], canonical: canonical.map(privateRow), pending: pending.map(clone), legacy: meta?.legacy || {}, device: clone(this.control.device || {})};
+        let oldJournal = false;
+        try { oldJournal = !guestMeta?.legacy_cleared && !!root.localStorage.getItem("allim-reading-journal-v1"); } catch (_) { /* source stays on device */ }
+        const hasGuestData = !!legacyPresent || oldJournal || (await request(stores.records.index("scope").count(this.control.guest_scope))) > 0;
+        const priorImports = stamp.scope.startsWith("account:") ? (await request(stores.scopes.getAll())).filter(row => row.scope !== stamp.scope && row.scope.startsWith(stamp.scope.split(":").slice(0, 2).join(":") + ":") && Object.values(row.import_jobs || {}).some(job => !job.done)).map(row => ({scope: row.scope, jobs: row.import_jobs})) : [];
+        return {hasGuestData, recovery, priorImports, imports: meta?.import_jobs || {}, scope: stamp.scope, generation: stamp.generation, records: [...visible.values()], canonical: canonical.map(privateRow), pending: pending.map(clone), legacy: meta?.legacy || {}, device: clone(this.control.device || {})};
       });
     }
     async get(kind, id) { return (await this.list(kind)).find(row => row.id === id); }
@@ -493,6 +496,8 @@
             await this.pull(stamp);
             await this.settle(stamp, selected, response);
           }
+          // New account actions take precedence over any legacy import.
+          if (root.AllimImport) await root.AllimImport.flush(this, stamp);
           this.lastError = null;
           this.notify("records"); this.broadcast();
         } catch (error) {
@@ -537,6 +542,10 @@
         const pending = await request(stores.outbox.index("scope").getAll(stamp.scope));
         pendingCount = pending.length;
         if (discardPending) for (const row of pending) await request(stores.outbox.delete([stamp.scope, row.op_id]));
+        if (discardPending) {
+          const meta = await request(stores.scopes.get(stamp.scope));
+          if (meta) { meta.import_jobs = Object.fromEntries(Object.entries(meta.import_jobs || {}).filter(([, job]) => job.done)); await request(stores.scopes.put(meta)); }
+        }
         if (stamp.scope.startsWith("account:")) {
           await this.eraseScope(stores, stamp.scope);
           control.explicit_logout = true;
@@ -547,7 +556,7 @@
           }
         } else if (clearGuest) {
           await this.eraseScope(stores, stamp.scope);
-          await request(stores.scopes.put({scope: stamp.scope, ready: true, cursor: 0, sequence: 0, legacy: {}}));
+          await request(stores.scopes.put({scope: stamp.scope, ready: true, cursor: 0, sequence: 0, legacy: {}, legacy_cleared: true}));
         }
         control.scope = control.guest_scope;
         control.session_binding = null;
@@ -604,9 +613,10 @@
       const stamp = this.stamp();
       if (!stamp.scope.startsWith("account:")) throw failure("account_required");
       const prefix = stamp.scope.split(":").slice(0, 2).join(":") + ":";
-      await this.guarded(stamp, ["outbox"], "readwrite", async stores => {
+      await this.guarded(stamp, ["outbox", "scopes"], "readwrite", async stores => {
         const rows = await request(stores.outbox.index("scope").getAll(IDBKeyRange.bound(prefix, prefix + "\uffff")));
         for (const row of rows) if (row.scope !== stamp.scope) await request(stores.outbox.delete([row.scope, row.op_id]));
+        for (const meta of await request(stores.scopes.getAll())) if (meta.scope !== stamp.scope && meta.scope.startsWith(prefix)) { delete meta.import_jobs; await request(stores.scopes.put(meta)); }
       });
       this.notify("records"); this.broadcast();
     }
@@ -615,6 +625,7 @@
       // Deliberately excludes authentication, transport bindings and other owners.
       return {format: "allim-local-recovery-v1", exported_at: new Date().toISOString(), scope: snapshot.scope,
         records: snapshot.records, canonical: snapshot.canonical || [], pending: snapshot.pending, previous_epochs: snapshot.recovery || [],
+        imports: snapshot.imports || {}, previous_imports: snapshot.priorImports || [],
         legacy: snapshot.legacy, not_durably_saved: this.unsaved.filter(row => row.scope === snapshot.scope).map(row => row.intents)};
     }
     subscribe(listener) { this.listeners.add(listener); return () => this.listeners.delete(listener); }

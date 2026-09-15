@@ -38,6 +38,8 @@
     const conflicts = (snapshot.canonical || []).filter(row => row.kind === "conflict" && !row.deleted && row.value.status === "open");
     const rejected = snapshot.pending.filter(row => row.status === "needs_choice" && !conflicts.some(conflict => conflict.value.source_op_id === row.op_id));
     let label = t(status.state === "opening_account" ? "opening" : status.state);
+    const importsPending = Object.values(snapshot.imports || {}).filter(job => !job.done).length;
+    if (importsPending && status.state === "account_ready") label = t("pending");
     if ((status.state === "account_ready" && snapshot.pending.length) || status.localWrites) label = t("pending") + ": " + (snapshot.pending.length + status.localWrites);
     if (conflicts.length || rejected.length) label = t("needs_choice") + " · " + (conflicts.length + rejected.length);
     if (status.unsaved) label = t("storage_error");
@@ -55,11 +57,11 @@
     const login = node("a", t("login"), actions); login.href = "/login?redirect-to=" + encodeURIComponent(root.location.pathname + root.location.search);
     button(t("export"), download, actions);
     button(t("clear"), clearLocal, actions);
-    if (snapshot.recovery?.length) {
+    if (snapshot.recovery?.length || snapshot.priorImports?.length) {
       node("p", t("recovery"), detailNode);
       button(t("discardOld"), () => { if (root.confirm(t("discardAllConfirm"))) return storage.discardPreviousEpochs(); }, detailNode);
     }
-    if (snapshot.pending.length) button(t("discardAll"), () => { if (root.confirm(t("discardAllConfirm"))) return storage.clearLocal({discardPending: true}); }, actions);
+    if (snapshot.pending.length || importsPending) button(t("discardAll"), () => { if (root.confirm(t("discardAllConfirm"))) return storage.clearLocal({discardPending: true}); }, actions);
     if (snapshot.pending.length) node("p", t("logoutNote"), detailNode);
     if (status.localLogoutPending) node("p", t("pendingLogout"), detailNode);
     if (status.scope?.startsWith("account:") && snapshot.hasGuestData) {
@@ -85,6 +87,7 @@
        node("p", t("rejected"), card); node("pre", displayValue(row.intent.value), card);
       button(t("discard"), () => { if (root.confirm(t("discardConfirm"))) return storage.discardDraft(row.op_id); }, card);
     }
+    if (root.AllimImportUI) root.AllimImportUI.render(detailNode, status, snapshot).catch(() => {});
     // Keep existing badges truthful without coupling storage to LMS enrollment requests.
     root.document.querySelectorAll('[data-i18n="localMode"], [data-copy="deviceProgress"]').forEach(item => { item.textContent = label; });
   }

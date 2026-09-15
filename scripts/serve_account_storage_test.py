@@ -41,7 +41,7 @@ def main():
 			return Response(html, content_type="text/html; charset=utf-8")(environ, start_response)
 		if path == "/storage-harness":
 			html = '<!doctype html><html lang="ru"><body><div id="fixture"></div>'
-			for name in ("account-storage", "account-progress"):
+			for name in ("account-storage", "account-progress", "account-import"):
 				html += f'<script src="/assets/allimquran/js/{name}.js"></script>'
 			html += "<script>window.fixtureReady=AllimStorage.open();</script></body></html>"
 			return Response(html, content_type="text/html; charset=utf-8")(environ, start_response)

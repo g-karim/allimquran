@@ -13,3 +13,12 @@
 .allim-data-conflict button { margin: 4px; }
 #allim-storage-panel[data-state="storage_error"], #allim-storage-panel[data-state="account_locked"] { border-color: #b45a37; }
 @media (max-width: 600px) { #allim-storage-panel { bottom: max(78px, calc(env(safe-area-inset-bottom) + 70px)); font-size: 12px; padding: 7px 10px; gap: 8px; } #allim-storage-panel > span { max-width: 65vw; } }
+
+.allim-personal-dialog { box-sizing: border-box; width: min(94vw, 580px); max-height: 88dvh; overflow: auto; border: 1px solid #cbd9d1; border-radius: 16px; padding: 24px; background: #fffef9; color: #19382c; font: 16px/1.55 system-ui, sans-serif; }
+.allim-personal-dialog::backdrop { background: #10291dcc; }
+.allim-personal-dialog h2 { margin-top: 0; font-size: 1.3rem; }
+.allim-personal-dialog label { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 12px 0; }
+.allim-personal-dialog button, .allim-personal-dialog input, .allim-personal-dialog select { font: inherit; min-height: 44px; max-width: 100%; }
+.allim-personal-dialog button { margin: 4px; padding: 8px 14px; border: 1px solid #8aa897; border-radius: 8px; background: #f2f7f3; color: inherit; cursor: pointer; }
+.allim-personal-dialog input:not([type=checkbox]), .allim-personal-dialog select { padding: 6px; border: 1px solid #8aa897; border-radius: 6px; }
+#allim-import-offer { margin-block-start: 8px; border-block-start: 1px solid #cbd9d1; }
