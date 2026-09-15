@@ -333,7 +333,7 @@
     mutateMany(intents) {
       // Capture ownership when the user acts, before any asynchronous local work.
       const stamp = this.stamp();
-      const input = clone(intents);
+      let input = clone(intents);
       this.localWrites++;
       this.notify();
       const operation = this.chain.then(async () => {
@@ -341,6 +341,13 @@
         const ids = await this.guarded(stamp, ["records", "scopes", "outbox"], "readwrite", async stores => {
           const meta = await request(stores.scopes.get(stamp.scope));
           if (!meta?.ready) throw failure("storage_not_ready");
+          if (root.AllimJournal && input.some(intent => intent.kind === "reading_entry" || intent.kind === "reading_plan")) {
+            const visible = new Map((await request(stores.records.index("scope").getAll(stamp.scope))).map(row => [key(row), row]));
+            for (const row of (await request(stores.outbox.index("scope").getAll(stamp.scope))).sort((a, b) => a.sequence - b.sequence)) {
+              if (row.status !== "needs_choice") visible.set(key(row), {kind: row.kind, id: row.id, value: row.intent.value, deleted: row.intent.action === "delete"});
+            }
+            input = root.AllimJournal.expand(input, [...visible.values()], stamp.scope);
+          }
           const ids = [];
           for (const intent of input) {
             if (!intent.kind || !intent.id || !["set", "delete", "resolve"].includes(intent.action || "set")) throw failure("invalid_intent");
@@ -348,6 +355,7 @@
             const old = await request(stores.records.get([stamp.scope, intent.kind, intent.id]));
             const queue = (await request(stores.outbox.index("scope").getAll(stamp.scope))).filter(row => key(row) === key(intent)).sort((a, b) => a.sequence - b.sequence);
             const parent = queue.at(-1);
+            if (intent.insert_once && (old || parent)) continue;
             const visible = parent ? {deleted: parent.intent.action === "delete", value: parent.intent.value} : old;
             const deleted = intent.action === "delete";
             if (intent.action !== "resolve" && visible && visible.deleted === deleted && (deleted || same(visible.value, intent.value))) continue;
@@ -355,7 +363,7 @@
             ids.push(opId);
             meta.sequence++;
             if (stamp.scope.startsWith("guest:")) {
-              await request(stores.records.put({scope: stamp.scope, schema_version: 1, kind: intent.kind, id: intent.id, value: deleted ? null : intent.value, deleted, version: (old?.version || 0) + 1, change_seq: meta.sequence}));
+              await request(stores.records.put({scope: stamp.scope, schema_version: 1, kind: intent.kind, id: intent.id, value: deleted ? null : intent.value, deleted, version: (old?.version || 0) + 1, change_seq: meta.sequence, ...(old?.source_key ? {source_key: old.source_key} : {})}));
             } else {
               await request(stores.outbox.put({scope: stamp.scope, op_id: opId, kind: intent.kind, id: intent.id,
                 sequence: meta.sequence, intent, status: "queued", depends_on: intent.action === "resolve" || intent.supersedes ? null : parent?.op_id,
@@ -388,7 +396,7 @@
         const visible = new Map(canonical.map(row => [key(row), privateRow(row)]));
         for (const row of pending) {
           // Rejected drafts are exposed separately, never counted as accepted learning facts.
-          if (row.status === "needs_choice" && row.kind === "learning_event") continue;
+          if (row.status === "needs_choice" && (row.kind === "learning_event" || row.kind.startsWith("reading_"))) continue;
           visible.set(key(row), {kind: row.kind, id: row.id, value: row.intent.value, deleted: row.intent.action === "delete", version: row.base_version, pending: true});
         }
         const meta = await request(stores.scopes.get(stamp.scope));
@@ -622,10 +630,15 @@
     }
     async exportLocal() {
       const snapshot = await this.snapshot();
+      const legacyBackups = snapshot.scope?.startsWith("guest:") ? await this.guarded(this.stamp(), ["scopes"], "readonly", async stores => {
+        const meta = await request(stores.scopes.get(snapshot.scope));
+        return Object.values(meta?.import_backups || {}).filter(backup => !backup.source.journal_owner);
+      }) : [];
       // Deliberately excludes authentication, transport bindings and other owners.
       return {format: "allim-local-recovery-v1", exported_at: new Date().toISOString(), scope: snapshot.scope,
         records: snapshot.records, canonical: snapshot.canonical || [], pending: snapshot.pending, previous_epochs: snapshot.recovery || [],
         imports: snapshot.imports || {}, previous_imports: snapshot.priorImports || [],
+        legacy_backups: legacyBackups,
         legacy: snapshot.legacy, not_durably_saved: this.unsaved.filter(row => row.scope === snapshot.scope).map(row => row.intents)};
     }
     subscribe(listener) { this.listeners.add(listener); return () => this.listeners.delete(listener); }

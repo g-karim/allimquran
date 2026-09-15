@@ -1,9 +1,11 @@
-<link rel="stylesheet" href="/assets/allimquran/css/account-storage.css?v=2">
-<script src="/assets/allimquran/js/account-storage.js?v=2"></script>
+<link rel="stylesheet" href="/assets/allimquran/css/account-storage.css?v=3">
+<script src="/assets/allimquran/js/account-storage.js?v=3"></script>
 <script src="/assets/allimquran/js/account-progress.js?v=1"></script>
-<script src="/assets/allimquran/js/account-import.js?v=1"></script>
+<script src="/assets/allimquran/js/account-import.js?v=2"></script>
 <script src="/assets/allimquran/js/account-import-ui.js?v=1"></script>
-<script src="/assets/allimquran/js/account-storage-ui.js?v=2"></script>
+<script src="/assets/allimquran/js/account-journal.js?v=1"></script>
+<script src="/assets/allimquran/js/account-storage-ui.js?v=3"></script>
+<script src="/assets/allimquran/js/account-journal-ui.js?v=1"></script>
 <script src="/assets/allimquran/js/recitation-core.js?v=1"></script>
 <script src="/assets/allimquran/js/recitation-consent.js?v=1"></script>
 <link rel="stylesheet" href="/assets/allimquran/css/recitation-consent.css?v=1">
@@ -415,6 +417,7 @@
                 <div><strong id="correction-gate-title" data-i18n="correctionRequired">Остановились на слове</strong><small id="correction-gate-text">Повторите отмеченное слово — после правильного произнесения чтение продолжится.</small></div>
               </div>
               <div class="recognition-progress" id="recognition-progress" aria-hidden="true"><span></span></div>
+              <div class="allim-journal-summary" id="allim-journal-summary"></div>
               <div class="reading-summary" id="reading-summary" aria-live="polite">
                 <div class="summary-heading"><span class="summary-mark"><svg><use href="#i-spark"/></svg></span><div><strong data-i18n="readingSummary">Итог чтения</strong><small id="summary-message" data-i18n="summaryIdle">Появится после начала чтения.</small></div></div>
                 <div class="summary-metrics">
@@ -715,6 +718,7 @@
 
         <section class="view" id="view-progress" data-view-panel="progress" aria-labelledby="progress-heading">
           <div class="page-intro"><div><span class="kicker" data-i18n="yourJourney">Ваш путь</span><h2 id="progress-heading" data-i18n="progressTitle">Прогресс начинается с первой сессии</h2><p data-i18n="progressIntro">Здесь появятся только реальные результаты ваших действий в приложении.</p></div></div>
+          <div class="allim-journal-summary" id="allim-journal-progress"></div>
           <div class="progress-grid">
             <article class="progress-card"><span data-i18n="sessions">Сессии</span><strong id="metric-sessions">0</strong><small data-i18n="storedLocally">Хранятся локально</small></article>
             <article class="progress-card"><span data-i18n="wordsReviewed">Слова повторены</span><strong id="metric-words">0</strong><small data-i18n="fromYourActions">По вашим действиям</small></article>

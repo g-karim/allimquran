@@ -22,3 +22,12 @@
 .allim-personal-dialog button { margin: 4px; padding: 8px 14px; border: 1px solid #8aa897; border-radius: 8px; background: #f2f7f3; color: inherit; cursor: pointer; }
 .allim-personal-dialog input:not([type=checkbox]), .allim-personal-dialog select { padding: 6px; border: 1px solid #8aa897; border-radius: 6px; }
 #allim-import-offer { margin-block-start: 8px; border-block-start: 1px solid #cbd9d1; }
+.allim-journal-summary { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin-block: 14px; padding: 12px 16px; border: 1px solid #d4e1d7; border-radius: 12px; background: #f5f8f2; color: #254d3a; font: 14px/1.5 system-ui, sans-serif; }
+.allim-journal-summary span { flex: 1 1 170px; }
+.allim-journal-summary button { min-height: 44px; padding: 8px 12px; border: 1px solid #8ba897; border-radius: 8px; background: #fffefa; color: inherit; font: inherit; cursor: pointer; }
+.allim-journal-metrics { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; }
+.allim-journal-metrics dd { margin: 0; font-weight: 700; }
+.allim-journal-entries article { border-block-start: 1px solid #d4e1d7; padding-block: 12px; }
+.allim-journal-entries small { display: block; }
+.allim-journal-range { direction: ltr; unicode-bidi: isolate; overflow-wrap: anywhere; max-height: 100px; overflow: auto; }
+.allim-personal-dialog [hidden] { display: none !important; }

@@ -22,8 +22,15 @@
     root.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   async function clearLocal() { if (root.confirm(t("clearConfirm"))) await storage.clearLocal(); }
-  function displayValue(value) {
+  function displayValue(value, records = []) {
     if (value == null) return "—";
+    if (value.cycle_id) {
+      const cycles = records.filter(row => row.kind === "reading_cycle" && !row.deleted).sort((a, b) => (a.change_seq || 0) - (b.change_seq || 0) || a.id.localeCompare(b.id));
+      const cycle = t("reading_cycle") + " " + (cycles.findIndex(row => row.id === value.cycle_id) + 1);
+      if (Array.isArray(value.parts)) return [value.local_date, cycle, t(value.source), t("pages") + ": " + value.parts.map(part => part.full ? part.page : part.page + " (" + part.word_keys.join(", ") + ")").join(", ")].join("\n");
+      return cycle + " · " + (value.deadline || t("noDeadline"));
+    }
+    if (Object.hasOwn(value, "completed_cycles")) return t("reading_past") + ": " + value.completed_cycles;
     if (Object.hasOwn(value, "reflection")) return [value.reference || value.verse_key, value.reflection, value.action].filter(Boolean).join("\n\n");
     if (Object.hasOwn(value, "target")) return [value.target, value.minutes + " min", value.focus].join("\n");
     if (Object.hasOwn(value, "selected")) return typeof value.selected === "object" ? Object.values(value.selected).join(" · ") : String(value.selected);
@@ -73,8 +80,8 @@
       const current = snapshot.canonical.find(row => row.kind === value.target_kind && row.id === value.target_id);
       const card = node("section", undefined, detailNode); card.className = "allim-data-conflict";
       node("h3", t(value.target_kind) + " · " + t("conflict"), card);
-      node("strong", t("server"), card); node("pre", displayValue(current?.value), card);
-      node("strong", t("proposed"), card); node("pre", displayValue(value.proposed_value), card);
+      node("strong", t("server"), card); node("pre", displayValue(current?.value, snapshot.records), card);
+      node("strong", t("proposed"), card); node("pre", displayValue(value.proposed_value, snapshot.records), card);
       button(t("useServer"), () => storage.resolve(value.target_kind, value.target_id, current.value), card);
       button(t("useMine"), () => storage.resolve(value.target_kind, value.target_id, value.proposed_value), card);
     }
@@ -82,9 +89,9 @@
       const card = node("section", undefined, detailNode); card.className = "allim-data-conflict";
       const current = snapshot.canonical.find(item => item.kind === row.kind && item.id === row.id);
       node("h3", t(row.kind), card);
-      if (current && !current.deleted) { node("strong", t("server"), card); node("pre", displayValue(current.value), card); }
-      if (!["learning_event", "reflection"].includes(row.kind) || !current?.deleted) button(t("useMine"), () => storage.retryDraft(row.op_id), card);
-       node("p", t("rejected"), card); node("pre", displayValue(row.intent.value), card);
+      if (current && !current.deleted) { node("strong", t("server"), card); node("pre", displayValue(current.value, snapshot.records), card); }
+      if (!["learning_event", "reflection", "reading_entry"].includes(row.kind) || !current?.deleted) button(t("useMine"), () => storage.retryDraft(row.op_id), card);
+       node("p", t("rejected"), card); node("pre", displayValue(row.intent.value, snapshot.records), card);
       button(t("discard"), () => { if (root.confirm(t("discardConfirm"))) return storage.discardDraft(row.op_id); }, card);
     }
     if (root.AllimImportUI) root.AllimImportUI.render(detailNode, status, snapshot).catch(() => {});
@@ -101,6 +108,12 @@
     new MutationObserver(() => render()).observe(root.document.documentElement, {attributes: true, attributeFilter: ["lang", "dir"]});
     await render();
   }
+  const journalLabels = {
+    ru: {reading_entry: "Запись журнала", reading_plan: "Цель чтения", reading_cycle: "Хатм", reading_past: "Прежние хатмы", pages: "Страницы", paper: "С бумаги", digital: "С экрана", mic: "Проверено в чтении", noDeadline: "Без срока"},
+    en: {reading_entry: "Journal entry", reading_plan: "Reading goal", reading_cycle: "Khatm", reading_past: "Earlier khatms", pages: "Pages", paper: "Paper", digital: "Screen", mic: "Accepted in reading", noDeadline: "No deadline"},
+    ar: {reading_entry: "قراءة في السجل", reading_plan: "هدف القراءة", reading_cycle: "الختمة", reading_past: "الختمات السابقة", pages: "الصفحات", paper: "مصحف ورقي", digital: "الشاشة", mic: "قراءة مقبولة", noDeadline: "دون موعد"}
+  };
+  for (const language of Object.keys(journalLabels)) Object.assign(strings[language], journalLabels[language]);
   const domReady = root.document.readyState === "loading" ? new Promise(resolve => root.document.addEventListener("DOMContentLoaded", resolve, {once: true})) : Promise.resolve();
   const ready = domReady.then(mount).then(async () => {
     await storage.open();
@@ -140,6 +153,11 @@
     beginEdit(kind, id) { this.edits.set(kind + "/" + id, this.versions.get(kind + "/" + id) || 0); }
     rebase(state) { this.last = copy(state); }
     save(state) {
+      if (storage.stamp().generation !== this.generation) {
+        const stale = Promise.reject(new Error("owner_changed"));
+        stale.catch(() => {}); // Old reader callbacks must not surface errors in the next account.
+        return stale;
+      }
       this.revision++;
       const intents = progress.diff(this.last, state).concat(this.events.splice(0));
       for (const intent of intents) {
@@ -156,7 +174,12 @@
       return result;
     }
     event(eventType, values) {
-      this.events.push({kind: "learning_event", id: root.crypto.randomUUID(), action: "set", value: {...progress.timing(), event_type: eventType, ...values}});
+      const value = {...progress.timing(), event_type: eventType, ...values};
+      this.events.push({kind: "learning_event", id: root.crypto.randomUUID(), action: "set", value});
+      if (root.AllimJournal) {
+        const entry = root.AllimJournal.entryForEvent(value, root.AllimAccountUI.catalogue);
+        if (entry) this.events.push(entry);
+      }
     }
   }
   root.AllimAccountUI = {ready, LearnBridge, clearLocal, download, render, t, block, catalogue: {}};

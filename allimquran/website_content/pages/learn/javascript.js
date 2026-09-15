@@ -7845,6 +7845,7 @@
     initializeTeacherAssessmentMode();
     personalBridge.rebase(state);
     personalInitializing = false;
+    window.AllimJournalUI.mount();
     document.getElementById("clear-progress").textContent = window.AllimAccountUI.t("clear");
     window.AllimAccountUI.block(false);
     if ("serviceWorker" in navigator && isLocalPreview) {

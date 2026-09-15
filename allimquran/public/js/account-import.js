@@ -83,7 +83,10 @@
     for (const row of source.records || []) {
       if (!category(row.kind)) continue;
       const key = row.kind + "/" + row.id + "/0";
-      if (row.deleted) items.delete(key); else add(row.kind, row.id, clone(row.value));
+      if (row.deleted) items.delete(key); else {
+        add(row.kind, row.id, clone(row.value));
+        if (row.source_key) items.get(key).source_key = clone(row.source_key);
+      }
     }
     if (language) add("preference", "language", {selected: language});
     const recognized = new Set([...Object.keys(pref), "recitationFlow", "recitationFlowExplicit", "recognitionMode", "recognitionModeExplicit", "selectedSurah", "selectedAyah", "sessions", "wordsReviewed", "hints", "dailyGoal", "savedVerses", "reviewQueue", "activity", "heartMushaf", "lifePractice"]);
@@ -121,11 +124,11 @@
     if (!stamp.scope.startsWith("account:") || storage.state !== "account_ready") throw fail("account_required");
     const source = await storage.guarded(stamp, ["scopes", "records"], "readonly", async stores => {
       const guest = await req(stores.scopes.get(storage.control.guest_scope));
-      const records = (await req(stores.records.index("scope").getAll(storage.control.guest_scope))).map(({kind, id, value, deleted}) => ({kind, id, value, deleted}));
-      return {legacy: guest.legacy || {}, records, legacy_cleared: !!guest.legacy_cleared, raw: {}};
+      const records = (await req(stores.records.index("scope").getAll(storage.control.guest_scope))).map(({kind, id, value, deleted, source_key}) => ({kind, id, value, deleted, ...(source_key ? {source_key} : {})}));
+      return {legacy: guest.legacy || {}, records, legacy_cleared: !!guest.legacy_cleared, journal_migrated: !!guest.journal_migrated, raw: {}};
     });
     for (const key of legacyKeys) { const value = root.localStorage.getItem(key); if (value !== null) source.raw[key] = value; }
-    source.journal = source.legacy_cleared ? null : parse(source.raw["allim-reading-journal-v1"]);
+    source.journal = source.legacy_cleared || source.journal_migrated ? null : parse(source.raw["allim-reading-journal-v1"]);
     const oldSync = parse(source.raw["allim-reading-sync-v1"]);
     // Any malformed owner marker is quarantined as well. Recovery books are backups, not sessions.
     source.journal_owner = oldSync?.user && oldSync.user !== "Guest" ? String(oldSync.user) : source.raw["allim-reading-sync-v1"] && (!object(oldSync) || (!oldSync.user && (oldSync.base || oldSync.pending || oldSync.conflict))) ? "unknown" : null;
@@ -223,5 +226,40 @@
     if (!storage.control || storage.paused || storage.control.locked || !storage.control.scope.startsWith("account:")) return [];
     return Object.values((await meta(storage, storage.stamp()))?.import_jobs || {}).map(job => ({digest: job.digest, done: job.done, error: job.error, total: job.operations?.length, confirmed: job.results.length, skipped: job.results.filter(result => result.verification === "skipped_changed_source" || result.import_result?.outcome === "skipped_conflict" || !["applied", "noop"].includes(result.outcome)).length, warnings: job.warnings || []}));
   }
-  return {mapSource, compile, hash, categories, category, capture, start, flush, report, meta, update};
+  async function migrateGuestJournal(storage, catalogue) {
+    const stamp = storage.stamp();
+    if (!stamp.scope.startsWith("guest:")) return;
+    const current = await meta(storage, stamp);
+    if (current.journal_migrated || current.legacy_cleared) return;
+    const raw = {};
+    for (const key of legacyKeys.slice(4)) { const value = root.localStorage.getItem(key); if (value !== null) raw[key] = value; }
+    if (!raw["allim-reading-journal-v1"]) return;
+    const sync = parse(raw["allim-reading-sync-v1"]), book = parse(raw["allim-reading-journal-v1"]);
+    if (raw["allim-reading-sync-v1"] && (!object(sync) || sync.user && sync.user !== "Guest" || !sync.user && (sync.base || sync.pending || sync.conflict))) return;
+    if (!root.AllimJournal.validLegacy(book, catalogue)) return;
+    const source = {legacy: {}, records: [], raw, journal: book, journal_owner: null};
+    const digest = await hash(source), hex = digest.slice(0, 12) + "4" + digest.slice(13, 16) + "8" + digest.slice(17, 32);
+    const sourceId = [hex.slice(0,8),hex.slice(8,12),hex.slice(12,16),hex.slice(16,20),hex.slice(20)].join("-");
+    const bytes = new TextEncoder().encode(JSON.stringify(source)).length;
+    const estimate = await root.navigator.storage?.estimate?.();
+    if (estimate?.quota && estimate.quota - estimate.usage < bytes * 3 + 65536) throw fail("quota_insufficient");
+    await update(storage, stamp, value => {
+      value.import_backups ||= {};
+      value.import_backups[digest] ||= {source, captured_at: new Date().toISOString(), source_id: sourceId};
+    });
+    const compiled = await compile(source, sourceId, digest, ["journal"], catalogue);
+    await storage.guarded(stamp, ["scopes", "records"], "readwrite", async stores => {
+      const value = await req(stores.scopes.get(stamp.scope));
+      if (value.journal_migrated) return;
+      for (const operation of compiled.operations) {
+        if (await req(stores.records.get([stamp.scope, operation.kind, operation.id]))) continue;
+        value.sequence++;
+        await req(stores.records.put({scope: stamp.scope, schema_version: 1, kind: operation.kind, id: operation.id, value: operation.value, deleted: false, version: 1, change_seq: value.sequence, source_key: operation.source_key}));
+      }
+      value.journal_migrated = true;
+      await req(stores.scopes.put(value));
+    });
+    storage.notify("records"); storage.broadcast();
+  }
+  return {mapSource, compile, hash, categories, category, capture, start, flush, report, meta, update, migrateGuestJournal};
 });
