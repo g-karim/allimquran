@@ -91,3 +91,27 @@ class SetupTests(unittest.TestCase):
 		self.setup.sync(dry_run=True)
 		self.frappe.cache.lock.assert_not_called()
 		self.frappe.db.commit.assert_not_called()
+
+	def test_deploy_installs_storage_before_publishing_pages(self):
+		calls = []
+		storage = MagicMock()
+		storage.install.side_effect = lambda: calls.append("schema")
+		self.setup.preflight = lambda: calls.append("preflight")
+		self.setup.sync = lambda: calls.append("pages")
+		with patch.dict(sys.modules, {"allimquran.account_storage": storage}):
+			self.setup.deploy()
+		self.assertEqual(calls, ["preflight", "schema", "pages"])
+
+	def test_deploy_drift_and_schema_failure_do_not_publish(self):
+		storage = MagicMock()
+		self.setup.sync = MagicMock()
+		with patch.dict(sys.modules, {"allimquran.account_storage": storage}):
+			self.setup.preflight = MagicMock(side_effect=RuntimeError("drift"))
+			with self.assertRaisesRegex(RuntimeError, "drift"):
+				self.setup.deploy()
+			storage.install.assert_not_called()
+			self.setup.preflight.side_effect = None
+			storage.install.side_effect = RuntimeError("schema failed")
+			with self.assertRaisesRegex(RuntimeError, "schema failed"):
+				self.setup.deploy()
+		self.setup.sync.assert_not_called()

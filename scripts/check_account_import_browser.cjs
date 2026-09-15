@@ -3,6 +3,9 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const {randomUUID} = require("node:crypto");
 const playwright = require(process.env.ALLIM_PLAYWRIGHT || "playwright");
+const engine = process.env.ALLIM_TEST_BROWSER || "chromium";
+if (!["chromium", "webkit", "firefox"].includes(engine)) throw Error("Unknown browser");
+const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {})};
 const base = process.env.ALLIM_TEST_URL || "http://127.0.0.1:18133";
 if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) throw Error("Local fixture URL required");
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
@@ -11,7 +14,17 @@ const errors = [];
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function pageFor(context, path = "/storage-harness") {
   const page = await context.newPage();
-  page.on("pageerror", error => errors.push(error.message));
+  // WebKit reports a caught fetch cancellation as a native page error during
+  // owner-change navigation. Still assert JS errors and unhandled rejections.
+  page.on("pageerror", error => {
+    if (engine === "webkit" && /^Fetch API cannot load .*account_storage\.(context|scan|pull)\?.* due to access control checks\.$/.test((error.stack || error.message).split("\n")[0])) {
+      console.log("DIAGNOSTIC WebKit canceled an in-flight storage read during navigation");
+    } else errors.push(error.stack || error.message);
+  });
+  await page.exposeFunction("fixtureUnhandled", message => errors.push(message));
+  await page.addInitScript(() => window.addEventListener("unhandledrejection", event => {
+    window.fixtureUnhandled(String(event.reason)).catch(() => {});
+  }));
   await page.goto(base + path, {waitUntil: "domcontentloaded"});
   await page.evaluate(() => window.fixtureReady || AllimAccountUI.ready);
   return page;
@@ -55,7 +68,7 @@ async function finishImport(page) {
   throw Error('Import did not finish');
 }
 (async () => {
- const browser=await playwright.chromium.launch({channel:'chrome',headless:true});
+ const browser=await playwright[engine].launch(launchOptions);
  try {
   const context=await browser.newContext({timezoneId:'UTC'});
   const legacy={language:'ru',sessions:7,wordsReviewed:28,hints:2,savedVerses:['1:1','1:2'],reviewQueue:['1:3'],activity:{'2026-09-14':7},dailyGoal:3,selectedSurah:1,selectedAyah:2,heartMushaf:{units:{'1:1':{accepted:150,daily:{'2026-09-14':2}}},pages:{'1':{connectedAttempts:3}}},lifePractice:{entries:[{id:'life-old',verseKey:'1:1',reflection:'Прежнее размышление',action:'Сохранить',completed:true}]},futureMethod:{counter:42}};
@@ -94,7 +107,7 @@ async function finishImport(page) {
   console.log('PASS real selection UI, language choice, full legacy progress plus newer guest event, source intact');
 
   const tab=await pageFor(context);
-  const begin=async page=>page.evaluate(async()=>{const captured=await AllimImport.capture(AllimStorage);await AllimImport.start(AllimStorage,captured,['settings','bookmarks','notes','history'],'en');});
+  const begin=async page=>{await page.waitForFunction(()=>AllimStorage.state==='account_ready');return page.evaluate(async()=>{const captured=await AllimImport.capture(AllimStorage);await AllimImport.start(AllimStorage,captured,['settings','bookmarks','notes','history'],'en');});};
   let dropped=false;
   await context.route('**/api/method/allimquran.account_storage.apply',async route=>{
     if(!dropped && route.request().postDataJSON().operations.some(op=>op.action==='import_item')){dropped=true;const response=await route.fetch();assert.equal(response.status(),200);await route.abort('connectionreset');}else await route.continue();

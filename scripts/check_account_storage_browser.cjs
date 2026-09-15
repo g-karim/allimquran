@@ -3,6 +3,9 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const {randomUUID} = require("node:crypto");
 const playwright = require(process.env.ALLIM_PLAYWRIGHT || "playwright");
+const engine = process.env.ALLIM_TEST_BROWSER || "chromium";
+if (!["chromium", "webkit", "firefox"].includes(engine)) throw Error("Unknown browser");
+const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {})};
 const base = process.env.ALLIM_TEST_URL || "http://127.0.0.1:18133";
 if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) throw Error("Local fixture URL required");
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
@@ -11,7 +14,17 @@ const errors = [];
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function pageFor(context, path = "/storage-harness") {
   const page = await context.newPage();
-  page.on("pageerror", error => errors.push(error.message));
+  // WebKit reports a caught fetch cancellation as a native page error during
+  // owner-change navigation. Still assert JS errors and unhandled rejections.
+  page.on("pageerror", error => {
+    if (engine === "webkit" && /^Fetch API cannot load .*account_storage\.(context|scan|pull)\?.* due to access control checks\.$/.test((error.stack || error.message).split("\n")[0])) {
+      console.log("DIAGNOSTIC WebKit canceled an in-flight storage read during navigation");
+    } else errors.push(error.stack || error.message);
+  });
+  await page.exposeFunction("fixtureUnhandled", message => errors.push(message));
+  await page.addInitScript(() => window.addEventListener("unhandledrejection", event => {
+    window.fixtureUnhandled(String(event.reason)).catch(() => {});
+  }));
   await page.goto(base + path, {waitUntil: "domcontentloaded"});
   await page.evaluate(() => window.fixtureReady || AllimAccountUI.ready);
   return page;
@@ -21,6 +34,14 @@ async function login(context, who) {
   assert.equal(response.status(), 200, "fixture login");
 }
 async function snapshot(page) { return page.evaluate(() => AllimStorage.snapshot()); }
+async function signedIn(page, who) {
+  // A background sender in another tab can make one sync() skip the Web Lock.
+  // Wait for the requested owner before using destructive fixture reset.
+  await page.waitForFunction(async user => {
+    await AllimStorage.sync();
+    return AllimStorage.state === "account_ready" && AllimStorage.auth?.legacy_owner === user;
+  }, credentials[who].user);
+}
 async function sync(page) {
   await page.evaluate(async () => {
     for (let attempt = 0; attempt < 5; attempt++) {
@@ -47,7 +68,7 @@ function event() {
   return {kind: "learning_event", id: randomUUID(), value: {event_type: "verse_completed", attempt_id: randomUUID(), occurred_at: now.toISOString(), local_date: now.toISOString().slice(0, 10), utc_offset_minutes: 0, time_zone: "UTC", verse_key: "1:1", mode: "read", matched_words: 4, hints_used: 0, full_verse: true, alignment_complete: true, evidence: "client_alignment", ruleset: "current-300-v1"}};
 }
 (async () => {
-  const browser = await playwright.chromium.launch({channel: "chrome", headless: true});
+  const browser = await playwright[engine].launch(launchOptions);
   try {
     const first = await browser.newContext({timezoneId: "UTC"});
     await first.addInitScript(() => {
@@ -63,7 +84,7 @@ function event() {
     assert.equal(record(await snapshot(a), "preference", "language").value.selected, "ar");
     assert.equal((await snapshot(a)).legacy.learn.sessions, 7);
     console.log("PASS guest IndexedDB survives reload; legacy source stays local");
-    await login(first, "a"); await sync(a); await reset(a);
+    await login(first, "a"); await signedIn(a, "a"); await reset(a);
     assert.equal((await snapshot(a)).records.length, 0);
     assert.deepEqual((await snapshot(a)).legacy, {});
     const scopeA = (await snapshot(a)).scope;
@@ -95,10 +116,31 @@ function event() {
     const lost = event(); await mutate(a, lost); await sync(a);
     const pending = (await snapshot(a)).pending.find(row => row.id === lost.id);
     assert.ok(pending?.wire, "unchanged wire operation retained after lost response");
+    await a.reload({waitUntil: "domcontentloaded"}); await a.evaluate(() => fixtureReady);
     await a.unroute("**/api/method/allimquran.account_storage.apply"); await sync(a);
     assert.equal((await snapshot(a)).pending.length, 0);
     assert.equal((await snapshot(a)).records.filter(row => row.kind === "learning_event").length, 2);
     console.log("PASS lost response after real SQL commit replays once");
+
+    // Server expiry/cleanup is covered by check_account_storage_paging.py.
+    // Inject that response once here to exercise the browser's recovery branch.
+    await first.route(API, route => route.abort("internetdisconnected"));
+    await mutate(a, {kind:"bookmark",id:"1:7",value:{position:7}});
+    const queuedId = (await snapshot(a)).pending.find(row=>row.id==="1:7").op_id;
+    let expired = false;
+    await first.route("**/api/method/allimquran.account_storage.pull?*", async route => {
+      if (!expired) { expired=true; await route.fulfill({status:409,contentType:"application/json",body:JSON.stringify({message:{error:{code:"cursor_expired"}}})}); }
+      else await route.continue();
+    });
+    await first.unroute(API);
+    for (let attempt=0; attempt<50 && !expired; attempt++) { await sync(a); if(!expired)await sleep(100); }
+    assert.ok(expired);
+    const recovering = await snapshot(a);
+    assert.ok(recovering.pending.some(row=>row.op_id===queuedId) || record(recovering,"bookmark","1:7"));
+    await first.unroute("**/api/method/allimquran.account_storage.pull?*"); await sync(a);
+    assert.ok(record(await snapshot(a),"bookmark","1:7"));
+    assert.equal((await snapshot(a)).pending.length,0);
+    console.log("PASS expired cursor rebuild keeps and delivers the existing offline operation");
 
     // Dependent changes retain the predecessor's receipt version after a second edit.
     await first.route(API, route => route.abort("internetdisconnected"));
@@ -147,11 +189,11 @@ function event() {
     assert.ok((await snapshot(a)).scope.startsWith("guest:"));
     assert.equal((await snapshot(a)).legacy.learn.sessions, 7);
     await first.unroute(API);
-    await login(first, "b"); await sync(a); await reset(a);
+    await login(first, "b"); await signedIn(a, "b"); await reset(a);
     assert.notEqual((await snapshot(a)).scope, scopeA);
     assert.equal((await snapshot(a)).pending.length, 0);
     assert.equal((await snapshot(a)).records.length, 0);
-    await login(first, "a"); await sync(a);
+    await login(first, "a"); await signedIn(a, "a"); await sync(a);
     assert.equal((await snapshot(a)).scope, scopeA);
     assert.equal(record(await snapshot(a), "learning_event", recovery.id).id, recovery.id);
     assert.equal((await snapshot(a)).pending.length, 0);
@@ -199,7 +241,7 @@ function event() {
 
     // Verify actual UI wiring, including guest/user separation and Academy fields.
     await a2.close(); await remote.close(); await other.close();
-    await login(first, "a"); await sync(a);
+    await login(first, "a"); await signedIn(a, "a"); await sync(a);
     await a.goto(base + "/learn", {waitUntil: "domcontentloaded"});
     await a.waitForFunction(() => AllimAccountUI.initialized === true);
     await a.waitForFunction(() => !document.querySelector(".allim-web-root").inert);
@@ -318,7 +360,7 @@ function event() {
     await blocked.goto(base + "/learn", {waitUntil:"domcontentloaded"});
     await blocked.waitForFunction(() => AllimStorage.state === "storage_error");
     assert.equal(await blocked.locator(".allim-web-root").evaluate(node=>node.inert),true);
-    assert.ok((await blocked.locator("#allim-storage-panel").textContent()).includes("Не удалось сохранить"));
+    await blocked.waitForFunction(() => /Не удалось сохранить|Could not save|تعذّر الحفظ/.test(document.querySelector("#allim-storage-panel")?.textContent || ""));
     await noStorage.close();
     console.log("PASS unavailable IndexedDB keeps the saving error and recovery controls visible");
     assert.deepEqual(errors, [], "no uncaught browser exceptions");

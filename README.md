@@ -18,8 +18,10 @@ independent of Tarteel AI. This is an early prototype, not a certified tajwid as
 - Search Intelligence: four app-owned DocTypes, an administrative Desk page,
   public-route audits, LMS SEO helpers and the existing daily audit hook.
 
-Existing behavior and browser storage keys are preserved. Progress remains
-browser-local. Users, inquiries, courses and enrollments stay in the site database;
+Guest progress stays in this browser. Signed-in users automatically save personal
+progress on the server, with an owner-bound local queue for offline changes.
+Moving previous guest history into an account requires an explicit choice.
+Users, inquiries, courses and enrollments stay in the site database;
 they are not in this repository. Credentials, private files, recordings and model
 weights are excluded.
 

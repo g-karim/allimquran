@@ -1,6 +1,6 @@
 {
   "contract_version": 1,
-  "status": "specification_not_executed",
+  "status": "specification",
   "scenarios": [
     {
       "id": "guest_restart",
@@ -214,5 +214,6 @@
         "Согласие/токены исследовательского сбора не импортированы"
       ]
     }
-  ]
+  ],
+  "execution_report": "acceptance-stage7.json"
 }

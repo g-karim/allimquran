@@ -469,6 +469,10 @@ def end_session(params):
 def install():
 	from frappe.utils.password import get_encryption_key
 
+	# Scoped deployment does not run Frappe's general schema migration first.
+	# Import every private table before creating cross-column unique indexes.
+	for doctype in (STATE, RECORD, OPERATION, CHANGE, RESET, EXPORT):
+		frappe.reload_doc("allim_quran", "doctype", frappe.scrub(doctype))
 	get_encryption_key()
 	ensure_indexes()
 

@@ -130,7 +130,7 @@ def main():
 	parser.add_argument("--site", required=True)
 	args = parser.parse_args()
 	assert urlparse(args.url).hostname in ("127.0.0.1", "localhost")
-	assert args.site == "allim-storage.localhost", "Fixture site only"
+	assert args.site in ("allim-storage.localhost", "allim-release.localhost"), "Fixture site only"
 	credentials = json.loads(Path(args.credentials).read_text())
 	assert all(credentials[k]["user"] == f"allim-storage-{k}@example.invalid" for k in ("a", "b"))
 	a = Client(args.url, credentials["a"])
@@ -138,6 +138,38 @@ def main():
 	a.reset()
 	b.reset()
 	print("PASS authenticated reset and durable reset replay")
+	# Remove only this empty fixture account to exercise truly concurrent FIRST
+	# opens, not just multiple devices opening an already existing Account State.
+	import frappe
+
+	from allimquran.account_storage import delete_user_progress
+
+	sites_path = str(Path(args.sites_path).resolve())
+	os.chdir(sites_path)
+	frappe.init(args.site, sites_path=sites_path)
+	frappe.connect()
+	delete_user_progress(frappe._dict(name=credentials["a"]["user"]))
+	frappe.db.commit()
+	frappe.destroy()
+
+	def first_open(_):
+		with requests.Session() as session:
+			session.trust_env = False
+			session.cookies.update(a.session.cookies)
+			session.headers.update(a.session.headers)
+			response = session.post(
+				args.url + "/api/method/allimquran.account_storage.open", json={}, timeout=30
+			)
+			assert response.status_code == 200, response.status_code
+			assert "Set-Cookie" not in response.headers
+			return response.json()["message"]
+
+	with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+		opened = list(pool.map(first_open, range(6)))
+	assert len({(row["account_id"], row["epoch"]) for row in opened}) == 1
+	a.opened = opened[0]
+	a.scope.update(expected_account_id=a.opened["account_id"], epoch=a.opened["epoch"])
+	print("PASS six concurrent first opens create one account and one epoch")
 	cycle = op("reading_cycle", uid(), {"dataset_id": "hafs-madinah-604-v1"})
 
 	# Separate HTTP sessions/requests sharing the cookie; no mock API or DB.
@@ -235,9 +267,6 @@ def main():
 	print("PASS private export and invalidation after a new write")
 	# Inject a real DB failure after the progress INSERT but before its change and
 	# receipt are written. The trigger is scoped to one synthetic account/record.
-	import frappe
-
-	sites_path = str(Path(args.sites_path).resolve())
 	os.chdir(sites_path)
 	frappe.init(args.site, sites_path=sites_path)
 	frappe.connect()

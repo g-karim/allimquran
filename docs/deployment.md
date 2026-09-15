@@ -15,11 +15,14 @@ git -C apps/allimquran pull --ff-only
 ./env/bin/pip install --no-deps -e apps/allimquran
 bench --site SITE execute allimquran.setup.preflight
 bench build --app allimquran
-bench --site SITE execute allimquran.setup.sync
+bench --site SITE execute allimquran.setup.deploy
 ```
 
-Replace SITE explicitly. The scoped sync adopts the inquiry schema and imports
-app-owned website source. Normal future `bench --site SITE migrate` also uses the
+Replace SITE explicitly. The scoped deployment checks source drift, installs the
+private account storage schemas and indexes, then adopts the inquiry schema and
+imports app-owned website source. Do not use `setup.sync` alone for this upgrade:
+it only imports website records and cannot prepare account storage. Normal future
+`bench --site SITE migrate` also uses the
 before/after-migrate hooks. Do not use a shared `bench update` just for this app.
 The app needs the usual `sites/assets/allimquran -> apps/allimquran/allimquran/public`
 asset link created by Bench; there is no compiled JS/CSS build in this release.
@@ -71,7 +74,9 @@ systemctl reload nginx
 server. Run it again after `bench setup nginx`, which regenerates the config.
 Do not reload if validation fails. Keep port 4175 loopback-only. The read-only bind
 mount runs source from this repository without moving caches or weakening access
-to site private files. No shared Frappe worker restart is needed for source sync.
+to site private files. Source sync alone needs no worker restart. This release
+also adds Python routes and hooks: reload web/worker processes using the host's
+established procedure, accounting for other sites if those processes are shared.
 
 ## Verify
 

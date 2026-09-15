@@ -3,6 +3,9 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const {randomUUID} = require("node:crypto");
 const playwright = require(process.env.ALLIM_PLAYWRIGHT || "playwright");
+const engine = process.env.ALLIM_TEST_BROWSER || "chromium";
+if (!["chromium", "webkit", "firefox"].includes(engine)) throw Error("Unknown browser");
+const launchOptions = {headless: true, ...(engine === "chromium" ? {channel: "chrome"} : {})};
 const base = process.env.ALLIM_TEST_URL || "http://127.0.0.1:18133";
 if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) throw Error("Local fixture URL required");
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
@@ -11,7 +14,17 @@ const errors = [];
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function pageFor(context, path = "/storage-harness") {
   const page = await context.newPage();
-  page.on("pageerror", error => errors.push(error.message));
+  // WebKit reports a caught fetch cancellation as a native page error during
+  // owner-change navigation. Still assert JS errors and unhandled rejections.
+  page.on("pageerror", error => {
+    if (engine === "webkit" && /^Fetch API cannot load .*account_storage\.(context|scan|pull)\?.* due to access control checks\.$/.test((error.stack || error.message).split("\n")[0])) {
+      console.log("DIAGNOSTIC WebKit canceled an in-flight storage read during navigation");
+    } else errors.push(error.stack || error.message);
+  });
+  await page.exposeFunction("fixtureUnhandled", message => errors.push(message));
+  await page.addInitScript(() => window.addEventListener("unhandledrejection", event => {
+    window.fixtureUnhandled(String(event.reason)).catch(() => {});
+  }));
   await page.goto(base + path, {waitUntil: "domcontentloaded"});
   await page.evaluate(() => window.fixtureReady || AllimAccountUI.ready);
   return page;
@@ -77,7 +90,7 @@ async function addManual(page,from,to){
  await page.locator('#allim-journal-dialog').getByRole('button',{name:'Закрыть',exact:true}).click();
 }
 (async()=>{
- const browser=await playwright.chromium.launch({channel:'chrome',headless:true});
+ const browser=await playwright[engine].launch(launchOptions);
  try{
   const context=await browser.newContext({timezoneId:'UTC'});await installReaderFixture(context);const page=await pageFor(context,'/learn?view=read');
   await page.waitForSelector('#allim-journal-summary button');
@@ -145,9 +158,13 @@ async function addManual(page,from,to){
   await second.locator('#allim-journal-summary button').click();
   assert.equal(await second.locator('#allim-journal-dialog').getAttribute('dir'),'rtl');
   assert.ok(await second.locator('#allim-journal-dialog').evaluate(element=>element.scrollWidth<=element.clientWidth));
-  await second.screenshot({path:'/tmp/allim-stage6-journal-mobile-ar.png'});
-  await login(other,'b');await sync(second).catch(error=>{if(!error.message.includes('Execution context was destroyed'))throw error;});
-  await second.waitForLoadState('domcontentloaded');await second.evaluate(()=>AllimAccountUI.ready);
+  await second.screenshot({path:`/tmp/allim-journal-mobile-ar-${engine}.png`});
+  await login(other,'b');
+  await Promise.all([
+   second.waitForNavigation({waitUntil:'domcontentloaded'}),
+   sync(second).catch(error=>{if(!error.message.includes('Execution context was destroyed'))throw error;})
+  ]);
+  await second.evaluate(()=>AllimAccountUI.ready);
   await second.waitForFunction(()=>!document.querySelector('#allim-journal-dialog'));
   assert.ok(!(await entries(second)).some(row=>row.id===id));
   console.log('PASS Arabic mobile journal fits; account switch closes private form and hides old entries');

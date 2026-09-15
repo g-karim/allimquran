@@ -107,6 +107,18 @@ def sync(dry_run=False):
 		return {"records": len(plan), "updated": changed}
 
 
+def deploy():
+	"""Reject source drift before DDL; install account storage before new pages.
+
+	DDL can commit independently of source sync. Retain these schemas on rollback.
+	"""
+	preflight()
+	from allimquran.account_storage import install
+
+	install()
+	return sync()
+
+
 def after_install():
 	"""Install public ALLIM defaults, never demo users, enrollments or requests."""
 	from allimquran.review_portal import ensure_role

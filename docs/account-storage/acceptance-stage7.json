@@ -1,0 +1,315 @@
+{
+  "date": "2026-09-15",
+  "scope": "isolated full Frappe16/Payments/LMS/ALLIM site; synthetic users and progress",
+  "release_decision": "local acceptance; deployment requires target-server and physical-device checks",
+  "scenarios": [
+    {
+      "id": "guest_restart",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_release_browser.cjs"
+      ]
+    },
+    {
+      "id": "login_decline_import",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_release_browser.cjs",
+        "scripts/check_account_import_browser.cjs"
+      ]
+    },
+    {
+      "id": "import_retry",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_import_browser.cjs"
+      ]
+    },
+    {
+      "id": "owner_switch",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs",
+        "scripts/check_account_import_browser.cjs"
+      ]
+    },
+    {
+      "id": "multitab_clear",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs"
+      ]
+    },
+    {
+      "id": "late_response",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs",
+        "scripts/check_account_journal_browser.cjs"
+      ]
+    },
+    {
+      "id": "lost_response",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_site.py",
+        "scripts/check_account_storage_browser.cjs",
+        "scripts/check_account_journal_browser.cjs"
+      ]
+    },
+    {
+      "id": "semantic_duplicate",
+      "status": "passed_local",
+      "evidence": [
+        "tests/test_account_storage.py",
+        "scripts/check_account_journal_browser.cjs"
+      ],
+      "scope": "Includes pure service/projection tests; see scripts for real browser/SQL coverage."
+    },
+    {
+      "id": "independent_devices",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs",
+        "scripts/check_account_storage_site.py"
+      ]
+    },
+    {
+      "id": "note_conflict",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_site.py",
+        "scripts/check_account_storage_browser.cjs"
+      ]
+    },
+    {
+      "id": "setting_conflict",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs",
+        "tests/test_account_storage.py"
+      ]
+    },
+    {
+      "id": "delete_vs_offline",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_site.py",
+        "tests/test_account_storage.py"
+      ],
+      "scope": "Includes pure service/projection tests; see scripts for real browser/SQL coverage."
+    },
+    {
+      "id": "membership_restore",
+      "status": "passed_local",
+      "evidence": [
+        "tests/test_account_storage.py"
+      ],
+      "scope": "Includes pure service/projection tests; see scripts for real browser/SQL coverage."
+    },
+    {
+      "id": "logout_offline",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs"
+      ]
+    },
+    {
+      "id": "expired_session",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs"
+      ]
+    },
+    {
+      "id": "bootstrap_races",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_paging.py"
+      ]
+    },
+    {
+      "id": "cursor_expiry",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_paging.py",
+        "scripts/check_account_storage_browser.cjs"
+      ],
+      "scope": "Real SQL cleanup/API expiry plus injected cursor_expired response for browser outbox recovery."
+    },
+    {
+      "id": "reset_race",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_site.py",
+        "scripts/check_account_storage_browser.cjs"
+      ]
+    },
+    {
+      "id": "aggregate_overlap",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_import_browser.cjs",
+        "tests/test_account_storage.py"
+      ]
+    },
+    {
+      "id": "quota_failure",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs",
+        "scripts/check_account_import_browser.cjs"
+      ]
+    },
+    {
+      "id": "real_db_rollback",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_site.py",
+        "scripts/check_account_storage_browser.cjs"
+      ]
+    },
+    {
+      "id": "privacy",
+      "status": "passed_local_production_cache_check_pending",
+      "evidence": [
+        "scripts/check_account_storage_site.py",
+        "scripts/check_account_storage_browser.cjs"
+      ],
+      "scope": "Real A/B/Guest API, generic REST, private export, no-store and cookie-neutral replies. Production proxy/CDN/SW configuration not exercised."
+    },
+    {
+      "id": "hifz_order",
+      "status": "passed_local",
+      "evidence": [
+        "tests/test_account_progress.py",
+        "scripts/check_account_journal_browser.cjs"
+      ],
+      "scope": "Includes pure service/projection tests; see scripts for real browser/SQL coverage."
+    },
+    {
+      "id": "locale_and_consent",
+      "status": "passed_local",
+      "evidence": [
+        "scripts/check_account_storage_browser.cjs",
+        "scripts/check_account_import_browser.cjs"
+      ]
+    }
+  ],
+  "remaining_checks": [
+    "Firefox: local browser process cannot find an empty profile; no application verdict.",
+    "Physical Safari/iOS persistence and login, including device background/restart.",
+    "Target server backup/restore, CMS drift, versions, HTTPS, private files and proxy/CDN cache exclusions."
+  ],
+  "performance": [
+    {
+      "engine": "chromium",
+      "bootstrapMs": 2772,
+      "scanPages": 51,
+      "records": 10002,
+      "sessions": 5000,
+      "entries": 5000,
+      "volume": 5000,
+      "current": 1,
+      "pending": 0,
+      "snapshotMs": 89.29999999701977,
+      "projectionMs": 5.5,
+      "journalMs": 22.900000005960464,
+      "dialogMs": 261,
+      "rendered": 30,
+      "saveMs": 1146
+    },
+    {
+      "engine": "webkit",
+      "bootstrapMs": 4166,
+      "scanPages": 51,
+      "records": 10002,
+      "sessions": 5000,
+      "entries": 5000,
+      "volume": 5000,
+      "current": 1,
+      "pending": 0,
+      "snapshotMs": 715,
+      "projectionMs": 4,
+      "journalMs": 11,
+      "dialogMs": 328,
+      "rendered": 30,
+      "saveMs": 2787
+    }
+  ],
+  "verified_runs": [
+    {
+      "engine": "chromium",
+      "suite": "storage",
+      "passed_groups": 20,
+      "log_sha256": "9b0b84579507d3f80d40bf3981a55889417019dd7c40e3bd06f691824c828398"
+    },
+    {
+      "engine": "chromium",
+      "suite": "import",
+      "passed_groups": 7,
+      "log_sha256": "d0b02f1dc41d1c04bd55fd1891df5592bb6fd0ed61c6896666e1b57af96a5215"
+    },
+    {
+      "engine": "chromium",
+      "suite": "journal",
+      "passed_groups": 5,
+      "log_sha256": "009b8964d3bfca3a22d904a92c35abe5dcf377625d8b9ebb90f7cacb591eee8b"
+    },
+    {
+      "engine": "chromium",
+      "suite": "release",
+      "passed_groups": 4,
+      "log_sha256": "51ab831f1c94bfa7f49841bdcbaa0cc6cf2c53df5e47018f46c76ea34caa528b"
+    },
+    {
+      "engine": "webkit",
+      "suite": "storage",
+      "passed_groups": 20,
+      "log_sha256": "0bbb41d94c9794db7bcd153113516a348dd8de08ba91e676dabb534cc52c7000"
+    },
+    {
+      "engine": "webkit",
+      "suite": "import",
+      "passed_groups": 7,
+      "log_sha256": "d0b02f1dc41d1c04bd55fd1891df5592bb6fd0ed61c6896666e1b57af96a5215"
+    },
+    {
+      "engine": "webkit",
+      "suite": "journal",
+      "passed_groups": 5,
+      "log_sha256": "cf4eb6d61b493ae4ae1f171241dab6616daa57bef4cc68dce54378fab77089be"
+    },
+    {
+      "engine": "webkit",
+      "suite": "release",
+      "passed_groups": 4,
+      "log_sha256": "51ab831f1c94bfa7f49841bdcbaa0cc6cf2c53df5e47018f46c76ea34caa528b"
+    },
+    {
+      "suite": "site",
+      "passed_groups": 10,
+      "log_sha256": "ee9fab168a9a9ad71408fffe95a3ee553d47c30cbd3cfd510cb97084a04b5fe2"
+    },
+    {
+      "suite": "python-paging",
+      "passed_groups": 2,
+      "log_sha256": "40c0a39547dffcf8e9d8f356db4b17c0b3b8e4c60826ef0166b4f1f494a295d4"
+    },
+    {
+      "suite": "rehearsal",
+      "passed_groups": 3,
+      "log_sha256": "04655fa4517ca5e23debee3e1c58c6225b63a6f4354f762a13b0eaa530a2a867"
+    },
+    {
+      "suite": "restore",
+      "passed_groups": 2,
+      "log_sha256": "37e10a5ee68e9d1f7268e0ffe3545966f8339f03404bc896bc237bcf6c5faa49"
+    },
+    {
+      "suite": "restored-http",
+      "passed_groups": 1,
+      "log_sha256": "40f2dc7673f852103a7fee063335197ee6b0db21abe20e94aea68a8a08a5485e"
+    }
+  ]
+}

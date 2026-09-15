@@ -15,19 +15,24 @@ def main():
 	parser.add_argument("--sites", type=Path, required=True)
 	parser.add_argument("--site", required=True)
 	parser.add_argument("--port", type=int, default=18133)
+	parser.add_argument("--full-site", action="store_true", help="Use installed Frappe Web Pages and assets")
 	args = parser.parse_args()
 	if not args.site.endswith(".localhost"):
 		parser.error("The harness only accepts a .localhost fixture site")
 	os.chdir(args.sites)
-	from frappe.app import application
+	import frappe.app
 	from werkzeug.serving import run_simple
 	from werkzeug.wrappers import Response
 
 	root = Path(__file__).resolve().parents[1] / "allimquran"
+	application = frappe.app.application
+	if args.full_site:
+		frappe.app._sites_path = str(args.sites.resolve())
+		application = frappe.app.application_with_statics()
 
 	def app(environ, start_response):
 		path = environ.get("PATH_INFO", "")
-		if path in ("/learn", "/academy", "/home"):
+		if not args.full_site and path in ("/learn", "/academy", "/home"):
 			page = root / "website_content" / "pages" / path[1:]
 			css = next(page.glob("*.css")).read_text()
 			content = page.joinpath("main_section_html.html").read_text()
@@ -45,7 +50,7 @@ def main():
 				html += f'<script src="/assets/allimquran/js/{name}.js"></script>'
 			html += "<script>window.fixtureReady=AllimStorage.open();</script></body></html>"
 			return Response(html, content_type="text/html; charset=utf-8")(environ, start_response)
-		if path.startswith("/assets/allimquran/"):
+		if not args.full_site and path.startswith("/assets/allimquran/"):
 			public = root / "public"
 			file = public.joinpath(path.removeprefix("/assets/allimquran/")).resolve()
 			if file.is_relative_to(public) and file.is_file():
