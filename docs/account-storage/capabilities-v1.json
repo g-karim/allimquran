@@ -72,5 +72,15 @@
   "mushaf_layout": [
     "page",
     "adaptive"
+  ],
+  "memorization_method": [
+    "foundation300",
+    "linked33",
+    "turkishWall33",
+    "mauritanianLawh"
+  ],
+  "hifz_choice_mode": [
+    "manual",
+    "adaptive"
   ]
 }

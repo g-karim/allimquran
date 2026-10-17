@@ -98,8 +98,10 @@ class Repository:
 			"value": json.loads(row.value_json) if row.value_json else None,
 		}
 
-	def records(self, kind=None):
+	def records(self, kind=None, *, prefix=None):
 		filters = {**self.scope, **({"kind": kind} if kind else {})}
+		if prefix is not None:
+			filters["record_key"] = ["like", prefix + "%"]
 		return [
 			self.decode(row)
 			for row in frappe.db.get_values(

@@ -48,11 +48,15 @@ async function signedIn(page, who) {
 }
 async function sync(page) {
   await page.evaluate(async () => {
-    for (let attempt = 0; attempt < 5; attempt++) {
+    const deadline = Date.now() + 30000;
+    while (Date.now() < deadline) {
       await AllimStorage.sync();
       const snapshot = await AllimStorage.snapshot();
-      if (AllimStorage.state !== "account_ready" || !snapshot.pending.some(row => row.status === "queued" && !row.depends_on)) break;
+      if (AllimStorage.state !== "account_ready" || !snapshot.pending.some(row => row.status === "queued" && !row.depends_on)) return;
+      // Another tab may hold the shared sender lock across actual HTTP work.
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
+    throw new Error("The account sender did not settle within 30 seconds");
   });
 }
 async function reset(page) {
@@ -63,6 +67,10 @@ async function reset(page) {
     await AllimStorage.api("reset", {scope: "all_personal_progress", confirmation: prepared.confirmation, reset_id: crypto.randomUUID()}, stamp, true);
     await AllimStorage.refreshContext(true);
   });
+  // LearnBridge reloads after an epoch/owner transition. The bare harness has
+  // no view bridge, so reopen it before the fixture starts its next user edit.
+  await page.reload({waitUntil: "domcontentloaded"});
+  await page.evaluate(() => fixtureReady);
 }
 async function mutate(page, intent) { return page.evaluate(value => AllimStorage.mutate(value), intent); }
 function record(snapshot, kind, id) { return snapshot.records.find(row => row.kind === kind && row.id === id && !row.deleted); }
@@ -207,17 +215,21 @@ function event() {
     let release, reached;
     const held = new Promise(resolve => { reached = resolve; });
     const gate = new Promise(resolve => { release = resolve; });
-    await a.route("**/api/method/allimquran.account_storage.apply", async route => {
+    // Any sibling tab can own the shared sender lock for this queued operation.
+    await first.route("**/api/method/allimquran.account_storage.apply", async route => {
       const response = await route.fetch(); assert.ok(!response.headers()["set-cookie"]); reached(); await gate; await route.fulfill({response});
     });
     const late = event(); await mutate(a, late);
     const run = a.evaluate(() => AllimStorage.sync());
-    await held;
+    let heldTimeout;
+    try { await Promise.race([held, new Promise((_, reject) => { heldTimeout = setTimeout(() => reject(new Error("No shared sender reached the held-response probe")), 30000); })]); }
+    finally { clearTimeout(heldTimeout); }
     await a.evaluate(() => AllimStorage.logout());
     await login(first, "b");
     await a.evaluate(() => AllimStorage.resumeAccount());
     release(); await run;
-    await a.unroute("**/api/method/allimquran.account_storage.apply");
+    await a2.evaluate(() => AllimStorage.sync());
+    await first.unroute("**/api/method/allimquran.account_storage.apply");
     await signedIn(a, "b"); await sync(a);
     assert.ok((await snapshot(a)).scope.startsWith("account:"));
     assert.notEqual((await snapshot(a)).scope, scopeA);
@@ -288,7 +300,13 @@ function event() {
     console.log("PASS Learn note form and real hint buttons save typed, honestly labelled events");
     await a.goto(base + "/academy", {waitUntil: "domcontentloaded"});
     await a.evaluate(() => AllimAccountUI.ready);
-    await a.locator("#edit-plan").click();
+    await a.waitForFunction(() => AllimAccountUI.initialized === true);
+    for (let render = 0; render < 3; render++) await a.evaluate(() => AllimAccountUI.render());
+    assert.equal(await a.locator(".allim-academy-root").evaluate(root => root.classList.contains("allim-data-hidden") || root.inert), false, "status refreshes keep the initialized Academy visible");
+    await a.locator("#edit-plan").click().catch(async error => {
+      console.log("Academy visibility diagnostic",await a.evaluate(()=>({initialized:AllimAccountUI.initialized,state:AllimStorage.state,inert:document.querySelector('.allim-academy-root')?.inert,hidden:document.querySelector('.allim-academy-root')?.classList.contains('allim-data-hidden'),panel:document.getElementById('edit-plan')?.closest('section')?.className})),errors);
+      throw error;
+    });
     await a.locator("#plan-target-input").fill("Browser-tested learning plan");
     await a.locator("#save-plan").click();
     await sync(a);
@@ -300,7 +318,11 @@ function event() {
     await sync(a);
     assert.equal(record(await snapshot(a), "academy_diagnostic", "current").value.route, "hifz");
     // The plan dialog keeps the version it displayed while another browser edits it.
-    await a.locator("#edit-plan").click();
+    await a.waitForFunction(() => AllimAccountUI.initialized === true);
+    await a.locator("#edit-plan").click().catch(async error => {
+      console.log("Academy visibility diagnostic",await a.evaluate(()=>({initialized:AllimAccountUI.initialized,state:AllimStorage.state,inert:document.querySelector('.allim-academy-root')?.inert,hidden:document.querySelector('.allim-academy-root')?.classList.contains('allim-data-hidden'),panel:document.getElementById('edit-plan')?.closest('section')?.className})),errors);
+      throw error;
+    });
     await a.locator("#plan-target-input").fill("My open-form draft");
     const separate = await browser.newContext();
     await login(separate, "a"); const writer = await pageFor(separate);

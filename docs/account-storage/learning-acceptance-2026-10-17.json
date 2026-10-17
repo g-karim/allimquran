@@ -1,0 +1,232 @@
+{
+  "site": "allimquran.com",
+  "date": "2026-10-17",
+  "branch": "codex/account-storage-foundation",
+  "base_commit": "7d564f558aa77506a5a6235b71a2df14dd992711",
+  "scope": [
+    "four hifz methods and recommendation preference",
+    "private Lawh photos, verification and practice",
+    "memory plans, recall attempts and reversible flags",
+    "explicit legacy-to-account transfer; automatic account sync for new work"
+  ],
+  "production": {
+    "source_snapshot_at_utc": "2026-10-17T18:37:31.457134+00:00",
+    "preservation": {
+      "read_at_utc": "2026-10-17T19:51:36.572789+00:00",
+      "unchanged": {
+        "managed": true,
+        "all_pages": true,
+        "source_state": true,
+        "public_media": true
+      },
+      "production_writes": false
+    },
+    "versions": {
+      "frappe": "16.51.0",
+      "lms": "2.62.1",
+      "payments": "0.0.1",
+      "allimquran": "0.1.0"
+    },
+    "database_version": "10.6.23-MariaDB-0ubuntu0.22.04.1",
+    "deployed_commit_from_previous_stage": "6a9775e064d9d22a0ba6eb224d6e7a3734347979",
+    "source_state_sha256": "f4e2dc0a212efb506f2fef7a60f274d93012d9d4b43551d950a13bff18c05ee5",
+    "private_user_records_read": false,
+    "writes": false
+  },
+  "candidate_cms": [
+    {
+      "record": "Web Page:allim-qur’an-academy-—-student-cabinet",
+      "route": "academy",
+      "reviewed_live_fingerprint": "42dfba2d6cfe8fdf616efef49e1ac68c7a299aaa94e0f248a0b8d5d5b9727e6f",
+      "candidate_fingerprint": "1170384d9d27c33b328ece6a64bd432304a34fb5cce5e51e8b9d2a7f766d4422"
+    },
+    {
+      "record": "Web Page:allim-qur’an",
+      "route": "home",
+      "reviewed_live_fingerprint": "d44b2faa5504a1a895a752159898124602840d48f21e61384ed644c098f08b49",
+      "candidate_fingerprint": "55cc15c4207f8d9d0249edd3d385a0a1fed64586bdcccddbf57fcd482454e766"
+    },
+    {
+      "record": "Web Page:allim-qur’an-companion",
+      "route": "learn",
+      "reviewed_live_fingerprint": "40d84f3d5d8683372ab2e9cb9e913234be21787b24b21b75ab752f01c36351da",
+      "candidate_fingerprint": "62160dca3eadd97d423b608a22f47002a44a6fa04410307adc1a064e764a2e2b"
+    }
+  ],
+  "local_test_versions": {
+    "frappe": "16.26.3",
+    "lms": "2.45.2",
+    "python": "3.14.6",
+    "database": "11.8.8-MariaDB"
+  },
+  "verification": {
+    "learning_browser_groups": [
+      {
+        "engine": "chromium",
+        "version": "155.0.8059.84",
+        "offline_mode": "browser offline",
+        "passed": [
+          "Legacy methods, recall plan and multipart photo restored locally; no private guest POST",
+          "Guest plan created through the form and survives reload",
+          "Real reader matches full verses, advances linked 33 and Turkish wall independently, without crediting 300",
+          "Quick recall check records an attempt and leaves memorization method counters unchanged",
+          "Lawh photo, manual line verification and self-reported reading/recall use durable owner-scoped records",
+          "Sign-in keeps guest work separate; explicit selected import preserves original keys and server receipts",
+          "Clean second browser restores account methods, plans, Lawh counters and exact photo bytes",
+          "Two tabs record independent repetitions of the same step without overwriting or doubling them",
+          "A replacement photo cannot inherit the previous photo verification",
+          "Concurrent plan edits preserve both versions and require an explicit choice",
+          "Offline plan/photo queue survives account switch; account B cannot view or request account A data",
+          "Returning to account A delivers its offline plan/photo once, including a lost acknowledgement",
+          "Incorrect recognition flags can be dismissed without rewriting the original attempt",
+          "Private server export includes complete photo bytes and remains separate from thin login scans",
+          "Mobile RU/EN/AR learning screens have no horizontal overflow",
+          "Deleting a Lawh photo tombstones its content; practice history remains"
+        ]
+      },
+      {
+        "engine": "webkit",
+        "version": "26.5",
+        "offline_mode": "personal HTTP unavailable; native local Blob reads available",
+        "passed": [
+          "Legacy methods, recall plan and multipart photo restored locally; no private guest POST",
+          "Guest plan created through the form and survives reload",
+          "Real reader matches full verses, advances linked 33 and Turkish wall independently, without crediting 300",
+          "Quick recall check records an attempt and leaves memorization method counters unchanged",
+          "Lawh photo, manual line verification and self-reported reading/recall use durable owner-scoped records",
+          "Sign-in keeps guest work separate; explicit selected import preserves original keys and server receipts",
+          "Clean second browser restores account methods, plans, Lawh counters and exact photo bytes",
+          "Two tabs record independent repetitions of the same step without overwriting or doubling them",
+          "A replacement photo cannot inherit the previous photo verification",
+          "Concurrent plan edits preserve both versions and require an explicit choice",
+          "Offline plan/photo queue survives account switch; account B cannot view or request account A data",
+          "Returning to account A delivers its offline plan/photo once, including a lost acknowledgement",
+          "Incorrect recognition flags can be dismissed without rewriting the original attempt",
+          "Private server export includes complete photo bytes and remains separate from thin login scans",
+          "Mobile RU/EN/AR learning screens have no horizontal overflow",
+          "Deleting a Lawh photo tombstones its content; practice history remains"
+        ]
+      },
+      {
+        "engine": "firefox",
+        "version": "153.0",
+        "offline_mode": "browser offline",
+        "passed": [
+          "Legacy methods, recall plan and multipart photo restored locally; no private guest POST",
+          "Guest plan created through the form and survives reload",
+          "Real reader matches full verses, advances linked 33 and Turkish wall independently, without crediting 300",
+          "Quick recall check records an attempt and leaves memorization method counters unchanged",
+          "Lawh photo, manual line verification and self-reported reading/recall use durable owner-scoped records",
+          "Sign-in keeps guest work separate; explicit selected import preserves original keys and server receipts",
+          "Clean second browser restores account methods, plans, Lawh counters and exact photo bytes",
+          "Two tabs record independent repetitions of the same step without overwriting or doubling them",
+          "A replacement photo cannot inherit the previous photo verification",
+          "Concurrent plan edits preserve both versions and require an explicit choice",
+          "Offline plan/photo queue survives account switch; account B cannot view or request account A data",
+          "Returning to account A delivers its offline plan/photo once, including a lost acknowledgement",
+          "Incorrect recognition flags can be dismissed without rewriting the original attempt",
+          "Private server export includes complete photo bytes and remains separate from thin login scans",
+          "Mobile RU/EN/AR learning screens have no horizontal overflow",
+          "Deleting a Lawh photo tombstones its content; practice history remains"
+        ]
+      }
+    ],
+    "storage_browser_groups": {
+      "engine": "chromium",
+      "passed": 20
+    },
+    "mushaf_browser_groups": {
+      "engine": "chromium",
+      "passed": 7
+    },
+    "python": {
+      "total": 163,
+      "passed": 162,
+      "skipped": 1
+    },
+    "node": {
+      "passed": 81,
+      "failed": 0
+    },
+    "ruff": "passed",
+    "ruff_format": "passed",
+    "js_syntax_files": 57,
+    "build": [
+      "wheel",
+      "sdist"
+    ],
+    "new_modules_in_wheel_bytes_match": 4,
+    "local_cms_repeat_deploy": {
+      "records": 69,
+      "updated": []
+    },
+    "recognition_functions": {
+      "alignExpectedWords": {
+        "unchanged": true,
+        "sha256": "e75a551c2d2e83d4b7c23894f62a7cc7970801df467aec7101b21ec201e1b3f7"
+      },
+      "alignRecognizedWords": {
+        "unchanged": true,
+        "sha256": "8e426ad3a53acb10a3ec6b49f36ec7775da625f9a37c58b2fc1319b30f92a890"
+      },
+      "chooseBestTranscript": {
+        "unchanged": true,
+        "sha256": "edb3a5b4c6d1bd63f064a37403797c3d3f104ecd591cd8720b4bbbae828da5cf"
+      },
+      "readQuranAsrResponse": {
+        "unchanged": true,
+        "sha256": "f587b96920c0fdcd9b21cc3c97e9deaecb0de22f76576adf9c08e5503ad9fc5e"
+      }
+    },
+    "preserved_files": {
+      "allimquran/public/js/recitation-core.js": {
+        "unchanged": true,
+        "sha256": "7d96d699d933e4af9d787777276be8890dc18ccbbd9ec80e414516292014dbb1"
+      },
+      "allimquran/setup.py": {
+        "unchanged": true,
+        "sha256": "2b2677cd5e309cbed22233f64a865c5eb3133d0e27087ad516687d3ec25d8a84"
+      },
+      "allimquran/website_content/migration_baseline.json": {
+        "unchanged": true,
+        "sha256": "9a952946270041bf35d726b3ef19a5171744fa3ccf606ed2bbd0e1e232cb9f06"
+      }
+    }
+  },
+  "tested_application_file_sha256": {
+    "allimquran/account_storage.py": "b7310876db0bd4d0507a2cf9e7c986c2ec233ff0d0c093224af3202463a6814c",
+    "allimquran/public/css/account-storage.css": "d1a12e0904e7b8afd87551a4f0ff668d3a4583d3913326dde2417f3aa7633e7e",
+    "allimquran/public/data/account-storage-capabilities.json": "cfa29946b06daf302e26f50e433072948a433f0c8861d4be0455a0706b13440e",
+    "allimquran/public/js/account-import-ui.js": "9da2dd3a32910d6ee268413b1d62098a2f29bfa4f8d5afef0115ad7c51f36685",
+    "allimquran/public/js/account-import.js": "19fecb33cd3df1fe023b96e73d495a9599f235bd094d4f04956abf2001918bde",
+    "allimquran/public/js/account-progress.js": "171edb0c215561a74013f1f0032f03cb2d3492b2063a4cbc0b823946d022665e",
+    "allimquran/public/js/account-storage-ui.js": "0cad364e2ec3dc6676439a8931faf60a4ea915627acb8ef6727cad05db84783d",
+    "allimquran/public/js/account-storage.js": "4c2ec8c458f901d0a9148d39a82eff820e6d09f43c74636713c3c493bdcf5ad4",
+    "allimquran/public/js/lawh-library.js": "4eb4804d3b1f3683ff32f4568fa4c7e53a389f0572b683d91e37bc0d5905ad37",
+    "allimquran/public/js/learning-journey.js": "b1210cfd399bababe92a373bc9968c6f0d9700d45bf863603300809baf12d090",
+    "allimquran/public/js/learning-progress.js": "e63317259f02348fa19f04f09fc0c7edf1afd4d1e949ad54cf3f2a1ca16478d2",
+    "allimquran/storage/learning.py": "9699c27cd747647ee1293100d0354dc0289e2840217f4fe45fa4b760b0a61991",
+    "allimquran/storage/projection.py": "4f419f8da45855307d112ad781d0ec418ed2befbd02dbdd02c8e8ad05f96523f",
+    "allimquran/storage/repository.py": "9fb1d70b2a38a9c8b777d18e0ca350fc984c10d52d699ce5ad2d6e4ed9f34f83",
+    "allimquran/storage/service.py": "0961b6e65aadfa544a306670a6170223653128030d80153165be95f9298ef07e",
+    "allimquran/storage/validation.py": "4f6f73a32471ebc144075846720ecc313cddcddfa31e8fb180d3f1ab526aee63",
+    "allimquran/website_content/pages/academy/main_section_html.html": "5a483b9077411c1396e04a8bce290c2ad59947405a7fb3270ec92516c1bb9874",
+    "allimquran/website_content/pages/home/main_section_html.html": "0a1f552321e05fd7a22b6fcf2bf5f095a0cb2508c5063e71c670db655dfec333",
+    "allimquran/website_content/pages/learn/css.css": "bd0662ff2b895cd041951815e26adf1a8d72ce7f4179d9c63f125c54b9d3051b",
+    "allimquran/website_content/pages/learn/javascript.js": "33370e0bcda7a1e406062107ef2d4cd1c74de15e1bc69ef817257724028117f5",
+    "allimquran/website_content/pages/learn/main_section_html.html": "498fe7136bf0deb4b173b8909c3ecb40995599dcab368cae1a8b1a92ecbe0911",
+    "scripts/check_account_storage_browser.cjs": "7de0765ad87a0ac0d1d41855672459cee3e9312b849990edb01951f8ace6af4d",
+    "scripts/check_learning_storage_browser.cjs": "163054535dba1b415f1ff609315ae123c41a890625d5778a05b5533c0dbc4030",
+    "scripts/serve_account_storage_test.py": "4021bc1558416761b99187b57d32700f20e9b0ef3dcc8ea3a9b39c02bea4d2c4",
+    "tests/learning-progress.test.cjs": "cc02978f781b553c087774ee51ea7fec9670bc175324108265a0b55136208cae",
+    "tests/test_learning_storage.py": "f4eabbf866331fee1aefb573c9deee48499ea9c1ca6062acd566a27732ffd9a4"
+  },
+  "release_conditions_remaining": [
+    "physical Safari/iOS device",
+    "rehearsal using exact production Frappe/LMS versions",
+    "backup and isolated restore rehearsal",
+    "reviewed adoption of CMS/source fingerprints, then authorized release"
+  ],
+  "production_deploy_performed": false,
+  "push_or_merge_performed": false
+}

@@ -8,15 +8,18 @@
     ar: {opening: "جارٍ فتح بياناتك…", guest: "على هذا الجهاز", account_ready: "محفوظ في حسابك", account_offline: "دون اتصال — التغييرات على الجهاز", pending: "بانتظار الإرسال", account_locked: "سجّل الدخول للمتابعة", needs_choice: "اختر النسخة", storage_error: "تعذّر الحفظ. أبقِ الصفحة مفتوحة ونزّل نسخة.", upgrade_required: "أعد تحميل الصفحة", details: "بياناتك", login: "تسجيل الدخول", resume: "فتح الحساب", retry: "إعادة المحاولة", logout: "تسجيل الخروج", export: "تنزيل نسخة", clear: "مسح بيانات الجهاز", clearConfirm: "مسح النسخة المحلية؟ يبقى تقدم الحساب وتُحفظ التغييرات غير المرسلة لتسجيل الدخول التالي.", logoutNote: "تبقى التغييرات غير المرسلة على الجهاز حتى دخولك التالي إلى هذا الحساب.", legacy: "يبقى سجل الضيف على هذا الجهاز ويمكن فتحه بعد الخروج.", conflict: "تغييرات من أماكن مختلفة", server: "في حسابك", proposed: "نسختك", useServer: "الاحتفاظ بنسخة الحساب", useMine: "حفظ نسختي", rejected: "لم يُرسل هذا التغيير. نزّل نسخة قبل حذفه.", discardAll: "حذف المسودات غير المرسلة", discardOld: "حذف المسودات السابقة للضبط", discardAllConfirm: "حذف هذه المسودات غير المرسلة من الجهاز؟ نزّل نسخة إذا احتجتها. تبقى البيانات المحفوظة في الحساب.", discard: "حذف هذه المسودة", discardConfirm: "حذف المسودة والتغييرات التالية لهذا السجل من الجهاز؟", close: "إغلاق", pendingLogout: "اكتمل الخروج المحلي؛ ينتظر الخروج من الخادم الاتصال.", localSaved: "محفوظ على الجهاز", recovery: "تبقى تغييرات غير مرسلة من قبل إعادة ضبط الحساب على الجهاز. تُضمّن في النسخة المنزّلة ولا تُرسل تلقائيًا.", reflection: "ملاحظة", preference: "إعداد", academy_plan: "خطة التعلم", academy_diagnostic: "إجابات التشخيص", bookmark: "آية محفوظة", review_item: "مراجعة", learning_event: "نتيجة القراءة", reading_position: "موضع القراءة", daily_goal: "الهدف اليومي", privacy: "دون حساب تبقى البيانات على الجهاز. بعد الدخول تُحفظ التغييرات الجديدة في حسابك تلقائيًا."}
   };
   let panel, statusNode, detailNode, refreshId = 0;
+  let photoUrls = [];
   const t = key => (strings[root.document.documentElement.lang] || strings.ru)[key] || key;
   const node = (tag, text, parent) => { const item = root.document.createElement(tag); if (text !== undefined) item.textContent = text; if (parent) parent.append(item); return item; };
   const button = (label, handler, parent) => { const item = node("button", label, parent); item.type = "button"; item.addEventListener("click", () => Promise.resolve().then(handler).catch(error => storage.setError(error))); return item; };
   const roots = () => [...root.document.querySelectorAll(".allim-web-root, .allim-academy-root")];
   function block(hidden) {
+    hidden = Boolean(hidden);
     roots().forEach(item => { item.inert = hidden; item.classList.toggle("allim-data-hidden", hidden); });
   }
   async function download() {
     const payload = await storage.exportLocal();
+    if (payload.missing_photo_payloads?.length && !root.confirm(t("partialPhotos").replace("{count}", payload.missing_photo_payloads.length))) return;
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"}));
     const link = node("a"); link.href = url; link.download = "allim-personal-copy-" + new Date().toISOString().slice(0, 10) + ".json"; link.click();
     root.setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -31,9 +34,13 @@
       return cycle + " · " + (value.deadline || t("noDeadline"));
     }
     if (Object.hasOwn(value, "completed_cycles")) return t("reading_past") + ": " + value.completed_cycles;
+    if (Object.hasOwn(value, "data")) return t("lawh_photo");
+    if (Object.hasOwn(value, "file_name")) return value.file_name + " · " + value.width + " × " + value.height;
+    if (Array.isArray(value.verse_keys)) return [value.action ? t(value.action) : "", value.verse_keys.join(" · "), value.portion ? value.portion + " " + t("ayahsPerDay") : "", value.deadline || ""].filter(Boolean).join("\n");
+    if (typeof value.dismissed === "boolean") return t(value.dismissed ? "flagDismissed" : "flagKept");
     if (Object.hasOwn(value, "reflection")) return [value.reference || value.verse_key, value.reflection, value.action].filter(Boolean).join("\n\n");
     if (Object.hasOwn(value, "target")) return [value.target, value.minutes + " min", value.focus].join("\n");
-    if (Object.hasOwn(value, "selected")) return typeof value.selected === "object" ? Object.values(value.selected).join(" · ") : String(value.selected);
+    if (Object.hasOwn(value, "selected")) return typeof value.selected === "object" ? Object.values(value.selected).join(" · ") : t(String(value.selected));
     return Object.values(value).filter(item => typeof item !== "object").join(" · ");
   }
   async function render() {
@@ -42,6 +49,7 @@
     const status = storage.getStatus();
     const snapshot = await storage.snapshot().catch(() => ({pending: [], records: [], canonical: [], legacy: {}}));
     if (version !== refreshId) return;
+    photoUrls.forEach(url => URL.revokeObjectURL(url)); photoUrls = [];
     const conflicts = (snapshot.canonical || []).filter(row => row.kind === "conflict" && !row.deleted && row.value.status === "open");
     const rejected = snapshot.pending.filter(row => row.status === "needs_choice" && !conflicts.some(conflict => conflict.value.source_op_id === row.op_id));
     let label = t(status.state === "opening_account" ? "opening" : status.state);
@@ -50,11 +58,12 @@
     if ((status.state === "account_ready" && snapshot.pending.length) || status.localWrites) label = t("pending") + ": " + (snapshot.pending.length + status.localWrites);
     if (conflicts.length || rejected.length) label = t("needs_choice") + " · " + (conflicts.length + rejected.length);
     if (status.unsaved) label = t("storage_error");
+    if (root.AllimAccountUI.requiresInitialization && !root.AllimAccountUI.initialized && !status.error && ["opening", "opening_account", "guest", "account_ready", "account_offline"].includes(status.state)) label = t("opening");
     statusNode.textContent = label;
     panel.dataset.state = status.state;
     panel.dir = root.document.documentElement.dir || "ltr";
     panel.querySelector("summary").textContent = t("details");
-    block(["opening", "opening_account", "account_locked", "upgrade_required"].includes(status.state) || (status.state === "storage_error" && !root.AllimAccountUI.initialized));
+    block(["opening", "opening_account", "account_locked", "upgrade_required"].includes(status.state) || (status.state === "storage_error" && !root.AllimAccountUI.initialized) || (root.AllimAccountUI.requiresInitialization && !root.AllimAccountUI.initialized));
     detailNode.replaceChildren();
     node("p", t("privacy"), detailNode);
     const actions = node("div", undefined, detailNode); actions.className = "allim-data-actions";
@@ -81,7 +90,9 @@
       const card = node("section", undefined, detailNode); card.className = "allim-data-conflict";
       node("h3", t(value.target_kind) + " · " + t("conflict"), card);
       node("strong", t("server"), card); node("pre", displayValue(current?.value, snapshot.records), card);
+      if (value.target_kind === "lawh_photo") photoPreview(current?.value, t("server"), card, snapshot.records);
       node("strong", t("proposed"), card); node("pre", displayValue(value.proposed_value, snapshot.records), card);
+      if (value.target_kind === "lawh_photo") photoPreview(value.proposed_value, t("proposed"), card, snapshot.records);
       button(t("useServer"), () => storage.resolve(value.target_kind, value.target_id, current.value), card);
       button(t("useMine"), () => storage.resolve(value.target_kind, value.target_id, value.proposed_value), card);
     }
@@ -97,6 +108,13 @@
     if (root.AllimImportUI) root.AllimImportUI.render(detailNode, status, snapshot).catch(() => {});
     // Keep existing badges truthful without coupling storage to LMS enrollment requests.
     root.document.querySelectorAll('[data-i18n="localMode"], [data-copy="deviceProgress"]').forEach(item => { item.textContent = label; });
+  }
+  function photoPreview(value, label, parent, records) {
+    if (!value || !root.AllimLawh) return;
+    const blob = root.AllimLawh.decode(value, records);
+    if (!blob) { root.AllimLawh.hydrate(value, storage.stamp()).then(render).catch(() => {}); return; }
+    const image = node("img", undefined, parent), url = URL.createObjectURL(blob);
+    photoUrls.push(url); image.src = url; image.alt = label; image.className = "allim-data-photo";
   }
   async function mount() {
     if (panel) return;
@@ -114,6 +132,18 @@
     ar: {reading_entry: "قراءة في السجل", reading_plan: "هدف القراءة", reading_cycle: "الختمة", reading_past: "الختمات السابقة", pages: "الصفحات", paper: "مصحف ورقي", digital: "الشاشة", mic: "قراءة مقبولة", noDeadline: "دون موعد"}
   };
   for (const language of Object.keys(journalLabels)) Object.assign(strings[language], journalLabels[language]);
+  const learningLabels = {
+    ru: {memory_plan: "План обучения", recall_attempt: "Проверка памяти", recall_flag: "Отметка распознавания", hifz_credit: "Повторение хифза", hifz_signal: "Наблюдение по занятию", lawh_practice: "Упражнение Ляуха", lawh_verification: "Сверка рукописной страницы", lawh_photo: "Фотография страницы", lawh_image_part: "Фотография страницы"},
+    en: {memory_plan: "Learning plan", recall_attempt: "Recall attempt", recall_flag: "Recognition flag", hifz_credit: "Memorization repetition", hifz_signal: "Practice observation", lawh_practice: "Lawh practice", lawh_verification: "Handwritten page verification", lawh_photo: "Page photo", lawh_image_part: "Page photo"},
+    ar: {memory_plan: "خطة التعلم", recall_attempt: "محاولة تسميع", recall_flag: "ملاحظة التعرف", hifz_credit: "تكرار حفظ", hifz_signal: "ملاحظة التدريب", lawh_practice: "تدريب اللوح", lawh_verification: "مقابلة الصفحة المكتوبة", lawh_photo: "صورة الصفحة", lawh_image_part: "صورة الصفحة"}
+  };
+  Object.assign(learningLabels.ru, {foundation300: "300 повторений", linked33: "33× с последовательным соединением", turkishWall33: "Турецкая кладка 33×", mauritanianLawh: "Ляух", manual: "Выбираю сам", adaptive: "Рекомендации", read: "Чтение", memorize: "Заучивание", review: "Повторение", ayahsPerDay: "аятов в день", flagDismissed: "Отметка снята", flagKept: "Отметка оставлена"});
+  Object.assign(learningLabels.en, {foundation300: "300 repetitions", linked33: "33× linked passages", turkishWall33: "Turkish wall 33×", mauritanianLawh: "Lawh", manual: "Choose myself", adaptive: "Recommendations", read: "Reading", memorize: "Memorization", review: "Review", ayahsPerDay: "ayahs per day", flagDismissed: "Flag dismissed", flagKept: "Flag kept"});
+  Object.assign(learningLabels.ar, {foundation300: "٣٠٠ تكرار", linked33: "٣٣ مرة مع الربط المتدرج", turkishWall33: "البناء التركي ٣٣ مرة", mauritanianLawh: "اللوح", manual: "اختيار شخصي", adaptive: "توصيات", read: "قراءة", memorize: "حفظ", review: "مراجعة", ayahsPerDay: "آيات في اليوم", flagDismissed: "أزيلت الملاحظة", flagKept: "بقيت الملاحظة"});
+  Object.assign(learningLabels.ru, {partialPhotos: "Фото, ещё недоступные на этом устройстве: {count}. Скачать остальные сохранённые данные? Эти фото останутся в аккаунте; полную копию можно скачать после подключения."});
+  Object.assign(learningLabels.en, {partialPhotos: "Photos not yet available on this device: {count}. Download the other saved data? These photos remain in your account. Connect to download a complete copy."});
+  Object.assign(learningLabels.ar, {partialPhotos: "صور لم تتوفر بعد على الجهاز: {count}. هل تريد تنزيل بقية البيانات؟ تبقى الصور في حسابك. اتصل لتنزيل نسخة كاملة."});
+  for (const language of Object.keys(learningLabels)) Object.assign(strings[language], learningLabels[language]);
   const domReady = root.document.readyState === "loading" ? new Promise(resolve => root.document.addEventListener("DOMContentLoaded", resolve, {once: true})) : Promise.resolve();
   const ready = domReady.then(mount).then(async () => {
     await storage.open();
@@ -122,6 +152,7 @@
     const data = await response.json();
     if (data.dataset_id !== "hafs-madinah-604-v1") throw new Error("catalogue_unavailable");
     root.AllimAccountUI.catalogue = data.verses;
+    await root.AllimImport?.migrateGuestLearning(storage, data.verses);
     await render();
     return storage;
   });
@@ -137,7 +168,6 @@
       this.versions = new Map((snapshot.canonical || snapshot.records).map(row => [row.kind + "/" + row.id, row.version]));
       this.last = progress.compose(snapshot, this.defaults, root.AllimAccountUI.catalogue);
       storage.subscribe((_, reason) => { if (reason === "records" || reason === "owner") this.refresh(); });
-      root.AllimAccountUI.initialized = true;
       return copy(this.last);
     }
     async refresh() {
@@ -180,6 +210,9 @@
         const entry = root.AllimJournal.entryForEvent(value, root.AllimAccountUI.catalogue);
         if (entry) this.events.push(entry);
       }
+    }
+    fact(kind, value) {
+      this.events.push({kind, id: root.crypto.randomUUID(), action: "set", value});
     }
   }
   root.AllimAccountUI = {ready, LearnBridge, clearLocal, download, render, t, block, catalogue: {}};

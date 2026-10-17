@@ -232,6 +232,8 @@ def validate_record(kind, key, value, *, importing=False):
 					"mushaf_paper",
 					"mushaf_ink",
 					"mushaf_layout",
+					"memorization_method",
+					"hifz_choice_mode",
 				},
 				"unknown_preference",
 			)
@@ -287,7 +289,12 @@ def validate_record(kind, key, value, *, importing=False):
 	elif kind in BASELINES:
 		validate_baseline(kind, key, value)
 	else:
-		raise StorageError("unknown_kind")
+		from allimquran.storage.learning import BASELINES as LEARNING_BASELINES
+		from allimquran.storage.learning import KINDS, validate
+
+		require(kind in KINDS, "unknown_kind")
+		require(kind not in LEARNING_BASELINES or importing, "baseline_requires_import")
+		validate(kind, key, value, importing)
 	return value
 
 
@@ -386,6 +393,7 @@ def validate_event(value):
 				"evidence",
 				"ruleset",
 			),
+			("hifz_method",),
 		)
 		words = verse(value["verse_key"])
 		integer(value["matched_words"], 1, len(words))
@@ -399,6 +407,10 @@ def validate_event(value):
 		require(value["mode"] == "memory" or value["full_verse"])
 		require(not value["full_verse"] or value["matched_words"] == len(words))
 		require(value["ruleset"] == "current-300-v1")
+		if "hifz_method" in value:
+			from allimquran.storage.learning import METHODS
+
+			require(value["hifz_method"] in METHODS)
 	elif kind == "hint_used":
 		fields(value, (*common, "verse_key", "hint_index"))
 		words = verse(value["verse_key"])

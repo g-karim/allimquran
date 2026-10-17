@@ -2,6 +2,8 @@
 
 from uuid import uuid4
 
+from allimquran.storage.learning import BASELINES as LEARNING_BASELINES
+from allimquran.storage.learning import FACTS, verify_photo
 from allimquran.storage.validation import (
 	BASELINES,
 	SERVICE_KINDS,
@@ -18,8 +20,10 @@ from allimquran.storage.validation import (
 	validate_record,
 )
 
+BASELINES = BASELINES | LEARNING_BASELINES
 MEMBERSHIPS = {"bookmark", "review_item"}
-IMMUTABLE = BASELINES | SERVICE_KINDS | {"learning_event"}
+RESTORABLE = MEMBERSHIPS | {"lawh_photo"}
+IMMUTABLE = BASELINES | SERVICE_KINDS | FACTS | {"learning_event"}
 
 
 class Service:
@@ -97,32 +101,50 @@ class Service:
 					if kind in MEMBERSHIPS or record["value"] == value:
 						return {"outcome": "noop"}
 					raise StorageError("id_conflict", 409)
-				semantic = event_key(value) if kind == "learning_event" else None
+				semantic = (
+					event_key(value)
+					if kind == "learning_event"
+					else digest(
+						[
+							"hifz_credit",
+							value["attempt_id"],
+							value["method"],
+							value["page"],
+							value["task_type"],
+							value["task_key"],
+						]
+					)
+					if kind == "hifz_credit"
+					else None
+				)
 				if semantic:
 					other = self.repo.event(semantic)
 					if other:
 						require(not other["deleted"], "deleted", 409)
 						require(other["value"] == value, "event_conflict", 409)
 						return {"outcome": "noop", "event_id": other["id"]}
-				self.references(kind, value)
+				self.references(kind, value, key)
 				self.write(kind, key, value, semantic_key=semantic)
 				return {"outcome": "applied"}
 			require(record is not None, "not_found", 404)
 			if action == "restore_membership":
-				require(kind in MEMBERSHIPS and record["deleted"], "invalid_restore")
+				require(kind in RESTORABLE and record["deleted"], "invalid_restore")
 				require(record["version"] == op["base_version"], "version_conflict", 409)
+				self.references(kind, value, key)
 				self.write(kind, key, value, record)
 				return {"outcome": "applied"}
 			require(kind not in IMMUTABLE, "immutable_record")
 			require(not record["deleted"], "deleted", 409)
 			if record["value"] == value:
 				return {"outcome": "noop"}
-			self.references(kind, value)
+			self.references(kind, value, key)
 			if record["version"] != op["base_version"]:
 				if kind in MEMBERSHIPS | {"reading_position"}:
 					raise StorageError("version_conflict", 409)
 				return self.conflict(op, record)
 			self.write(kind, key, value, record)
+			if kind == "lawh_photo":
+				self.prune_photo(record["value"]["image_id"])
 			return {"outcome": "applied"}
 		if action == "delete":
 			require("value" not in op, "invalid_fields")
@@ -133,10 +155,21 @@ class Service:
 			require(not self.open_conflicts(kind, key), "unresolved_conflicts", 409)
 			self.can_delete(record)
 			self.write(kind, key, None, record, deleted=True)
+			if kind == "lawh_photo":
+				self.prune_photo(record["value"]["image_id"])
 			return {"outcome": "applied"}
 		raise StorageError("unknown_action")
 
-	def references(self, kind, value):
+	def references(self, kind, value, key=None):
+		if kind == "lawh_photo":
+			verify_photo(self.repo, value)
+		if kind == "recall_flag":
+			attempt_id, index = key.rsplit("/", 1)
+			attempt = self.repo.record("recall_attempt", attempt_id)
+			require(
+				attempt and not attempt["deleted"] and int(index) in attempt["value"]["flags"],
+				"invalid_recall_flag",
+			)
 		if kind in {"reading_entry", "reading_plan"}:
 			cycle = self.repo.record("reading_cycle", value["cycle_id"])
 			require(cycle and not cycle["deleted"], "cycle_not_found")
@@ -146,10 +179,34 @@ class Service:
 			return
 
 	def can_delete(self, record):
+		if record["kind"] == "lawh_image_part":
+			require(not self.image_used(record["id"].split("/")[0]), "image_in_use", 409)
 		if record["kind"] == "reading_cycle":
-			for row in self.repo.records():
+			for row in self.repo.records("reading_entry") + self.repo.records("reading_plan"):
 				if not row["deleted"] and row["kind"] in {"reading_entry", "reading_plan"}:
 					require(row["value"]["cycle_id"] != record["id"], "cycle_in_use", 409)
+
+	def image_used(self, image_id):
+		for row in self.repo.records("lawh_photo") + self.repo.records("conflict"):
+			if row["deleted"]:
+				continue
+			if row["kind"] == "lawh_photo" and row["value"]["image_id"] == image_id:
+				return True
+			if (
+				row["kind"] == "conflict"
+				and row["value"]["status"] == "open"
+				and row["value"]["target_kind"] == "lawh_photo"
+				and row["value"]["proposed_value"]["image_id"] == image_id
+			):
+				return True
+		return False
+
+	def prune_photo(self, image_id):
+		if self.image_used(image_id):
+			return
+		for row in self.repo.records("lawh_image_part", prefix=image_id + "/"):
+			if not row["deleted"] and row["id"].startswith(image_id + "/"):
+				self.write(row["kind"], row["id"], None, row, deleted=True)
 
 	def open_conflicts(self, kind, key):
 		return [
@@ -201,11 +258,17 @@ class Service:
 			self.can_delete(record)
 		else:
 			validate_record(record["kind"], record["id"], op.get("value"))
-			self.references(record["kind"], op["value"])
+			self.references(record["kind"], op["value"], record["id"])
 		self.write(record["kind"], record["id"], op.get("value"), record, deleted=deleted)
 		for row in conflicts:
 			clean = {name: item for name, item in row["value"].items() if name != "proposed_value"}
 			self.write("conflict", row["id"], {**clean, "status": "resolved"}, row)
+		if record["kind"] == "lawh_photo":
+			for image_id in {
+				record["value"]["image_id"],
+				*(row["value"]["proposed_value"]["image_id"] for row in conflicts),
+			}:
+				self.prune_photo(image_id)
 		return {"outcome": "applied"}
 
 	def begin_import(self, op):
@@ -255,7 +318,7 @@ class Service:
 		previous = self.repo.record("import_receipt", item_id)
 		if previous:
 			return {"outcome": "noop", "import_result": previous["value"]}
-		if kind in {"reading_cycle", "reading_entry", "reflection"}:
+		if kind in {"reading_cycle", "reading_entry", "reflection", "memory_plan", "recall_attempt"}:
 			require(key == item_id, "invalid_import_id")
 		validate_record(kind, key, value, importing=True)
 		if "provenance" in value:
@@ -271,14 +334,14 @@ class Service:
 			elif kind in BASELINES or existing["deleted"] or op["base_version"] != existing["version"]:
 				outcome = "skipped_conflict"
 			else:
-				self.references(kind, value)
+				self.references(kind, value, key)
 				self.write(kind, key, value, existing)
 				outcome = "applied"
 		elif kind in BASELINES and self.baseline_occupied(kind, key):
 			outcome = "skipped_conflict"
 		else:
 			require(op["base_version"] == 0, "version_conflict", 409)
-			self.references(kind, value)
+			self.references(kind, value, key)
 			self.write(kind, key, value, import_item_id=item_id)
 			outcome = "applied"
 		result = {
@@ -293,6 +356,30 @@ class Service:
 		return {"outcome": "applied", "import_result": result}
 
 	def baseline_occupied(self, kind, key):
+		if kind in LEARNING_BASELINES:
+			related = {
+				"hifz_coach_baseline": ("hifz_signal",),
+				"lawh_unit_baseline": ("lawh_practice", "lawh_verification"),
+				"hifz_method_baseline": ("hifz_credit",),
+			}[kind]
+			for row in (row for group in related for row in self.repo.records(group)):
+				if row["deleted"]:
+					continue
+				if kind == "hifz_coach_baseline" and row["kind"] == "hifz_signal":
+					return True
+				if (
+					kind == "lawh_unit_baseline"
+					and row["kind"] in {"lawh_practice", "lawh_verification"}
+					and (row["id"] if row["kind"] == "lawh_verification" else row["value"]["verse_key"])
+					== key
+				):
+					return True
+				if (
+					kind == "hifz_method_baseline"
+					and row["kind"] == "hifz_credit"
+					and f"{row['value']['method']}/{row['value']['page']}" == key
+				):
+					return True
 		for row in self.repo.records("learning_event"):
 			if row["deleted"]:
 				continue

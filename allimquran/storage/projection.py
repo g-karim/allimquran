@@ -108,7 +108,11 @@ def project(records):
 			result["sessions"] += 1
 			result["wordsReviewed"] += value["matched_words"]
 			result["activity"][day] = result["activity"].get(day, 0) + 1
-			if not value["full_verse"] or value["hints_used"]:
+			if (
+				not value["full_verse"]
+				or value["hints_used"]
+				or value.get("hifz_method", "foundation300") != "foundation300"
+			):
 				continue
 			unit = units.setdefault(value["verse_key"], empty_unit())
 			unit["startedAt"] = unit["startedAt"] or now

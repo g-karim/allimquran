@@ -1,10 +1,13 @@
-<link rel="stylesheet" href="/assets/allimquran/css/account-storage.css?v=3">
-<script src="/assets/allimquran/js/account-storage.js?v=3"></script>
-<script src="/assets/allimquran/js/account-progress.js?v=2"></script>
-<script src="/assets/allimquran/js/account-import.js?v=3"></script>
-<script src="/assets/allimquran/js/account-import-ui.js?v=1"></script>
+<link rel="stylesheet" href="/assets/allimquran/css/account-storage.css?v=4">
+<script src="/assets/allimquran/js/account-storage.js?v=4"></script>
+<script src="/assets/allimquran/js/learning-progress.js?v=1"></script>
+<script src="/assets/allimquran/js/learning-journey.js?v=1"></script>
+<script src="/assets/allimquran/js/lawh-library.js?v=1"></script>
+<script src="/assets/allimquran/js/account-progress.js?v=3"></script>
+<script src="/assets/allimquran/js/account-import.js?v=4"></script>
+<script src="/assets/allimquran/js/account-import-ui.js?v=2"></script>
 <script src="/assets/allimquran/js/account-journal.js?v=1"></script>
-<script src="/assets/allimquran/js/account-storage-ui.js?v=3"></script>
+<script src="/assets/allimquran/js/account-storage-ui.js?v=4"></script>
 <script src="/assets/allimquran/js/account-journal-ui.js?v=1"></script>
 <script src="/assets/allimquran/js/recitation-core.js?v=1"></script>
 <script src="/assets/allimquran/js/recitation-consent.js?v=1"></script>
@@ -82,7 +85,7 @@
   <div class="app-shell">
     <aside class="sidebar" aria-label="Основная навигация" data-i18n-aria="mainNav">
       <a class="brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home">
-        <img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=81" alt="" aria-hidden="true">
+        <img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=86" alt="" aria-hidden="true">
         <span class="brand-copy"><strong>ALLIM</strong><small>Qur’an Companion</small><span class="brand-dua-mini" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span></span>
       </a>
 
@@ -117,7 +120,7 @@
 
     <div class="workspace">
       <header class="topbar">
-        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=81" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
+        <a class="mobile-brand" href="https://allimquran.com/" data-home-link aria-label="ALLIM home"><img class="brand-mark" src="/assets/allimquran/media/allim-brand-icon.png?v=86" alt="" aria-hidden="true"><strong>ALLIM</strong></a>
         <div class="topbar-context">
           <span class="eyebrow topbar-dua" lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</span>
           <h1 id="view-title" data-i18n="todayTitle">Сегодня</h1>
@@ -224,7 +227,7 @@
 
           <aside class="trust-note">
             <svg><use href="#i-shield"/></svg>
-            <div><strong data-i18n="privacyFirst">Приватность по умолчанию</strong><span data-i18n="privacyText">Без отдельного согласия аудио Quran AI удаляется после обработки. Участием в сборе можно управлять в настройках.</span></div>
+            <div><strong data-i18n="privacyFirst">Приватность по умолчанию</strong><span data-i18n="privacyText">Прогресс хранится на устройстве. Браузер может обрабатывать речь своей службой; локальный Quran AI удаляет временный аудиофрагмент после обработки.</span></div>
           </aside>
         </section>
 
@@ -515,14 +518,109 @@
         </section>
 
         <section class="view" id="view-memorize" data-view-panel="memorize" aria-labelledby="memorize-heading">
-          <div class="page-intro hifz-page-intro"><div><span class="kicker" data-i18n="memoryMode">ХИФЗ · СОБИРАНИЕ КОРАНА</span><h2 id="memorize-heading" data-i18n="memorizeTitle">Коран в сердце</h2><p data-i18n="memorizeIntro">Собирайте текущую страницу аят за аятом: 300 правильных повторений проявляют каждый аят, а связное чтение закрепляет всю страницу.</p></div></div>
+          <div class="page-intro hifz-page-intro"><div><span class="kicker" data-i18n="memoryMode">ХИФЗ · СОБИРАНИЕ КОРАНА</span><h2 id="memorize-heading" data-i18n="memorizeTitle">Коран в сердце</h2><p id="memorize-intro" data-i18n="memorizeIntro300">Собирайте текущую страницу аят за аятом: 300 правильных повторений проявляют каждый аят, а связное чтение закрепляет всю страницу.</p></div></div>
+          <section class="memory-journey" id="allim-journey"></section>
+          <section class="hifz-choice-controller" aria-labelledby="hifz-choice-title">
+            <div class="hifz-choice-copy">
+              <span class="kicker" data-i18n="hifzChoiceEyebrow">СПОСОБ ОБУЧЕНИЯ</span>
+              <h3 id="hifz-choice-title" data-i18n="hifzChoiceTitle">Как вы хотите выбирать методику?</h3>
+              <p data-i18n="hifzChoiceIntro">Выбирайте сами или разрешите ALLIM изучать ваши реальные занятия и предлагать персональный план.</p>
+            </div>
+            <div class="hifz-choice-mode" role="group" aria-label="Способ выбора методики" data-i18n-aria="hifzChoiceModeLabel">
+              <button type="button" data-hifz-choice-mode="manual" aria-pressed="true"><svg><use href="#i-target"/></svg><span><strong data-i18n="hifzManualMode">Выбираю сам</strong><small data-i18n="hifzManualModeText">Правила и темп определяете вы</small></span></button>
+              <button type="button" data-hifz-choice-mode="adaptive" aria-pressed="false"><svg><use href="#i-spark"/></svg><span><strong data-i18n="hifzAdaptiveMode">Персональный план</strong><small data-i18n="hifzAdaptiveModeText">ALLIM учится на ваших занятиях</small></span></button>
+            </div>
+          </section>
+          <aside class="hifz-coach-panel" id="hifz-coach-panel" aria-live="polite" hidden>
+            <span class="hifz-coach-icon" aria-hidden="true"><svg><use href="#i-spark"/></svg></span>
+            <div class="hifz-coach-copy"><small data-i18n="hifzCoachEyebrow">ПЕРСОНАЛЬНЫЙ НАСТАВНИК</small><strong id="hifz-coach-status">Собираю учебный профиль</strong><span id="hifz-coach-reason">Первые рекомендации появятся после нескольких реальных занятий.</span></div>
+            <div class="hifz-coach-metrics" aria-label="Сигналы персонального обучения" data-i18n-aria="hifzCoachSignalsLabel">
+              <span><b id="hifz-coach-attempts">0</b><small data-i18n="hifzCoachAttempts">Учебных попыток</small></span>
+              <span><b id="hifz-coach-clean">0%</b><small data-i18n="hifzCoachClean">Без подсказок</small></span>
+            </div>
+          </aside>
+          <div class="hifz-method-picker" id="hifz-method-picker" role="group" aria-label="Выбор методики заучивания" data-i18n-aria="hifzMethodLabel">
+            <button type="button" data-hifz-method="foundation300" aria-pressed="true">
+              <span class="hifz-method-icon"><svg><use href="#i-heart"/></svg></span>
+              <span><small data-i18n="hifzMethodOptionOne">МЕТОДИКА 01</small><strong data-i18n="hifzMethod300Title">300 повторений</strong><b data-i18n="hifzMethod300Text">100 + 100 + 100 для каждого аята</b><em data-hifz-recommendation hidden data-i18n="hifzAiRecommended">Рекомендует ALLIM</em></span>
+              <svg class="hifz-method-check"><use href="#i-check"/></svg>
+            </button>
+            <button type="button" data-hifz-method="linked33" aria-pressed="false">
+              <span class="hifz-method-icon"><svg><use href="#i-link"/></svg></span>
+              <span><small data-i18n="hifzMethodOptionTwo">МЕТОДИКА 02</small><strong data-i18n="hifzMethod33Title">33× с последовательным соединением</strong><b data-i18n="hifzMethod33Text">Аят ×33 → связка ×33 → вся страница ×33</b><em data-hifz-recommendation hidden data-i18n="hifzAiRecommended">Рекомендует ALLIM</em></span>
+              <svg class="hifz-method-check"><use href="#i-check"/></svg>
+            </button>
+            <button type="button" data-hifz-method="turkishWall33" aria-pressed="false">
+              <span class="hifz-method-icon"><svg><use href="#i-layers"/></svg></span>
+              <span><small data-i18n="hifzMethodOptionThree">МЕТОДИКА 03</small><strong data-i18n="hifzMethodTurkishTitle">Турецкая кладка · снизу вверх</strong><b data-i18n="hifzMethodTurkishText">Фундамент ×33 → пропуск → заполнение → стена ×33</b><em data-hifz-recommendation hidden data-i18n="hifzAiRecommended">Рекомендует ALLIM</em></span>
+              <svg class="hifz-method-check"><use href="#i-check"/></svg>
+            </button>
+            <button type="button" data-hifz-method="mauritanianLawh" aria-pressed="false">
+              <span class="hifz-method-icon"><svg><use href="#i-book"/></svg></span>
+              <span><small data-i18n="hifzMethodOptionFour">МЕТОДИКА 04</small><strong data-i18n="hifzMethodLawhTitle">Ляух · рукописная страница</strong><b data-i18n="hifzMethodLawhText">Написать → сверить → читать вслух → воспроизвести</b><em data-hifz-recommendation hidden data-i18n="hifzAiRecommended">Рекомендует АЛЛИМ</em></span>
+              <svg class="hifz-method-check"><use href="#i-check"/></svg>
+            </button>
+          </div>
+          <section class="lawh-workspace" id="lawh-workspace" aria-labelledby="lawh-title" hidden>
+            <div class="lawh-heading">
+              <span class="lawh-heading-icon"><svg><use href="#i-book"/></svg></span>
+              <div><span class="kicker" data-i18n="lawhEyebrow">МАВРИТАНСКАЯ ТРАДИЦИЯ · ЦИФРОВОЙ ЛЯУХ</span><h3 id="lawh-title" data-i18n="lawhTitle">Ваша рукописная страница для заучивания</h3><p data-i18n="lawhIntro">Перепишите выбранный отрывок на разлинованную бумагу, произнося слова вслух. Снимок остаётся на этом устройстве; сейчас АЛЛИМ помогает проверить качество фото и пройти ручную сверку.</p></div>
+            </div>
+            <ol class="lawh-flow" aria-label="Этапы метода Ляух" data-i18n-aria="lawhStepsLabel">
+              <li><span>01</span><div><strong data-i18n="lawhStepWrite">Напишите рукой</strong><small data-i18n="lawhStepWriteText">Сверяйтесь с мусхафом и произносите вслух</small></div></li>
+              <li><span>02</span><div><strong data-i18n="lawhStepCapture">Сфотографируйте</strong><small data-i18n="lawhStepCaptureText">Снимок сверху, без теней и обрезанных строк</small></div></li>
+              <li><span>03</span><div><strong data-i18n="lawhStepVerify">Сверьте текст</strong><small data-i18n="lawhStepVerifyText">Ни одна буква не принимается без подтверждения</small></div></li>
+              <li><span>04</span><div><strong data-i18n="lawhStepRecall">Читайте и пишите по памяти</strong><small data-i18n="lawhStepRecallText">Отмечайте чтение вслух и воспроизведение без подсказки</small></div></li>
+            </ol>
+            <div class="lawh-capture">
+              <label class="lawh-upload" for="lawh-photo-input">
+                <input id="lawh-photo-input" type="file" accept="image/jpeg,image/png,image/webp" capture="environment">
+                <span><svg><use href="#i-expand"/></svg></span>
+                <strong data-i18n="lawhUploadTitle">Загрузить или снять рукописную страницу</strong>
+                <small data-i18n="lawhUploadText">JPG, PNG или HEIC · фотография пока обрабатывается только на устройстве</small>
+              </label>
+              <figure class="lawh-preview" id="lawh-preview" hidden><img id="lawh-preview-image" alt="Рукописная страница Ляух" data-i18n-alt="lawhPreviewAlt"><figcaption><strong id="lawh-photo-quality" data-i18n="lawhPhotoChecking">Проверяем качество снимка…</strong><small id="lawh-photo-detail"></small></figcaption></figure>
+              <div class="lawh-storage" id="lawh-storage" aria-live="polite">
+                <span class="lawh-storage-icon"><svg><use href="#i-shield"/></svg></span>
+                <div><strong data-i18n="lawhStorageTitle">Личная локальная библиотека</strong><small id="lawh-storage-status" data-i18n="lawhStorageIdle">Загрузите чёткий снимок. Сохранение вы подтвердите отдельно.</small></div>
+                <button class="secondary-button" id="lawh-save-local" type="button" disabled data-i18n="lawhSaveLocal">Сохранить на этом устройстве</button>
+              </div>
+              <section class="lawh-verification" id="lawh-verification" aria-labelledby="lawh-verification-title" hidden>
+                <div class="lawh-panel-heading"><span>03</span><div><strong id="lawh-verification-title" data-i18n="lawhVerifyTitle">Сверьте рукописную страницу</strong><small data-i18n="lawhVerifyIntro">АЛЛИМ не изменяет текст автоматически: подтвердите каждый шаг.</small></div></div>
+                <div class="lawh-checklist">
+                  <label><input type="checkbox" data-lawh-check><span data-i18n="lawhCheckFrame">Все строки видны, теней и обрезанных краёв нет</span></label>
+                  <label><input type="checkbox" data-lawh-check><span data-i18n="lawhCheckText">Каждая строка сверена с эталонным мусхафом</span></label>
+                  <label><input type="checkbox" data-lawh-check><span data-i18n="lawhCheckRead">Исправления внесены, страница ещё раз прочитана вслух</span></label>
+                </div>
+                <button class="primary-button lawh-confirm-button" id="lawh-verify-page" type="button" disabled data-i18n="lawhVerifyAction">Подтвердить сверку</button>
+              </section>
+              <section class="lawh-practice" id="lawh-practice" aria-labelledby="lawh-practice-title" hidden>
+                <div class="lawh-panel-heading"><span>04</span><div><strong id="lawh-practice-title" data-i18n="lawhPracticeTitle">Закрепляйте по своей странице</strong><small id="lawh-practice-status" data-i18n="lawhPracticeIntro">Отмечайте только фактически выполненные повторы.</small></div></div>
+                <div class="lawh-practice-metrics" aria-label="Прогресс метода Ляух" data-i18n-aria="lawhPracticeMetricsLabel">
+                  <span><b id="lawh-read-count">0</b><small data-i18n="lawhReadCount">Чтений вслух</small></span>
+                  <span><b id="lawh-recall-count">0</b><small data-i18n="lawhRecallCount">Без подсказки</small></span>
+                </div>
+                <div class="lawh-practice-actions">
+                  <button class="secondary-button" id="lawh-mark-read" type="button" data-i18n="lawhMarkRead">Отметить чтение вслух</button>
+                  <button class="primary-button" id="lawh-mark-recall" type="button" data-i18n="lawhMarkRecall">Отметить воспроизведение по памяти</button>
+                </div>
+                <small class="lawh-manual-note" data-i18n="lawhManualNote">Сейчас это честный самоотчёт. Автопроверка арабского почерка ещё не подключена.</small>
+              </section>
+              <div class="lawh-safety"><svg><use href="#i-shield"/></svg><p><strong data-i18n="lawhSafetyTitle">Сначала точность, затем заучивание</strong><small data-i18n="lawhSafetyText">Автораспознавание арабского почерка не должно незаметно исправлять или подменять текст Корана. Ученик или преподаватель подтверждает каждую строку по эталонному мусхафу.</small></p></div>
+              <section class="lawh-library" aria-labelledby="lawh-library-title">
+                <div class="lawh-library-heading"><div><span class="kicker" data-i18n="lawhLibraryEyebrow">ЛИЧНЫЕ СТРАНИЦЫ</span><h4 id="lawh-library-title" data-i18n="lawhLibraryTitle">Ваш рукописный Коран на этом устройстве</h4><p data-i18n="lawhLibraryIntro">Снимки не отправляются на сервер. Откройте страницу и продолжите с того же места.</p></div><strong id="lawh-library-count">0</strong></div>
+                <div class="lawh-library-list" id="lawh-library-list"></div>
+                <p class="lawh-library-empty" id="lawh-library-empty" data-i18n="lawhLibraryEmpty">Пока нет сохранённых рукописных страниц.</p>
+              </section>
+            </div>
+          </section>
           <section class="heart-mushaf" id="heart-mushaf" aria-labelledby="heart-mushaf-title">
             <div class="heart-mushaf-head">
               <div class="heart-mushaf-heading">
                 <span class="heart-mushaf-icon"><svg><use href="#i-heart"/></svg></span>
                 <div><span class="kicker" data-i18n="heartEyebrow">КНИГА ХИФЗА</span><h3 id="heart-mushaf-title" data-i18n="heartTitle">Коран в сердце</h3><p data-i18n="heartIntro">Белая страница проявляется правильными повторениями и сохраняется регулярным возвращением.</p></div>
               </div>
-              <button class="heart-page-launch" id="heart-page-launch" type="button" aria-label="Открыть текущую страницу сердца">
+              <button class="heart-page-launch" id="heart-page-launch" type="button" aria-label="Открыть текущую страницу сердца" data-i18n-aria="openHeartPage">
                 <span class="heart-page-launch-icon"><svg><use href="#i-heart"/></svg></span>
                 <span class="heart-page-launch-copy">
                   <small data-i18n="heartCurrentPage">ТЕКУЩАЯ СТРАНИЦА</small>
@@ -536,11 +634,21 @@
             <div class="heart-mushaf-layout">
               <div class="heart-book" id="heart-book" style="--heart-reveal:0%">
                 <article class="heart-page heart-page-plan">
-                  <div class="heart-page-corner"><span data-i18n="heartMethod">МЕТОДИКА</span><strong>100 + 100 + 100</strong></div>
-                  <ol class="heart-stages" aria-label="Три этапа укрепления">
+                  <div class="heart-page-corner"><span data-i18n="heartMethod">МЕТОДИКА</span><strong id="heart-method-title">100 + 100 + 100</strong></div>
+                  <ol class="heart-stages" id="heart-stages-300" aria-label="Три этапа укрепления">
                     <li data-heart-stage="1"><span>01</span><div><strong data-i18n="heartWeekOne">Первые 100</strong><small><b id="heart-stage-one">0</b> / 100</small></div><svg><use href="#i-check"/></svg></li>
                     <li data-heart-stage="2"><span>02</span><div><strong data-i18n="heartWeekTwo">Вторые 100</strong><small><b id="heart-stage-two">0</b> / 100</small></div><svg><use href="#i-check"/></svg></li>
                     <li data-heart-stage="3"><span>03</span><div><strong data-i18n="heartWeekThree">Финальные 100</strong><small><b id="heart-stage-three">0</b> / 100</small></div><svg><use href="#i-check"/></svg></li>
+                  </ol>
+                  <ol class="heart-stages heart-stages-33" id="heart-stages-33" aria-label="Этапы методики 33 раза" data-i18n-aria="linked33StagesLabel" hidden>
+                    <li data-linked33-stage="verse"><span>01</span><div><strong data-i18n="linked33VerseStage">Каждый аят</strong><small><b id="linked33-verse-count">0</b> / <b data-linked33-target>33</b></small></div><svg><use href="#i-check"/></svg></li>
+                    <li data-linked33-stage="segment"><span>02</span><div><strong data-i18n="linked33JoinStage">Последовательная связка</strong><small><b id="linked33-segment-count">0</b> / <b data-linked33-target>33</b></small></div><svg><use href="#i-check"/></svg></li>
+                    <li data-linked33-stage="page"><span>03</span><div><strong data-i18n="linked33PageStage">Вся страница</strong><small><b id="linked33-page-count">0</b> / <b data-linked33-target>33</b></small></div><svg><use href="#i-check"/></svg></li>
+                  </ol>
+                  <ol class="heart-stages heart-stages-33 heart-stages-turkish" id="heart-stages-turkish" aria-label="Этапы турецкой кладки" data-i18n-aria="turkishStagesLabel" hidden>
+                    <li data-turkish-stage="foundation"><span>01</span><div><strong data-i18n="turkishFoundationStage">Фундамент снизу</strong><small><b id="turkish-foundation-count">0</b> / <b data-turkish-target>33</b></small></div><svg><use href="#i-check"/></svg></li>
+                    <li data-turkish-stage="gap"><span>02</span><div><strong data-i18n="turkishGapStage">Заполнить пробел</strong><small><b id="turkish-gap-count">0</b> / <b data-turkish-target>33</b></small></div><svg><use href="#i-check"/></svg></li>
+                    <li data-turkish-stage="wall"><span>03</span><div><strong data-i18n="turkishWallStage">Соединить стену</strong><small><b id="turkish-wall-count">0</b> / <b data-turkish-target>33</b></small></div><svg><use href="#i-check"/></svg></li>
                   </ol>
                   <blockquote lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</blockquote>
                 </article>
@@ -548,34 +656,35 @@
                 <article class="heart-page heart-page-ayah">
                   <div class="heart-ayah-reference" id="heart-ayah-reference">Аль-Бакара · 2:2</div>
                   <p class="heart-ayah-ink" id="heart-ayah-text" lang="ar" dir="rtl">ذَٰلِكَ ٱلْكِتَـٰبُ لَا رَيْبَ فِيهِ هُدًى لِّلْمُتَّقِينَ</p>
-                  <div class="heart-page-progress"><span data-i18n="heartFoundation">Основа</span><strong><b id="heart-total-count">0</b> / 300</strong></div>
+                  <div class="heart-page-progress"><span id="heart-progress-label" data-i18n="heartFoundation">Основа</span><strong><b id="heart-total-count">0</b> / <b id="heart-total-target">300</b></strong></div>
                 </article>
               </div>
               <aside class="heart-dashboard">
                 <div class="heart-selectors">
-                  <label for="heart-surah-select"><span data-i18n="selectSurah">Выберите суру</span><select id="heart-surah-select" aria-label="Выберите суру"></select></label>
-                  <label for="heart-ayah-select"><span data-i18n="selectAyah">Выберите аят</span><select id="heart-ayah-select" aria-label="Выберите аят"></select></label>
+                  <label for="heart-surah-select"><span data-i18n="selectSurah">Выберите суру</span><select id="heart-surah-select" aria-label="Выберите суру" data-i18n-aria="selectSurah"></select></label>
+                  <label for="heart-ayah-select"><span data-i18n="selectAyah">Выберите аят</span><select id="heart-ayah-select" aria-label="Выберите аят" data-i18n-aria="selectAyah"></select></label>
                 </div>
                 <div class="heart-metrics">
                   <div><span data-i18n="heartToday">Сегодня</span><strong><b id="heart-today-count">0</b></strong></div>
                   <div><span data-i18n="heartCurrentStage">Текущий этап</span><strong id="heart-current-stage">1 / 3</strong></div>
-                  <div><span data-i18n="heartNextReview">Следующее повторение</span><strong id="heart-next-review">—</strong></div>
-                  <div><span data-i18n="heartStrength">Прочность</span><strong id="heart-strength">0%</strong></div>
+                  <div><span id="heart-next-review-label" data-i18n="heartNextReview">Следующее повторение</span><strong id="heart-next-review">—</strong></div>
+                  <div><span id="heart-strength-label" data-i18n="heartStrength">Прочность</span><strong id="heart-strength">0%</strong></div>
                 </div>
-                <div class="heart-guidance" id="heart-guidance"><svg><use href="#i-target"/></svg><p><strong data-i18n="heartRuleTitle">Что засчитывается</strong><small data-i18n="heartRule">Полное правильное чтение без подсказки. Не больше 25 укрепляющих повторений в день.</small></p></div>
+                <div class="heart-guidance" id="heart-guidance"><svg><use href="#i-target"/></svg><p><strong id="heart-rule-title" data-i18n="heartRuleTitle">Что засчитывается</strong><small id="heart-rule-text" data-i18n="heartRule">Полное правильное чтение без подсказки. Не больше 25 укрепляющих повторений в день.</small></p></div>
                 <button class="primary-button heart-start" id="heart-start-practice" type="button"><span data-i18n="heartStart">Начать повторение</span><svg><use href="#i-mic"/></svg></button>
               </aside>
             </div>
           </section>
           <div class="memory-section-heading" id="heart-verse-practice">
-            <div><span class="kicker" data-i18n="heartPracticeEyebrow">ТРЕНИРОВКА АЯТА</span><h3 data-i18n="heartPracticeTitle">Читайте выбранный аят наизусть</h3><p data-i18n="heartPracticeIntro">Слова открываются только по порядку. Полное правильное чтение без подсказки добавляет одно повторение к правилу 300.</p></div>
+            <div><span class="kicker" data-i18n="heartPracticeEyebrow">ТРЕНИРОВКА АЯТА</span><h3 id="heart-practice-title" data-i18n="heartPracticeTitle">Читайте выбранный аят наизусть</h3><p id="heart-practice-intro" data-i18n="heartPracticeIntro">Слова открываются только по порядку. Полное правильное чтение без подсказки добавляет одно повторение к правилу 300.</p></div>
           </div>
           <div class="memory-stage">
+            <section class="memory-journey mj-recall" id="allim-recall"></section>
             <div class="memory-session-bar" id="memory-session-bar" data-phase="ready" aria-live="polite">
               <span class="memory-session-icon" aria-hidden="true"><svg><use href="#i-heart"/></svg></span>
               <div class="memory-session-count">
-                <small data-i18n="memoryLiveCounter">ПРАВИЛЬНЫЕ ЧТЕНИЯ ЭТОГО АЯТА</small>
-                <strong><b id="memory-heart-count">0</b><span> / 300</span></strong>
+                <small id="memory-live-label" data-i18n="memoryLiveCounter">ПРАВИЛЬНЫЕ ЧТЕНИЯ ЭТОГО АЯТА</small>
+                <strong><b id="memory-heart-count">0</b><span> / <b id="memory-heart-target">300</b></span></strong>
               </div>
               <div class="memory-session-state">
                 <i aria-hidden="true"></i>
@@ -656,9 +765,9 @@
             <aside class="track-card">
               <span class="kicker" data-i18n="threeTracks">Три учебных трека</span>
               <div class="track-list">
-                <div><span>01</span><p><strong data-i18n="trackQuran">Язык Корана</strong><small data-i18n="trackQuranText">Лексика, корни, морфология и синтаксис.</small></p></div>
-                <div><span>02</span><p><strong data-i18n="trackFusha">Фусха</strong><small data-i18n="trackFushaText">Современная литературная речь и письмо.</small></p></div>
-                <div><span>03</span><p><strong data-i18n="trackHijazi">Хиджазский</strong><small data-i18n="trackHijaziText">Повседневная речь Мекки, Медины и других городов Саудовской Аравии.</small></p></div>
+                <div><span>01</span><span class="track-icon" aria-hidden="true"><svg><use href="#i-book"/></svg></span><p><strong data-i18n="trackQuran">Язык Корана</strong><small data-i18n="trackQuranText">Лексика, корни, морфология и синтаксис.</small></p></div>
+                <div><span>02</span><span class="track-icon" aria-hidden="true"><svg><use href="#i-spark"/></svg></span><p><strong data-i18n="trackFusha">Фусха</strong><small data-i18n="trackFushaText">Современная литературная речь и письмо.</small></p></div>
+                <div><span>03</span><span class="track-icon" aria-hidden="true"><svg><use href="#i-volume"/></svg></span><p><strong data-i18n="trackHijazi">Хиджазский</strong><small data-i18n="trackHijaziText">Повседневная речь Мекки, Медины и других городов Саудовской Аравии.</small></p></div>
               </div>
             </aside>
           </div>
@@ -751,6 +860,7 @@
         <section class="view" id="view-progress" data-view-panel="progress" aria-labelledby="progress-heading">
           <div class="page-intro"><div><span class="kicker" data-i18n="yourJourney">Ваш путь</span><h2 id="progress-heading" data-i18n="progressTitle">Прогресс начинается с первой сессии</h2><p data-i18n="progressIntro">Здесь появятся только реальные результаты ваших действий в приложении.</p></div></div>
           <div class="allim-journal-summary" id="allim-journal-progress"></div>
+          <section class="memory-journey" id="allim-journey-history"></section>
           <div class="progress-grid">
             <article class="progress-card"><span data-i18n="sessions">Сессии</span><strong id="metric-sessions">0</strong><small data-i18n="storedLocally">Хранятся локально</small></article>
             <article class="progress-card"><span data-i18n="wordsReviewed">Слова повторены</span><strong id="metric-words">0</strong><small data-i18n="fromYourActions">По вашим действиям</small></article>
@@ -767,7 +877,7 @@
         <section class="view" id="view-settings" data-view-panel="settings" aria-labelledby="settings-heading">
           <div class="page-intro"><div><span class="kicker" data-i18n="personalization">Персонализация</span><h2 id="settings-heading" data-i18n="settingsTitle">Настройки обучения</h2><p data-i18n="settingsIntro">Интерфейс адаптируется к вашему языку и способу чтения.</p></div></div>
           <div class="settings-list">
-            <label class="setting-row"><span><strong data-i18n="interfaceLanguage">Язык интерфейса</strong><small data-i18n="interfaceLanguageText">English, العربية или Русский</small></span><select id="language-select"><option value="en">English</option><option value="ar">العربية</option><option value="ru" selected>Русский</option></select></label>
+            <label class="setting-row"><span><strong data-i18n="interfaceLanguage">Язык интерфейса</strong><small data-i18n="interfaceLanguageText">English, العربية или Русский</small></span><select id="language-select" aria-label="Сменить язык" data-i18n-aria="changeLanguage"><option value="en">EN · English</option><option value="ar">AR · العربية</option><option value="ru" selected>RU · Русский</option></select></label>
             <label class="setting-row"><span><strong data-i18n="dailyGoalSetting">Дневная цель</strong><small data-i18n="dailyGoalSettingText">Считаются только завершённые чтения и тренировки</small></span><select id="daily-goal"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="5">5</option></select></label>
             <label class="setting-row"><span><strong data-i18n="arabicSize">Размер арабского текста</strong><small data-i18n="arabicSizeText">Изменяется сразу на экране чтения</small></span><input id="arabic-size" type="range" min="34" max="66" value="48" aria-label="Размер арабского текста" data-i18n-aria="arabicSize"></label>
             <label class="setting-row"><span><strong data-i18n="showMeaning">Показывать смысловой перевод</strong><small data-i18n="showMeaningText">Можно скрыть для режима запоминания</small></span><input class="toggle" id="meaning-toggle" type="checkbox" checked></label>

@@ -31,3 +31,4 @@
 .allim-journal-entries small { display: block; }
 .allim-journal-range { direction: ltr; unicode-bidi: isolate; overflow-wrap: anywhere; max-height: 100px; overflow: auto; }
 .allim-personal-dialog [hidden] { display: none !important; }
+.allim-data-photo { display: block; max-width: 100%; max-height: 240px; object-fit: contain; margin: 8px 0 16px; }

@@ -51,7 +51,7 @@
       if (kind === "hint_used") result.hints++;
       else if (kind === "verse_completed") {
         result.sessions++; result.wordsReviewed += value.matched_words; result.activity[day] = (result.activity[day] || 0) + 1;
-        if (!value.full_verse || value.hints_used) continue;
+        if (!value.full_verse || value.hints_used || value.hifz_method && value.hifz_method !== "foundation300") continue;
         const item = units[value.verse_key] ||= unit();
         item.startedAt ||= now; item.lastAcceptedAt = now; item.daily[day] = (item.daily[day] || 0) + 1;
         if (total(item) < 300) {
@@ -139,6 +139,7 @@
     if (state.mushafTextSize !== undefined && (!Number.isInteger(state.mushafTextSize) || state.mushafTextSize < 28 || state.mushafTextSize > 52)) state.mushafTextSize = defaults.mushafTextSize;
     if (state.dailyGoal !== undefined && ![1, 2, 3, 5].includes(state.dailyGoal)) state.dailyGoal = defaults.dailyGoal;
     if (state.selectedSurah !== undefined && !validVerse(state.selectedSurah + ":" + state.selectedAyah)) { state.selectedSurah = defaults.selectedSurah; state.selectedAyah = defaults.selectedAyah; }
+    if (typeof globalThis.AllimLearning === "object") globalThis.AllimLearning.apply(state, snapshot, catalogue);
     return state;
   }
   function diff(before, after) {
@@ -162,6 +163,7 @@
       set("reflection", row.id, value);
     }
     for (const id of oldEntries.keys()) if (!nextEntries.some(row => row.id === id)) intents.push({kind: "reflection", id, action: "delete"});
+    if (typeof globalThis.AllimLearning === "object") intents.push(...globalThis.AllimLearning.diff(before, after));
     return intents;
   }
   function timing(now = new Date()) {

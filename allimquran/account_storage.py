@@ -272,7 +272,7 @@ def apply(params):
 
 @endpoint("GET")
 def scan(params):
-	check_params(params, ("scan_token",), ("after_key", "limit"))
+	check_params(params, ("scan_token",), ("after_key", "limit", "omit_image_data"))
 	repo = repository(params)
 	token = verify(params["scan_token"], "scan")
 	require(token["account"] == repo.account and token["epoch"] == repo.epoch, "epoch_changed", 409)
@@ -289,6 +289,7 @@ def scan(params):
 	candidates = repo.scan(after, limit + 1)
 	rows, size = [], 1024
 	for row in candidates[:limit]:
+		row = image_metadata(row, params)
 		length = len(canonical(row).encode())
 		if size + length > 1024 * 1024:
 			break
@@ -309,7 +310,7 @@ def scan(params):
 
 @endpoint("GET")
 def pull(params):
-	check_params(params, ("after_seq",), ("through_seq", "limit"))
+	check_params(params, ("after_seq",), ("through_seq", "limit", "omit_image_data"))
 	repo = repository(params)
 	after = number(params["after_seq"])
 	through = number(params.get("through_seq"), repo.seq)
@@ -321,6 +322,7 @@ def pull(params):
 	# the byte cap. Its cursor is recomputed too, so nothing is silently skipped.
 	while True:
 		rows, next_seq = repo.pull(after, through, limit)
+		rows = [image_metadata(row, params) for row in rows]
 		if len(canonical(rows).encode()) < 1024 * 1024 - 1024:
 			break
 		require(limit > 1, "record_too_large", 413)
@@ -335,6 +337,57 @@ def pull(params):
 	}
 
 
+def image_metadata(row, params):
+	"""Opt-in thin scans keep photos out of login/progress downloads."""
+	if params.get("omit_image_data") is not None:
+		require(params["omit_image_data"] == "1")
+	if params.get("omit_image_data") == "1" and row["kind"] == "lawh_image_part" and not row["deleted"]:
+		return {**row, "value": {"data": None}, "payload_omitted": True}
+	return row
+
+
+@endpoint("GET")
+def image_parts(params):
+	check_params(params, ("image_id",), ("after_index",))
+	uuid(params["image_id"])
+	repo = repository(params)
+	photo = next(
+		(
+			row["value"]
+			for row in repo.records("lawh_photo")
+			if not row["deleted"] and row["value"]["image_id"] == params["image_id"]
+		),
+		None,
+	)
+	if photo is None:
+		photo = next(
+			(
+				row["value"]["proposed_value"]
+				for row in repo.records("conflict")
+				if not row["deleted"]
+				and row["value"]["status"] == "open"
+				and row["value"]["target_kind"] == "lawh_photo"
+				and row["value"]["proposed_value"]["image_id"] == params["image_id"]
+			),
+			None,
+		)
+	require(photo is not None, "photo_not_found", 404)
+	after = number(params.get("after_index"))
+	require(after < photo["parts"])
+	next_index = min(after + 16, photo["parts"])
+	rows = [
+		repo.record("lawh_image_part", f"{params['image_id']}/{index}") for index in range(after, next_index)
+	]
+	require(all(row and not row["deleted"] for row in rows), "image_incomplete", 409)
+	return {
+		"account_id": repo.account,
+		"epoch": repo.epoch,
+		"records": rows,
+		"next_index": next_index,
+		"has_more": next_index < photo["parts"],
+	}
+
+
 def export_root():
 	return Path(frappe.get_site_path("private", "allim-progress-exports")).resolve()
 
@@ -343,6 +396,13 @@ def export_root():
 def export_data(params):
 	check_params(params)
 	repo = repository(params, lock=True)
+	# Reject oversized photo collections before materializing their base64 payloads.
+	minimum_bytes = frappe.db.sql(
+		"SELECT COALESCE(SUM(OCTET_LENGTH(value_json)), 0) FROM `tabALLIM Progress Record` "
+		"WHERE account=%s AND epoch=%s",
+		(repo.account, repo.epoch),
+	)[0][0]
+	require(minimum_bytes <= 50 * 1024 * 1024, "export_too_large", 413)
 	rows = repo.records()
 	payload = canonical(
 		{

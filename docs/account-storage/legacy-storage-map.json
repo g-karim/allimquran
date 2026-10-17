@@ -357,6 +357,26 @@
         "object_store": "pages",
         "handling": "preserve original database; no photo upload or account mapping in this change"
       }
-    ]
+    ],
+    "status_after_learning_stage": {
+      "review": "learning-acceptance-2026-10-17.json",
+      "originals_preserved": true,
+      "guest_compatibility": "one-time local copy with source backup",
+      "account_transfer": "explicit categories learning and lawh; automatic sync only for new account actions",
+      "types": [
+        "hifz_method_baseline",
+        "hifz_coach_baseline",
+        "lawh_unit_baseline",
+        "hifz_credit",
+        "hifz_signal",
+        "lawh_verification",
+        "lawh_practice",
+        "memory_plan",
+        "recall_attempt",
+        "recall_flag",
+        "lawh_photo",
+        "lawh_image_part"
+      ]
+    }
   }
 }

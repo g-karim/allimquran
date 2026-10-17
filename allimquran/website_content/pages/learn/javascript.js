@@ -1350,7 +1350,9 @@
     savedVerses: [],
     reviewQueue: [],
     activity: {},
-    heartMushaf: { units: {}, pages: {} },
+    memorizationMethod: "foundation300",
+    hifzCoach: { selectionMode: "manual", signals: [] },
+    heartMushaf: { units: {}, pages: {}, linked33Pages: {}, turkishWallPages: {}, lawhPages: {} },
     lifePractice: { entries: [] }
   };
 
@@ -1809,6 +1811,67 @@
     pageRecallAccessTier: "المستوى الثاني · لوحة الطالب الأساسية", pageRecallCheckingAccess: "جارٍ التحقق من الوصول…", pageRecallAccessActive: "المستوى الثاني مفعّل", pageRecallAccountRequired: "يلزم تسجيل الدخول", pageRecallOpenAcademy: "افتح لوحة الطالب الأساسية", pageRecallAccessError: "افتح أكاديمية ALLIM"
   });
 
+  Object.assign(translations.ru, {
+    hifzMethodLabel: "Выбор методики заучивания", hifzMethodOption: "МЕТОДИКА", hifzMethodOptionOne: "МЕТОДИКА 01", hifzMethodOptionTwo: "МЕТОДИКА 02", hifzMethod300Title: "300 повторений", hifzMethod300Text: "100 + 100 + 100 для каждого аята", hifzMethod33Title: "33× с последовательным соединением", hifzMethod33Text: "Аят ×33 → связка ×33 → вся страница ×33", hifzMethodChanged300: "Выбрана методика 300 повторений.", hifzMethodChanged33: "Выбрана методика 33× с последовательным соединением.",
+    memorizeIntro300: "Собирайте текущую страницу аят за аятом: 300 правильных повторений проявляют каждый аят, а связное чтение закрепляет всю страницу.", memorizeIntro33: "Читайте каждый аят 33 раза. Затем 33 раза соединяйте его со всеми предыдущими аятами; после последнего аята прочитайте всю страницу ровно 33 раза.",
+    linked33StagesLabel: "Этапы методики 33 раза", linked33VerseStage: "Каждый аят", linked33JoinStage: "Последовательная связка", linked33PageStage: "Вся страница", linked33ProgressLabel: "Текущий шаг", linked33CurrentVerse: "Аят {reference} · {count} из 33", linked33CurrentJoin: "Связка от {start} до {end} · {count} из 33", linked33CurrentPage: "Вся страница · {count} из 33", linked33AllComplete: "Страница закреплена по методике 33×.",
+    heartRule33Title: "Правило 33×", heartRule33: "Засчитывается полное правильное чтение без подсказки. Порядок фиксирован: аят ×33, затем связка с предыдущими аятами ×33.", heartPracticeTitle33: "Выполняйте текущий шаг методики 33×", heartPracticeIntro33: "Одиночный аят проверяется здесь. На шаге связки откроется мусхаф, и микрофон проведёт вас по аятам без разрыва.", memoryLiveCounter33: "ПРАВИЛЬНЫЕ ЧТЕНИЯ ТЕКУЩЕГО АЯТА", heartNextStep33: "Текущая задача", heartPageProgress33: "Готовность страницы", heartPagePending33: "Загружаем шаг страницы…", heartPageGuidance33: "Сначала каждый аят читается 33 раза. После каждого нового аята весь накопленный отрывок читается связно 33 раза. Финальная связка — вся страница ×33.", heartConnectedTitle33: "Текущий шаг 33×", heartRevealComplete33: "Аят ×33", linked33CreditRecorded: "Правильное чтение засчитано: {count} из 33.", linked33StepComplete: "Этап 33× завершён. Переходим к следующему шагу.", linked33WrongVerse: "Сейчас нужен другой аят. Откройте текущий шаг методики.", linked33JoinStarted: "Связное чтение 33× начато. Читайте отрывок по порядку.", linked33JoinProgress: "В текущей связке прочитано {done} из {total} аятов.", linked33JoinCounted: "Связное чтение засчитано: {count} из 33.", linked33PageComplete: "Вся страница прочитана связно 33 раза. Методика завершена.", linked33OpenStep: "Начать текущий шаг", linked33ContinueStep: "Продолжить текущий шаг", linked33MethodComplete: "Методика 33× завершена"
+  });
+
+  Object.assign(translations.en, {
+    hifzMethodLabel: "Choose a memorisation method", hifzMethodOption: "METHOD", hifzMethodOptionOne: "METHOD 01", hifzMethodOptionTwo: "METHOD 02", hifzMethod300Title: "300 repetitions", hifzMethod300Text: "100 + 100 + 100 for each verse", hifzMethod33Title: "33× with progressive linking", hifzMethod33Text: "Verse ×33 → linked passage ×33 → full page ×33", hifzMethodChanged300: "The 300-repetition method is selected.", hifzMethodChanged33: "The 33× progressive-linking method is selected.",
+    memorizeIntro300: "Build the current page verse by verse: 300 accurate repetitions reveal each verse, and connected recitation secures the whole page.", memorizeIntro33: "Recite each verse 33 times. Then recite it 33 times together with every preceding verse; after the last verse, recite the complete page exactly 33 times.", linked33StagesLabel: "Steps in the 33-times method", linked33VerseStage: "Each verse", linked33JoinStage: "Progressive linked passage", linked33PageStage: "Complete page", linked33ProgressLabel: "Current step", linked33CurrentVerse: "Verse {reference} · {count} of 33", linked33CurrentJoin: "Linked from {start} to {end} · {count} of 33", linked33CurrentPage: "Complete page · {count} of 33", linked33AllComplete: "The page is secured with the 33× method.", heartRule33Title: "33× rule", heartRule33: "A complete accurate recitation without a hint is counted. The order is fixed: verse ×33, then that verse linked with every preceding verse ×33.", heartPracticeTitle33: "Complete the current 33× step", heartPracticeIntro33: "A single verse is checked here. For a linked step, the Mushaf opens and the microphone follows the verses continuously.", memoryLiveCounter33: "ACCURATE RECITATIONS OF THE CURRENT VERSE", heartNextStep33: "Current task", heartPageProgress33: "Page progress", heartPagePending33: "Loading the page step…", heartPageGuidance33: "First recite each verse 33 times. After every new verse, recite the entire accumulated passage continuously 33 times. The final linked passage is the complete page ×33.", heartConnectedTitle33: "Current 33× step", heartRevealComplete33: "Verse ×33", linked33CreditRecorded: "Accurate recitation counted: {count} of 33.", linked33StepComplete: "This 33× step is complete. Moving to the next step.", linked33WrongVerse: "A different verse is required now. Open the current method step.", linked33JoinStarted: "The linked 33× reading has started. Recite the passage in order.", linked33JoinProgress: "Read {done} of {total} verses in this linked passage.", linked33JoinCounted: "Linked recitation counted: {count} of 33.", linked33PageComplete: "The complete page was recited continuously 33 times. The method is complete.", linked33OpenStep: "Start the current step", linked33ContinueStep: "Continue the current step", linked33MethodComplete: "33× method complete"
+  });
+
+  Object.assign(translations.ar, {
+    hifzMethodLabel: "اختر طريقة الحفظ", hifzMethodOption: "الطريقة", hifzMethodOptionOne: "الطريقة ٠١", hifzMethodOptionTwo: "الطريقة ٠٢", hifzMethod300Title: "٣٠٠ تكرار", hifzMethod300Text: "١٠٠ + ١٠٠ + ١٠٠ لكل آية", hifzMethod33Title: "٣٣ مرة مع الربط المتدرج", hifzMethod33Text: "الآية ×٣٣ ← الربط ×٣٣ ← الصفحة كاملة ×٣٣", hifzMethodChanged300: "اختيرت طريقة ٣٠٠ تكرار.", hifzMethodChanged33: "اختيرت طريقة ٣٣ مرة مع الربط المتدرج.",
+    memorizeIntro300: "اجمع الصفحة الحالية آيةً آية: تظهر كل آية بعد ٣٠٠ تلاوة صحيحة، ثم تثبت الصفحة بالتلاوة المتصلة.", memorizeIntro33: "اقرأ كل آية ٣٣ مرة، ثم اقرأها مع جميع الآيات السابقة ٣٣ مرة؛ وبعد الآية الأخيرة اقرأ الصفحة كاملة ٣٣ مرة بالضبط.", linked33StagesLabel: "مراحل طريقة الثلاث والثلاثين", linked33VerseStage: "كل آية", linked33JoinStage: "الربط المتدرج", linked33PageStage: "الصفحة كاملة", linked33ProgressLabel: "الخطوة الحالية", linked33CurrentVerse: "الآية {reference} · {count} من ٣٣", linked33CurrentJoin: "الربط من {start} إلى {end} · {count} من ٣٣", linked33CurrentPage: "الصفحة كاملة · {count} من ٣٣", linked33AllComplete: "ثُبّتت الصفحة بطريقة ٣٣ مرة.", heartRule33Title: "قاعدة ٣٣", heartRule33: "تُحتسب التلاوة الكاملة الصحيحة بلا تلميح. والترتيب ثابت: الآية ٣٣ مرة، ثم ربطها بجميع ما قبلها ٣٣ مرة.", heartPracticeTitle33: "أكمل الخطوة الحالية من طريقة ٣٣ مرة", heartPracticeIntro33: "تُفحص الآية المفردة هنا. وعند خطوة الربط يُفتح المصحف ويتابع الميكروفون الآيات بلا انقطاع.", memoryLiveCounter33: "التلاوات الصحيحة للآية الحالية", heartNextStep33: "المهمة الحالية", heartPageProgress33: "تقدم الصفحة", heartPagePending33: "جارٍ تحميل خطوة الصفحة…", heartPageGuidance33: "تُقرأ كل آية أولًا ٣٣ مرة، ثم يُقرأ المقطع المتراكم كله متصلًا ٣٣ مرة بعد كل آية جديدة. ويكون الربط الأخير للصفحة كاملة ٣٣ مرة.", heartConnectedTitle33: "الخطوة الحالية من طريقة ٣٣", heartRevealComplete33: "الآية ×٣٣", linked33CreditRecorded: "احتُسبت التلاوة الصحيحة: {count} من ٣٣.", linked33StepComplete: "اكتملت هذه الخطوة من طريقة ٣٣، وننتقل إلى الخطوة التالية.", linked33WrongVerse: "المطلوب الآن آية أخرى. افتح الخطوة الحالية من الطريقة.", linked33JoinStarted: "بدأت التلاوة المتصلة بطريقة ٣٣. اقرأ المقطع بالترتيب.", linked33JoinProgress: "قُرئت {done} من {total} آيات في هذا المقطع المتصل.", linked33JoinCounted: "احتُسبت التلاوة المتصلة: {count} من ٣٣.", linked33PageComplete: "قُرئت الصفحة كاملة متصلة ٣٣ مرة، واكتملت الطريقة.", linked33OpenStep: "ابدأ الخطوة الحالية", linked33ContinueStep: "تابع الخطوة الحالية", linked33MethodComplete: "اكتملت طريقة ٣٣"
+  });
+
+  Object.assign(translations.ru, {
+    hifzChoiceEyebrow: "СПОСОБ ОБУЧЕНИЯ", hifzChoiceTitle: "Как вы хотите выбирать методику?", hifzChoiceIntro: "Выбирайте сами или разрешите АЛЛИМ изучать ваши реальные занятия и предлагать персональный план.", hifzChoiceModeLabel: "Способ выбора методики", hifzManualMode: "Выбираю сам", hifzManualModeText: "Правила и темп определяете вы", hifzAdaptiveMode: "Персональный план", hifzAdaptiveModeText: "АЛЛИМ учится на ваших занятиях", hifzCoachEyebrow: "ПЕРСОНАЛЬНЫЙ НАСТАВНИК", hifzCoachSignalsLabel: "Сигналы персонального обучения", hifzCoachAttempts: "Учебных попыток", hifzCoachClean: "Без подсказок", hifzCoachCollecting: "Собираю учебный профиль", hifzCoachCollectingReason: "Первые рекомендации появятся после пяти реальных попыток.", hifzCoachRecommendation: "Рекомендуемый старт: {method}", hifzCoachFoundationReason: "Подсказки пока нужны часто — предлагаю укрепить точность большим числом повторений.", hifzCoachLinkedReason: "Чтение устойчиво без подсказок — можно усиливать последовательные связки.", hifzCoachTurkishReason: "Чтение устойчиво, а текущая страница подходит для пространственной сборки снизу вверх.", hifzAiRecommended: "Рекомендует АЛЛИМ", hifzChoiceChangedManual: "Ручной выбор методики включён.", hifzChoiceChangedAdaptive: "Персональный план включён. АЛЛИМ объяснит рекомендации, но не сменит методику без вас.",
+    hifzMethodOptionThree: "МЕТОДИКА 03", hifzMethodTurkishTitle: "Турецкая кладка · снизу вверх", hifzMethodTurkishText: "Фундамент ×33 → пропуск → заполнение → стена ×33", hifzMethodChangedTurkish: "Выбрана турецкая кладка снизу вверх.", memorizeIntroTurkish: "Стройте страницу снизу вверх: нижний аят становится фундаментом, затем добавляйте верхний кирпич через один, восполняйте пробел и читайте всю собранную стену 33 раза.", turkishStagesLabel: "Этапы турецкой кладки", turkishFoundationStage: "Фундамент снизу", turkishGapStage: "Заполнить пробел", turkishWallStage: "Соединить стену", turkishProgressLabel: "Текущий кирпич", turkishCurrentFoundation: "Фундамент: аят {reference} · {count} из 33", turkishCurrentJump: "Верхний кирпич: аят {reference} · {count} из 33", turkishCurrentGap: "Заполнить пробел: аят {reference} · {count} из 33", turkishCurrentWall: "Соединить стену от {start} до {end} · {count} из 33", turkishCurrentPage: "Вся страница собрана · {count} из 33", turkishAllComplete: "Страница построена и закреплена 33 связными чтениями.", heartRuleTurkishTitle: "Правило кладки 33×", heartRuleTurkish: "Каждый кирпич и каждая связка засчитываются только после полного правильного чтения без подсказки. Порядок страницы идёт снизу вверх.", heartPracticeTitleTurkish: "Постройте текущий ряд страницы", heartPracticeIntroTurkish: "Одиночный аят проверяется здесь. Для соединения стены откроется мусхаф и микрофон проведёт по собранному отрывку.", memoryLiveCounterTurkish: "ПРАВИЛЬНЫЕ ЧТЕНИЯ ТЕКУЩЕГО КИРПИЧА", heartNextStepTurkish: "Следующий кирпич", heartPageProgressTurkish: "Готовность стены", heartPagePendingTurkish: "Загружаем схему страницы…", heartPageGuidanceTurkish: "Фундамент — нижний аят. Затем берём аят через один, восполняем пропущенный аят и соединяем всю стену до низа ×33. На вершине вся страница читается связно ×33.", heartConnectedTitleTurkish: "Собранная стена 33×", heartRevealCompleteTurkish: "Кирпич ×33", turkishCreditRecorded: "Кирпич закреплён: {count} из 33.", turkishStepComplete: "Кирпич закреплён. Переходим к следующему элементу стены.", turkishWrongVerse: "Сейчас нужен другой аят — откройте текущий кирпич.", turkishJoinStarted: "Связное чтение стены начато. Читайте отмеченный отрывок сверху вниз.", turkishJoinProgress: "В стене прочитано {done} из {total} аятов.", turkishJoinCounted: "Связное чтение стены засчитано: {count} из 33.", turkishPageComplete: "Страница собрана снизу вверх и прочитана связно 33 раза.", turkishOpenStep: "Начать текущий кирпич", turkishContinueStep: "Продолжить кладку", turkishMethodComplete: "Турецкая кладка страницы завершена"
+  });
+
+  Object.assign(translations.en, {
+    hifzChoiceEyebrow: "LEARNING MODE", hifzChoiceTitle: "How would you like to choose a method?", hifzChoiceIntro: "Choose manually, or let ALLIM learn from real sessions and suggest a personal plan.", hifzChoiceModeLabel: "Method selection mode", hifzManualMode: "I choose", hifzManualModeText: "You control the rules and pace", hifzAdaptiveMode: "Personal plan", hifzAdaptiveModeText: "ALLIM learns from your sessions", hifzCoachEyebrow: "PERSONAL COACH", hifzCoachSignalsLabel: "Personal learning signals", hifzCoachAttempts: "Learning attempts", hifzCoachClean: "Without hints", hifzCoachCollecting: "Building your learning profile", hifzCoachCollectingReason: "The first recommendation appears after five real attempts.", hifzCoachRecommendation: "Suggested start: {method}", hifzCoachFoundationReason: "Hints are still frequent, so a higher-repetition accuracy phase is recommended.", hifzCoachLinkedReason: "Recitation is steady without hints, so progressive linking is a suitable next step.", hifzCoachTurkishReason: "Recitation is steady and the current page suits spatial bottom-up construction.", hifzAiRecommended: "Suggested by ALLIM", hifzChoiceChangedManual: "Manual method selection is on.", hifzChoiceChangedAdaptive: "Personal planning is on. ALLIM will explain recommendations but will not switch methods without you.",
+    hifzMethodOptionThree: "METHOD 03", hifzMethodTurkishTitle: "Turkish wall · bottom-up", hifzMethodTurkishText: "Foundation ×33 → skip → fill → wall ×33", hifzMethodChangedTurkish: "The bottom-up Turkish wall method is selected.", memorizeIntroTurkish: "Build the page from the bottom: the final verse is the foundation, then add an upper brick across a gap, fill the missing verse, and recite the assembled wall 33 times.", turkishStagesLabel: "Turkish wall stages", turkishFoundationStage: "Bottom foundation", turkishGapStage: "Fill the gap", turkishWallStage: "Connect the wall", turkishProgressLabel: "Current brick", turkishCurrentFoundation: "Foundation: verse {reference} · {count} of 33", turkishCurrentJump: "Upper brick: verse {reference} · {count} of 33", turkishCurrentGap: "Fill the gap: verse {reference} · {count} of 33", turkishCurrentWall: "Connect the wall from {start} to {end} · {count} of 33", turkishCurrentPage: "Complete bottom-up page · {count} of 33", turkishAllComplete: "The page is built and secured with 33 connected recitations.", heartRuleTurkishTitle: "33× wall rule", heartRuleTurkish: "Each brick and linked passage counts only after a complete accurate recitation without a hint. The page is built from bottom to top.", heartPracticeTitleTurkish: "Build the current row", heartPracticeIntroTurkish: "A single verse is checked here. For a wall connection, the Mushaf opens and the microphone follows the assembled passage.", memoryLiveCounterTurkish: "ACCURATE RECITATIONS OF THE CURRENT BRICK", heartNextStepTurkish: "Next brick", heartPageProgressTurkish: "Wall progress", heartPagePendingTurkish: "Loading the page plan…", heartPageGuidanceTurkish: "The bottom verse is the foundation. Then take a verse across a gap, fill the skipped verse, and connect the whole wall to the bottom ×33. At the top, recite the complete page continuously ×33.", heartConnectedTitleTurkish: "Assembled wall 33×", heartRevealCompleteTurkish: "Brick ×33", turkishCreditRecorded: "Brick secured: {count} of 33.", turkishStepComplete: "Brick secured. Moving to the next wall element.", turkishWrongVerse: "A different verse is required now. Open the current brick.", turkishJoinStarted: "Connected wall recitation started. Read the selected passage from top to bottom.", turkishJoinProgress: "Read {done} of {total} verses in the wall.", turkishJoinCounted: "Connected wall recitation counted: {count} of 33.", turkishPageComplete: "The page was built bottom-up and recited continuously 33 times.", turkishOpenStep: "Start the current brick", turkishContinueStep: "Continue building", turkishMethodComplete: "Turkish page wall complete"
+  });
+
+  Object.assign(translations.ar, {
+    hifzChoiceEyebrow: "نمط التعلّم", hifzChoiceTitle: "كيف تريد اختيار طريقة الحفظ؟", hifzChoiceIntro: "اختر بنفسك، أو دع ALLIM يتعلّم من جلساتك الفعلية ويقترح خطة شخصية.", hifzChoiceModeLabel: "نمط اختيار الطريقة", hifzManualMode: "أختار بنفسي", hifzManualModeText: "أنت تحدد القواعد والوتيرة", hifzAdaptiveMode: "خطة شخصية", hifzAdaptiveModeText: "يتعلّم ALLIM من جلساتك", hifzCoachEyebrow: "المرشد الشخصي", hifzCoachSignalsLabel: "مؤشرات التعلّم الشخصي", hifzCoachAttempts: "محاولات التعلّم", hifzCoachClean: "بلا تلميح", hifzCoachCollecting: "أبني ملف تعلّمك", hifzCoachCollectingReason: "يظهر الاقتراح الأول بعد خمس محاولات فعلية.", hifzCoachRecommendation: "البداية المقترحة: {method}", hifzCoachFoundationReason: "ما زالت التلميحات كثيرة؛ لذا يُقترح طور دقة بتكرار أكبر.", hifzCoachLinkedReason: "التلاوة مستقرة بلا تلميحات؛ فالربط المتدرج خطوة مناسبة.", hifzCoachTurkishReason: "التلاوة مستقرة والصفحة الحالية مناسبة للبناء المكاني من أسفل إلى أعلى.", hifzAiRecommended: "اقتراح ALLIM", hifzChoiceChangedManual: "تم تفعيل الاختيار اليدوي.", hifzChoiceChangedAdaptive: "تم تفعيل الخطة الشخصية. سيشرح ALLIM اقتراحه ولن يغيّر الطريقة دون موافقتك.",
+    hifzMethodOptionThree: "الطريقة ٠٣", hifzMethodTurkishTitle: "البناء التركي · من أسفل إلى أعلى", hifzMethodTurkishText: "الأساس ×٣٣ ← تخطٍّ ← ملء ← بناء ×٣٣", hifzMethodChangedTurkish: "اختيرت طريقة البناء التركي من أسفل إلى أعلى.", memorizeIntroTurkish: "ابن الصفحة من أسفلها: تكون الآية الأخيرة أساسًا، ثم ضع لبنة علوية مع ترك فراغ، واملأ الآية الناقصة، واقرأ البناء المتصل ٣٣ مرة.", turkishStagesLabel: "مراحل البناء التركي", turkishFoundationStage: "الأساس من أسفل", turkishGapStage: "ملء الفراغ", turkishWallStage: "ربط البناء", turkishProgressLabel: "اللبنة الحالية", turkishCurrentFoundation: "الأساس: الآية {reference} · {count} من ٣٣", turkishCurrentJump: "اللبنة العليا: الآية {reference} · {count} من ٣٣", turkishCurrentGap: "ملء الفراغ: الآية {reference} · {count} من ٣٣", turkishCurrentWall: "ربط البناء من {start} إلى {end} · {count} من ٣٣", turkishCurrentPage: "الصفحة كاملة من أسفل إلى أعلى · {count} من ٣٣", turkishAllComplete: "اكتمل بناء الصفحة وثُبّتت بثلاث وثلاثين تلاوة متصلة.", heartRuleTurkishTitle: "قاعدة البناء ٣٣", heartRuleTurkish: "لا تُحتسب اللبنة ولا الوصلة إلا بعد تلاوة كاملة صحيحة بلا تلميح. ويبدأ بناء الصفحة من أسفل إلى أعلى.", heartPracticeTitleTurkish: "ابن الصف الحالي", heartPracticeIntroTurkish: "تُفحص الآية المفردة هنا. وعند ربط البناء يُفتح المصحف ويتابع الميكروفون المقطع المجمع.", memoryLiveCounterTurkish: "التلاوات الصحيحة للبنة الحالية", heartNextStepTurkish: "اللبنة التالية", heartPageProgressTurkish: "تقدم البناء", heartPagePendingTurkish: "جارٍ تحميل مخطط الصفحة…", heartPageGuidanceTurkish: "الآية السفلى هي الأساس. ثم تؤخذ آية مع ترك فراغ، وتُملأ الآية المتروكة، ويُربط البناء كله إلى الأسفل ٣٣ مرة. وعند القمة تُقرأ الصفحة كاملة متصلة ٣٣ مرة.", heartConnectedTitleTurkish: "البناء المتصل ×٣٣", heartRevealCompleteTurkish: "اللبنة ×٣٣", turkishCreditRecorded: "ثُبّتت اللبنة: {count} من ٣٣.", turkishStepComplete: "ثُبّتت اللبنة، وننتقل إلى العنصر التالي.", turkishWrongVerse: "المطلوب الآن آية أخرى. افتح اللبنة الحالية.", turkishJoinStarted: "بدأت تلاوة البناء المتصل. اقرأ المقطع المحدد من أعلى إلى أسفل.", turkishJoinProgress: "قُرئت {done} من {total} آيات في البناء.", turkishJoinCounted: "احتُسبت تلاوة البناء المتصل: {count} من ٣٣.", turkishPageComplete: "بُنيت الصفحة من أسفل إلى أعلى وقُرئت متصلة ٣٣ مرة.", turkishOpenStep: "ابدأ اللبنة الحالية", turkishContinueStep: "تابع البناء", turkishMethodComplete: "اكتمل بناء الصفحة بالطريقة التركية"
+  });
+
+  Object.assign(translations.ru, {
+    hifzMethodOptionFour: "МЕТОДИКА 04", hifzMethodLawhTitle: "Ляух · рукописная страница", hifzMethodLawhText: "Написать → сверить → читать вслух → воспроизвести", hifzMethodChangedLawh: "Выбрана мавританская методика Ляух.", memorizeIntroLawh: "Перепишите выбранный отрывок своей рукой, проговаривая слова вслух; затем сфотографируйте, точно сверьте и заучивайте по личной рукописной странице.", lawhEyebrow: "МАВРИТАНСКАЯ ТРАДИЦИЯ · ЦИФРОВОЙ ЛЯУХ", lawhTitle: "Ваш личный Коран, написанный вашей рукой", lawhIntro: "Перепишите выбранный отрывок на разлинованную бумагу, произнося слова вслух. Затем сфотографируйте лист: АЛЛИМ сохранит личную страницу и подготовит её к построчной проверке.", lawhStepsLabel: "Этапы метода Ляух", lawhStepWrite: "Напишите рукой", lawhStepWriteText: "Сверяйтесь с мусхафом и произносите вслух", lawhStepCapture: "Сфотографируйте", lawhStepCaptureText: "Снимок сверху, без теней и обрезанных строк", lawhStepVerify: "Сверьте текст", lawhStepVerifyText: "Ни одна буква не принимается без подтверждения", lawhStepRecall: "Читайте и пишите по памяти", lawhStepRecallText: "АЛЛИМ планирует возвраты к личной странице", lawhUploadTitle: "Загрузить или снять рукописную страницу", lawhUploadText: "JPG, PNG или HEIC · фотография пока обрабатывается только на устройстве", lawhPreviewAlt: "Рукописная страница Ляух", lawhPhotoChecking: "Проверяем качество снимка…", lawhPhotoReady: "Снимок подходит для следующего этапа", lawhPhotoLowQuality: "Лучше переснять страницу", lawhPhotoReadyDetail: "{width} × {height} px · следующий этап — безопасная построчная сверка с эталонным мусхафом.", lawhPhotoLowDetail: "{width} × {height} px · нужен более чёткий снимок не меньше 1200 px по длинной стороне.", lawhPhotoUnreadable: "Этот формат не удалось открыть на устройстве.", lawhSafetyTitle: "Сначала точность, затем заучивание", lawhSafetyText: "Автораспознавание арабского почерка не должно незаметно исправлять или подменять текст Корана. Ученик или преподаватель подтверждает каждую строку по эталонному мусхафу."
+  });
+  Object.assign(translations.en, {
+    hifzMethodOptionFour: "METHOD 04", hifzMethodLawhTitle: "Lawh · handwritten page", hifzMethodLawhText: "Write → verify → recite aloud → recall", hifzMethodChangedLawh: "The Mauritanian Lawh method is selected.", memorizeIntroLawh: "Copy the selected passage by hand while voicing the words, then photograph it, verify every line, and memorise from your personal handwritten page.", lawhEyebrow: "MAURITANIAN TRADITION · DIGITAL LAWH", lawhTitle: "Your personal Qur’an, written by your hand", lawhIntro: "Copy the selected passage onto lined paper while reciting aloud. Then photograph the sheet: ALLIM will prepare the personal page for line-by-line verification.", lawhStepsLabel: "Lawh method stages", lawhStepWrite: "Write by hand", lawhStepWriteText: "Check against the Mushaf and recite aloud", lawhStepCapture: "Photograph it", lawhStepCaptureText: "Shoot from above, without shadows or cropped lines", lawhStepVerify: "Verify the text", lawhStepVerifyText: "No letter is accepted without confirmation", lawhStepRecall: "Recite and rewrite from memory", lawhStepRecallText: "ALLIM schedules returns to your personal page", lawhUploadTitle: "Upload or photograph a handwritten page", lawhUploadText: "JPG, PNG or HEIC · the photo is currently processed only on this device", lawhPreviewAlt: "Handwritten Lawh page", lawhPhotoChecking: "Checking photo quality…", lawhPhotoReady: "The photo is suitable for the next stage", lawhPhotoLowQuality: "Please retake the page", lawhPhotoReadyDetail: "{width} × {height} px · the next stage is safe line-by-line verification against the reference Mushaf.", lawhPhotoLowDetail: "{width} × {height} px · use a sharper image with at least 1200 px on the long edge.", lawhPhotoUnreadable: "This image format could not be opened on the device.", lawhSafetyTitle: "Accuracy before memorisation", lawhSafetyText: "Arabic handwriting recognition must never silently correct or replace Qur’anic text. The learner or teacher confirms every line against the reference Mushaf."
+  });
+  Object.assign(translations.ar, {
+    hifzMethodOptionFour: "الطريقة ٠٤", hifzMethodLawhTitle: "اللوح · الصفحة بخط اليد", hifzMethodLawhText: "اكتب ← صحح ← اقرأ جهرًا ← استظهر", hifzMethodChangedLawh: "اختيرت طريقة اللوح الموريتانية.", memorizeIntroLawh: "اكتب المقطع المختار بيدك مع نطق الكلمات، ثم صوّره وصحّح كل سطر واحفظ من صفحتك الشخصية المكتوبة بخطك.", lawhEyebrow: "الطريقة الموريتانية · اللوح الرقمي", lawhTitle: "مصحفك الشخصي المكتوب بيدك", lawhIntro: "اكتب المقطع المختار على ورق مسطّر مع القراءة جهرًا، ثم صوّر الورقة ليهيئ ALLIM الصفحة الشخصية للمراجعة سطرًا سطرًا.", lawhStepsLabel: "مراحل طريقة اللوح", lawhStepWrite: "اكتب بيدك", lawhStepWriteText: "قابل بالمصحف واقرأ جهرًا", lawhStepCapture: "صوّر الصفحة", lawhStepCaptureText: "من أعلى بلا ظلال ولا سطور مقطوعة", lawhStepVerify: "صحح النص", lawhStepVerifyText: "لا يُعتمد حرف بلا تأكيد", lawhStepRecall: "اقرأ واكتب غيبًا", lawhStepRecallText: "يخطط ALLIM للعودة إلى صفحتك", lawhUploadTitle: "حمّل أو صوّر الصفحة المكتوبة", lawhUploadText: "JPG أو PNG أو HEIC · تعالج الصورة الآن على هذا الجهاز فقط", lawhPreviewAlt: "صفحة لوح مكتوبة باليد", lawhPhotoChecking: "جارٍ فحص جودة الصورة…", lawhPhotoReady: "الصورة مناسبة للمرحلة التالية", lawhPhotoLowQuality: "الأفضل إعادة تصوير الصفحة", lawhPhotoReadyDetail: "{width} × {height} بكسل · المرحلة التالية مقابلة آمنة سطرًا سطرًا بالمصحف المرجع.", lawhPhotoLowDetail: "{width} × {height} بكسل · التقط صورة أوضح لا يقل ضلعها الطويل عن ١٢٠٠ بكسل.", lawhPhotoUnreadable: "تعذر فتح صيغة الصورة على هذا الجهاز.", lawhSafetyTitle: "الدقة قبل الحفظ", lawhSafetyText: "يجب ألا يصحح التعرف الآلي على الخط العربي نص القرآن أو يستبدله خفية. يؤكد الطالب أو المعلم كل سطر بمقابلته بالمصحف المرجع."
+  });
+
+  Object.assign(translations.ru, {
+    lawhTitle: "Ваша рукописная страница для заучивания", lawhIntro: "Перепишите выбранный отрывок на разлинованную бумагу, произнося слова вслух. Снимок остаётся на этом устройстве; сейчас АЛЛИМ помогает проверить качество фото и пройти ручную сверку.", lawhStepRecallText: "Отмечайте чтение вслух и воспроизведение без подсказки", lawhVerifyTitle: "Сверьте рукописную страницу", lawhVerifyIntro: "АЛЛИМ не изменяет текст автоматически: подтвердите каждый шаг.", lawhCheckFrame: "Все строки видны, теней и обрезанных краёв нет", lawhCheckText: "Каждая строка сверена с эталонным мусхафом", lawhCheckRead: "Исправления внесены, страница ещё раз прочитана вслух", lawhVerifyAction: "Подтвердить сверку", lawhVerified: "Сверка подтверждена. Можно перейти к заучиванию.", lawhPracticeTitle: "Закрепляйте по своей странице", lawhPracticeIntro: "Отмечайте только фактически выполненные повторы.", lawhPracticeMetricsLabel: "Прогресс метода Ляух", lawhReadCount: "Чтений вслух", lawhRecallCount: "Без подсказки", lawhMarkRead: "Отметить чтение вслух", lawhMarkRecall: "Отметить воспроизведение по памяти", lawhReadRecorded: "Чтение вслух отмечено.", lawhRecallRecorded: "Воспроизведение без подсказки отмечено.", lawhManualNote: "Сейчас это честный самоотчёт. Автопроверка арабского почерка ещё не подключена."
+  });
+  Object.assign(translations.en, {
+    lawhTitle: "Your handwritten memorisation page", lawhIntro: "Copy the selected passage onto lined paper while reciting aloud. The photo stays on this device; ALLIM currently checks image quality and guides a manual verification.", lawhStepRecallText: "Track aloud reading and recall without a hint", lawhVerifyTitle: "Verify the handwritten page", lawhVerifyIntro: "ALLIM does not alter the text automatically. Confirm every step.", lawhCheckFrame: "Every line is visible, without shadows or cropped edges", lawhCheckText: "Every line was compared with the reference Mushaf", lawhCheckRead: "Corrections were made and the page was read aloud again", lawhVerifyAction: "Confirm verification", lawhVerified: "Verification confirmed. You can begin memorising.", lawhPracticeTitle: "Reinforce from your own page", lawhPracticeIntro: "Record only repetitions you actually completed.", lawhPracticeMetricsLabel: "Lawh method progress", lawhReadCount: "Read aloud", lawhRecallCount: "Without hints", lawhMarkRead: "Record an aloud reading", lawhMarkRecall: "Record recall from memory", lawhReadRecorded: "Aloud reading recorded.", lawhRecallRecorded: "Recall without a hint recorded.", lawhManualNote: "This is currently an honest self-report. Automatic Arabic-handwriting checking is not connected yet."
+  });
+  Object.assign(translations.ar, {
+    lawhTitle: "صفحتك المكتوبة بيدك للحفظ", lawhIntro: "اكتب المقطع المختار على ورق مسطّر مع القراءة جهرًا. تبقى الصورة على هذا الجهاز؛ ويفحص ALLIM حاليًا جودة الصورة ويرشدك إلى المراجعة اليدوية.", lawhStepRecallText: "سجّل القراءة جهرًا والاستظهار بلا تلميح", lawhVerifyTitle: "راجع الصفحة المكتوبة بخط اليد", lawhVerifyIntro: "لا يغيّر ALLIM النص آليًا. أكّد كل خطوة.", lawhCheckFrame: "جميع السطور ظاهرة بلا ظلال أو حواف مقطوعة", lawhCheckText: "قوبل كل سطر بالمصحف المرجع", lawhCheckRead: "صُححت الأخطاء وقُرئت الصفحة جهرًا مرة أخرى", lawhVerifyAction: "تأكيد المراجعة", lawhVerified: "تم تأكيد المراجعة. يمكنك البدء بالحفظ.", lawhPracticeTitle: "ثبّت من صفحتك", lawhPracticeIntro: "سجّل فقط التكرارات التي أنجزتها فعلًا.", lawhPracticeMetricsLabel: "تقدم طريقة اللوح", lawhReadCount: "قراءة جهرية", lawhRecallCount: "بلا تلميح", lawhMarkRead: "تسجيل قراءة جهرية", lawhMarkRecall: "تسجيل الاستظهار من الذاكرة", lawhReadRecorded: "سُجلت القراءة الجهرية.", lawhRecallRecorded: "سُجل الاستظهار بلا تلميح.", lawhManualNote: "هذا حاليًا تقرير ذاتي صريح. لم يُربط بعد التحقق الآلي من الخط العربي."
+  });
+
+  Object.assign(translations.ru, {
+    lawhStorageTitle: "Личная локальная библиотека", lawhStorageIdle: "Загрузите чёткий снимок. Сохранение вы подтвердите отдельно.", lawhStorageReady: "Снимок готов к локальному сохранению.", lawhStorageSaving: "Сохраняем только на этом устройстве…", lawhStorageSaved: "Снимок сохранён в личной библиотеке этого устройства.", lawhStorageRestored: "Страница восстановлена из локальной библиотеки.", lawhStorageError: "Не удалось сохранить снимок. Проверьте свободное место и разрешения браузера.", lawhStorageUnavailable: "Локальная библиотека недоступна в этом режиме браузера.", lawhSaveLocal: "Сохранить на этом устройстве", lawhSavedLocal: "Сохранено на устройстве", lawhLibraryEyebrow: "ЛИЧНЫЕ СТРАНИЦЫ", lawhLibraryTitle: "Ваш рукописный Коран на этом устройстве", lawhLibraryIntro: "Снимки не отправляются на сервер. Откройте страницу и продолжите с того же места.", lawhLibraryEmpty: "Пока нет сохранённых рукописных страниц.", lawhLibraryLoading: "Загружаем личную библиотеку…", lawhLibraryReference: "Отрывок {reference}", lawhLibraryProgress: "Вслух: {read} · без подсказки: {recall}", lawhLibraryVerified: "Сверено с мусхафом", lawhLibraryUnverified: "Ожидает сверки", lawhLibraryOpen: "Открыть", lawhLibraryDelete: "Удалить фото", lawhDeleteConfirm: "Удалить это фото из локальной библиотеки? Счётчики упражнений сохранятся.", lawhDeleted: "Фото удалено с этого устройства."
+  });
+  Object.assign(translations.en, {
+    lawhStorageTitle: "Private local library", lawhStorageIdle: "Upload a clear photo. You confirm local storage separately.", lawhStorageReady: "The photo is ready to be saved locally.", lawhStorageSaving: "Saving only on this device…", lawhStorageSaved: "The photo is saved in this device's private library.", lawhStorageRestored: "The page was restored from the local library.", lawhStorageError: "The photo could not be saved. Check free space and browser permissions.", lawhStorageUnavailable: "The local library is unavailable in this browser mode.", lawhSaveLocal: "Save on this device", lawhSavedLocal: "Saved on device", lawhLibraryEyebrow: "PERSONAL PAGES", lawhLibraryTitle: "Your handwritten Qur’an on this device", lawhLibraryIntro: "Photos are not sent to a server. Open a page and continue where you stopped.", lawhLibraryEmpty: "No handwritten pages have been saved yet.", lawhLibraryLoading: "Loading your private library…", lawhLibraryReference: "Passage {reference}", lawhLibraryProgress: "Aloud: {read} · without hints: {recall}", lawhLibraryVerified: "Verified against the Mushaf", lawhLibraryUnverified: "Awaiting verification", lawhLibraryOpen: "Open", lawhLibraryDelete: "Delete photo", lawhDeleteConfirm: "Delete this photo from the local library? Practice counters will remain.", lawhDeleted: "The photo was removed from this device."
+  });
+  Object.assign(translations.ar, {
+    lawhStorageTitle: "مكتبة محلية خاصة", lawhStorageIdle: "حمّل صورة واضحة، ثم أكّد الحفظ المحلي بشكل منفصل.", lawhStorageReady: "الصورة جاهزة للحفظ المحلي.", lawhStorageSaving: "جارٍ الحفظ على هذا الجهاز فقط…", lawhStorageSaved: "حُفظت الصورة في مكتبة هذا الجهاز الخاصة.", lawhStorageRestored: "استُعيدت الصفحة من المكتبة المحلية.", lawhStorageError: "تعذر حفظ الصورة. تحقق من المساحة وأذونات المتصفح.", lawhStorageUnavailable: "المكتبة المحلية غير متاحة في وضع المتصفح هذا.", lawhSaveLocal: "احفظ على هذا الجهاز", lawhSavedLocal: "محفوظ على الجهاز", lawhLibraryEyebrow: "الصفحات الشخصية", lawhLibraryTitle: "مصحفك المكتوب بيدك على هذا الجهاز", lawhLibraryIntro: "لا تُرسل الصور إلى الخادم. افتح صفحة وتابع من موضع توقفك.", lawhLibraryEmpty: "لا توجد صفحات مكتوبة محفوظة بعد.", lawhLibraryLoading: "جارٍ تحميل مكتبتك الخاصة…", lawhLibraryReference: "المقطع {reference}", lawhLibraryProgress: "جهرًا: {read} · بلا تلميح: {recall}", lawhLibraryVerified: "روجع بالمصحف", lawhLibraryUnverified: "ينتظر المراجعة", lawhLibraryOpen: "افتح", lawhLibraryDelete: "احذف الصورة", lawhDeleteConfirm: "أتريد حذف هذه الصورة من المكتبة المحلية؟ ستبقى عدادات التدريب.", lawhDeleted: "حُذفت الصورة من هذا الجهاز."
+  });
   /* ALLIM_MUSHAF_RETURN_TRANSLATIONS_START */
 Object.assign(translations.ru, {"mushafNavigation": "Навигация мусхафа", "mushafBack": "В приложение", "mushafHome": "На главную АЛЛИМ"});
 Object.assign(translations.en, {"mushafNavigation": "Mushaf navigation", "mushafBack": "Back to app", "mushafHome": "Go to the ALLIM home page"});
@@ -1821,6 +1884,14 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   if (translations.tg) Object.assign(translations.tg, {"mushafLayout": "Тарзи намоиш", "mushafLayoutPage": "Саҳифа", "mushafLayoutAdaptive": "Матни калон", "mushafTextSize": "Андозаи матн", "mushafSmaller": "Хурд кардани матн", "mushafLarger": "Калон кардани матн", "mushafRetry": "Боз кӯшиш кунед"});
   if (translations.uz) Object.assign(translations.uz, {"mushafLayout": "O‘qish ko‘rinishi", "mushafLayoutPage": "Sahifa", "mushafLayoutAdaptive": "Yirik matn", "mushafTextSize": "Matn o‘lchami", "mushafSmaller": "Matnni kichraytirish", "mushafLarger": "Matnni kattalashtirish", "mushafRetry": "Qayta urinish"});
   if (translations.tt) Object.assign(translations.tt, {"mushafLayout": "Уку күренеше", "mushafLayoutPage": "Бит", "mushafLayoutAdaptive": "Эре текст", "mushafTextSize": "Текст зурлыгы", "mushafSmaller": "Текстны кечерәйтү", "mushafLarger": "Текстны зурайту", "mushafRetry": "Кабатлап карау"});
+
+  Object.assign(translations.ru, {lawhStorageTitle: "Личная библиотека", lawhIntro: "Перепишите отрывок от руки, сфотографируйте и сверьте каждую строку с мусхафом. Без аккаунта снимки остаются на устройстве, после входа новые снимки сохраняются в аккаунте.", lawhUploadText: "JPG, PNG или WebP · до 8 МБ", lawhStorageReady: "Снимок готов к сохранению.", lawhStorageSaving: "Сохраняем снимок…", lawhStorageSaved: "Снимок сохранён. Статус отправки указан в панели ваших данных.", lawhStorageRestored: "Страница открыта из вашей библиотеки.", lawhSaveLocal: "Сохранить страницу", lawhSavedLocal: "Страница сохранена", lawhLibraryTitle: "Ваши рукописные страницы", lawhLibraryIntro: "Откройте сохранённую страницу и продолжите занятия.", lawhDeleteConfirm: "Удалить это фото из текущего профиля? Счётчики упражнений сохранятся.", lawhDeleted: "Фото удалено из вашей библиотеки."});
+  Object.assign(translations.en, {lawhStorageTitle: "Private library", lawhIntro: "Copy the passage by hand, photograph it and compare every line with the Mushaf. Without an account, photos stay on this device; after sign-in new photos are saved to your account.", lawhUploadText: "JPG, PNG or WebP · up to 8 MB", lawhStorageReady: "The photo is ready to save.", lawhStorageSaving: "Saving the photo…", lawhStorageSaved: "Photo saved. Check Your data for the sync status.", lawhStorageRestored: "Page opened from your library.", lawhSaveLocal: "Save page", lawhSavedLocal: "Page saved", lawhLibraryTitle: "Your handwritten pages", lawhLibraryIntro: "Open a saved page and continue practicing.", lawhDeleteConfirm: "Delete this photo from the current profile? Practice counters will remain.", lawhDeleted: "Photo removed from your library."});
+  Object.assign(translations.ar, {lawhStorageTitle: "مكتبة خاصة", lawhIntro: "اكتب المقطع بخطك وصوّره وقابل كل سطر بالمصحف. دون حساب تبقى الصور على الجهاز؛ بعد الدخول تحفظ الصور الجديدة في حسابك.", lawhUploadText: "JPG أو PNG أو WebP · حتى ٨ ميغابايت", lawhStorageReady: "الصورة جاهزة للحفظ.", lawhStorageSaving: "جارٍ حفظ الصورة…", lawhStorageSaved: "حفظت الصورة. راجع حالة المزامنة في بياناتك.", lawhStorageRestored: "فتحت الصفحة من مكتبتك.", lawhSaveLocal: "احفظ الصفحة", lawhSavedLocal: "حفظت الصفحة", lawhLibraryTitle: "صفحاتك المكتوبة", lawhLibraryIntro: "افتح صفحة محفوظة وتابع التدريب.", lawhDeleteConfirm: "حذف الصورة من الملف الحالي؟ تبقى عدادات التدريب.", lawhDeleted: "حذفت الصورة من مكتبتك."});
+
+  Object.assign(translations.ru, {lawhMore: "Показать ещё страницы", lawhPhotoUnavailable: "Фото пока доступно только в аккаунте. Подключитесь к сети.", lawhStorageUnavailable: "Фото недоступно на этом устройстве. Проверьте соединение и откройте страницу ещё раз.", lawhStorageIdle: "Выберите снимок и подтвердите сохранение страницы."});
+  Object.assign(translations.en, {lawhMore: "Show more pages", lawhPhotoUnavailable: "This photo is only in your account for now. Connect to load it.", lawhStorageUnavailable: "Photo unavailable on this device. Check your connection and reopen the page.", lawhStorageIdle: "Choose a photo and confirm saving the page."});
+  Object.assign(translations.ar, {lawhMore: "عرض صفحات أخرى", lawhPhotoUnavailable: "الصورة في الحساب فقط حاليًا. اتصل لتحميلها.", lawhStorageUnavailable: "الصورة غير متاحة على الجهاز. تحقق من الاتصال وافتح الصفحة مجددًا.", lawhStorageIdle: "اختر صورة وأكد حفظ الصفحة."});
 
   var reciters = [
     { id: "husary", path: "Husary_128kbps", names: { ru: "Махмуд Халиль аль-Хусари", en: "Mahmoud Khalil Al-Husary", ar: "محمود خليل الحصري" } },
@@ -1973,9 +2044,14 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   if (!Array.isArray(state.savedVerses)) state.savedVerses = [];
   if (!Array.isArray(state.reviewQueue)) state.reviewQueue = [];
   if (!state.activity || typeof state.activity !== "object" || Array.isArray(state.activity)) state.activity = {};
-  if (!state.heartMushaf || typeof state.heartMushaf !== "object" || Array.isArray(state.heartMushaf)) state.heartMushaf = { units: {}, pages: {} };
+  if (!state.heartMushaf || typeof state.heartMushaf !== "object" || Array.isArray(state.heartMushaf)) state.heartMushaf = { units: {}, pages: {}, linked33Pages: {}, turkishWallPages: {} };
   if (!state.heartMushaf.units || typeof state.heartMushaf.units !== "object" || Array.isArray(state.heartMushaf.units)) state.heartMushaf.units = {};
   if (!state.heartMushaf.pages || typeof state.heartMushaf.pages !== "object" || Array.isArray(state.heartMushaf.pages)) state.heartMushaf.pages = {};
+  if (!state.heartMushaf.linked33Pages || typeof state.heartMushaf.linked33Pages !== "object" || Array.isArray(state.heartMushaf.linked33Pages)) state.heartMushaf.linked33Pages = {};
+  if (!state.heartMushaf.turkishWallPages || typeof state.heartMushaf.turkishWallPages !== "object" || Array.isArray(state.heartMushaf.turkishWallPages)) state.heartMushaf.turkishWallPages = {};
+  if (!state.heartMushaf.lawhPages || typeof state.heartMushaf.lawhPages !== "object" || Array.isArray(state.heartMushaf.lawhPages)) state.heartMushaf.lawhPages = {};
+  if (["foundation300", "linked33", "turkishWall33", "mauritanianLawh"].indexOf(state.memorizationMethod) < 0) state.memorizationMethod = "foundation300";
+  state.hifzCoach = normalizeHifzCoach(state.hifzCoach);
   if (!state.lifePractice || typeof state.lifePractice !== "object" || Array.isArray(state.lifePractice)) state.lifePractice = { entries: [] };
   if (!Array.isArray(state.lifePractice.entries)) state.lifePractice.entries = [];
   state.autoAdvance = state.autoAdvance !== false;
@@ -2049,6 +2125,22 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   var heartMushafFitFrame = null;
   var heartMushafRenderRequest = 0;
   var linkedPageSession = null;
+  var linked33Session = null;
+  var structuredStepTimer = null;
+  var memoryFlowGeneration = 0;
+  var lawhPhotoUrl = "";
+  var lawhDraftBlob = null;
+  var lawhDraftMeta = null;
+  var lawhDraftReady = false;
+  var lawhDraftVerified = false;
+  var lawhDraftKey = "";
+  var lawhDraftStored = false;
+  var lawhStorageState = "idle";
+  var lawhRestoreRequest = 0;
+  var lawhLibraryRenderRequest = 0;
+  var lawhLibraryUrls = [];
+  var lawhLibraryLimit = 12;
+  var memoryPracticeContext = null;
   var pageRecallSession = null;
   var pageRecallShowText = false;
   var pageRecallAccessLevel = "checking";
@@ -2091,6 +2183,13 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   var mushafSwipeStart = null;
   var recitationFlowBeforeMushaf = null;
   var HEART_FOUNDATION_TOTAL = 300;
+  var LINKED_33_TARGET = 33;
+  var HIFZ_METHODS = [
+    { id: "foundation300", version: 1, order: 1 },
+    { id: "linked33", version: 1, order: 2 },
+    { id: "turkishWall33", version: 1, order: 3 },
+    { id: "mauritanianLawh", version: 1, order: 4 }
+  ];
   var HEART_STAGE_TARGET = 100;
   var HEART_MAINTENANCE_TARGET = 20;
   var HEART_REVIEW_INTERVALS = [30, 60, 90, 180, 365];
@@ -2162,6 +2261,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     updateVerseActions();
     renderHeartMushaf();
     renderHeartReadCounter();
+    renderHifzChoiceUi();
+    updateMemorizationMethodUi();
+    renderLawhWorkflow();
+    if (state.memorizationMethod === "mauritanianLawh") renderLawhLibrary();
     renderLifeHistory();
     renderLifePracticeSummary();
   }
@@ -2362,6 +2465,16 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       var key = element.getAttribute("data-i18n-title");
       if (translations[language][key]) element.setAttribute("title", translations[language][key]);
     });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (element) {
+      var key = element.getAttribute("data-i18n-alt");
+      if (translations[language][key]) element.setAttribute("alt", translations[language][key]);
+    });
+    var lawhPreview = document.getElementById("lawh-preview");
+    if (lawhPreview && !lawhPreview.hidden && lawhPreview.dataset.width) renderLawhPhotoQuality(Number(lawhPreview.dataset.width), Number(lawhPreview.dataset.height), lawhPreview.dataset.readable === "true");
+    renderLawhWorkflow();
+    if (state.memorizationMethod === "mauritanianLawh") renderLawhLibrary();
+    document.getElementById("language-current-code").textContent = language.toUpperCase();
+    document.getElementById("language-switch").value = language;
     document.getElementById("language-switch").value = language;
     document.getElementById("language-current-code").textContent = language.toUpperCase();
     document.getElementById("language-select").value = language;
@@ -2403,7 +2516,12 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function navigate(view) {
     var panel = document.querySelector('[data-view-panel="' + view + '"]');
     if (!panel) return;
+    if (window.ALLIMJourney) window.ALLIMJourney.navigate(view);
     if (view !== "read" && pageRecallSession) clearPageRecallMode();
+    if (view !== "read" && linked33Session) {
+      linked33Session = null;
+      stopContinuousSession();
+    }
     clearAutoAdvance();
     if (view !== "memorize") stopMemoryRecognition(true);
     if (view !== "read") document.body.classList.remove("audio-view");
@@ -2742,6 +2860,490 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     return local.toISOString().slice(0, 10);
   }
 
+  function normalizeHifzCoach(raw) {
+    var coach = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
+    coach.selectionMode = coach.selectionMode === "adaptive" ? "adaptive" : "manual";
+    if (!Array.isArray(coach.signals)) coach.signals = [];
+    coach.signals = coach.signals.slice(-240).filter(function (signal) {
+      return signal && typeof signal === "object" && ["foundation300", "linked33", "turkishWall33", "mauritanianLawh"].indexOf(signal.method) >= 0;
+    }).map(function (signal) {
+      return {
+        method: signal.method,
+        outcome: ["clean", "assisted", "incomplete"].indexOf(signal.outcome) >= 0 ? signal.outcome : "incomplete",
+        hints: Math.max(0, Number(signal.hints) || 0),
+        source: signal.source === "connected" ? "connected" : "verse",
+        at: typeof signal.at === "string" ? signal.at : new Date().toISOString()
+      };
+    });
+    return coach;
+  }
+
+  function getHifzMethodTitleKey(method) {
+    if (method === "linked33") return "hifzMethod33Title";
+    if (method === "turkishWall33") return "hifzMethodTurkishTitle";
+    if (method === "mauritanianLawh") return "hifzMethodLawhTitle";
+    return "hifzMethod300Title";
+  }
+
+  function getHifzLearnerSummary() {
+    var signals = state.hifzCoach.signals;
+    var attempts = signals.length;
+    var clean = signals.filter(function (signal) { return signal.outcome === "clean"; }).length;
+    var assisted = signals.filter(function (signal) { return signal.outcome === "assisted"; }).length;
+    return {
+      attempts: attempts,
+      clean: clean,
+      assisted: assisted,
+      cleanRate: attempts ? clean / attempts : 0,
+      assistedRate: attempts ? assisted / attempts : 0
+    };
+  }
+
+  function getHifzRecommendation() {
+    var profile = getHifzLearnerSummary();
+    if (profile.attempts < 5) return { ready: false, method: "", reasonKey: "hifzCoachCollectingReason", profile: profile };
+    if (profile.cleanRate < .72 || profile.assistedRate > .2) return { ready: true, method: "foundation300", reasonKey: "hifzCoachFoundationReason", profile: profile };
+    var pageSize = heartCurrentPageData ? getHeartPageVerseKeys(heartCurrentPageData).length : 0;
+    if (profile.attempts >= 10 && profile.cleanRate >= .85 && pageSize >= 4) return { ready: true, method: "turkishWall33", reasonKey: "hifzCoachTurkishReason", profile: profile };
+    return { ready: true, method: "linked33", reasonKey: "hifzCoachLinkedReason", profile: profile };
+  }
+
+  function recordHifzLearningSignal(outcome, source, hints) {
+    var signal = {
+      method: state.memorizationMethod,
+      outcome: outcome,
+      source: source === "connected" ? "connected" : "verse",
+      hints: Math.max(0, Number(hints) || 0),
+      at: new Date().toISOString()
+    };
+    if (personalBridge) personalBridge.fact("hifz_signal", signal);
+    state.hifzCoach.signals.push(signal);
+    state.hifzCoach.signals = state.hifzCoach.signals.slice(-240);
+    renderHifzChoiceUi();
+  }
+
+  function renderHifzChoiceUi() {
+    if (!state.hifzCoach) return;
+    var adaptive = state.hifzCoach.selectionMode === "adaptive";
+    document.querySelectorAll("[data-hifz-choice-mode]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.getAttribute("data-hifz-choice-mode") === state.hifzCoach.selectionMode));
+    });
+    var panel = document.getElementById("hifz-coach-panel");
+    if (panel) panel.hidden = !adaptive;
+    var recommendation = getHifzRecommendation();
+    var attempts = document.getElementById("hifz-coach-attempts");
+    var clean = document.getElementById("hifz-coach-clean");
+    var status = document.getElementById("hifz-coach-status");
+    var reason = document.getElementById("hifz-coach-reason");
+    if (attempts) attempts.textContent = formatMetric(recommendation.profile.attempts);
+    if (clean) clean.textContent = formatMetric(Math.round(recommendation.profile.cleanRate * 100)) + "%";
+    if (status) status.textContent = recommendation.ready ? formatText("hifzCoachRecommendation", { method: t(getHifzMethodTitleKey(recommendation.method)) }) : t("hifzCoachCollecting");
+    if (reason) reason.textContent = t(recommendation.reasonKey);
+    document.querySelectorAll("[data-hifz-recommendation]").forEach(function (badge) {
+      var button = badge.closest("[data-hifz-method]");
+      badge.hidden = !adaptive || !recommendation.ready || !button || button.getAttribute("data-hifz-method") !== recommendation.method;
+    });
+  }
+
+  function setHifzChoiceMode(mode, announce) {
+    state.hifzCoach.selectionMode = mode === "adaptive" ? "adaptive" : "manual";
+    saveState();
+    renderHifzChoiceUi();
+    if (announce) showToast(t(state.hifzCoach.selectionMode === "adaptive" ? "hifzChoiceChangedAdaptive" : "hifzChoiceChangedManual"));
+  }
+
+  function getLawhRecord(id) { return window.AllimLawh.get(id); }
+  function getAllLawhRecords() { return window.AllimLawh.list({limit: lawhLibraryLimit}); }
+  function putLawhRecord(record) { return window.AllimLawh.save(record); }
+  function removeLawhRecord(id) { return window.AllimLawh.remove(id); }
+
+  function getCurrentLawhKey() {
+    if (currentSurah && currentVerse) return getVerseKey(currentSurah, currentVerse);
+    return String(Number(state.selectedSurah) || 1) + ":" + String(Number(state.selectedAyah) || 1);
+  }
+
+  function getLawhUnit(key) {
+    var resolvedKey = key || getCurrentLawhKey();
+    var unit = state.heartMushaf.lawhPages[resolvedKey];
+    if (!unit || typeof unit !== "object" || Array.isArray(unit)) unit = {};
+    unit.verifiedAt = typeof unit.verifiedAt === "string" ? unit.verifiedAt : "";
+    unit.readCount = Math.max(0, Number(unit.readCount) || 0);
+    unit.recallCount = Math.max(0, Number(unit.recallCount) || 0);
+    unit.updatedAt = typeof unit.updatedAt === "string" ? unit.updatedAt : "";
+    state.heartMushaf.lawhPages[resolvedKey] = unit;
+    return unit;
+  }
+
+  function releaseLawhPhotoUrl() {
+    if (!lawhPhotoUrl) return;
+    URL.revokeObjectURL(lawhPhotoUrl);
+    lawhPhotoUrl = "";
+  }
+
+  function renderLawhStorageControls() {
+    var status = document.getElementById("lawh-storage-status");
+    var button = document.getElementById("lawh-save-local");
+    var messageKey = "lawhStorageIdle";
+    if (lawhStorageState === "saving") messageKey = "lawhStorageSaving";
+    else if (lawhStorageState === "error") messageKey = "lawhStorageError";
+    else if (lawhStorageState === "unavailable") messageKey = "lawhStorageUnavailable";
+    else if (lawhStorageState === "restored") messageKey = "lawhStorageRestored";
+    else if (lawhDraftStored) messageKey = "lawhStorageSaved";
+    else if (lawhDraftReady && lawhDraftBlob) messageKey = "lawhStorageReady";
+    if (status) status.textContent = t(messageKey);
+    if (button) {
+      button.textContent = t(lawhDraftStored ? "lawhSavedLocal" : "lawhSaveLocal");
+      button.disabled = !lawhDraftReady || !lawhDraftBlob || lawhDraftStored || lawhStorageState === "saving" || lawhStorageState === "unavailable";
+      button.setAttribute("aria-disabled", String(button.disabled));
+    }
+  }
+
+  function makeLawhRecord(key) {
+    var unit = getLawhUnit(key);
+    var reference = String(key || getCurrentLawhKey());
+    var parts = reference.split(":");
+    var meta = lawhDraftMeta || {};
+    return {
+      id: reference,
+      surahId: Math.max(1, Number(parts[0]) || Number(state.selectedSurah) || 1),
+      ayahNumber: Math.max(1, Number(parts[1]) || Number(state.selectedAyah) || 1),
+      pageNumber: heartCurrentPageData ? Math.max(0, Number(heartCurrentPageData.page) || 0) : Math.max(0, Number(meta.pageNumber) || 0),
+      blob: lawhDraftBlob,
+      fileName: typeof meta.fileName === "string" ? meta.fileName : "lawh-page",
+      fileType: typeof meta.fileType === "string" ? meta.fileType : "image/jpeg",
+      width: Math.max(0, Number(meta.width) || 0),
+      height: Math.max(0, Number(meta.height) || 0),
+      verifiedAt: unit.verifiedAt,
+      readCount: unit.readCount,
+      recallCount: unit.recallCount,
+      updatedAt: new Date().toISOString()
+    };
+  }
+
+  function saveCurrentLawhPage() {
+    if (!lawhDraftReady || !lawhDraftBlob || !lawhDraftKey || lawhDraftStored) return;
+    var savedKey = lawhDraftKey, savedBlob = lawhDraftBlob, savedGeneration = window.AllimStorage.stamp().generation;
+    lawhStorageState = "saving";
+    renderLawhStorageControls();
+    putLawhRecord(makeLawhRecord(lawhDraftKey)).then(function () {
+      if (savedKey !== lawhDraftKey || savedBlob !== lawhDraftBlob || savedGeneration !== window.AllimStorage.stamp().generation) return;
+      lawhDraftStored = true;
+      lawhStorageState = "saved";
+      renderLawhStorageControls();
+      renderLawhLibrary();
+      showToast(t("lawhStorageSaved"));
+    }).catch(function () {
+      lawhStorageState = window.indexedDB ? "error" : "unavailable";
+      renderLawhStorageControls();
+      showToast(t(lawhStorageState === "unavailable" ? "lawhStorageUnavailable" : "lawhStorageError"));
+    });
+  }
+
+  function syncLawhStoredMetadata() { renderLawhLibrary(); return Promise.resolve(true); }
+
+  function clearLawhDraft() {
+    releaseLawhPhotoUrl();
+    lawhDraftBlob = null;
+    lawhDraftMeta = null;
+    lawhDraftReady = false;
+    lawhDraftVerified = false;
+    lawhDraftStored = false;
+    lawhStorageState = "idle";
+    var preview = document.getElementById("lawh-preview");
+    var image = document.getElementById("lawh-preview-image");
+    if (preview) {
+      preview.hidden = true;
+      delete preview.dataset.width;
+      delete preview.dataset.height;
+      delete preview.dataset.readable;
+    }
+    if (image) image.removeAttribute("src");
+    resetLawhDraftChecks();
+    renderLawhWorkflow();
+  }
+
+  function restoreLawhDraftForCurrentKey(force) {
+    var key = getCurrentLawhKey();
+    if (!force && lawhDraftKey === key) return Promise.resolve(Boolean(lawhDraftBlob));
+    var requestId = ++lawhRestoreRequest;
+    if (force || lawhDraftKey !== key) clearLawhDraft();
+    lawhDraftKey = key;
+    return getLawhRecord(key).then(function (record) {
+      if (requestId !== lawhRestoreRequest || getCurrentLawhKey() !== key) return false;
+      if (!record || !record.blob) {
+        lawhStorageState = record ? "unavailable" : "idle";
+        renderLawhStorageControls();
+        return false;
+      }
+      var unit = getLawhUnit(key);
+      unit.verifiedAt = record.verifiedAt || "";
+      unit.readCount = Math.max(unit.readCount, Number(record.readCount) || 0);
+      unit.recallCount = Math.max(unit.recallCount, Number(record.recallCount) || 0);
+      unit.updatedAt = record.updatedAt || unit.updatedAt;
+      saveState();
+      releaseLawhPhotoUrl();
+      lawhDraftBlob = record.blob;
+      lawhDraftMeta = {
+        fileName: record.fileName || "lawh-page",
+        fileType: record.fileType || record.blob.type || "image/jpeg",
+        width: Math.max(0, Number(record.width) || 0),
+        height: Math.max(0, Number(record.height) || 0),
+        pageNumber: Math.max(0, Number(record.pageNumber) || 0)
+      };
+      lawhDraftReady = Math.max(lawhDraftMeta.width, lawhDraftMeta.height) >= 1200;
+      lawhDraftVerified = Boolean(unit.verifiedAt);
+      lawhDraftStored = true;
+      lawhStorageState = "restored";
+      lawhPhotoUrl = URL.createObjectURL(record.blob);
+      var preview = document.getElementById("lawh-preview");
+      var image = document.getElementById("lawh-preview-image");
+      if (preview) preview.hidden = false;
+      if (image) image.src = lawhPhotoUrl;
+      renderLawhPhotoQuality(lawhDraftMeta.width, lawhDraftMeta.height, true);
+      renderLawhStorageControls();
+      return true;
+    }).catch(function () {
+      if (requestId !== lawhRestoreRequest) return false;
+      lawhStorageState = window.indexedDB ? "error" : "unavailable";
+      renderLawhStorageControls();
+      return false;
+    });
+  }
+
+  function openStoredLawhPage(record) {
+    if (!record) return;
+    var surahId = Math.max(1, Number(record.surahId) || Number(String(record.id).split(":")[0]) || 1);
+    var ayahNumber = Math.max(1, Number(record.ayahNumber) || Number(String(record.id).split(":")[1]) || 1);
+    if (state.memorizationMethod !== "mauritanianLawh") selectMemorizationMethod("mauritanianLawh", false);
+    selectVerseByReference(surahId, ayahNumber, { navigate: false }).then(function () {
+      return restoreLawhDraftForCurrentKey(true);
+    }).then(function () {
+      var workspace = document.getElementById("lawh-workspace");
+      if (workspace) workspace.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  function deleteStoredLawhPage(id) {
+    if (!id || !window.confirm(t("lawhDeleteConfirm"))) return;
+    removeLawhRecord(id).then(function () {
+      if (lawhDraftKey === id) {
+        clearLawhDraft();
+        lawhDraftKey = getCurrentLawhKey();
+      }
+      renderLawhLibrary();
+      showToast(t("lawhDeleted"));
+    }).catch(function () { showToast(t("lawhStorageError")); });
+  }
+
+  function renderLawhLibrary() {
+    var list = document.getElementById("lawh-library-list");
+    var empty = document.getElementById("lawh-library-empty");
+    var count = document.getElementById("lawh-library-count");
+    if (!list || !empty || !count) return Promise.resolve([]);
+    var requestId = ++lawhLibraryRenderRequest;
+    empty.hidden = false;
+    empty.textContent = t("lawhLibraryLoading");
+    return getAllLawhRecords().then(function (records) {
+      if (requestId !== lawhLibraryRenderRequest) return records;
+      lawhLibraryUrls.forEach(function (url) { URL.revokeObjectURL(url); });
+      lawhLibraryUrls = [];
+      list.textContent = "";
+      records.sort(function (a, b) { return String(b.updatedAt || "").localeCompare(String(a.updatedAt || "")); });
+      count.textContent = formatMetric(records.total || records.length);
+      empty.hidden = records.length > 0;
+      empty.textContent = t("lawhLibraryEmpty");
+      records.forEach(function (record) {
+        var unit = getLawhUnit(record.id);
+        var card = document.createElement("article");
+        card.className = "lawh-library-card";
+        var thumbnail = document.createElement("img");
+        var thumbnailUrl = record.blob ? URL.createObjectURL(record.blob) : "";
+        lawhLibraryUrls.push(thumbnailUrl);
+        if (thumbnailUrl) thumbnail.src = thumbnailUrl; else thumbnail.hidden = true;
+        thumbnail.alt = formatText("lawhLibraryReference", { reference: record.id });
+        var copy = document.createElement("div");
+        copy.className = "lawh-library-card-copy";
+        var status = document.createElement("small");
+        status.textContent = t(!record.blob ? "lawhPhotoUnavailable" : record.verifiedAt ? "lawhLibraryVerified" : "lawhLibraryUnverified");
+        var title = document.createElement("strong");
+        title.textContent = formatText("lawhLibraryReference", { reference: record.id });
+        var progress = document.createElement("p");
+        progress.textContent = formatText("lawhLibraryProgress", { read: formatMetric(Math.max(unit.readCount, Number(record.readCount) || 0)), recall: formatMetric(Math.max(unit.recallCount, Number(record.recallCount) || 0)) });
+        var actions = document.createElement("div");
+        actions.className = "lawh-library-card-actions";
+        var openButton = document.createElement("button");
+        openButton.type = "button";
+        openButton.textContent = t("lawhLibraryOpen");
+        openButton.addEventListener("click", function () { openStoredLawhPage(record); });
+        var deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.className = "lawh-delete";
+        deleteButton.textContent = t("lawhLibraryDelete");
+        deleteButton.addEventListener("click", function () { deleteStoredLawhPage(record.id); });
+        actions.appendChild(openButton);
+        actions.appendChild(deleteButton);
+        copy.appendChild(status);
+        copy.appendChild(title);
+        copy.appendChild(progress);
+        copy.appendChild(actions);
+        card.appendChild(thumbnail);
+        card.appendChild(copy);
+        list.appendChild(card);
+      });
+      var oldMore = document.getElementById("lawh-library-more");
+      if (oldMore) oldMore.remove();
+      if (records.total > records.length) {
+        var more = document.createElement("button"); more.type = "button"; more.id = "lawh-library-more"; more.className = "secondary-button"; more.textContent = t("lawhMore");
+        more.onclick = function () { lawhLibraryLimit += 12; renderLawhLibrary(); };
+        list.parentElement.appendChild(more);
+      }
+      return records;
+    }).catch(function () {
+      if (requestId !== lawhLibraryRenderRequest) return [];
+      list.textContent = "";
+      count.textContent = "0";
+      empty.hidden = false;
+      empty.textContent = t("lawhStorageUnavailable");
+      lawhStorageState = window.indexedDB ? "error" : "unavailable";
+      renderLawhStorageControls();
+      return [];
+    });
+  }
+
+  function resetLawhStoredProgress() { return Promise.resolve(); }
+
+  function updateLawhVerificationButton() {
+    var button = document.getElementById("lawh-verify-page");
+    if (!button) return;
+    var checks = Array.prototype.slice.call(document.querySelectorAll("[data-lawh-check]"));
+    var complete = checks.length > 0 && checks.every(function (checkbox) { return checkbox.checked; });
+    button.disabled = !lawhDraftReady || !complete;
+    button.setAttribute("aria-disabled", String(button.disabled));
+  }
+
+  function renderLawhWorkflow() {
+    var verification = document.getElementById("lawh-verification");
+    var practice = document.getElementById("lawh-practice");
+    var readCount = document.getElementById("lawh-read-count");
+    var recallCount = document.getElementById("lawh-recall-count");
+    var activeDraft = lawhDraftReady && lawhDraftKey === getCurrentLawhKey();
+    if (verification) verification.hidden = !activeDraft || lawhDraftVerified;
+    if (practice) practice.hidden = !activeDraft || !lawhDraftVerified;
+    var unit = getLawhUnit(lawhDraftKey || getCurrentLawhKey());
+    if (readCount) readCount.textContent = formatMetric(unit.readCount);
+    if (recallCount) recallCount.textContent = formatMetric(unit.recallCount);
+    var status = document.getElementById("lawh-practice-status");
+    if (status) status.textContent = t(lawhDraftVerified ? "lawhVerified" : "lawhPracticeIntro");
+    updateLawhVerificationButton();
+    renderLawhStorageControls();
+  }
+
+  function resetLawhDraftChecks() {
+    document.querySelectorAll("[data-lawh-check]").forEach(function (checkbox) { checkbox.checked = false; });
+    updateLawhVerificationButton();
+  }
+
+  async function confirmLawhVerification() {
+    if (!lawhDraftReady || !lawhDraftKey) return;
+    var button = document.getElementById("lawh-verify-page");
+    if (!button || button.disabled) return;
+    var stamp = window.AllimStorage.stamp();
+    var key = lawhDraftKey;
+    var blob = lawhDraftBlob;
+    button.disabled = true;
+    try {
+      var bytes = await blob.arrayBuffer();
+      var hash = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))).map(function (byte) { return byte.toString(16).padStart(2, "0"); }).join("");
+      await window.AllimStorage.guarded(stamp, [], "readonly", function () {});
+      if (lawhDraftKey !== key || lawhDraftBlob !== blob) return;
+      var verifiedAt = new Date().toISOString();
+      await window.AllimStorage.mutateMany([{kind: "lawh_verification", id: key, value: {verified_at: verifiedAt, image_sha256: hash}}], stamp);
+      var unit = getLawhUnit(key);
+      unit.verifiedAt = verifiedAt;
+      unit.updatedAt = verifiedAt;
+      lawhDraftVerified = true;
+    } catch (error) { window.AllimStorage.setError(error); updateLawhVerificationButton(); return; }
+    saveState();
+    renderLawhWorkflow();
+    syncLawhStoredMetadata(lawhDraftKey);
+    showToast(t("lawhVerified"));
+  }
+
+  function recordLawhPractice(kind) {
+    if (!lawhDraftReady || !lawhDraftVerified || !lawhDraftKey) return;
+    var unit = getLawhUnit(lawhDraftKey);
+    if (kind === "recall") {
+      unit.recallCount += 1;
+      recordHifzLearningSignal("clean", "verse", 0);
+    } else {
+      unit.readCount += 1;
+    }
+    unit.updatedAt = new Date().toISOString();
+    personalBridge.fact("lawh_practice", Object.assign(window.AllimProgress.timing(), {verse_key: lawhDraftKey, practice: kind === "recall" ? "recall" : "read", verified_at: unit.verifiedAt, evidence: "self_reported"}));
+    saveState();
+    renderLawhWorkflow();
+    syncLawhStoredMetadata(lawhDraftKey);
+    showToast(t(kind === "recall" ? "lawhRecallRecorded" : "lawhReadRecorded"));
+  }
+
+  function renderLawhPhotoQuality(width, height, readable) {
+    var status = document.getElementById("lawh-photo-quality");
+    var detail = document.getElementById("lawh-photo-detail");
+    var preview = document.getElementById("lawh-preview");
+    if (!status || !detail) return;
+    if (preview) {
+      preview.dataset.width = String(Math.max(0, Number(width) || 0));
+      preview.dataset.height = String(Math.max(0, Number(height) || 0));
+      preview.dataset.readable = String(Boolean(readable));
+    }
+    if (!readable) {
+      lawhDraftReady = false;
+      lawhDraftVerified = false;
+      status.textContent = t("lawhPhotoUnreadable");
+      detail.textContent = "";
+      renderLawhWorkflow();
+      return;
+    }
+    var ready = Math.max(width, height) >= 1200;
+    if (!lawhDraftMeta) lawhDraftMeta = {};
+    lawhDraftMeta.width = Math.max(0, Number(width) || 0);
+    lawhDraftMeta.height = Math.max(0, Number(height) || 0);
+    lawhDraftReady = ready;
+    if (!ready) lawhDraftVerified = false;
+    if (!lawhDraftStored) lawhStorageState = ready ? "ready" : "idle";
+    status.textContent = t(ready ? "lawhPhotoReady" : "lawhPhotoLowQuality");
+    detail.textContent = formatText(ready ? "lawhPhotoReadyDetail" : "lawhPhotoLowDetail", { width: formatMetric(width), height: formatMetric(height) });
+    renderLawhWorkflow();
+  }
+
+  function handleLawhPhoto(event) {
+    var input = event && event.target;
+    var file = input && input.files && input.files[0];
+    if (!file) return;
+    var preview = document.getElementById("lawh-preview");
+    var image = document.getElementById("lawh-preview-image");
+    var status = document.getElementById("lawh-photo-quality");
+    var detail = document.getElementById("lawh-photo-detail");
+    if (!preview || !image) return;
+    lawhRestoreRequest++;
+    releaseLawhPhotoUrl();
+    lawhPhotoUrl = URL.createObjectURL(file);
+    lawhDraftBlob = file;
+    lawhDraftMeta = { fileName: file.name || "lawh-page", fileType: file.type || "image/jpeg", width: 0, height: 0, pageNumber: heartCurrentPageData ? Number(heartCurrentPageData.page) || 0 : 0 };
+    lawhDraftReady = false;
+    lawhDraftVerified = false;
+    lawhDraftKey = getCurrentLawhKey();
+    lawhDraftStored = false;
+    lawhStorageState = "idle";
+    resetLawhDraftChecks();
+    preview.hidden = false;
+    if (status) status.textContent = t("lawhPhotoChecking");
+    if (detail) detail.textContent = file.name;
+    image.onload = function () { renderLawhPhotoQuality(image.naturalWidth, image.naturalHeight, true); };
+    image.onerror = function () { renderLawhPhotoQuality(0, 0, false); };
+    image.src = lawhPhotoUrl;
+  }
+
   function normalizeHeartUnit(raw) {
     var unit = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
     var legacyTotal = Math.max(0, Math.min(HEART_FOUNDATION_TOTAL, Number(unit.accepted) || 0));
@@ -2795,7 +3397,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function getHeartPageVerseKeys(pageData) {
-    return pageData && Array.isArray(pageData.verses) ? pageData.verses.map(function (verse) { return String(verse.verse_key || ""); }).filter(Boolean) : [];
+    var keys = pageData && Array.isArray(pageData.verses) ? pageData.verses.map(function (verse) { return String(verse.verse_key || ""); }).filter(Boolean) : [];
+    return keys.filter(function (key, index) { return keys.indexOf(key) === index; });
   }
 
   function getHeartPageSummary(pageData) {
@@ -2815,6 +3418,166 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       permanent: page.permanent,
       page: page
     };
+  }
+
+  function normalizeLinked33Page(raw, pageNumber) {
+    var page = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
+    page.pageNumber = Math.max(1, Math.min(604, Number(page.pageNumber || pageNumber) || 1));
+    if (!page.verseCounts || typeof page.verseCounts !== "object" || Array.isArray(page.verseCounts)) page.verseCounts = {};
+    if (!page.segmentCounts || typeof page.segmentCounts !== "object" || Array.isArray(page.segmentCounts)) page.segmentCounts = {};
+    if (!page.daily || typeof page.daily !== "object" || Array.isArray(page.daily)) page.daily = {};
+    Object.keys(page.verseCounts).forEach(function (key) {
+      page.verseCounts[key] = Math.max(0, Math.min(LINKED_33_TARGET, Number(page.verseCounts[key]) || 0));
+    });
+    Object.keys(page.segmentCounts).forEach(function (key) {
+      page.segmentCounts[key] = Math.max(0, Math.min(LINKED_33_TARGET, Number(page.segmentCounts[key]) || 0));
+    });
+    page.startedAt = typeof page.startedAt === "string" ? page.startedAt : "";
+    page.lastAcceptedAt = typeof page.lastAcceptedAt === "string" ? page.lastAcceptedAt : "";
+    page.completedAt = typeof page.completedAt === "string" ? page.completedAt : "";
+    return page;
+  }
+
+  function getLinked33PageUnit(pageNumber) {
+    var key = String(Math.max(1, Math.min(604, Number(pageNumber) || 1)));
+    state.heartMushaf.linked33Pages[key] = normalizeLinked33Page(state.heartMushaf.linked33Pages[key], Number(key));
+    return state.heartMushaf.linked33Pages[key];
+  }
+
+  function getLinked33PageSummary(pageData) {
+    var keys = getHeartPageVerseKeys(pageData);
+    var page = getLinked33PageUnit(pageData && pageData.page);
+    var currentTask = null;
+    var verseTotal = 0;
+    var segmentTotal = 0;
+    var collected = 0;
+    for (var index = 0; index < keys.length; index += 1) {
+      var key = keys[index];
+      var verseCount = Math.max(0, Math.min(LINKED_33_TARGET, Number(page.verseCounts[key]) || 0));
+      page.verseCounts[key] = verseCount;
+      verseTotal += verseCount;
+      if (verseCount >= LINKED_33_TARGET) collected += 1;
+      if (!currentTask && verseCount < LINKED_33_TARGET) {
+        currentTask = { type: "verse", index: index, key: key, keys: [key], count: verseCount };
+      }
+      if (index > 0 || (keys.length === 1 && index === 0)) {
+        var segmentKey = keys.length === 1 ? "__page__" : key;
+        var segmentCount = Math.max(0, Math.min(LINKED_33_TARGET, Number(page.segmentCounts[segmentKey]) || 0));
+        page.segmentCounts[segmentKey] = segmentCount;
+        segmentTotal += segmentCount;
+        if (!currentTask && segmentCount < LINKED_33_TARGET) {
+          currentTask = { type: "segment", index: index, key: segmentKey, keys: keys.slice(0, index + 1), count: segmentCount, isPage: index === keys.length - 1 };
+        }
+      }
+    }
+    var linkedPassages = keys.length ? Math.max(1, keys.length - 1) : 0;
+    var possible = (keys.length + linkedPassages) * LINKED_33_TARGET;
+    var total = verseTotal + segmentTotal;
+    var complete = keys.length > 0 && !currentTask;
+    if (complete && !page.completedAt) page.completedAt = new Date().toISOString();
+    return {
+      keys: keys,
+      collected: collected,
+      total: keys.length,
+      repetitions: total,
+      possible: possible,
+      percent: possible ? Math.round(total / possible * 100) : 0,
+      ready: Boolean(currentTask),
+      permanent: complete,
+      complete: complete,
+      currentTask: currentTask,
+      page: page
+    };
+  }
+
+  function normalizeTurkishWallPage(raw, pageNumber) {
+    var page = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
+    page.pageNumber = Math.max(1, Math.min(604, Number(page.pageNumber || pageNumber) || 1));
+    if (!page.verseCounts || typeof page.verseCounts !== "object" || Array.isArray(page.verseCounts)) page.verseCounts = {};
+    if (!page.wallCounts || typeof page.wallCounts !== "object" || Array.isArray(page.wallCounts)) page.wallCounts = {};
+    if (!page.daily || typeof page.daily !== "object" || Array.isArray(page.daily)) page.daily = {};
+    Object.keys(page.verseCounts).forEach(function (key) { page.verseCounts[key] = Math.max(0, Math.min(LINKED_33_TARGET, Number(page.verseCounts[key]) || 0)); });
+    Object.keys(page.wallCounts).forEach(function (key) { page.wallCounts[key] = Math.max(0, Math.min(LINKED_33_TARGET, Number(page.wallCounts[key]) || 0)); });
+    page.startedAt = typeof page.startedAt === "string" ? page.startedAt : "";
+    page.lastAcceptedAt = typeof page.lastAcceptedAt === "string" ? page.lastAcceptedAt : "";
+    page.completedAt = typeof page.completedAt === "string" ? page.completedAt : "";
+    return page;
+  }
+
+  function getTurkishWallPageUnit(pageNumber) {
+    var key = String(Math.max(1, Math.min(604, Number(pageNumber) || 1)));
+    state.heartMushaf.turkishWallPages[key] = normalizeTurkishWallPage(state.heartMushaf.turkishWallPages[key], Number(key));
+    return state.heartMushaf.turkishWallPages[key];
+  }
+
+  function buildTurkishWallTasks(keys, page) {
+    var tasks = [];
+    if (!keys.length) return tasks;
+    var bottomIndex = keys.length - 1;
+    tasks.push({ type: "verse", role: "foundation", key: keys[bottomIndex], keys: [keys[bottomIndex]], count: Number(page.verseCounts[keys[bottomIndex]]) || 0 });
+    if (keys.length === 1) {
+      tasks.push({ type: "segment", role: "wall", key: "__page__", keys: keys.slice(), count: Number(page.wallCounts.__page__) || 0, isPage: true });
+      return tasks;
+    }
+    var highestIndex = bottomIndex;
+    while (highestIndex > 0) {
+      var jumpIndex = Math.max(0, highestIndex - 2);
+      var jumpKey = keys[jumpIndex];
+      tasks.push({ type: "verse", role: jumpIndex === 0 && highestIndex === 1 ? "foundation" : "jump", key: jumpKey, keys: [jumpKey], count: Number(page.verseCounts[jumpKey]) || 0 });
+      var gapIndex = jumpIndex + 1;
+      if (gapIndex < highestIndex) {
+        var gapKey = keys[gapIndex];
+        tasks.push({ type: "verse", role: "gap", key: gapKey, keys: [gapKey], count: Number(page.verseCounts[gapKey]) || 0 });
+      }
+      highestIndex = jumpIndex;
+      var wallKey = keys[highestIndex];
+      tasks.push({ type: "segment", role: "wall", key: wallKey, keys: keys.slice(highestIndex), count: Number(page.wallCounts[wallKey]) || 0, isPage: highestIndex === 0 });
+    }
+    return tasks;
+  }
+
+  function getTurkishWallPageSummary(pageData) {
+    var keys = getHeartPageVerseKeys(pageData);
+    var page = getTurkishWallPageUnit(pageData && pageData.page);
+    var tasks = buildTurkishWallTasks(keys, page);
+    tasks.forEach(function (task) { task.count = Math.max(0, Math.min(LINKED_33_TARGET, Number(task.count) || 0)); });
+    var currentTask = tasks.find(function (task) { return task.count < LINKED_33_TARGET; }) || null;
+    var repetitions = tasks.reduce(function (sum, task) { return sum + task.count; }, 0);
+    var possible = tasks.length * LINKED_33_TARGET;
+    var collected = keys.filter(function (key) { return Math.max(0, Number(page.verseCounts[key]) || 0) >= LINKED_33_TARGET; }).length;
+    var complete = keys.length > 0 && !currentTask;
+    if (complete && !page.completedAt) page.completedAt = new Date().toISOString();
+    return { keys: keys, tasks: tasks, collected: collected, total: keys.length, repetitions: repetitions, possible: possible, percent: possible ? Math.round(repetitions / possible * 100) : 0, ready: Boolean(currentTask), permanent: complete, complete: complete, currentTask: currentTask, page: page };
+  }
+
+  function getTurkishWallTaskText(summary) {
+    var task = summary && summary.currentTask;
+    if (!task) return t("turkishAllComplete");
+    if (task.type === "segment") {
+      if (task.isPage) return formatText("turkishCurrentPage", { count: formatMetric(task.count) });
+      return formatText("turkishCurrentWall", { start: task.keys[0], end: task.keys[task.keys.length - 1], count: formatMetric(task.count) });
+    }
+    var key = task.role === "gap" ? "turkishCurrentGap" : (task.role === "jump" ? "turkishCurrentJump" : "turkishCurrentFoundation");
+    return formatText(key, { reference: task.key, count: formatMetric(task.count) });
+  }
+
+  function getLinked33TaskText(summary) {
+    var task = summary && summary.currentTask;
+    if (!task) return t("linked33AllComplete");
+    if (task.type === "verse") {
+      return formatText("linked33CurrentVerse", { reference: task.key, count: formatMetric(task.count) });
+    }
+    if (task.isPage) return formatText("linked33CurrentPage", { count: formatMetric(task.count) });
+    return formatText("linked33CurrentJoin", {
+      start: task.keys[0],
+      end: task.keys[task.keys.length - 1],
+      count: formatMetric(task.count)
+    });
+  }
+
+  function getLinked33TodayCount(summary) {
+    if (!summary || !summary.page) return 0;
+    return Math.max(0, Number(summary.page.daily[dateKey(new Date())]) || 0);
   }
 
   function heartDaysBetween(fromValue, toValue) {
@@ -2896,10 +3659,149 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     ayahSelect.value = String(currentVerse.ayah);
   }
 
+  function setTranslatedText(element, key) {
+    if (!element) return;
+    element.setAttribute("data-i18n", key);
+    element.textContent = t(key);
+  }
+
+  function isStructured33Method(method) {
+    return method === "linked33" || method === "turkishWall33";
+  }
+
+  function getStructuredPageSummary(pageData, method) {
+    return method === "turkishWall33" ? getTurkishWallPageSummary(pageData) : getLinked33PageSummary(pageData);
+  }
+
+  function getStructuredTaskText(summary, method) {
+    return method === "turkishWall33" ? getTurkishWallTaskText(summary) : getLinked33TaskText(summary);
+  }
+
+  function updateMemorizationMethodUi() {
+    var linked33 = state.memorizationMethod === "linked33";
+    var turkish = state.memorizationMethod === "turkishWall33";
+    var lawh = state.memorizationMethod === "mauritanianLawh";
+    var structured = linked33 || turkish;
+    var memorizeView = document.getElementById("view-memorize");
+    if (memorizeView) memorizeView.setAttribute("data-memorization-method", state.memorizationMethod);
+    document.querySelectorAll("[data-hifz-method]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.getAttribute("data-hifz-method") === state.memorizationMethod));
+    });
+    var stages300 = document.getElementById("heart-stages-300");
+    var stages33 = document.getElementById("heart-stages-33");
+    var stagesTurkish = document.getElementById("heart-stages-turkish");
+    var lawhWorkspace = document.getElementById("lawh-workspace");
+    if (stages300) stages300.hidden = structured;
+    if (stages33) stages33.hidden = !linked33;
+    if (stagesTurkish) stagesTurkish.hidden = !turkish;
+    if (lawhWorkspace) lawhWorkspace.hidden = !lawh;
+    if (lawh) {
+      renderLawhWorkflow();
+      renderLawhLibrary();
+      restoreLawhDraftForCurrentKey(false);
+    }
+    setTranslatedText(document.getElementById("memorize-intro"), lawh ? "memorizeIntroLawh" : (turkish ? "memorizeIntroTurkish" : (linked33 ? "memorizeIntro33" : "memorizeIntro300")));
+    setTranslatedText(document.getElementById("heart-rule-text"), turkish ? "heartRuleTurkish" : (linked33 ? "heartRule33" : "heartRule"));
+    setTranslatedText(document.getElementById("heart-rule-title"), turkish ? "heartRuleTurkishTitle" : (linked33 ? "heartRule33Title" : "heartRuleTitle"));
+    setTranslatedText(document.getElementById("heart-next-review-label"), turkish ? "heartNextStepTurkish" : (linked33 ? "heartNextStep33" : "heartNextReview"));
+    setTranslatedText(document.getElementById("heart-strength-label"), turkish ? "heartPageProgressTurkish" : (linked33 ? "heartPageProgress33" : "heartStrength"));
+    setTranslatedText(document.getElementById("heart-practice-title"), turkish ? "heartPracticeTitleTurkish" : (linked33 ? "heartPracticeTitle33" : "heartPracticeTitle"));
+    setTranslatedText(document.getElementById("heart-practice-intro"), turkish ? "heartPracticeIntroTurkish" : (linked33 ? "heartPracticeIntro33" : "heartPracticeIntro"));
+    setTranslatedText(document.getElementById("memory-live-label"), turkish ? "memoryLiveCounterTurkish" : (linked33 ? "memoryLiveCounter33" : "memoryLiveCounter"));
+    setTranslatedText(document.getElementById("heart-progress-label"), turkish ? "turkishProgressLabel" : (linked33 ? "linked33ProgressLabel" : "heartFoundation"));
+    var methodTitle = document.getElementById("heart-method-title");
+    if (methodTitle) methodTitle.textContent = structured ? formatMetric(LINKED_33_TARGET) + " × " + formatMetric(LINKED_33_TARGET) : "100 + 100 + 100";
+    document.querySelectorAll("[data-linked33-target]").forEach(function (target) { target.textContent = formatMetric(LINKED_33_TARGET); });
+    document.querySelectorAll("[data-turkish-target]").forEach(function (target) { target.textContent = formatMetric(LINKED_33_TARGET); });
+    var totalTarget = document.getElementById("heart-total-target");
+    var memoryTarget = document.getElementById("memory-heart-target");
+    if (totalTarget) totalTarget.textContent = formatMetric(structured ? LINKED_33_TARGET : HEART_FOUNDATION_TOTAL);
+    if (memoryTarget) memoryTarget.textContent = formatMetric(structured ? LINKED_33_TARGET : HEART_FOUNDATION_TOTAL);
+    renderHifzChoiceUi();
+  }
+
+  function getLinked33PageForCurrentVerse() {
+    if (!currentSurah || !currentVerse || !heartCurrentPageData) return null;
+    var key = getVerseKey(currentSurah, currentVerse);
+    return getHeartPageVerseKeys(heartCurrentPageData).indexOf(key) >= 0 ? heartCurrentPageData : null;
+  }
+
+  function renderLinked33HeartMushaf(book, pageData) {
+    var key = getVerseKey(currentSurah, currentVerse);
+    var method = state.memorizationMethod;
+    var turkish = method === "turkishWall33";
+    var summary = pageData ? getStructuredPageSummary(pageData, method) : null;
+    var pageUnit = summary ? summary.page : null;
+    var verseCount = pageUnit ? Math.max(0, Number(pageUnit.verseCounts[key]) || 0) : 0;
+    var reveal = Math.round(verseCount / LINKED_33_TARGET * 100);
+    var task = summary && summary.currentTask;
+    var todayCount = getLinked33TodayCount(summary);
+    document.getElementById("heart-ayah-reference").textContent = currentSurah.names[state.language] + " · " + key;
+    document.getElementById("heart-ayah-text").textContent = currentVerse.text;
+    document.getElementById("heart-total-count").textContent = formatMetric(verseCount);
+    document.getElementById("heart-today-count").textContent = formatMetric(todayCount);
+    var taskStage = turkish ? (task && task.type === "segment" ? 3 : (task && task.role === "gap" ? 2 : 1)) : (task && task.type === "segment" ? (task.isPage ? 3 : 2) : 1);
+    document.getElementById("heart-current-stage").textContent = formatMetric(summary && summary.complete ? 3 : taskStage) + " / " + formatMetric(3);
+    document.getElementById("heart-next-review").textContent = summary ? getStructuredTaskText(summary, method) : t(turkish ? "heartPagePendingTurkish" : "heartPagePending33");
+    document.getElementById("heart-strength").textContent = formatMetric(summary ? summary.percent : 0) + "%";
+    var status = document.getElementById("heart-status");
+    if (status) {
+      status.textContent = summary ? getStructuredTaskText(summary, method) : t("heartPageLoading");
+      status.classList.toggle("is-protected", Boolean(summary && summary.complete));
+      status.classList.remove("is-due");
+    }
+    var memoryCount = document.getElementById("memory-heart-count");
+    var memoryProgress = document.getElementById("memory-heart-progress-bar");
+    if (memoryCount) memoryCount.textContent = formatMetric(verseCount);
+    if (memoryProgress) memoryProgress.style.width = Math.min(100, Math.round(verseCount / LINKED_33_TARGET * 100)) + "%";
+    var finalTask = summary && turkish && summary.tasks.length ? summary.tasks[summary.tasks.length - 1] : null;
+    var finalKey = summary && summary.keys.length === 1 ? "__page__" : (summary && summary.keys.length ? summary.keys[summary.keys.length - 1] : "");
+    var finalCount = turkish ? (finalTask ? finalTask.count : 0) : (pageUnit && finalKey ? Math.max(0, Number(pageUnit.segmentCounts[finalKey]) || 0) : 0);
+    var verseStageCount = task && task.type === "verse" ? task.count : (summary && summary.complete ? LINKED_33_TARGET : 0);
+    var segmentStageCount = task && task.type === "segment" && !task.isPage ? task.count : (summary && summary.complete ? LINKED_33_TARGET : 0);
+    document.getElementById("linked33-verse-count").textContent = formatMetric(verseStageCount);
+    document.getElementById("linked33-segment-count").textContent = formatMetric(segmentStageCount);
+    document.getElementById("linked33-page-count").textContent = formatMetric(finalCount);
+    document.querySelectorAll("[data-linked33-stage]").forEach(function (stage) {
+      var name = stage.getAttribute("data-linked33-stage");
+      var current = task && ((name === "verse" && task.type === "verse") || (name === "segment" && task.type === "segment" && !task.isPage) || (name === "page" && task.type === "segment" && task.isPage));
+      stage.classList.toggle("is-current", Boolean(current));
+      stage.classList.toggle("is-complete", Boolean(summary && summary.complete && name === "page"));
+    });
+    if (turkish) {
+      var foundationCount = task && task.type === "verse" && task.role !== "gap" ? task.count : (summary && summary.complete ? LINKED_33_TARGET : 0);
+      var gapCount = task && task.type === "verse" && task.role === "gap" ? task.count : (summary && summary.complete ? LINKED_33_TARGET : 0);
+      var wallCount = task && task.type === "segment" ? task.count : (summary && summary.complete ? LINKED_33_TARGET : 0);
+      document.getElementById("turkish-foundation-count").textContent = formatMetric(foundationCount);
+      document.getElementById("turkish-gap-count").textContent = formatMetric(gapCount);
+      document.getElementById("turkish-wall-count").textContent = formatMetric(wallCount);
+      document.querySelectorAll("[data-turkish-stage]").forEach(function (stage) {
+        var name = stage.getAttribute("data-turkish-stage");
+        var current = task && ((name === "foundation" && task.type === "verse" && task.role !== "gap") || (name === "gap" && task.type === "verse" && task.role === "gap") || (name === "wall" && task.type === "segment"));
+        stage.classList.toggle("is-current", Boolean(current));
+        stage.classList.toggle("is-complete", Boolean(summary && summary.complete && name === "wall"));
+      });
+    }
+    var startLabel = document.querySelector("#heart-start-practice span");
+    if (startLabel) startLabel.textContent = t(turkish ? (summary && summary.complete ? "turkishMethodComplete" : "turkishOpenStep") : (summary && summary.complete ? "linked33MethodComplete" : "linked33OpenStep"));
+    var startButton = document.getElementById("heart-start-practice");
+    if (startButton) startButton.disabled = Boolean(summary && summary.complete);
+    book.style.setProperty("--heart-reveal", reveal + "%");
+    book.classList.remove("is-dormant");
+    book.classList.toggle("is-complete", verseCount >= LINKED_33_TARGET);
+    if (summary) renderHeartPageLaunch(pageData);
+  }
+
   function renderHeartMushaf() {
     var book = document.getElementById("heart-book");
     if (!book || !currentSurah || !currentVerse) return;
+    updateMemorizationMethodUi();
+    if (state.memorizationMethod === "mauritanianLawh") return;
     populateHeartSelectors();
+    if (isStructured33Method(state.memorizationMethod)) {
+      renderLinked33HeartMushaf(book, getLinked33PageForCurrentVerse());
+      return;
+    }
     var key = getVerseKey(currentSurah, currentVerse);
     var unit = getHeartUnit(key);
     var presentation = getHeartPresentation(unit);
@@ -2931,6 +3833,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     book.style.setProperty("--heart-reveal", presentation.reveal + "%");
     book.classList.toggle("is-dormant", !presentation.protectedPage && (presentation.dormant || presentation.overdueDays > 0));
     book.classList.toggle("is-complete", presentation.total >= HEART_FOUNDATION_TOTAL);
+    var startButton = document.getElementById("heart-start-practice");
+    var startLabel = startButton && startButton.querySelector("span");
+    if (startButton) startButton.disabled = false;
+    if (startLabel) startLabel.textContent = t("heartStart");
     if (heartCurrentPageData && getHeartPageVerseKeys(heartCurrentPageData).indexOf(key) >= 0) renderHeartPageLaunch(heartCurrentPageData);
   }
 
@@ -2939,13 +3845,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var title = document.getElementById("heart-page-launch-title");
     var progress = document.getElementById("heart-page-launch-progress");
     if (!launch || !title || !progress || !pageData) return;
-    var summary = getHeartPageSummary(pageData);
+    var structured = isStructured33Method(state.memorizationMethod);
+    var summary = structured ? getStructuredPageSummary(pageData, state.memorizationMethod) : getHeartPageSummary(pageData);
     title.textContent = t("mushafPage") + " " + formatMetric(pageData.page);
-    progress.textContent = formatText("heartPageLaunchProgress", {
-      collected: formatMetric(summary.collected),
-      total: formatMetric(summary.total),
-      percent: formatMetric(summary.percent)
-    });
+    progress.textContent = structured ? getStructuredTaskText(summary, state.memorizationMethod) : formatText("heartPageLaunchProgress", { collected: formatMetric(summary.collected), total: formatMetric(summary.total), percent: formatMetric(summary.percent) });
     launch.classList.toggle("is-ready", summary.ready && !summary.permanent);
     launch.classList.toggle("is-permanent", summary.permanent);
     launch.setAttribute("aria-label", t("openHeartPage") + ": " + title.textContent + ", " + progress.textContent);
@@ -2986,6 +3889,233 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     return { messageKey: "heartMaintenanceRecorded", values: { count: formatMetric(unit.maintenanceCount) } };
   }
 
+  function recordStructuredCredit(method, page, task, attemptId) {
+    personalBridge.fact("hifz_credit", Object.assign(window.AllimProgress.timing(), {
+      attempt_id: attemptId || crypto.randomUUID(), method: method, page: Number(page),
+      task_type: task.type, task_key: task.key, verse_keys: task.keys.slice(),
+      evidence: "client_alignment", without_hints: true
+    }));
+  }
+
+  function recordLinked33VerseRecitation(key, pageData) {
+    if (!pageData) return { counted: false, messageKey: "linked33WrongVerse", values: {} };
+    var summary = getLinked33PageSummary(pageData);
+    var task = summary.currentTask;
+    if (!task || task.type !== "verse" || task.key !== String(key || "")) return { counted: false, messageKey: summary.complete ? "linked33MethodComplete" : "linked33WrongVerse", values: {} };
+    var now = new Date();
+    var page = summary.page;
+    var today = dateKey(now);
+    if (!page.startedAt) page.startedAt = now.toISOString();
+    page.lastAcceptedAt = now.toISOString();
+    page.daily[today] = Math.max(0, Number(page.daily[today]) || 0) + 1;
+    page.verseCounts[task.key] = Math.min(LINKED_33_TARGET, task.count + 1);
+    var count = page.verseCounts[task.key];
+    recordStructuredCredit(state.memorizationMethod, pageData.page, task, memoryAttemptId);
+    var nextSummary = getLinked33PageSummary(pageData);
+    return {
+      counted: true,
+      total: count,
+      stepComplete: count >= LINKED_33_TARGET,
+      methodComplete: nextSummary.complete,
+      messageKey: nextSummary.complete ? "linked33MethodComplete" : (count >= LINKED_33_TARGET ? "linked33StepComplete" : "linked33CreditRecorded"),
+      values: { count: formatMetric(count) }
+    };
+  }
+
+  function recordTurkishWallVerseRecitation(key, pageData) {
+    if (!pageData) return { counted: false, messageKey: "turkishWrongVerse", values: {} };
+    var summary = getTurkishWallPageSummary(pageData);
+    var task = summary.currentTask;
+    if (!task || task.type !== "verse" || task.key !== String(key || "")) return { counted: false, messageKey: summary.complete ? "turkishMethodComplete" : "turkishWrongVerse", values: {} };
+    var now = new Date();
+    var page = summary.page;
+    var today = dateKey(now);
+    if (!page.startedAt) page.startedAt = now.toISOString();
+    page.lastAcceptedAt = now.toISOString();
+    page.daily[today] = Math.max(0, Number(page.daily[today]) || 0) + 1;
+    page.verseCounts[task.key] = Math.min(LINKED_33_TARGET, task.count + 1);
+    var count = page.verseCounts[task.key];
+    recordStructuredCredit(state.memorizationMethod, pageData.page, task, memoryAttemptId);
+    var nextSummary = getTurkishWallPageSummary(pageData);
+    return { counted: true, total: count, stepComplete: count >= LINKED_33_TARGET, methodComplete: nextSummary.complete, messageKey: nextSummary.complete ? "turkishMethodComplete" : (count >= LINKED_33_TARGET ? "turkishStepComplete" : "turkishCreditRecorded"), values: { count: formatMetric(count) } };
+  }
+
+  function findHeartPageVerse(pageData, key) {
+    return pageData && Array.isArray(pageData.verses) ? pageData.verses.find(function (verse) { return String(verse.verse_key || "") === String(key || ""); }) : null;
+  }
+
+  function openLinked33VerseTask(pageData, task, startNow) {
+    var verse = findHeartPageVerse(pageData, task && task.key);
+    if (!verse) {
+      showToast(t("heartPageLoadError"));
+      return false;
+    }
+    linked33Session = null;
+    memoryPracticeContext = { method: state.memorizationMethod, pageNumber: Number(pageData.page), key: task.key };
+    var dialog = document.getElementById("heart-page-dialog");
+    if (dialog && dialog.open) dialog.close();
+    setMushafMode(false);
+    activateMushafVerse(verse, true);
+    renderMemoryVerse();
+    navigate("memorize");
+    var stage = document.querySelector(".memory-stage");
+    if (stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (startNow) window.setTimeout(function () { startMemoryRecognition(false); }, 180);
+    return true;
+  }
+
+  function startLinked33Segment(pageData, task) {
+    if (!pageData || !task || task.type !== "segment" || !task.keys.length) return;
+    var pageNumber = Number(pageData.page);
+    var sameSession = linked33Session && linked33Session.method === state.memorizationMethod && linked33Session.pageNumber === pageNumber && linked33Session.key === task.key;
+    if (!sameSession) linked33Session = { method: state.memorizationMethod, pageNumber: pageNumber, key: task.key, keys: task.keys.slice(), nextIndex: 0, isPage: Boolean(task.isPage) };
+    memoryPracticeContext = null;
+    state.recitationFlow = "continuous";
+    state.recitationFlowExplicit = true;
+    state.autoAdvance = true;
+    state.strictCorrection = true;
+    updateRecitationFlowUi();
+    saveState();
+    var dialog = document.getElementById("heart-page-dialog");
+    if (dialog && dialog.open) dialog.close();
+    navigate("read");
+    setMushafMode(true, true);
+    selectReaderMode("mushaf");
+    showToast(t(state.memorizationMethod === "turkishWall33" ? "turkishJoinStarted" : "linked33JoinStarted"));
+    loadMushafPage(pageNumber, false).then(function () {
+      if (!linked33Session || linked33Session.pageNumber !== pageNumber) return;
+      var expectedKey = linked33Session.keys[linked33Session.nextIndex] || linked33Session.keys[0];
+      var verse = mushafPageVerses.find(function (item) { return String(item.verse_key || "") === expectedKey; });
+      if (!verse) {
+        linked33Session = null;
+        stopContinuousSession();
+        showToast(t("heartPageLoadError"));
+        return;
+      }
+      activateMushafVerse(verse, true);
+      window.setTimeout(function () { startRecognition(true); }, 180);
+    });
+  }
+
+  function startLinked33CurrentStep(pageData) {
+    if (window.ALLIMJourney && window.ALLIMJourney.isChecking()) return;
+    var method = state.memorizationMethod;
+    var turkish = method === "turkishWall33";
+    var summary = getStructuredPageSummary(pageData, method);
+    if (summary.complete || !summary.currentTask) {
+      showToast(t(turkish ? "turkishMethodComplete" : "linked33MethodComplete"));
+      return;
+    }
+    if (summary.currentTask.type === "verse") openLinked33VerseTask(pageData, summary.currentTask, true);
+    else startLinked33Segment(pageData, summary.currentTask);
+  }
+
+  function cancelStructuredAdvance() {
+    memoryFlowGeneration += 1;
+    if (structuredStepTimer) window.clearTimeout(structuredStepTimer);
+    structuredStepTimer = null;
+  }
+
+  function scheduleStructuredAdvance(delay) {
+    var generation = memoryFlowGeneration, method = state.memorizationMethod;
+    if (structuredStepTimer) window.clearTimeout(structuredStepTimer);
+    structuredStepTimer = window.setTimeout(function () {
+      structuredStepTimer = null;
+      if (generation !== memoryFlowGeneration || method !== state.memorizationMethod || window.ALLIMJourney && window.ALLIMJourney.isChecking()) return;
+      loadHeartPageContextForCurrentVerse().then(function (pageData) {
+        if (generation === memoryFlowGeneration && method === state.memorizationMethod && !(window.ALLIMJourney && window.ALLIMJourney.isChecking())) startLinked33CurrentStep(pageData);
+      }).catch(function () { showToast(t("heartPageLoadError")); });
+    }, delay);
+  }
+
+  function startActiveMemorizationStep() {
+    cancelStructuredAdvance();
+    if (window.ALLIMJourney && window.ALLIMJourney.isCheck(getVerseKey(currentSurah, currentVerse))) { startMemoryRecognition(false); return; }
+    if (!isStructured33Method(state.memorizationMethod)) {
+      var stage = document.querySelector(".memory-stage");
+      if (stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
+      showToast(t("heartPracticeScroll"));
+      startMemoryRecognition(false);
+      return;
+    }
+    loadHeartPageContextForCurrentVerse().then(startLinked33CurrentStep).catch(function () { showToast(t("heartPageLoadError")); });
+  }
+
+  function selectMemorizationMethod(method, announce) {
+    var next = HIFZ_METHODS.some(function (item) { return item.id === method; }) ? method : "foundation300";
+    if (state.memorizationMethod === next) return;
+    cancelStructuredAdvance();
+    memorySeriesActive = false;
+    stopMemoryRecognition(true);
+    stopContinuousSession();
+    linkedPageSession = null;
+    linked33Session = null;
+    memoryPracticeContext = null;
+    state.memorizationMethod = next;
+    saveState();
+    updateMemorizationMethodUi();
+    renderHeartMushaf();
+    renderHeartReadCounter();
+    updateMemoryCounterDisplay();
+    if (heartCurrentPageData) renderHeartPageLaunch(heartCurrentPageData);
+    if (announce) showToast(t(next === "mauritanianLawh" ? "hifzMethodChangedLawh" : (next === "turkishWall33" ? "hifzMethodChangedTurkish" : (next === "linked33" ? "hifzMethodChanged33" : "hifzMethodChanged300"))));
+  }
+
+  function registerLinked33SegmentVerse(verseKey) {
+    if (!linked33Session || !linked33Session.keys.length) return { active: false };
+    var key = String(verseKey || "");
+    var expected = linked33Session.keys[linked33Session.nextIndex];
+    if (key !== expected) {
+      linked33Session.nextIndex = key === linked33Session.keys[0] ? 1 : 0;
+      showToast(t("heartLinkedRestarted"));
+      return { active: true, cycleComplete: false };
+    }
+    linked33Session.nextIndex += 1;
+    if (linked33Session.nextIndex < linked33Session.keys.length) {
+      showToast(formatText(linked33Session.method === "turkishWall33" ? "turkishJoinProgress" : "linked33JoinProgress", { done: formatMetric(linked33Session.nextIndex), total: formatMetric(linked33Session.keys.length) }));
+      return { active: true, cycleComplete: false };
+    }
+    var pageData = heartPageCache[linked33Session.pageNumber] || heartCurrentPageData;
+    var turkish = linked33Session.method === "turkishWall33";
+    var page = turkish ? getTurkishWallPageUnit(linked33Session.pageNumber) : getLinked33PageUnit(linked33Session.pageNumber);
+    var now = new Date();
+    var today = dateKey(now);
+    page.daily[today] = Math.max(0, Number(page.daily[today]) || 0) + 1;
+    page.lastAcceptedAt = now.toISOString();
+    var counts = turkish ? page.wallCounts : page.segmentCounts;
+    counts[linked33Session.key] = Math.min(LINKED_33_TARGET, Math.max(0, Number(counts[linked33Session.key]) || 0) + 1);
+    var count = counts[linked33Session.key];
+    recordStructuredCredit(linked33Session.method, linked33Session.pageNumber, {type: "segment", key: linked33Session.key, keys: linked33Session.keys}, crypto.randomUUID());
+    var nextSummary = turkish ? getTurkishWallPageSummary(pageData) : getLinked33PageSummary(pageData);
+    var methodComplete = nextSummary.complete;
+    var shouldRestart = count < LINKED_33_TARGET;
+    linked33Session.nextIndex = 0;
+    recordHifzLearningSignal("clean", "connected", 0);
+    saveState();
+    renderHeartMushaf();
+    renderHeartReadCounter();
+    if (methodComplete) {
+      linked33Session = null;
+      showToast(t(turkish ? "turkishPageComplete" : "linked33PageComplete"));
+    } else {
+      showToast(formatText(turkish ? "turkishJoinCounted" : "linked33JoinCounted", { count: formatMetric(count) }));
+      if (!shouldRestart) linked33Session = null;
+    }
+    return { active: true, cycleComplete: true, restart: shouldRestart, stepComplete: !shouldRestart, methodComplete: methodComplete };
+  }
+
+  function restartLinked33SegmentCycle() {
+    clearAutoAdvance();
+    continuousResumePending = false;
+    window.setTimeout(function () {
+      if (!linked33Session || !heartCurrentPageData) return;
+      var first = mushafPageVerses.find(function (verse) { return String(verse.verse_key || "") === linked33Session.keys[0]; });
+      if (!first) return;
+      activateMushafVerse(first, true);
+      window.setTimeout(function () { if (linked33Session) startRecognition(true); }, 180);
+    }, 760);
+  }
+
   function getMushafVerseText(verse) {
     return (verse && Array.isArray(verse.words) ? verse.words : []).filter(function (word) {
       return word.char_type_name !== "end";
@@ -2995,11 +4125,14 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function updateMushafHeartClasses() {
-    var page = heartCurrentPageData ? getHeartPageUnit(heartCurrentPageData.page) : null;
+    var structured = isStructured33Method(state.memorizationMethod);
+    var page = heartCurrentPageData ? (structured ? (state.memorizationMethod === "turkishWall33" ? getTurkishWallPageUnit(heartCurrentPageData.page) : getLinked33PageUnit(heartCurrentPageData.page)) : getHeartPageUnit(heartCurrentPageData.page)) : null;
+    var linkedSummary = structured && heartCurrentPageData ? getStructuredPageSummary(heartCurrentPageData, state.memorizationMethod) : null;
     document.querySelectorAll(".mushaf-glyph[data-verse-key]").forEach(function (glyph) {
-      var unit = getHeartUnit(glyph.getAttribute("data-verse-key"));
-      glyph.classList.toggle("is-heart-collected", getHeartFoundationTotal(unit) >= HEART_FOUNDATION_TOTAL);
-      glyph.classList.toggle("is-heart-sealed", Boolean(page && page.permanent));
+      var key = glyph.getAttribute("data-verse-key");
+      var collected = structured ? Boolean(page && Number(page.verseCounts[key]) >= LINKED_33_TARGET) : getHeartFoundationTotal(getHeartUnit(key)) >= HEART_FOUNDATION_TOTAL;
+      glyph.classList.toggle("is-heart-collected", collected);
+      glyph.classList.toggle("is-heart-sealed", structured ? Boolean(linkedSummary && linkedSummary.complete) : Boolean(page && page.permanent));
     });
   }
 
@@ -3007,10 +4140,15 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var button = document.getElementById("open-heart-page");
     var count = document.getElementById("heart-read-count");
     if (!button || !count || !currentSurah || !currentVerse) return;
-    var total = getHeartFoundationTotal(getHeartUnit(getVerseKey(currentSurah, currentVerse)));
+    var structured = isStructured33Method(state.memorizationMethod);
+    var target = structured ? LINKED_33_TARGET : HEART_FOUNDATION_TOTAL;
+    var key = getVerseKey(currentSurah, currentVerse);
+    var linkedPage = getLinked33PageForCurrentVerse();
+    var structuredPage = linkedPage ? (state.memorizationMethod === "turkishWall33" ? getTurkishWallPageUnit(linkedPage.page) : getLinked33PageUnit(linkedPage.page)) : null;
+    var total = structured ? (structuredPage ? Math.max(0, Number(structuredPage.verseCounts[key]) || 0) : 0) : getHeartFoundationTotal(getHeartUnit(key));
     count.textContent = formatMetric(total);
-    button.classList.toggle("is-complete", total >= HEART_FOUNDATION_TOTAL);
-    button.setAttribute("aria-label", t("openHeartPage") + ": " + formatMetric(total) + " / " + formatMetric(HEART_FOUNDATION_TOTAL));
+    button.classList.toggle("is-complete", total >= target);
+    button.setAttribute("aria-label", t("openHeartPage") + ": " + formatMetric(total) + " / " + formatMetric(target));
     updateMushafHeartClasses();
   }
 
@@ -3050,6 +4188,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       heartCurrentPageData = pageData;
       renderHeartReadCounter();
       renderHeartPageLaunch(pageData);
+      renderHeartMushaf();
+      updateMemoryCounterDisplay();
       var dialog = document.getElementById("heart-page-dialog");
       if (dialog && dialog.open) renderHeartPageDialog(pageData);
       return pageData;
@@ -3079,7 +4219,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var reference = document.getElementById("heart-page-selected-reference");
     var count = document.getElementById("heart-page-selected-count");
     if (reference) reference.textContent = String(verseKey || "—");
-    if (count) count.textContent = formatMetric(total || 0) + " / " + formatMetric(HEART_FOUNDATION_TOTAL);
+    var target = isStructured33Method(state.memorizationMethod) ? LINKED_33_TARGET : HEART_FOUNDATION_TOTAL;
+    if (count) count.textContent = formatMetric(total || 0) + " / " + formatMetric(target);
     if (!sheet) return;
     sheet.querySelectorAll(".heart-mushaf-glyph.is-inspected").forEach(function (glyph) { glyph.classList.remove("is-inspected"); });
     if (!verseKey) return;
@@ -3143,15 +4284,17 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
         lineData.words.forEach(function (item) {
           var word = item.word;
           var key = String(item.verse.verse_key || "");
-          var total = getHeartFoundationTotal(getHeartUnit(key));
-          var reveal = summary.permanent ? 1 : Math.min(1, .065 + .935 * total / HEART_FOUNDATION_TOTAL);
+          var structured = isStructured33Method(state.memorizationMethod);
+          var target = structured ? LINKED_33_TARGET : HEART_FOUNDATION_TOTAL;
+          var total = structured ? Math.max(0, Number(summary.page.verseCounts[key]) || 0) : getHeartFoundationTotal(getHeartUnit(key));
+          var reveal = summary.permanent ? 1 : Math.min(1, .065 + .935 * total / target);
           var glyphButton = document.createElement("button");
           glyphButton.type = "button";
-          glyphButton.className = "mushaf-glyph heart-mushaf-glyph" + (word.char_type_name === "end" ? " is-ayah-end" : "") + (total >= HEART_FOUNDATION_TOTAL ? " is-heart-collected" : "") + (summary.permanent ? " is-heart-sealed" : "");
+          glyphButton.className = "mushaf-glyph heart-mushaf-glyph" + (word.char_type_name === "end" ? " is-ayah-end" : "") + (total >= target ? " is-heart-collected" : "") + (summary.permanent ? " is-heart-sealed" : "");
           glyphButton.style.fontFamily = resolvedFont;
           glyphButton.style.setProperty("--heart-verse-opacity", reveal.toFixed(3));
           glyphButton.setAttribute("data-verse-key", key);
-          glyphButton.setAttribute("aria-label", key + ": " + formatMetric(total) + " / " + formatMetric(HEART_FOUNDATION_TOTAL));
+          glyphButton.setAttribute("aria-label", key + ": " + formatMetric(total) + " / " + formatMetric(target));
           var glyph = resolvedVersion === "v1" ? String(word.code_v1 || word.code_v2 || "") : (resolvedVersion === "v2" ? String(word.code_v2 || "") : String(word.text_qpc_hafs || ""));
           if (glyph.indexOf("<") === -1 && glyph.indexOf(">") === -1) glyphButton.textContent = glyph;
           else glyphButton.textContent = word.text_qpc_hafs || "";
@@ -3170,7 +4313,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       footer.textContent = state.language === "ar" ? arabicNumber(pageData.page) : String(pageData.page);
       sheet.appendChild(footer);
       var selectedKey = currentSurah && currentVerse ? getVerseKey(currentSurah, currentVerse) : (pageData.verses[0] && pageData.verses[0].verse_key);
-      var selectedTotal = selectedKey ? getHeartFoundationTotal(getHeartUnit(selectedKey)) : 0;
+      var selectedTotal = selectedKey ? (isStructured33Method(state.memorizationMethod) ? Math.max(0, Number(summary.page.verseCounts[selectedKey]) || 0) : getHeartFoundationTotal(getHeartUnit(selectedKey))) : 0;
       updateHeartPageSelection(selectedKey, selectedTotal, sheet);
       fitHeartMushafLines(sheet);
     }).catch(function () {
@@ -3184,7 +4327,9 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     heartCurrentPageData = pageData;
     heartPageCache[pageData.page] = pageData;
     getHeartPageVerseKeys(pageData).forEach(function (key) { heartVersePageCache[key] = Number(pageData.page); });
-    var summary = getHeartPageSummary(pageData);
+    var structured = isStructured33Method(state.memorizationMethod);
+    var turkish = state.memorizationMethod === "turkishWall33";
+    var summary = structured ? getStructuredPageSummary(pageData, state.memorizationMethod) : getHeartPageSummary(pageData);
     renderHeartPageLaunch(pageData);
     var pageNumber = document.getElementById("heart-page-number");
     var collected = document.getElementById("heart-page-collected");
@@ -3200,32 +4345,48 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var startState = document.getElementById("start-linked-page-state");
     var continueState = document.getElementById("continue-heart-page-state");
     var nextStep = document.getElementById("heart-page-next-step");
-    var activeLinked = Boolean(linkedPageSession && linkedPageSession.pageNumber === Number(pageData.page));
+    var activeLinked = structured ? Boolean(linked33Session && linked33Session.pageNumber === Number(pageData.page)) : Boolean(linkedPageSession && linkedPageSession.pageNumber === Number(pageData.page));
     pageNumber.textContent = formatMetric(pageData.page);
     collected.textContent = formatMetric(summary.collected) + " / " + formatMetric(summary.total);
     meter.style.width = summary.percent + "%";
     lock.classList.toggle("is-ready", summary.ready && !summary.permanent);
     lock.classList.toggle("is-permanent", summary.permanent);
-    lockText.textContent = t(summary.permanent ? "heartPagePermanent" : (summary.ready ? "heartPageReady" : "heartPageBuilding"));
+    lockText.textContent = structured ? (summary.complete ? t(turkish ? "turkishMethodComplete" : "linked33MethodComplete") : getStructuredTaskText(summary, state.memorizationMethod)) : t(summary.permanent ? "heartPagePermanent" : (summary.ready ? "heartPageReady" : "heartPageBuilding"));
+    var guidance = document.getElementById("heart-page-guidance");
+    setTranslatedText(guidance, turkish ? "heartPageGuidanceTurkish" : (structured ? "heartPageGuidance33" : "heartPageGuidance"));
+    var connectedTitle = connected.querySelector("strong");
+    setTranslatedText(connectedTitle, turkish ? "heartConnectedTitleTurkish" : (structured ? "heartConnectedTitle33" : "heartConnectedTitle"));
+    var completeLegend = document.querySelector(".heart-page-legend .is-complete + small");
+    setTranslatedText(completeLegend, turkish ? "heartRevealCompleteTurkish" : (structured ? "heartRevealComplete33" : "heartRevealComplete"));
     connected.classList.toggle("is-active", activeLinked);
     connected.classList.toggle("is-complete", summary.permanent);
-    connectedStatus.textContent = t(summary.permanent ? "heartConnectedPermanent" : (activeLinked ? "heartConnectedActive" : (summary.ready ? "heartConnectedReady" : "heartConnectedLocked")));
-    var linkedDone = activeLinked ? linkedPageSession.nextIndex : 0;
-    connectedCount.textContent = formatMetric(summary.permanent ? summary.total : linkedDone) + " / " + formatMetric(summary.total);
-    startButton.disabled = !summary.ready;
-    startButton.setAttribute("aria-disabled", String(!summary.ready));
-    startButton.setAttribute("data-state", summary.permanent ? "saved" : (activeLinked ? "active" : (summary.ready ? "ready" : "locked")));
-    startButton.classList.toggle("primary-button", summary.ready);
-    startButton.classList.toggle("secondary-button", !summary.ready);
-    startLabel.textContent = t(summary.permanent ? "heartOpenPermanent" : (activeLinked ? "heartContinueConnected" : "heartStartConnected"));
-    startState.textContent = formatText(summary.permanent ? "heartLinkedSavedProgress" : (activeLinked ? "heartLinkedActiveProgress" : (summary.ready ? "heartLinkedReadyProgress" : "heartLinkedLockedProgress")), {
-      collected: formatMetric(summary.collected), total: formatMetric(summary.total), done: formatMetric(linkedDone)
-    });
+    var linkedDone = structured ? (activeLinked ? linked33Session.nextIndex : (summary.currentTask ? summary.currentTask.count : LINKED_33_TARGET)) : (activeLinked ? linkedPageSession.nextIndex : 0);
+    if (structured) {
+      connectedStatus.textContent = activeLinked ? formatText(turkish ? "turkishJoinProgress" : "linked33JoinProgress", { done: formatMetric(linked33Session.nextIndex), total: formatMetric(linked33Session.keys.length) }) : getStructuredTaskText(summary, state.memorizationMethod);
+      connectedCount.textContent = formatMetric(summary.complete ? LINKED_33_TARGET : (summary.currentTask ? summary.currentTask.count : 0)) + " / " + formatMetric(LINKED_33_TARGET);
+      startButton.disabled = summary.complete;
+      startButton.setAttribute("aria-disabled", String(summary.complete));
+      startButton.setAttribute("data-state", summary.complete ? "saved" : (activeLinked ? "active" : "ready"));
+      startButton.classList.toggle("primary-button", !summary.complete);
+      startButton.classList.toggle("secondary-button", summary.complete);
+      startLabel.textContent = t(turkish ? (summary.complete ? "turkishMethodComplete" : (activeLinked ? "turkishContinueStep" : "turkishOpenStep")) : (summary.complete ? "linked33MethodComplete" : (activeLinked ? "linked33ContinueStep" : "linked33OpenStep")));
+      startState.textContent = getStructuredTaskText(summary, state.memorizationMethod);
+    } else {
+      connectedStatus.textContent = t(summary.permanent ? "heartConnectedPermanent" : (activeLinked ? "heartConnectedActive" : (summary.ready ? "heartConnectedReady" : "heartConnectedLocked")));
+      connectedCount.textContent = formatMetric(summary.permanent ? summary.total : linkedDone) + " / " + formatMetric(summary.total);
+      startButton.disabled = !summary.ready;
+      startButton.setAttribute("aria-disabled", String(!summary.ready));
+      startButton.setAttribute("data-state", summary.permanent ? "saved" : (activeLinked ? "active" : (summary.ready ? "ready" : "locked")));
+      startButton.classList.toggle("primary-button", summary.ready);
+      startButton.classList.toggle("secondary-button", !summary.ready);
+      startLabel.textContent = t(summary.permanent ? "heartOpenPermanent" : (activeLinked ? "heartContinueConnected" : "heartStartConnected"));
+      startState.textContent = formatText(summary.permanent ? "heartLinkedSavedProgress" : (activeLinked ? "heartLinkedActiveProgress" : (summary.ready ? "heartLinkedReadyProgress" : "heartLinkedLockedProgress")), { collected: formatMetric(summary.collected), total: formatMetric(summary.total), done: formatMetric(linkedDone) });
+    }
     continueState.textContent = formatText("heartCollectProgress", { collected: formatMetric(summary.collected), total: formatMetric(summary.total) });
-    nextStep.textContent = t(summary.permanent ? "heartNextSaved" : (summary.ready ? "heartNextConnect" : "heartNextCollect"));
-    continueButton.hidden = summary.ready || summary.permanent;
+    nextStep.textContent = structured ? getStructuredTaskText(summary, state.memorizationMethod) : t(summary.permanent ? "heartNextSaved" : (summary.ready ? "heartNextConnect" : "heartNextCollect"));
+    continueButton.hidden = structured || summary.ready || summary.permanent;
     var linkedIcon = startButton.querySelector("use");
-    if (linkedIcon) linkedIcon.setAttribute("href", summary.ready ? "#i-mic" : "#i-link");
+    if (linkedIcon) linkedIcon.setAttribute("href", structured && summary.currentTask && summary.currentTask.type === "verse" ? (turkish ? "#i-layers" : "#i-heart") : (summary.ready ? "#i-mic" : "#i-link"));
     renderHeartMushafPage(pageData, summary);
   }
 
@@ -3244,6 +4405,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
 
   function continueHeartPage() {
     if (!heartCurrentPageData) return;
+    if (isStructured33Method(state.memorizationMethod)) {
+      startLinked33CurrentStep(heartCurrentPageData);
+      return;
+    }
     var verse = heartCurrentPageData.verses.find(function (item) {
       return getHeartFoundationTotal(getHeartUnit(item.verse_key)) < HEART_FOUNDATION_TOTAL;
     }) || heartCurrentPageData.verses[0];
@@ -3253,6 +4418,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
 
   function startLinkedPageReading() {
     if (!heartCurrentPageData) return;
+    if (isStructured33Method(state.memorizationMethod)) {
+      startLinked33CurrentStep(heartCurrentPageData);
+      return;
+    }
     var summary = getHeartPageSummary(heartCurrentPageData);
     if (!summary.ready || !summary.keys.length) return;
     var pageNumber = Number(heartCurrentPageData.page);
@@ -4063,6 +5232,9 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function renderMemoryVerse() {
     memoryAttemptId = crypto.randomUUID();
     if (!currentSurah || !currentVerse) return;
+    if (window.ALLIMJourney) window.ALLIMJourney.reset();
+    if (window.ALLIMJourney) window.ALLIMJourney.changed(getVerseKey(currentSurah, currentVerse));
+    if (memoryPracticeContext && memoryPracticeContext.key !== getVerseKey(currentSurah, currentVerse)) memoryPracticeContext = null;
     memorySeriesActive = false;
     stopMemoryRecognition(true);
     var words = splitVerseWords(currentVerse.text);
@@ -5850,6 +7022,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       return;
     }
     if (!currentSurah || !currentVerse) return;
+    if (window.ALLIMJourney) window.ALLIMJourney.changed(getVerseKey(currentSurah, currentVerse));
     state.selectedSurah = currentSurah.id;
     state.selectedAyah = currentVerse.ayah;
     currentWords = makeCurrentWords(currentVerse, currentSurah);
@@ -6424,7 +7597,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     recognitionSessionCounted = true;
     saveLearningEvent("verse_completed", { attempt_id: readAttemptId || (readAttemptId = crypto.randomUUID()),
       verse_key: getVerseKey(currentSurah, currentVerse), mode: "read", matched_words: matchedWords,
-      hints_used: 0, full_verse: true, alignment_complete: true, evidence: "client_alignment", ruleset: "current-300-v1" });
+      hints_used: 0, full_verse: true, alignment_complete: true, evidence: "client_alignment", ruleset: "current-300-v1", hifz_method: state.memorizationMethod });
     state.sessions += 1;
     state.wordsReviewed += matchedWords;
     logActivity();
@@ -6436,6 +7609,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
 
 
   function renderRecognitionAlignment(alignment, isFinal) {
+    if (window.ALLIMJourney && !recognitionSessionCounted) window.ALLIMJourney.observe("read", getVerseKey(currentSurah, currentVerse), alignment, isFinal);
     lastMatchedCount = alignment.matched;
     lastAlignment = alignment;
     lastAlignmentFinal = Boolean(isFinal);
@@ -6471,6 +7645,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var shouldCredit = !recognitionSessionCounted;
     var heartResult = null;
     var linkedResult = { sealed: false };
+    var linked33Result = { active: false };
     var pageRecallResult = { complete: false };
     var resolvedCorrection = correctionLocked;
     clearCorrectionLock();
@@ -6482,10 +7657,15 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       }, 1500);
     }
     if (shouldCredit) {
+      if (window.ALLIMJourney) window.ALLIMJourney.completed("read", getVerseKey(currentSurah, currentVerse));
       recordRecognitionSession(alignment.matched);
       var verseKey = getVerseKey(currentSurah, currentVerse);
-      heartResult = recordHeartRecitation(verseKey);
-      linkedResult = registerLinkedPageVerse(verseKey);
+      if (isStructured33Method(state.memorizationMethod) && linked33Session) linked33Result = registerLinked33SegmentVerse(verseKey);
+      else if (state.memorizationMethod === "foundation300") {
+        heartResult = recordHeartRecitation(verseKey);
+        recordHifzLearningSignal("clean", "verse", 0);
+        linkedResult = registerLinkedPageVerse(verseKey);
+      }
       pageRecallResult = registerPageRecallVerse(verseKey);
       saveState();
       renderHeartMushaf();
@@ -6507,6 +7687,12 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (state.recitationFlow === "continuous" && continuousSessionActive) {
       userStoppedRecognition = false;
       continuousResumePending = true;
+    }
+    if (linked33Result.cycleComplete) {
+      continuousResumePending = false; clearAutoAdvance();
+      if (linked33Result.restart) restartLinked33SegmentCycle();
+      else { stopContinuousSession(); if (!linked33Result.methodComplete) scheduleStructuredAdvance(520); }
+      return;
     }
     if (linkedResult.sealed) {
       continuousResumePending = false;
@@ -6680,6 +7866,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function stopRecognitionImmediately() {
+    if (window.ALLIMJourney) window.ALLIMJourney.flush();
     userStoppedRecognition = true;
     stopContinuousSession();
     clearAutoAdvance();
@@ -7021,23 +8208,33 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
 
   function finishMemorySession() {
     if (memorySessionCounted) return;
+    if (window.ALLIMJourney && window.ALLIMJourney.isCheck(getVerseKey(currentSurah, currentVerse))) {
+      memorySessionCounted = true; memorySeriesActive = false; stopMemoryRecognition(true);
+      window.ALLIMJourney.completed("memory", getVerseKey(currentSurah, currentVerse), memoryFullVerseMatched);
+      document.getElementById("reveal-word").disabled = true;
+      setMemoryStatus(memoryHintsThisAttempt ? "memoryCompleteWithHint" : "memoryComplete", "memoryCompleteSub", false); setMemoryButton(false); return;
+    }
     memorySessionCounted = true;
     stopMemoryRecognition(true);
     state.sessions += 1;
     state.wordsReviewed += getMemoryWordElements().length;
     logActivity();
     var key = getVerseKey(currentSurah, currentVerse);
+    if (window.ALLIMJourney) window.ALLIMJourney.completed("memory", key, memoryFullVerseMatched);
     var heartResult = null;
+    var structured = isStructured33Method(state.memorizationMethod);
+    var turkish = state.memorizationMethod === "turkishWall33";
     var reviewIndex = state.reviewQueue.indexOf(key);
     var qualifiesForHeart = memoryHintsThisAttempt === 0 && memoryFullVerseMatched;
     saveLearningEvent("verse_completed", { attempt_id: memoryAttemptId || (memoryAttemptId = crypto.randomUUID()),
       verse_key: key, mode: "memory", matched_words: memoryFullVerseMatched ? splitVerseWords(currentVerse.text).length : getMemoryWordElements().length,
       hints_used: memoryHintsThisAttempt, full_verse: memoryFullVerseMatched, alignment_complete: memoryFullVerseMatched,
-      evidence: memoryFullVerseMatched ? "client_alignment" : "assisted_completion", ruleset: "current-300-v1" });
+      evidence: memoryFullVerseMatched ? "client_alignment" : "assisted_completion", ruleset: "current-300-v1", hifz_method: state.memorizationMethod });
     if (qualifiesForHeart) {
-      heartResult = recordHeartRecitation(key);
-      if (reviewIndex >= 0) state.reviewQueue.splice(reviewIndex, 1);
+      heartResult = turkish ? recordTurkishWallVerseRecitation(key, getLinked33PageForCurrentVerse()) : structured ? recordLinked33VerseRecitation(key, getLinked33PageForCurrentVerse()) : state.memorizationMethod === "foundation300" ? recordHeartRecitation(key) : {counted: false, messageKey: "lawhManualNote", values: {}};
+      if (heartResult.counted !== false && reviewIndex >= 0) state.reviewQueue.splice(reviewIndex, 1);
     }
+    recordHifzLearningSignal(qualifiesForHeart ? "clean" : memoryHintsThisAttempt ? "assisted" : "incomplete", "verse", memoryHintsThisAttempt);
     if (memoryHintsThisAttempt > 0 && reviewIndex < 0) state.reviewQueue.push(key);
     document.getElementById("reveal-word").disabled = true;
     if (memoryHintsThisAttempt > 0) setMemoryStatus("memoryCompleteWithHint", "memoryCompleteWithHintSub", false);
@@ -7051,8 +8248,12 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     updateMemoryCounterDisplay();
     loadHeartPageContextForCurrentVerse().catch(function () { return null; });
     showToast(memoryHintsThisAttempt > 0 ? t("heartHintNotCounted") : (!memoryFullVerseMatched ? t("heartFullVerseRequired") : formatText(heartResult.messageKey, heartResult.values)));
-    var total = getHeartFoundationTotal(getHeartUnit(key));
-    if (qualifiesForHeart && total < HEART_FOUNDATION_TOTAL && memorySeriesActive) {
+    var total = structured ? (heartResult && heartResult.counted ? heartResult.total : 0) : getHeartFoundationTotal(getHeartUnit(key));
+    var target = structured ? LINKED_33_TARGET : HEART_FOUNDATION_TOTAL;
+    if (structured && qualifiesForHeart && heartResult && heartResult.stepComplete) {
+      memorySeriesActive = false; setMemoryButton(false);
+      if (!heartResult.methodComplete) scheduleStructuredAdvance(760);
+    } else if (qualifiesForHeart && total < target && memorySeriesActive && (!structured || heartResult && heartResult.counted)) {
       queueMemoryRestart(760, false);
     } else if (!qualifiesForHeart && memorySeriesActive) {
       queueMemoryRestart(980, true);
@@ -7078,6 +8279,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function applyMemoryTranscript(transcript, isFinal) {
     var cleanTranscript = String(transcript || "").trim();
     if (!cleanTranscript) return null;
+    if (window.ALLIMJourney && !memorySessionCounted) {
+      var journeyAlignment = alignExpectedWords(splitVerseWords(currentVerse.text), cleanTranscript, Boolean(isFinal));
+      window.ALLIMJourney.observe("memory", getVerseKey(currentSurah, currentVerse), journeyAlignment, isFinal);
+    }
     memoryLastTranscript = cleanTranscript;
     document.getElementById("memory-transcript-text").textContent = cleanTranscript;
     var fullAlignment = alignExpectedWords(splitVerseWords(currentVerse.text), cleanTranscript, Boolean(isFinal));
@@ -7346,6 +8551,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function pauseMemoryRecognition() {
+    if (window.ALLIMJourney) window.ALLIMJourney.flush();
     if (!memoryPipelineActive()) return;
     memorySeriesActive = false;
     stopMemoryRecognition(true);
@@ -7357,6 +8563,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function startMemoryRecognition(internalRestart) {
+    if (window.ALLIMJourney && window.ALLIMJourney.isCheckComplete()) return;
     if (memoryStartPending || memoryIsListening || memorySubmitPending) return;
     if (!checkMemoryRecognitionSupport()) return;
     if (!internalRestart) {
@@ -7403,6 +8610,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function revealNextWord() {
+    if (window.ALLIMJourney && window.ALLIMJourney.isCheckComplete()) return;
     var next = document.querySelector("[data-answer-word]:not(.is-revealed)");
     if (!next) {
       showToast(t("allWordsVisible"));
@@ -7411,6 +8619,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     memorySeriesActive = false;
     stopMemoryRecognition(true);
     memoryHadError = false;
+    if (window.ALLIMJourney) window.ALLIMJourney.hint(getVerseKey(currentSurah, currentVerse), memoryHintsThisAttempt);
     memoryHintsThisAttempt += 1;
     state.hints += 1;
     saveLearningEvent("hint_used", { attempt_id: memoryAttemptId || (memoryAttemptId = crypto.randomUUID()),
@@ -7669,7 +8878,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
         updateAiMentor(button.getAttribute("data-ai-prompt"));
       });
     });
-    document.getElementById("start-memory-recognition").addEventListener("click", function () { startMemoryRecognition(false); });
+    document.getElementById("start-memory-recognition").addEventListener("click", startActiveMemorizationStep);
     document.getElementById("stop-memory-recognition").addEventListener("click", pauseMemoryRecognition);
     document.getElementById("memory-quick-stop").addEventListener("click", pauseMemoryRecognition);
     document.getElementById("reveal-word").addEventListener("click", revealNextWord);
@@ -7685,12 +8894,21 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       populateVerseSelectors();
       selectVerseByReference(state.selectedSurah, state.selectedAyah, { navigate: false });
     });
-    document.getElementById("heart-start-practice").addEventListener("click", function () {
-      var stage = document.querySelector(".memory-stage");
-      if (stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
-      showToast(t("heartPracticeScroll"));
-      startMemoryRecognition();
+    document.getElementById("heart-start-practice").addEventListener("click", startActiveMemorizationStep);
+    document.querySelectorAll("[data-hifz-method]").forEach(function (button) {
+      button.addEventListener("click", function () { selectMemorizationMethod(button.getAttribute("data-hifz-method"), true); });
     });
+    document.querySelectorAll("[data-hifz-choice-mode]").forEach(function (button) {
+      button.addEventListener("click", function () { setHifzChoiceMode(button.getAttribute("data-hifz-choice-mode"), true); });
+    });
+    document.getElementById("lawh-photo-input").addEventListener("change", handleLawhPhoto);
+    document.getElementById("lawh-save-local").addEventListener("click", saveCurrentLawhPage);
+    document.querySelectorAll("[data-lawh-check]").forEach(function (checkbox) {
+      checkbox.addEventListener("change", updateLawhVerificationButton);
+    });
+    document.getElementById("lawh-verify-page").addEventListener("click", confirmLawhVerification);
+    document.getElementById("lawh-mark-read").addEventListener("click", function () { recordLawhPractice("read"); });
+    document.getElementById("lawh-mark-recall").addEventListener("click", function () { recordLawhPractice("recall"); });
     document.getElementById("start-page-recall").addEventListener("click", enterPageRecall);
     document.getElementById("page-recall-mic").addEventListener("click", function () { startRecognition(false); });
     document.getElementById("toggle-page-recall-text").addEventListener("click", function () {
@@ -7934,9 +9152,12 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   async function initialize() {
     if (window.__allimLearnInitialized) return;
     window.__allimLearnInitialized = true;
+    window.AllimAccountUI.requiresInitialization = true;
     personalBridge = new window.AllimAccountUI.LearnBridge(defaultState, applyPersonalState, function () {
       stopRecognitionImmediately(); pauseMemoryRecognition(); stopVerseAudio(false);
-      linkedPageSession = null; pageRecallSession = null; readAttemptId = null; memoryAttemptId = null;
+      cancelStructuredAdvance(); lawhLibraryLimit = 12;
+      linkedPageSession = null; linked33Session = null; pageRecallSession = null; readAttemptId = null; memoryAttemptId = null;
+      lawhRestoreRequest++; lawhLibraryRenderRequest++; clearLawhDraft(); lawhLibraryUrls.forEach(function (url) { URL.revokeObjectURL(url); }); lawhLibraryUrls = [];
     });
     try { state = await personalBridge.open(); }
     catch (error) { window.AllimStorage.setError(error); return; }
@@ -7953,6 +9174,22 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     applyMushafAppearance();
     initializeEvents();
     if (contribution) contribution.mount();
+    if (window.ALLIMJourney) await window.ALLIMJourney.init({
+      stop: function () { cancelStructuredAdvance(); memorySeriesActive = false; stopMemoryRecognition(true); },
+      open: function (key, mode) {
+        cancelStructuredAdvance();
+        var parts = key.split(":");
+        memorySeriesActive = false;
+        stopMemoryRecognition(true);
+        stopRecognitionImmediately();
+        return selectVerseByReference(Number(parts[0]), Number(parts[1]), { navigate: false }).then(function (ok) {
+          if (!ok) return false;
+          navigate(mode === "read" ? "read" : "memorize");
+          if (mode !== "read") document.getElementById("allim-recall").scrollIntoView({ block: "start", behavior: "auto" });
+          return true;
+        });
+      }
+    });
     document.documentElement.style.setProperty("--arabic-size", state.arabicSize + "px");
     document.getElementById("arabic-size").value = String(state.arabicSize);
     document.getElementById("daily-goal").value = String(state.dailyGoal);
@@ -7986,6 +9223,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     initializeTeacherAssessmentMode();
     personalBridge.rebase(state);
     personalInitializing = false;
+    if (window.AllimStorage.stamp().generation !== personalBridge.generation) return;
+    window.AllimAccountUI.initialized = true;
     window.AllimJournalUI.mount();
     document.getElementById("clear-progress").textContent = window.AllimAccountUI.t("clear");
     window.AllimAccountUI.block(false);

@@ -14,19 +14,25 @@
   async function hash(value) { return Array.from(new Uint8Array(await root.crypto.subtle.digest("SHA-256", new TextEncoder().encode(canonical(value))))).map(byte => byte.toString(16).padStart(2, "0")).join(""); }
   const categories = {settings: ["preference", "daily_goal", "reading_position", "academy_plan", "academy_diagnostic"], bookmarks: ["bookmark", "review_item"], notes: ["reflection"], history: ["activity_baseline", "activity_day_baseline", "hifz_unit_baseline", "hifz_day_baseline", "hifz_page_baseline", "learning_event"], journal: ["reading_cycle", "reading_plan", "reading_past", "reading_entry"]};
   const category = kind => Object.keys(categories).find(key => categories[key].includes(kind));
+  categories.learning = ["hifz_method_baseline", "hifz_coach_baseline", "lawh_unit_baseline", "hifz_credit", "hifz_signal", "lawh_practice", "lawh_verification", "memory_plan", "recall_attempt", "recall_flag"];
+  categories.lawh = ["lawh_image_part", "lawh_photo"];
+  const entities = ["reflection", "reading_entry", "reading_cycle", "memory_plan", "recall_attempt"];
+  const facts = ["learning_event", "hifz_credit", "hifz_signal", "lawh_practice"];
   const pref = {language: "language", arabicSize: "arabic_size", showMeaning: "show_meaning", selectedReciter: "selected_reciter", audioRepeat: "audio_repeat", showInterlinear: "show_interlinear", mushafFont: "mushaf_font", mushafPaper: "mushaf_paper", mushafInk: "mushaf_ink", mushafLayout: "mushaf_layout", mushafTextSize: "mushaf_text_size", autoAdvance: "auto_advance", soundCues: "sound_cues", strictCorrection: "strict_correction"};
   const noteFields = {verseKey: "verse_key", reference: "reference", reflection: "reflection", action: "action", completed: "completed", fawaidId: "fawaid_id", fawaidScholar: "fawaid_scholar", fawaidBenefit: "fawaid_benefit", fawaidSourceUrl: "fawaid_source_url", trigger: "trigger", reviewAt: "review_at", completedAt: "completed_at", createdAt: "authored_at", updatedAt: "edited_at"};
   const instant = value => value ? new Date(value).toISOString() : null;
-  const legacyKeys = ["quran-companion-prototype-v4", "allim-academy-plan-v1", "allim-academy-diagnostic-v1", "allim-language-preference-v1", "allim-reading-journal-v1", "allim-reading-sync-v1", "allim-reading-recovery-v1"];
+  const legacyKeys = ["quran-companion-prototype-v4", "allim-academy-plan-v1", "allim-academy-diagnostic-v1", "allim-language-preference-v1", "allim-reading-journal-v1", "allim-reading-sync-v1", "allim-reading-recovery-v1", "allim-memory-journey-v1"];
   function parse(raw) { try { return JSON.parse(raw || "null"); } catch (_) { return null; } }
 
   function mapSource(source, catalogue, language) {
-    const items = new Map(), warnings = [];
+    const items = new Map(), warnings = [...(source.migration_warnings || [])];
     const add = (kind, id, value, index = 0) => items.set(kind + "/" + id + "/" + index, {kind, id, value, source_key: {legacy_key: kind + "/" + id, occurrence_index: index}});
     const safe = (label, callback) => { try { callback(); } catch (_) { warnings.push(label); } };
     const legacy = source.legacy || {}, learn = object(legacy.learn) ? legacy.learn : {};
     for (const [field, id] of Object.entries(pref)) if (Object.hasOwn(learn, field)) add("preference", id, {selected: learn[field]});
     if (learn.recitationFlow) add("preference", "recitation_flow", {selected: {mode: learn.recitationFlow, explicit: !!learn.recitationFlowExplicit}});
+    if (learn.memorizationMethod) add("preference", "memorization_method", {selected: learn.memorizationMethod});
+    if (learn.hifzCoach?.selectionMode) add("preference", "hifz_choice_mode", {selected: learn.hifzCoach.selectionMode});
     if (language || legacy.home_language) add("preference", "language", {selected: language || legacy.home_language});
     if (learn.dailyGoal !== undefined) add("daily_goal", "current", {sessions: learn.dailyGoal});
     if (learn.selectedSurah && learn.selectedAyah) add("reading_position", "last", {verse_key: learn.selectedSurah + ":" + learn.selectedAyah});
@@ -57,6 +63,24 @@
       if (object(item.daily)) for (const [day, count] of Object.entries(item.daily)) add("hifz_day_baseline", id + "/" + day, {count});
     });
     if (object(learn.heartMushaf?.pages)) for (const [id, item] of Object.entries(learn.heartMushaf.pages)) safe("hifz_page/" + id, () => add("hifz_page_baseline", id, {connected_attempts: item.connectedAttempts ?? 0, connected_reviews: item.connectedReviews ?? 0, last_connected_at: instant(item.lastConnectedAt), sealed_at: instant(item.sealedAt), permanent: !!item.permanent}));
+    if (!source.learning_migrated) {
+      for (const [field, method, counts] of [["linked33Pages", "linked33", "segmentCounts"], ["turkishWallPages", "turkishWall33", "wallCounts"]]) {
+        for (const [page, item] of Object.entries(learn.heartMushaf?.[field] || {})) safe(field + "/" + page, () => add("hifz_method_baseline", method + "/" + page, {verse_counts: item.verseCounts || {}, link_counts: item[counts] || {}, daily: item.daily || {}, started_at: instant(item.startedAt), last_accepted_at: instant(item.lastAcceptedAt), completed_at: instant(item.completedAt)}));
+      }
+      if (learn.hifzCoach?.signals?.length) safe("hifz_coach", () => add("hifz_coach_baseline", "current", {signals: learn.hifzCoach.signals.slice(-240).map(s => ({method: s.method, outcome: s.outcome, source: s.source, hints: s.hints, at: instant(s.at)}))}));
+      for (const [id, item] of Object.entries(learn.heartMushaf?.lawhPages || {})) safe("lawh/" + id, () => add("lawh_unit_baseline", id, {read_count: item.readCount || 0, recall_count: item.recallCount || 0, verified_at: instant(item.verifiedAt), updated_at: instant(item.updatedAt)}));
+      const journey = source.legacy?.journey;
+      if (journey) safe("memory_journey", () => {
+        if (journey.version !== 1 || !Array.isArray(journey.plans) || !Array.isArray(journey.sessions)) throw fail("invalid_journey");
+        const ids = new Set();
+        for (const item of [...journey.plans, ...journey.sessions]) { if (!object(item) || typeof item.id !== "string" || ids.has(item.id)) throw fail("invalid_journey"); ids.add(item.id); }
+        for (const p of journey.plans) add("memory_plan", p.id, {action: p.action, verse_keys: p.keys, portion: p.portion, created_on: p.created, deadline: p.deadline || null});
+        for (const [index,s] of journey.sessions.entries()) {
+          add("recall_attempt", s.id, {verse_key: s.key, mode: s.mode, local_date: s.date, complete: s.complete, total_words: s.total, hints: s.hints, flags: s.flags, seconds: s.seconds, recorded_at: s.recordedAt || null, legacy_order: s.recordedAt ? null : s.legacyOrder ?? index});
+          for (const i of s.dismissed || []) add("recall_flag", s.id + "/" + i, {dismissed: true});
+        }
+      });
+    }
     const book = source.journal;
     if (book) safe("legacy_journal", () => {
       if (book.version !== 1 || !Array.isArray(book.entries) || !Number.isInteger(book.cycle) || book.cycle < 1 || book.cycle > 100000) throw fail("invalid_journal");
@@ -89,9 +113,9 @@
       }
     }
     if (language) add("preference", "language", {selected: language});
-    const recognized = new Set([...Object.keys(pref), "recitationFlow", "recitationFlowExplicit", "recognitionMode", "recognitionModeExplicit", "selectedSurah", "selectedAyah", "sessions", "wordsReviewed", "hints", "dailyGoal", "savedVerses", "reviewQueue", "activity", "heartMushaf", "lifePractice"]);
+    const recognized = new Set([...Object.keys(pref), "memorizationMethod", "hifzCoach", "recitationFlow", "recitationFlowExplicit", "recognitionMode", "recognitionModeExplicit", "selectedSurah", "selectedAyah", "sessions", "wordsReviewed", "hints", "dailyGoal", "savedVerses", "reviewQueue", "activity", "heartMushaf", "lifePractice"]);
     for (const field of Object.keys(learn)) if (!recognized.has(field)) warnings.push("unknown:" + field);
-    for (const field of Object.keys(learn.heartMushaf || {})) if (!["units", "pages"].includes(field)) warnings.push("unknown:heartMushaf." + field);
+    for (const field of Object.keys(learn.heartMushaf || {})) if (!["units", "pages", "linked33Pages", "turkishWallPages", "lawhPages"].includes(field)) warnings.push("unknown:heartMushaf." + field);
     if (source.raw?.["allim-reading-recovery-v1"]) warnings.push("reading_recovery_backup_only");
     return {items: [...items.values()], warnings, languageConflict: !!legacy.home_language && !!learn.language && legacy.home_language !== learn.language};
   }
@@ -101,16 +125,18 @@
     const chosen = mapped.items.filter(item => selected.includes(category(item.kind)));
     for (const item of chosen) {
       item.import_item_id = "import:" + await hash([sourceId, item.kind, item.source_key.legacy_key, item.source_key.occurrence_index]);
-      if (["reflection", "reading_entry", "reading_cycle"].includes(item.kind)) ids.set(item.kind + "/" + item.id, item.import_item_id);
+      if (entities.includes(item.kind)) ids.set(item.kind + "/" + item.id, item.import_item_id);
     }
-    const priority = kind => kind === "reading_cycle" ? 0 : kind === "learning_event" ? 2 : 1;
+    const priority = kind => kind === "reading_cycle" ? 0 : kind === "recall_flag" || kind === "lawh_photo" ? 3 : facts.includes(kind) ? 4 : 1;
     chosen.sort((a, b) => priority(a.kind) - priority(b.kind));
     for (const item of chosen) {
-      const value = clone(item.value), id = ids.get(item.kind + "/" + item.id) || item.id;
+      const value = clone(item.value);
+      let id = entities.includes(item.kind) ? item.import_item_id : item.id;
+      if (item.kind === "recall_flag") { const split = item.id.lastIndexOf("/"); id = (ids.get("recall_attempt/" + item.id.slice(0, split)) || item.id.slice(0, split)) + item.id.slice(split); }
       if (value.cycle_id) value.cycle_id = ids.get("reading_cycle/" + value.cycle_id) || value.cycle_id;
       if (item.kind.endsWith("_baseline") || item.kind === "reading_past") value.provenance = {source_id: sourceId, source_digest: digest, mapping_version: 1, legacy_key: item.source_key.legacy_key};
-      operations.push({op_id: root.crypto.randomUUID(), action: item.kind === "learning_event" ? "create" : "import_item", kind: item.kind, id: ["reflection", "reading_entry", "reading_cycle"].includes(item.kind) ? item.import_item_id : id, base_version: 0, value,
-        ...(item.kind === "learning_event" ? {} : {import_id: "import:" + await hash([digest, 1]), import_item_id: item.import_item_id, source_key: item.source_key})});
+      operations.push({op_id: root.crypto.randomUUID(), action: facts.includes(item.kind) ? "create" : "import_item", kind: item.kind, id, base_version: 0, value,
+        ...(facts.includes(item.kind) ? {} : {import_id: "import:" + await hash([digest, 1]), import_item_id: item.import_item_id, source_key: item.source_key})});
     }
     return {operations, warnings: mapped.warnings};
   }
@@ -125,7 +151,7 @@
     const source = await storage.guarded(stamp, ["scopes", "records"], "readonly", async stores => {
       const guest = await req(stores.scopes.get(storage.control.guest_scope));
       const records = (await req(stores.records.index("scope").getAll(storage.control.guest_scope))).map(({kind, id, value, deleted, source_key}) => ({kind, id, value, deleted, ...(source_key ? {source_key} : {})}));
-      return {legacy: guest.legacy || {}, records, legacy_cleared: !!guest.legacy_cleared, journal_migrated: !!guest.journal_migrated, raw: {}};
+      return {legacy: guest.legacy || {}, migration_warnings: guest.learning_warnings || [], records, learning_migrated: !!guest.learning_migrated, legacy_cleared: !!guest.legacy_cleared, journal_migrated: !!guest.journal_migrated, raw: {}};
     });
     for (const key of legacyKeys) { const value = root.localStorage.getItem(key); if (value !== null) source.raw[key] = value; }
     source.journal = source.legacy_cleared || source.journal_migrated ? null : parse(source.raw["allim-reading-journal-v1"]);
@@ -202,6 +228,10 @@
         }
         const response = await send(selected);
         await storage.pull(stamp);
+        if (root.AllimLawh) {
+          const accepted = new Set(response.results.filter(r => ["applied", "noop"].includes(r.outcome) && r.import_result?.outcome !== "skipped_conflict").map(r => r.op_id));
+          await root.AllimLawh.cache(selected.filter(op => op.kind === "lawh_image_part" && accepted.has(op.op_id)), stamp);
+        }
         const currentRecords = (await storage.snapshot()).canonical;
         for (const result of response.results) {
           if (!["applied", "noop"].includes(result.outcome) || result.import_result?.outcome === "skipped_conflict") continue;
@@ -261,5 +291,61 @@
     });
     storage.notify("records"); storage.broadcast();
   }
-  return {mapSource, compile, hash, categories, category, capture, start, flush, report, meta, update, migrateGuestJournal};
+  async function migrateGuestLearning(storage, catalogue) {
+    if (!root.AllimLawh || !root.AllimLearning) return;
+    const stamp = storage.stamp(), guestScope = storage.control.guest_scope;
+    const guest = await storage.guarded(stamp, ["scopes"], "readonly", stores => req(stores.scopes.get(guestScope)));
+    if (guest.learning_migrated || guest.legacy_cleared) return;
+    const legacy = clone(guest.legacy || {});
+    try { legacy.journey = JSON.parse(root.localStorage.getItem("allim-memory-journey-v1") || "null"); }
+    catch (_) { /* The original malformed source is never changed. */ }
+    const source = {legacy, records: []}, warnings = [];
+    for (const record of await root.AllimLawh.legacy()) {
+      try {
+        if (!Object.hasOwn(catalogue, record.id)) throw fail("invalid_verse");
+        // The old photo record also held progress, and could outlive localStorage.
+        // Match the former restore rule: keep the larger overlapping totals, never add them.
+        const unit = legacy.learn?.heartMushaf?.lawhPages?.[record.id] || {};
+        const verified = record.verifiedAt || unit.verifiedAt;
+        const updated = [record.updatedAt, unit.updatedAt].filter(Boolean).map(instant).sort().at(-1) || null;
+        source.records.push({kind: "lawh_unit_baseline", id: record.id, value: {read_count: Math.max(unit.readCount || 0, record.readCount || 0), recall_count: Math.max(unit.recallCount || 0, record.recallCount || 0), verified_at: instant(verified), updated_at: updated}, deleted: false});
+        const encoded = await root.AllimLawh.encode(record);
+        source.records.push(...encoded.parts.map(row => ({...row, deleted: false})), {kind: "lawh_photo", id: record.id, value: encoded.photo, deleted: false});
+        if (verified) source.records.push({kind: "lawh_verification", id: record.id, value: {verified_at: instant(verified), image_sha256: encoded.photo.sha256}, deleted: false});
+      } catch (_) { warnings.push("lawh_photo/" + String(record.id)); }
+    }
+    const digest = await hash(source), sourceId = guestScope.slice(6);
+    const compiled = await compile(source, sourceId, digest, ["learning", "lawh"], catalogue);
+    const valid = compiled.operations.filter(op => {
+      const accepted = root.AllimLearning.validLegacyRecord(op.kind, op.id, op.value, catalogue);
+      if (!accepted) warnings.push(op.kind + "/" + op.id);
+      return accepted;
+    });
+    const attempts = new Map(valid.filter(op => op.kind === "recall_attempt").map(op => [op.id, op.value]));
+    compiled.operations = valid.filter(op => {
+      if (op.kind !== "recall_flag") return true;
+      const split = op.id.lastIndexOf("/"), attempt = attempts.get(op.id.slice(0, split));
+      return attempt && attempt.flags.includes(+op.id.slice(split + 1));
+    });
+    const bytes = new TextEncoder().encode(JSON.stringify(source)).length;
+    const estimate = await root.navigator.storage?.estimate?.();
+    if (estimate?.quota && estimate.quota - estimate.usage < bytes * 3 + 65536) throw fail("quota_insufficient");
+    await storage.guarded(stamp, ["scopes", "records"], "readwrite", async stores => {
+      const value = await req(stores.scopes.get(guestScope));
+      if (value.learning_migrated || value.legacy_cleared) return;
+      value.import_backups ||= {};
+      value.import_backups[digest] ||= {source, source_id: sourceId, captured_at: new Date().toISOString(), warnings: [...compiled.warnings, ...warnings]};
+      for (const operation of compiled.operations) {
+        if (await req(stores.records.get([guestScope, operation.kind, operation.id]))) continue;
+        value.sequence++;
+        await req(stores.records.put({scope: guestScope, schema_version: 1, kind: operation.kind, id: operation.id, value: operation.value, deleted: false, version: 1, change_seq: value.sequence, source_key: operation.source_key}));
+      }
+      value.legacy = legacy;
+      value.learning_migrated = true;
+      value.learning_warnings = [...compiled.warnings, ...warnings];
+      await req(stores.scopes.put(value));
+    });
+    storage.notify("records"); storage.broadcast();
+  }
+  return {mapSource, compile, hash, categories, category, capture, start, flush, report, meta, update, migrateGuestJournal, migrateGuestLearning};
 });

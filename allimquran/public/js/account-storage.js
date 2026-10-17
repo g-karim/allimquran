@@ -287,24 +287,31 @@
       const rows = new Map();
       let after, page;
       do {
-        page = await this.api("scan", {scan_token: opened.scan_token, ...(after ? {after_key: JSON.stringify(after)} : {})}, stamp);
+        page = await this.api("scan", {scan_token: opened.scan_token, ...(root.AllimLawh ? {omit_image_data: "1"} : {}), ...(after ? {after_key: JSON.stringify(after)} : {})}, stamp);
         for (const row of page.records) rows.set(key(row), row);
         after = page.after_key;
       } while (page.has_more);
       let cursor = page.catchup_from;
       const through = page.through_seq;
       do {
-        const delta = await this.api("pull", {after_seq: cursor, through_seq: through}, stamp);
+        const delta = await this.api("pull", {after_seq: cursor, through_seq: through, ...(root.AllimLawh ? {omit_image_data: "1"} : {})}, stamp);
         for (const row of delta.records) if (!rows.has(key(row)) || rows.get(key(row)).change_seq < row.change_seq) rows.set(key(row), row);
         cursor = delta.next_seq;
         if (!delta.has_more) break;
       } while (true);
-      await this.guarded(stamp, ["records", "scopes"], "readwrite", async stores => {
+      await this.guarded(stamp, ["records", "scopes", "outbox"], "readwrite", async stores => {
         const meta = await request(stores.scopes.get(stamp.scope));
         // Another tab may have finished a newer bootstrap/pull while this scan ran.
         if (meta.ready && meta.cursor > cursor) return;
+        const cached = await request(stores.records.index("scope").getAll(stamp.scope));
+        const queued = await request(stores.outbox.index("scope").getAll(stamp.scope));
+        const photos = new Map(cached.filter(r => r.kind === "lawh_image_part" && !r.deleted && r.value?.data).map(r => [r.id, r.value]));
+        for (const r of queued) if (r.kind === "lawh_image_part" && r.intent.value?.data) photos.set(r.id, r.intent.value);
         await this.eraseScope(stores, stamp.scope);
-        for (const row of rows.values()) await request(stores.records.put({...row, scope: stamp.scope}));
+        for (let row of rows.values()) {
+          if (row.payload_omitted && photos.has(row.id)) { row = {...row, value: photos.get(row.id)}; delete row.payload_omitted; }
+          await request(stores.records.put({...row, scope: stamp.scope}));
+        }
         await request(stores.scopes.put({...meta, ready: true, cursor}));
       });
     }
@@ -314,12 +321,15 @@
       do {
         const meta = await this.guarded(stamp, ["scopes"], "readonly", stores => request(stores.scopes.get(stamp.scope)));
         if (through !== undefined && meta.cursor >= through) return;
-        const page = await this.api("pull", {after_seq: meta.cursor, ...(through !== undefined ? {through_seq: through} : {})}, stamp);
+        const page = await this.api("pull", {after_seq: meta.cursor, ...(root.AllimLawh ? {omit_image_data: "1"} : {}), ...(through !== undefined ? {through_seq: through} : {})}, stamp);
         through = page.through_seq;
-        await this.guarded(stamp, ["records", "scopes"], "readwrite", async stores => {
+        await this.guarded(stamp, ["records", "scopes", "outbox"], "readwrite", async stores => {
           const latest = await request(stores.scopes.get(stamp.scope));
-          for (const row of page.records) {
+          const queued = new Map((await request(stores.outbox.index("scope").getAll(stamp.scope))).filter(r => r.kind === "lawh_image_part" && r.intent.value?.data).map(r => [r.id, r.intent.value]));
+          for (let row of page.records) {
             const old = await request(stores.records.get([stamp.scope, row.kind, row.id]));
+            const value = old?.value?.data ? old.value : queued.get(row.id);
+            if (row.payload_omitted && value) { row = {...row, value}; delete row.payload_omitted; }
             if (!old || old.change_seq < row.change_seq) await request(stores.records.put({...row, scope: stamp.scope}));
           }
           latest.cursor = Math.max(latest.cursor, page.next_seq);
@@ -330,9 +340,9 @@
     }
 
     mutate(intent) { return this.mutateMany([intent]); }
-    mutateMany(intents) {
-      // Capture ownership when the user acts, before any asynchronous local work.
-      const stamp = this.stamp();
+    mutateMany(intents, expectedStamp = this.stamp()) {
+      // Async photo/backup readers pass the owner captured before reading the file.
+      const stamp = {...expectedStamp};
       let input = clone(intents);
       this.localWrites++;
       this.notify();
@@ -396,7 +406,7 @@
         const visible = new Map(canonical.map(row => [key(row), privateRow(row)]));
         for (const row of pending) {
           // Rejected drafts are exposed separately, never counted as accepted learning facts.
-          if (row.status === "needs_choice" && (row.kind === "learning_event" || row.kind.startsWith("reading_"))) continue;
+          if (row.status === "needs_choice" && (["learning_event", "hifz_credit", "hifz_signal", "lawh_practice", "recall_attempt", "recall_flag", "lawh_image_part", "lawh_photo"].includes(row.kind) || row.kind.startsWith("reading_"))) continue;
           visible.set(key(row), {kind: row.kind, id: row.id, value: row.intent.value, deleted: row.intent.action === "delete", version: row.base_version, pending: true});
         }
         const meta = await request(stores.scopes.get(stamp.scope));
@@ -406,9 +416,9 @@
         const legacyPresent = Object.values(guestMeta?.legacy || {}).some(value => value && (typeof value !== "object" || Object.keys(value).length));
         let oldJournal = false;
         try { oldJournal = !guestMeta?.legacy_cleared && !!root.localStorage.getItem("allim-reading-journal-v1"); } catch (_) { /* source stays on device */ }
-        const hasGuestData = !!legacyPresent || oldJournal || (await request(stores.records.index("scope").count(this.control.guest_scope))) > 0;
+        const hasGuestData = !!legacyPresent || oldJournal || !!guestMeta?.learning_warnings?.length || (await request(stores.records.index("scope").count(this.control.guest_scope))) > 0;
         const priorImports = stamp.scope.startsWith("account:") ? (await request(stores.scopes.getAll())).filter(row => row.scope !== stamp.scope && row.scope.startsWith(stamp.scope.split(":").slice(0, 2).join(":") + ":") && Object.values(row.import_jobs || {}).some(job => !job.done)).map(row => ({scope: row.scope, jobs: row.import_jobs})) : [];
-        return {hasGuestData, recovery, priorImports, imports: meta?.import_jobs || {}, scope: stamp.scope, generation: stamp.generation, records: [...visible.values()], canonical: canonical.map(privateRow), pending: pending.map(clone), legacy: meta?.legacy || {}, device: clone(this.control.device || {})};
+        return {hasGuestData, recovery, priorImports, imports: meta?.import_jobs || {}, learningMigrated: !!meta?.learning_migrated, scope: stamp.scope, generation: stamp.generation, records: [...visible.values()], canonical: canonical.map(privateRow), pending: pending.map(clone), legacy: meta?.legacy || {}, device: clone(this.control.device || {})};
       });
     }
     async get(kind, id) { return (await this.list(kind)).find(row => row.id === id); }
@@ -433,7 +443,7 @@
           if (row.status !== "queued" || row.depends_on || seen.has(key(row))) continue;
           if (!row.wire) {
             let action = row.intent.action || "set";
-            if (action === "set") action = row.base_version === 0 ? "create" : row.base_deleted && ["bookmark", "review_item"].includes(row.kind) ? "restore_membership" : "put";
+            if (action === "set") action = row.base_version === 0 ? "create" : row.base_deleted && ["bookmark", "review_item", "lawh_photo"].includes(row.kind) ? "restore_membership" : "put";
             row.wire = {op_id: row.op_id, action, kind: row.kind, id: row.id, base_version: row.base_version,
               ...(action === "delete" ? {} : {value: row.intent.value}),
               ...(action === "resolve" ? {conflicts: row.intent.conflicts} : {})};
@@ -587,7 +597,19 @@
     }
     logout() { return this.leave({endSession: true}); }
     clearLocal(options = {}) { return this.leave({...options, clearGuest: true}); }
-    async resumeAccount() { await this.refreshContext(false, true); this.kick(); }
+    async resumeAccount() {
+      let explicit = true;
+      for (let attempt = 0; attempt < 5; attempt++) {
+        try { await this.refreshContext(false, explicit); this.kick(); return; }
+        catch (error) {
+          if (error.code !== "owner_changed" || attempt === 4) throw error;
+          await this.adoptControl();
+          // A newer logout in another tab wins over this earlier resume click.
+          // Reconcile the current session without replaying explicit consent.
+          explicit = false;
+        }
+      }
+    }
 
     async resolve(kind, id, value) {
       const snapshot = await this.snapshot();
@@ -629,6 +651,9 @@
       this.notify("records"); this.broadcast();
     }
     async exportLocal() {
+      const exportStamp = this.stamp();
+      const missingPhotos = root.AllimLawh && !this.paused && !this.control.locked ? await root.AllimLawh.hydrateAll() : [];
+      await this.guarded(exportStamp, [], "readonly", () => {});
       const snapshot = await this.snapshot();
       const legacyBackups = snapshot.scope?.startsWith("guest:") ? await this.guarded(this.stamp(), ["scopes"], "readonly", async stores => {
         const meta = await request(stores.scopes.get(snapshot.scope));
@@ -638,7 +663,7 @@
       return {format: "allim-local-recovery-v1", exported_at: new Date().toISOString(), scope: snapshot.scope,
         records: snapshot.records, canonical: snapshot.canonical || [], pending: snapshot.pending, previous_epochs: snapshot.recovery || [],
         imports: snapshot.imports || {}, previous_imports: snapshot.priorImports || [],
-        legacy_backups: legacyBackups,
+        legacy_backups: legacyBackups, missing_photo_payloads: missingPhotos,
         legacy: snapshot.legacy, not_durably_saved: this.unsaved.filter(row => row.scope === snapshot.scope).map(row => row.intents)};
     }
     subscribe(listener) { this.listeners.add(listener); return () => this.listeners.delete(listener); }
