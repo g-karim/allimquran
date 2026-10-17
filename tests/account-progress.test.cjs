@@ -29,3 +29,34 @@ test('new membership does not rewrite positions of existing entries', () => {
   const changes=progress.diff({...defaults,savedVerses:['1:1','1:2']},{...defaults,savedVerses:['1:3','1:1','1:2']});
   assert.equal(changes.length,1);assert.equal(changes[0].id,'1:3');
 });
+test('mushaf defaults remain local until an explicit choice; settings round-trip through records', () => {
+  const mobile = {...defaults, mushafLayout:'adaptive', mushafTextSize:36};
+  const blank = progress.compose(snapshot('account:a:e', []), mobile);
+  assert.deepEqual(progress.diff(blank, blank), []);
+  const edits = progress.diff(blank, {...blank, mushafLayout:'page', mushafTextSize:44});
+  assert.deepEqual(edits, [
+    {kind:'preference', id:'mushaf_layout', value:{selected:'page'}, action:'set'},
+    {kind:'preference', id:'mushaf_text_size', value:{selected:44}, action:'set'}
+  ]);
+  const restored = progress.compose(snapshot('account:a:e', edits), mobile);
+  assert.equal(restored.mushafLayout, 'page'); assert.equal(restored.mushafTextSize, 44);
+  assert.deepEqual(progress.diff(restored, restored), []);
+});
+test('mushaf choices belong to the selected owner, including guest and device defaults', () => {
+  const desktop = {...defaults, mushafLayout:'page', mushafTextSize:36};
+  const legacy = {learn:{mushafLayout:'adaptive', mushafTextSize:50}};
+  const guest = progress.compose(snapshot('guest:g', [], legacy), desktop);
+  const a = progress.compose(snapshot('account:a:e', [{kind:'preference',id:'mushaf_text_size',value:{selected:42}}], legacy), desktop);
+  const b = progress.compose(snapshot('account:b:e', [], legacy), desktop);
+  assert.equal(guest.mushafTextSize, 50); assert.equal(guest.mushafLayout, 'adaptive');
+  assert.equal(a.mushafTextSize, 42); assert.equal(a.mushafLayout, 'page');
+  assert.equal(b.mushafTextSize, 36); assert.equal(b.mushafLayout, 'page');
+});
+test('invalid legacy mushaf settings fall back without writing corrected defaults', () => {
+  const mobile = {...defaults, mushafLayout:'adaptive', mushafTextSize:36};
+  for (const size of [0, 27, 53, 900, 35.5, '42', null]) {
+    const value = progress.compose(snapshot('guest:g', [], {learn:{mushafLayout:'bad',mushafTextSize:size}}), mobile);
+    assert.equal(value.mushafTextSize, 36); assert.equal(value.mushafLayout, 'adaptive');
+    assert.deepEqual(progress.diff(value, value), []);
+  }
+});

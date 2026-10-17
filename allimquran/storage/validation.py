@@ -217,12 +217,22 @@ def validate_record(kind, key, value, *, importing=False):
 			require(type(selected) is bool)
 		elif key == "arabic_size":
 			integer(selected, 34, 66)
+		elif key == "mushaf_text_size":
+			integer(selected, 28, 52)
 		elif key == "recitation_flow":
 			fields(selected, ("mode", "explicit"))
 			require(selected["mode"] in capabilities()[key] and type(selected["explicit"]) is bool)
 		else:
 			require(
-				key in {"language", "selected_reciter", "mushaf_font", "mushaf_paper", "mushaf_ink"},
+				key
+				in {
+					"language",
+					"selected_reciter",
+					"mushaf_font",
+					"mushaf_paper",
+					"mushaf_ink",
+					"mushaf_layout",
+				},
 				"unknown_preference",
 			)
 			require(selected in capabilities()[key])

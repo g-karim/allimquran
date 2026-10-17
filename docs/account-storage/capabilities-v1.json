@@ -65,5 +65,9 @@
     "next-conversation",
     "difficult-moment",
     "before-evening"
+  ],
+  "mushaf_layout": [
+    "page",
+    "adaptive"
   ]
 }

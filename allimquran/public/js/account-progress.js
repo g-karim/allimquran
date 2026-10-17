@@ -6,7 +6,7 @@
   "use strict";
   const copy = value => JSON.parse(JSON.stringify(value));
   const equal = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-  const pref = {language: "language", arabicSize: "arabic_size", showMeaning: "show_meaning", selectedReciter: "selected_reciter", audioRepeat: "audio_repeat", showInterlinear: "show_interlinear", mushafFont: "mushaf_font", mushafPaper: "mushaf_paper", mushafInk: "mushaf_ink", autoAdvance: "auto_advance", soundCues: "sound_cues", strictCorrection: "strict_correction"};
+  const pref = {language: "language", arabicSize: "arabic_size", showMeaning: "show_meaning", selectedReciter: "selected_reciter", audioRepeat: "audio_repeat", showInterlinear: "show_interlinear", mushafFont: "mushaf_font", mushafPaper: "mushaf_paper", mushafInk: "mushaf_ink", mushafLayout: "mushaf_layout", mushafTextSize: "mushaf_text_size", autoAdvance: "auto_advance", soundCues: "sound_cues", strictCorrection: "strict_correction"};
   const reflectionFields = {verseKey: "verse_key", reference: "reference", reflection: "reflection", action: "action", completed: "completed", fawaidId: "fawaid_id", fawaidScholar: "fawaid_scholar", fawaidBenefit: "fawaid_benefit", fawaidSourceUrl: "fawaid_source_url", trigger: "trigger", reviewAt: "review_at", completedAt: "completed_at", createdAt: "authored_at", updatedAt: "edited_at"};
   const unit = () => ({weekCounts: [0, 0, 0], daily: {}, maintenanceCount: 0, maintenanceLevel: 0, startedAt: "", lastAcceptedAt: "", completedAt: "", nextReviewAt: "", permanent: false});
   const page = n => ({pageNumber: Number(n), connectedAttempts: 0, connectedReviews: 0, lastConnectedAt: "", sealedAt: "", permanent: false});
@@ -135,6 +135,8 @@
     // The supported display fallback must never become a write of a different preferred language.
     if (!["ru", "en", "ar"].includes(state.language)) state.language = "ru";
     if (state.arabicSize !== undefined && (!Number.isInteger(state.arabicSize) || state.arabicSize < 34 || state.arabicSize > 66)) state.arabicSize = defaults.arabicSize;
+    if (state.mushafLayout !== undefined && !["page", "adaptive"].includes(state.mushafLayout)) state.mushafLayout = defaults.mushafLayout;
+    if (state.mushafTextSize !== undefined && (!Number.isInteger(state.mushafTextSize) || state.mushafTextSize < 28 || state.mushafTextSize > 52)) state.mushafTextSize = defaults.mushafTextSize;
     if (state.dailyGoal !== undefined && ![1, 2, 3, 5].includes(state.dailyGoal)) state.dailyGoal = defaults.dailyGoal;
     if (state.selectedSurah !== undefined && !validVerse(state.selectedSurah + ":" + state.selectedAyah)) { state.selectedSurah = defaults.selectedSurah; state.selectedAyah = defaults.selectedAyah; }
     return state;

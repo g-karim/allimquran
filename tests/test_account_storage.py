@@ -228,6 +228,24 @@ class AccountStorageTests(unittest.TestCase):
 		with self.assertRaises(StorageError):
 			validate_record("preference", "language", {"selected": "ru", "owner": "other"})
 
+	def test_mushaf_preferences_validate_and_persist_as_independent_records(self):
+		for layout in ("page", "adaptive"):
+			validate_record("preference", "mushaf_layout", {"selected": layout})
+		for size in (28, 36, 52):
+			validate_record("preference", "mushaf_text_size", {"selected": size})
+		for key, value in (
+			("mushaf_layout", "bad"),
+			("mushaf_layout", 1),
+			*(("mushaf_text_size", size) for size in (27, 53, True, 36.5, "36", None)),
+		):
+			with self.subTest(key=key, value=value), self.assertRaises(StorageError):
+				validate_record("preference", key, {"selected": value})
+		for key, value in (("mushaf_layout", "adaptive"), ("mushaf_text_size", 44)):
+			self.assertEqual(
+				self.apply(operation("preference", key, {"selected": value}))["outcome"], "applied"
+			)
+			self.assertEqual(self.repo.record("preference", key)["value"], {"selected": value})
+
 	def test_import_is_idempotent_and_refuses_overlapping_aggregates(self):
 		source = new_id()
 		hashed = digest({"old": "data"})

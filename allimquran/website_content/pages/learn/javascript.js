@@ -1339,6 +1339,8 @@
     mushafFont: "classic",
     mushafPaper: "ivory",
     mushafInk: "charcoal",
+    mushafLayout: window.innerWidth <= 620 ? "adaptive" : "page",
+    mushafTextSize: 36,
     recitationFlow: "continuous",
     recitationFlowExplicit: false,
     autoAdvance: true,
@@ -1807,6 +1809,19 @@
     pageRecallAccessTier: "المستوى الثاني · لوحة الطالب الأساسية", pageRecallCheckingAccess: "جارٍ التحقق من الوصول…", pageRecallAccessActive: "المستوى الثاني مفعّل", pageRecallAccountRequired: "يلزم تسجيل الدخول", pageRecallOpenAcademy: "افتح لوحة الطالب الأساسية", pageRecallAccessError: "افتح أكاديمية ALLIM"
   });
 
+  /* ALLIM_MUSHAF_RETURN_TRANSLATIONS_START */
+Object.assign(translations.ru, {"mushafNavigation": "Навигация мусхафа", "mushafBack": "В приложение", "mushafHome": "На главную АЛЛИМ"});
+Object.assign(translations.en, {"mushafNavigation": "Mushaf navigation", "mushafBack": "Back to app", "mushafHome": "Go to the ALLIM home page"});
+Object.assign(translations.ar, {"mushafNavigation": "التنقل في المصحف", "mushafBack": "العودة إلى التطبيق", "mushafHome": "الانتقال إلى صفحة أليم الرئيسية"});
+/* ALLIM_MUSHAF_RETURN_TRANSLATIONS_END */
+  if (translations.en) Object.assign(translations.en, {"mushafLayout": "Reading layout", "mushafLayoutPage": "Page", "mushafLayoutAdaptive": "Large text", "mushafTextSize": "Text size", "mushafSmaller": "Smaller text", "mushafLarger": "Larger text", "mushafRetry": "Try again"});
+  if (translations.ru) Object.assign(translations.ru, {"mushafLayout": "Раскладка чтения", "mushafLayoutPage": "Страница", "mushafLayoutAdaptive": "Крупный текст", "mushafTextSize": "Размер текста", "mushafSmaller": "Уменьшить текст", "mushafLarger": "Увеличить текст", "mushafRetry": "Повторить"});
+  if (translations.ar) Object.assign(translations.ar, {"mushafLayout": "طريقة العرض", "mushafLayoutPage": "صفحة", "mushafLayoutAdaptive": "نص كبير", "mushafTextSize": "حجم النص", "mushafSmaller": "تصغير النص", "mushafLarger": "تكبير النص", "mushafRetry": "إعادة المحاولة"});
+  if (translations.tr) Object.assign(translations.tr, {"mushafLayout": "Okuma düzeni", "mushafLayoutPage": "Sayfa", "mushafLayoutAdaptive": "Büyük metin", "mushafTextSize": "Yazı boyutu", "mushafSmaller": "Yazıyı küçült", "mushafLarger": "Yazıyı büyüt", "mushafRetry": "Tekrar dene"});
+  if (translations.tg) Object.assign(translations.tg, {"mushafLayout": "Тарзи намоиш", "mushafLayoutPage": "Саҳифа", "mushafLayoutAdaptive": "Матни калон", "mushafTextSize": "Андозаи матн", "mushafSmaller": "Хурд кардани матн", "mushafLarger": "Калон кардани матн", "mushafRetry": "Боз кӯшиш кунед"});
+  if (translations.uz) Object.assign(translations.uz, {"mushafLayout": "O‘qish ko‘rinishi", "mushafLayoutPage": "Sahifa", "mushafLayoutAdaptive": "Yirik matn", "mushafTextSize": "Matn o‘lchami", "mushafSmaller": "Matnni kichraytirish", "mushafLarger": "Matnni kattalashtirish", "mushafRetry": "Qayta urinish"});
+  if (translations.tt) Object.assign(translations.tt, {"mushafLayout": "Уку күренеше", "mushafLayoutPage": "Бит", "mushafLayoutAdaptive": "Эре текст", "mushafTextSize": "Текст зурлыгы", "mushafSmaller": "Текстны кечерәйтү", "mushafLarger": "Текстны зурайту", "mushafRetry": "Кабатлап карау"});
+
   var reciters = [
     { id: "husary", path: "Husary_128kbps", names: { ru: "Махмуд Халиль аль-Хусари", en: "Mahmoud Khalil Al-Husary", ar: "محمود خليل الحصري" } },
     { id: "alafasy", path: "Alafasy_128kbps", names: { ru: "Мишари Рашид аль-Афаси", en: "Mishari Rashid al-Afasy", ar: "مشاري راشد العفاسي" } },
@@ -2141,6 +2156,7 @@
     document.getElementById("sound-cues-toggle").checked = state.soundCues !== false;
     document.getElementById("strict-correction-toggle").checked = state.strictCorrection !== false;
     applyMushafAppearance();
+    refreshMushafReadingLayout();
     updateRecitationFlowUi();
     updateProgress();
     updateVerseActions();
@@ -3261,8 +3277,8 @@
     setMushafMode(true, true);
     selectReaderMode("mushaf");
     showToast(t("heartLinkedStarted"));
-    loadMushafPage(pageNumber, false).then(function () {
-      if (!linkedPageSession || linkedPageSession.pageNumber !== pageNumber) return;
+    loadMushafPage(pageNumber, false).then(function (loaded) {
+      if (!loaded || mushafPageNumber !== pageNumber || !linkedPageSession || linkedPageSession.pageNumber !== pageNumber) return;
       var first = mushafPageVerses.find(function (verse) {
         return String(verse.verse_key || "") === linkedPageSession.keys[0];
       });
@@ -3428,7 +3444,8 @@
     selectReaderMode("mushaf");
     showToast(t("pageRecallLoading"));
     loadHeartPageContextForCurrentVerse().then(function (pageData) {
-      return loadMushafPage(pageData.page, false).then(function () {
+      return loadMushafPage(pageData.page, false).then(function (loaded) {
+        if (!loaded || mushafPageNumber !== pageData.page) return;
         if (!preparePageRecall(pageData)) return;
         var first = mushafPageVerses.find(function (verse) { return String(verse.verse_key || "") === pageRecallSession.keys[0]; }) || mushafPageVerses[0];
         if (first) activateMushafVerse(first, true);
@@ -4676,7 +4693,8 @@
       return true;
     }
     if (next.mushafNextPage) {
-      loadMushafPage(next.mushafNextPage, false).then(function () {
+      loadMushafPage(next.mushafNextPage, false).then(function (loaded) {
+        if (!loaded || mushafPageNumber !== next.mushafNextPage) return;
         if (mushafPageVerses[0]) activateMushafVerse(mushafPageVerses[0], true);
         if (resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 90);
       });
@@ -4848,6 +4866,25 @@
     }
   }
 
+  function exitMushafToReading(restoreFocus) {
+    clearAutoAdvance();
+    stopRecognitionImmediately();
+    document.body.classList.remove("audio-view");
+    setMushafMode(false);
+    stopVerseAudio(false);
+    var audioPanel = document.getElementById("audio-panel");
+    if (audioPanel) audioPanel.hidden = true;
+    setStudioMode(false);
+    selectReaderMode("read");
+    setMeaningVisibility(state.showMeaning);
+    if (restoreFocus) {
+      window.requestAnimationFrame(function () {
+        var readerControl = document.getElementById("open-quran-search");
+        if (readerControl) readerControl.focus();
+      });
+    }
+  }
+
   function updateMushafFontUi() {
     var select = document.getElementById("mushaf-font-select");
     if (select) select.value = state.mushafFont;
@@ -4921,13 +4958,93 @@
     });
   }
 
+/* ALLIM_MUSHAF_COMFORT_START */
+  function getMushafReadingPreferences() {
+    return {
+      layout: state.mushafLayout,
+      size: state.mushafTextSize
+    };
+  }
+
+  function applyMushafReadingLayout(container) {
+    var preferences = getMushafReadingPreferences();
+    var adaptive = preferences.layout === "adaptive";
+    if (container) {
+      container.setAttribute("data-reading-layout", preferences.layout);
+      container.style.setProperty("--mushaf-reading-size", preferences.size + "px");
+      container.querySelectorAll(".mushaf-glyph[data-readable-text]").forEach(function (glyph) {
+        if (!glyph.hasAttribute("data-page-glyph")) glyph.setAttribute("data-page-glyph", glyph.textContent);
+        glyph.textContent = glyph.getAttribute(adaptive ? "data-readable-text" : "data-page-glyph");
+      });
+    }
+    document.querySelectorAll("[data-mushaf-layout]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.getAttribute("data-mushaf-layout") === preferences.layout));
+    });
+    var down = document.getElementById("mushaf-size-down");
+    var up = document.getElementById("mushaf-size-up");
+    var value = document.getElementById("mushaf-size-value");
+    if (down) down.disabled = adaptive && preferences.size <= 28;
+    if (up) up.disabled = adaptive && preferences.size >= 52;
+    if (value) value.textContent = adaptive ? formatMetric(preferences.size) : "—";
+    return adaptive;
+  }
+
+  function refreshMushafReadingLayout() {
+    var container = document.getElementById("mushaf-page");
+    var scroller = document.getElementById("ayah-wrap");
+    var wasAtTop = scroller && scroller.scrollTop < 2;
+    var anchor = null;
+    var offset = 0;
+    if (container && scroller) {
+      var top = scroller.getBoundingClientRect().top;
+      anchor = Array.prototype.find.call(container.querySelectorAll(".mushaf-glyph"), function (node) { return node.getBoundingClientRect().bottom > top + 8; });
+      if (anchor) offset = anchor.getBoundingClientRect().top - top;
+    }
+    fitMushafLines(container);
+    window.requestAnimationFrame(function () {
+      if (wasAtTop && scroller) { scroller.scrollTop = 0; return; }
+      if (anchor && anchor.isConnected && scroller) scroller.scrollTop += anchor.getBoundingClientRect().top - scroller.getBoundingClientRect().top - offset;
+    });
+  }
+
+  function changeMushafReadingPreferences(layout, delta) {
+    if (["page", "adaptive"].indexOf(layout) < 0) return;
+    state.mushafLayout = layout;
+    state.mushafTextSize = Math.max(28, Math.min(52, state.mushafTextSize + delta));
+    saveState();
+    refreshMushafReadingLayout();
+  }
+
+  function initMushafReadingControls() {
+    document.querySelectorAll("[data-mushaf-layout]").forEach(function (button) {
+      button.addEventListener("click", function () { changeMushafReadingPreferences(button.getAttribute("data-mushaf-layout"), 0); });
+    });
+    document.getElementById("mushaf-size-down").addEventListener("click", function () { changeMushafReadingPreferences("adaptive", -2); });
+    document.getElementById("mushaf-size-up").addEventListener("click", function () { changeMushafReadingPreferences("adaptive", 2); });
+    applyMushafReadingLayout(document.getElementById("mushaf-page"));
+    var storagePanel = document.getElementById("allim-storage-panel");
+    if (storagePanel) {
+      var reserveStorageSpace = function () {
+        var clearance = Math.max(86, window.innerHeight - storagePanel.getBoundingClientRect().top + 16);
+        document.documentElement.style.setProperty("--mushaf-storage-clearance", clearance + "px");
+      };
+      if (window.ResizeObserver) new window.ResizeObserver(reserveStorageSpace).observe(storagePanel);
+      window.addEventListener("resize", reserveStorageSpace);
+      reserveStorageSpace();
+    }
+  }
+/* ALLIM_MUSHAF_COMFORT_END */
+
+
   function fitMushafLines(container) {
     if (!container) return;
     if (mushafFitFrame) window.cancelAnimationFrame(mushafFitFrame);
+    mushafFitFrame = null;
+    if (applyMushafReadingLayout(container)) return;
     var viewportHeight = window.visualViewport && window.visualViewport.height ? window.visualViewport.height : window.innerHeight;
     var compactViewport = window.innerWidth <= 620;
     var minimumSize = compactViewport ? 9 : 12;
-    var baseSize = Math.max(minimumSize, Math.min(compactViewport ? 28 : 39, Math.floor((viewportHeight - 140) / 22)));
+    var baseSize = compactViewport ? 28 : 39;
     var lines = Array.prototype.slice.call(container.querySelectorAll(".mushaf-line"));
     lines.forEach(function (line) { line.style.setProperty("--mushaf-line-font-size", baseSize + "px"); });
     mushafFitFrame = window.requestAnimationFrame(function () {
@@ -5021,6 +5138,7 @@
         span.className = "mushaf-glyph" + (word.char_type_name === "end" ? " is-ayah-end" : "");
         span.style.fontFamily = resolvedFont;
         span.setAttribute("data-verse-key", item.verse.verse_key);
+        span.setAttribute("data-readable-text", word.text_qpc_hafs || "");
         span.setAttribute("aria-label", word.text_qpc_hafs || item.verse.verse_key);
         var glyph = resolvedVersion === "v1" ? String(word.code_v1 || word.code_v2 || "") : (resolvedVersion === "v2" ? String(word.code_v2 || "") : String(word.text_qpc_hafs || ""));
         if (glyph.indexOf("<") === -1 && glyph.indexOf(">") === -1) span.innerHTML = glyph;
@@ -5190,12 +5308,14 @@
   }
 
   function loadMushafPage(pageNumber, announce) {
-    var page = Math.max(1, Math.min(604, Number(pageNumber) || 1));
+    var page = Math.max(1, Math.min(604, Math.round(Number(pageNumber) || 1)));
     var requestId = ++mushafPageRequest;
     var container = document.getElementById("mushaf-page");
     var input = document.getElementById("mushaf-page-number");
     mushafPageNumber = page;
     if (input) input.value = String(page);
+    document.getElementById("mushaf-prev-page").disabled = page <= 1;
+    document.getElementById("mushaf-next-page").disabled = page >= 604;
     if (container) {
       container.hidden = false;
       container.innerHTML = '<div class="mushaf-page-loading"><span></span><strong>' + t("mushafLoading") + "</strong></div>";
@@ -5211,12 +5331,26 @@
     ]).then(function (results) {
       if (requestId !== mushafPageRequest) return;
       renderMushafPage(results[0], results[1]);
+      document.getElementById("ayah-wrap").scrollTop = 0;
       document.getElementById("mushaf-prev-page").disabled = page <= 1;
       document.getElementById("mushaf-next-page").disabled = page >= 604;
       if (announce) showToast(formatText("mushafPageReady", { page: state.language === "ar" ? arabicNumber(page) : page }));
+      return true;
     }).catch(function () {
       if (requestId !== mushafPageRequest || !container) return;
-      container.innerHTML = '<div class="mushaf-page-error"><strong>' + t("mushafLoadError") + "</strong></div>";
+      container.textContent = "";
+      var errorPanel = document.createElement("div");
+      errorPanel.className = "mushaf-page-error";
+      var message = document.createElement("strong");
+      message.textContent = t("mushafLoadError");
+      var retry = document.createElement("button");
+      retry.type = "button";
+      retry.textContent = t("mushafRetry");
+      retry.addEventListener("click", function () { loadMushafPage(page, true); });
+      errorPanel.appendChild(message);
+      errorPanel.appendChild(retry);
+      container.appendChild(errorPanel);
+      return false;
     });
   }
 
@@ -5228,7 +5362,8 @@
     }
     var targetPage = Math.max(1, Math.min(604, mushafPageNumber + direction));
     if (targetPage === mushafPageNumber) return false;
-    loadMushafPage(targetPage, true).then(function () {
+    loadMushafPage(targetPage, true).then(function (loaded) {
+      if (!loaded || targetPage !== mushafPageNumber) return;
       var targetVerse = direction > 0 ? mushafPageVerses[0] : mushafPageVerses[mushafPageVerses.length - 1];
       if (targetVerse) activateMushafVerse(targetVerse, true);
     });
@@ -5244,7 +5379,7 @@
     }).then(function (data) {
       if (requestId !== mushafPageRequest) return;
       mushafPageRequest -= 1;
-      return loadMushafPage(data.page, false).then(function () { return true; });
+      return loadMushafPage(data.page, false).then(function (loaded) { return loaded === true; });
     }).catch(function () {
       if (requestId !== mushafPageRequest) return false;
       mushafPageRequest -= 1;
@@ -7610,16 +7745,25 @@
         }
       });
     });
+    document.getElementById("mushaf-exit").addEventListener("click", function () { exitMushafToReading(true); });
+    initMushafReadingControls();
     document.getElementById("mushaf-prev-page").addEventListener("click", function () { navigateMushafPage(-1); });
     document.getElementById("mushaf-next-page").addEventListener("click", function () { navigateMushafPage(1); });
-    document.getElementById("mushaf-page-number").addEventListener("change", function (event) { loadMushafPage(event.target.value, true); });
+    document.getElementById("mushaf-page-number").addEventListener("change", function (event) {
+      // Enter already loads the page. Its following blur/change must not reload
+      // the same sheet and erase the reading anchor when a size button is used.
+      if (Number(event.target.value) !== mushafPageNumber) loadMushafPage(event.target.value, true);
+    });
+    document.getElementById("mushaf-page-number").addEventListener("keydown", function (event) {
+      if (event.key === "Enter") { event.preventDefault(); loadMushafPage(event.target.value, true); }
+    });
     var mushafPage = document.getElementById("mushaf-page");
     mushafPage.addEventListener("touchstart", function (event) {
-      if (event.touches.length !== 1) return;
+      if (event.touches.length !== 1 || (window.visualViewport && window.visualViewport.scale > 1.01) || getMushafReadingPreferences().layout === "adaptive") { mushafSwipeStart = null; return; }
       mushafSwipeStart = { x: event.touches[0].clientX, y: event.touches[0].clientY };
     }, { passive: true });
     mushafPage.addEventListener("touchend", function (event) {
-      if (!mushafSwipeStart || !event.changedTouches.length) return;
+      if (!mushafSwipeStart || !event.changedTouches.length || event.touches.length || (window.visualViewport && window.visualViewport.scale > 1.01)) { mushafSwipeStart = null; return; }
       var deltaX = event.changedTouches[0].clientX - mushafSwipeStart.x;
       var deltaY = event.changedTouches[0].clientY - mushafSwipeStart.y;
       mushafSwipeStart = null;
@@ -7749,7 +7893,8 @@
         setStudioMode(false);
         setMushafMode(true);
         selectReaderMode("mushaf");
-        loadMushafPage(page, true).then(function () {
+        loadMushafPage(page, true).then(function (loaded) {
+          if (!loaded || mushafPageNumber !== page) return;
           if (mushafPageVerses[0]) activateMushafVerse(mushafPageVerses[0], true);
         });
       } else if (surah) {
@@ -7766,8 +7911,7 @@
       }
       if (!typing && document.body.classList.contains("mushaf-view") && event.key === "Escape") {
         event.preventDefault();
-        setMushafMode(false);
-        selectReaderMode("read");
+        exitMushafToReading(true);
       }
       if (!typing && document.body.classList.contains("mushaf-view") && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
         event.preventDefault();

@@ -5,6 +5,17 @@ const catalogue = require('../allimquran/public/data/account-storage-catalogue.j
 const sourceId = 'ae6f207a-a9dd-4e5a-bbce-b01ee6e0c3e0';
 const digest = 'c'.repeat(64);
 const fixture = () => ({legacy: {home_language: 'en', learn: {language: 'ru', sessions: 7, wordsReviewed: 28, hints: 2, savedVerses: ['1:1', '1:2'], reviewQueue: ['1:3'], heartMushaf: {units: {'1:1': {accepted: 150, daily: {'2026-09-14': 2}}}, pages: {'1': {connectedAttempts: 3}}}, lifePractice: {entries: [{id: 'life-old', verseKey: '1:1', reflection: 'Сохранить текст', action: '', completed: true}]}, unknownMethod: {count: 42}}}, records: []});
+test('explicit settings import preserves guest mushaf choices', async () => {
+ const source = fixture();
+ source.records = [
+  {kind:'preference',id:'mushaf_layout',value:{selected:'adaptive'}},
+  {kind:'preference',id:'mushaf_text_size',value:{selected:48}}
+ ];
+ const mapped = migration.mapSource(source, catalogue);
+ assert.deepEqual(mapped.items.filter(r => r.id.startsWith('mushaf_')).map(r => r.value.selected), ['adaptive',48]);
+ const excluded = await migration.compile(source,sourceId,digest,['bookmarks'],catalogue,'ru');
+ assert.equal(excluded.operations.some(r => r.id.startsWith('mushaf_')), false);
+});
 test('maps old aggregates without synthesizing sessions; retains missing timestamps', () => {
  const result = migration.mapSource(fixture(), catalogue);
  assert.equal(result.languageConflict, true);

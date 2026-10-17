@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/assets/allimquran/css/account-storage.css?v=3">
 <script src="/assets/allimquran/js/account-storage.js?v=3"></script>
-<script src="/assets/allimquran/js/account-progress.js?v=1"></script>
-<script src="/assets/allimquran/js/account-import.js?v=2"></script>
+<script src="/assets/allimquran/js/account-progress.js?v=2"></script>
+<script src="/assets/allimquran/js/account-import.js?v=3"></script>
 <script src="/assets/allimquran/js/account-import-ui.js?v=1"></script>
 <script src="/assets/allimquran/js/account-journal.js?v=1"></script>
 <script src="/assets/allimquran/js/account-storage-ui.js?v=3"></script>
@@ -228,7 +228,17 @@
 
           <div class="reader-layout">
             <article class="mushaf-panel">
-              <div class="mushaf-toolbar">
+              <!-- ALLIM_MUSHAF_MOBILE_EXIT_V1_START -->
+              <nav class="mushaf-mobile-nav" aria-label="Навигация мусхафа" data-i18n-aria="mushafNavigation">
+                <button class="mushaf-exit-button" id="mushaf-exit" type="button" aria-label="В приложение" data-i18n-aria="mushafBack">
+                  <svg aria-hidden="true"><use href="#i-arrow"/></svg><span data-i18n="mushafBack">В приложение</span>
+                </button>
+                <a class="mushaf-home-button" href="https://allimquran.com/" data-home-link aria-label="На главную АЛЛИМ" data-i18n-aria="mushafHome">
+                  <svg aria-hidden="true"><use href="#i-home"/></svg><span class="sr-only" data-i18n="mushafHome">На главную АЛЛИМ</span>
+                </a>
+              </nav>
+              <!-- ALLIM_MUSHAF_MOBILE_EXIT_V1_END -->
+<div class="mushaf-toolbar">
                 <div class="verse-pickers">
                   <button class="quran-search-trigger" id="open-quran-search" type="button" aria-label="Открыть все суры и поиск по Корану" data-i18n-aria="openQuranSearch">
                     <svg><use href="#i-search"/></svg><span data-i18n="quranCatalogShort">114 сур</span>
@@ -249,7 +259,7 @@
                 </div>
                 <div class="mushaf-page-toolbar" id="mushaf-page-toolbar" hidden>
                   <button class="icon-button" id="mushaf-prev-page" type="button" aria-label="Предыдущая страница" data-i18n-aria="previousMushafPage"><svg><use href="#i-arrow"/></svg></button>
-                  <label for="mushaf-page-number"><span data-i18n="mushafPage">Страница</span><input id="mushaf-page-number" type="number" min="1" max="604" value="1" inputmode="numeric"><small>/ 604</small></label>
+                  <label for="mushaf-page-number"><span data-i18n="mushafPage">Страница</span><input id="mushaf-page-number" type="number" aria-label="Страница" data-i18n-aria="mushafPage" min="1" max="604" value="1" inputmode="numeric"><small>/ 604</small></label>
                   <button class="icon-button" id="mushaf-next-page" type="button" aria-label="Следующая страница" data-i18n-aria="nextMushafPage"><svg><use href="#i-arrow"/></svg></button>
                   <button class="icon-button mushaf-inline-audio" id="mushaf-play-audio" type="button" aria-pressed="false" aria-label="Слушать выбранный аят" data-i18n-aria="audioDemo"><svg><use href="#i-volume"/></svg></button>
                   <details class="mushaf-appearance-picker">
@@ -283,6 +293,20 @@
                   </details>
                 </div>
               </div>
+
+              <!-- ALLIM_MUSHAF_COMFORT_START -->
+<div class="mushaf-reading-controls" id="mushaf-reading-controls">
+  <div class="mushaf-layout-choices" role="group" data-i18n-aria="mushafLayout" aria-label="Раскладка чтения">
+    <button type="button" data-mushaf-layout="page" aria-pressed="false" data-i18n="mushafLayoutPage">Страница</button>
+    <button type="button" data-mushaf-layout="adaptive" aria-pressed="false" data-i18n="mushafLayoutAdaptive">Крупный текст</button>
+  </div>
+  <div class="mushaf-size-choices" role="group" data-i18n-aria="mushafTextSize" aria-label="Размер текста">
+    <button type="button" id="mushaf-size-down" data-i18n-aria="mushafSmaller" aria-label="Уменьшить текст">A−</button>
+    <output id="mushaf-size-value" aria-live="polite"></output>
+    <button type="button" id="mushaf-size-up" data-i18n-aria="mushafLarger" aria-label="Увеличить текст">A+</button>
+  </div>
+</div>
+<!-- ALLIM_MUSHAF_COMFORT_END -->
 
               <div class="mode-switch" role="group" aria-label="Режим отображения" data-i18n-aria="displayMode">
                 <button type="button" class="is-active" data-reader-mode="read" data-i18n="modeRead">Чтение</button>
