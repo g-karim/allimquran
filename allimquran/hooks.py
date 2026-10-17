@@ -15,6 +15,7 @@ after_migrate = [
 	"allimquran.account_storage.install",
 ]
 
+before_request = ["allimquran.session_security.before_request"]
 after_request = ["allimquran.account_storage.after_request"]
 doc_events = {"User": {"on_trash": "allimquran.account_storage.delete_user_progress"}}
 

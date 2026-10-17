@@ -37,10 +37,14 @@ async function snapshot(page) { return page.evaluate(() => AllimStorage.snapshot
 async function signedIn(page, who) {
   // A background sender in another tab can make one sync() skip the Web Lock.
   // Wait for the requested owner before using destructive fixture reset.
-  await page.waitForFunction(async user => {
-    await AllimStorage.sync();
-    return AllimStorage.state === "account_ready" && AllimStorage.auth?.legacy_owner === user;
-  }, credentials[who].user);
+  const deadline = Date.now() + 30000;
+  while (Date.now() < deadline) {
+    await page.evaluate(() => AllimStorage.sync());
+    const state = await page.evaluate(() => ({state:AllimStorage.state, owner:AllimStorage.auth?.legacy_owner}));
+    if (state.state === "account_ready" && state.owner === credentials[who].user) return;
+    await sleep(100);
+  }
+  assert.fail("The requested account did not become ready");
 }
 async function sync(page) {
   await page.evaluate(async () => {
