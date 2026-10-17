@@ -41,6 +41,10 @@ ASR is optional and runs in a separate environment, not in Frappe workers.
 See [deployment](docs/deployment.md) and [ASR](services/asr/README.md).
 The app does not install a model, demo courses or demo users.
 
+The [youth curriculum](docs/youth-curriculum-2026-10-17.md) is available as an explicit
+draft import: three Russian courses, 43 lessons and 61 questions. Installation and
+migration leave that choice to the site administrator and instructor.
+
 Recognition quality work: [stage 1](docs/recognition-stage1.md) and the
 [private evaluation/annotation workflow](docs/recognition-stage2.md) (Russian).
 Engineering audio controls are not a learner benchmark; private recordings never
@@ -59,6 +63,7 @@ allimquran/
   asr/server.py                   speech and Quran-content APIs
   search_intelligence.py          existing search audits and SEO integration
   lms_renderer.py, lms_template.py app-owned LMS search presentation
+  youth_curriculum/               reviewed course data and explicit draft importer
   source.py, setup.py              guarded source synchronization
 deploy/                           nginx/systemd configuration
 scripts/                          export, migration and browser checks
