@@ -246,6 +246,19 @@ class AccountStorageTests(unittest.TestCase):
 			)
 			self.assertEqual(self.repo.record("preference", key)["value"], {"selected": value})
 
+	def test_production_home_languages_are_valid_account_preferences(self):
+		for language in ("tg", "uz", "tt"):
+			with self.subTest(language=language):
+				repo = MemoryRepository()
+				service = Service(repo)
+				op = operation("preference", "language", {"selected": language})
+				self.assertEqual(service.apply(op)["outcome"], "applied")
+				self.assertEqual(service.apply(copy.deepcopy(op))["outcome"], "applied")
+				self.assertEqual(repo.record("preference", "language")["value"], {"selected": language})
+				self.assertEqual(repo.seq, 1)
+		with self.assertRaises(StorageError):
+			validate_record("preference", "language", {"selected": "unknown-language"})
+
 	def test_import_is_idempotent_and_refuses_overlapping_aggregates(self):
 		source = new_id()
 		hashed = digest({"old": "data"})

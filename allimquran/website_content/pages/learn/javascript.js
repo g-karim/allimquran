@@ -2362,7 +2362,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       var key = element.getAttribute("data-i18n-title");
       if (translations[language][key]) element.setAttribute("title", translations[language][key]);
     });
-    document.getElementById("language-button").textContent = language.toUpperCase();
+    document.getElementById("language-switch").value = language;
+    document.getElementById("language-current-code").textContent = language.toUpperCase();
     document.getElementById("language-select").value = language;
     updateRecognitionModeUi();
     populateReciterSelect();
@@ -7472,11 +7473,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     document.querySelectorAll("[data-go]").forEach(function (button) {
       button.addEventListener("click", function () { navigate(button.getAttribute("data-go")); });
     });
-    document.getElementById("language-button").addEventListener("click", function () {
-      var order = ["ru", "en", "ar"];
-      var next = order[(order.indexOf(state.language) + 1) % order.length];
-      setLanguage(next);
-    });
+    document.getElementById("language-switch").addEventListener("change", function (event) { setLanguage(event.target.value); });
     document.getElementById("language-select").addEventListener("change", function (event) { setLanguage(event.target.value); });
     document.getElementById("daily-goal").addEventListener("change", function (event) {
       state.dailyGoal = [1, 2, 3, 5].indexOf(Number(event.target.value)) >= 0 ? Number(event.target.value) : 1;

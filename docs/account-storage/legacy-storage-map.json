@@ -315,5 +315,48 @@
     }
   ],
   "ownership": "Legacy production progress has no account owner or record revision; do not infer ownership from current login or field names.",
-  "unknown_fields": "Preserve the untouched source backup and report unknown fields before normalization; do not auto-upload secrets or drop unsupported progress."
+  "unknown_fields": "Preserve the untouched source backup and report unknown fields before normalization; do not auto-upload secrets or drop unsupported progress.",
+  "production_discovered": {
+    "review": "cms-review-2026-10-17.json",
+    "deferred_storage": [
+      {
+        "key": "allim-memory-journey-v1",
+        "backend": "localStorage",
+        "version": 1,
+        "fields": {
+          "plans": [
+            "id",
+            "action",
+            "keys",
+            "portion",
+            "created",
+            "deadline"
+          ],
+          "sessions": [
+            "id",
+            "key",
+            "mode",
+            "date",
+            "complete",
+            "total",
+            "hints",
+            "flags",
+            "dismissed",
+            "seconds"
+          ]
+        },
+        "limits": {
+          "plans": 50,
+          "sessions": 1000
+        },
+        "handling": "preserve original key; not imported or synchronized in the presentation-only change"
+      },
+      {
+        "key": "allim-lawh-library-v1",
+        "backend": "IndexedDB",
+        "object_store": "pages",
+        "handling": "preserve original database; no photo upload or account mapping in this change"
+      }
+    ]
+  }
 }

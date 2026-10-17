@@ -1,0 +1,98 @@
+{
+  "site": "allimquran.com",
+  "snapshot_at_utc": "2026-10-17T18:37:31.457134+00:00",
+  "confirmation_at_utc": "2026-10-17T18:46:27.196595+00:00",
+  "base_commit": "86f38cc9e0d796aa5601b971c4d951d8734fdac3",
+  "deployed_commit": "6a9775e064d9d22a0ba6eb224d6e7a3734347979",
+  "mode": "SQL READ ONLY with consistent snapshot and rollback; SSH streamed to local storage",
+  "versions": {
+    "frappe": "16.51.0",
+    "lms": "2.62.1",
+    "payments": "0.0.1",
+    "allimquran": "0.1.0"
+  },
+  "database_version": "10.6.23-MariaDB-0ubuntu0.22.04.1",
+  "managed_records": 69,
+  "live_pages": 37,
+  "unmanaged_pages": 13,
+  "cms_and_source_state_unchanged": true,
+  "managed_snapshot_sha256": "e813806919630a3e4699ed418832ce78f77172795a9bdf6a8ced5bf88541a016",
+  "unmanaged_pages_snapshot_sha256": "d10b488ce9ec8030d3bb98a80a515678b95babe8571281ffbb59493b8b9f28b1",
+  "source_state_sha256": "f4e2dc0a212efb506f2fef7a60f274d93012d9d4b43551d950a13bff18c05ee5",
+  "reviewed_changes": [
+    {
+      "record": "Web Page:allim-qur’an",
+      "route": "home",
+      "deployed_fingerprint": "76cae1911f689ddcd9e9c33959079acf343740eb1580ccc708473522d357d2bf",
+      "reviewed_live_fingerprint": "d44b2faa5504a1a895a752159898124602840d48f21e61384ed644c098f08b49",
+      "candidate_fingerprint": "bfc27ad7442af45e7690767657f17eb732362cdf8b99319b99ca37508dd2258e",
+      "decision": "merged with account integration and canonical asset paths"
+    },
+    {
+      "record": "Web Page:allim-qur’an-companion",
+      "route": "learn",
+      "deployed_fingerprint": "4dde6c7293a27697fbd57f97930b22daa428dac9a3ba4288b6f426668ade31d3",
+      "reviewed_live_fingerprint": "40d84f3d5d8683372ab2e9cb9e913234be21787b24b21b75ab752f01c36351da",
+      "candidate_fingerprint": "a839ad86d0b64c7b312c718415e8cd74cb94a8aa1cbb7fd40638c77247988b80",
+      "decision": "presentation only; learning behavior deferred"
+    },
+    {
+      "record": "Web Page:практические-материалы-об-изучении-корана-—-allim-qur’an",
+      "route": "ru/blog",
+      "deployed_fingerprint": "b1350705d5d5a231e2ccc508fc29b9bcae845c9a65bb61a66310d40c27a672cc",
+      "reviewed_live_fingerprint": "370066b52d67c3e13e7f1566c924b1ce16be0720399a8094714e219c60c9ce68",
+      "candidate_fingerprint": "ff81199b1d770ce79c8927ab73d1deb99245ccd413d04c1248d272ed0f9663fa",
+      "decision": "merged with account integration and canonical asset paths"
+    },
+    {
+      "record": "Web Page:собираю-коран-в-сердце-система-повторения-которая-сопротивляется-забыванию",
+      "route": "ru/blog/sistema-povtoreniya-korana",
+      "deployed_fingerprint": "cfd7dbfa5c5c78c698260584337042ddd05d9171f86fb188370c99535165854e",
+      "reviewed_live_fingerprint": "d92e0ed9f14df93c70cadda148d8e107e7c0738b0e7e22557cd42dc0776f1488",
+      "candidate_fingerprint": "c131994b3f3fffda46bbeaa93395f4f264bf756f441ab2cefc63e99c58e5a36d",
+      "decision": "merged with account integration and canonical asset paths"
+    }
+  ],
+  "public_media_hashes_match_existing_assets": 15,
+  "font_source_commit": "5a5a9365f8e44dbdb0ea0d5012122649bbb22661",
+  "fonts": [
+    {
+      "file": "allimquran/public/media/allim-onest-cyrillic-ext.woff2",
+      "source": "companion-workspace/homepage/fonts/onest-cyrillic-ext.woff2",
+      "source_blob": "f8c5fd316b3306bf9cfa9efe3f9e7cd24c589834",
+      "sha256": "8b55db3131aa41d0b0f25dd923c9e1494d7c930d4ca5a1b438b0badcc158f55e"
+    },
+    {
+      "file": "allimquran/public/media/allim-onest-cyrillic.woff2",
+      "source": "companion-workspace/homepage/fonts/onest-cyrillic.woff2",
+      "source_blob": "5a7cfa9a00601c64d205c26366ce236cbdf78f22",
+      "sha256": "c3f4223046fb9623a0e92414d2834745cbebb260742e049aff103018b991fd47"
+    },
+    {
+      "file": "allimquran/public/media/allim-onest-latin-ext.woff2",
+      "source": "companion-workspace/homepage/fonts/onest-latin-ext.woff2",
+      "source_blob": "87e85f16b17776b74f0925358570317fb5cf1643",
+      "sha256": "f72bdc75595bf844f68b15e18dae7eb4f5829b633c402201c8e036d1dfc5f17b"
+    },
+    {
+      "file": "allimquran/public/media/allim-onest-latin.woff2",
+      "source": "companion-workspace/homepage/fonts/onest-latin.woff2",
+      "source_blob": "2712c9368dd779c2f0063372e0ebf996b6f37358",
+      "sha256": "cc61cbd632bb677cd55f0eec9ebdd3e1525c5f30904cbf0769e2ac50d0fba992"
+    }
+  ],
+  "deferred": [
+    "linked33 and turkishWall33 progress",
+    "mauritanianLawh and local photo library",
+    "hifzCoach recommendations",
+    "allim-memory-journey-v1 learning plans and recall attempts"
+  ],
+  "preflight_guard": "unchanged; live home/learn drift still requires a reviewed source-adoption step after learning reconciliation",
+  "legacy_setting": {
+    "field": "Website Settings.navbar_search",
+    "stored_value": "0",
+    "exists_in_current_metadata": false,
+    "decision": "string representation of an obsolete field; no CMS setting change; source 0 preserved"
+  },
+  "production_writes": false
+}

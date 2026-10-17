@@ -127,7 +127,15 @@
           <a class="icon-button academy-shortcut" href="/academy" data-academy-link aria-label="Кабинет Академии" data-i18n-aria="navAcademy"><svg><use href="#i-user"/></svg></a>
           <button class="icon-button guide-button" id="guide-button" type="button" aria-label="Как работает приложение" data-i18n-aria="openGuide"><svg><use href="#i-info"/></svg></button>
           <button class="icon-button top-settings" type="button" data-view="settings" aria-label="Настройки" data-i18n-aria="navSettings"><svg><use href="#i-settings"/></svg></button>
-          <button class="language-button" id="language-button" type="button" aria-label="Сменить язык" data-i18n-aria="changeLanguage">RU</button>
+          <label class="app-language-picker" for="language-switch">
+            <span class="sr-only" data-i18n="interfaceLanguage">Язык интерфейса</span>
+            <span class="app-language-current-code" id="language-current-code" aria-hidden="true">RU</span>
+            <select class="app-language-switch" id="language-switch" aria-label="Сменить язык" data-i18n-aria="changeLanguage">
+              <option value="en">EN · English</option>
+              <option value="ar">AR · العربية</option>
+              <option value="ru" selected>RU · Русский</option>
+            </select>
+          </label>
         </div>
       </header>
 

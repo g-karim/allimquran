@@ -60,6 +60,8 @@
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
     <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></symbol>
     <symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4m14-1v2a3 3 0 0 1-3 3H3"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.2m-6.6 6.8 6.6 4.2"/></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 5h16v4a3 3 0 0 0 0 6v4H4v-4a3 3 0 0 0 0-6Z"/><path d="M12 7.5v2m0 5v2"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
   </svg>
@@ -79,12 +81,16 @@
     <div class="header-actions">
       <label class="language-picker" for="language-switch">
         <span class="language-picker-label" data-copy="languageLabel">Language</span>
+        <span class="language-current-code" id="language-current-code" aria-hidden="true">EN</span>
         <select class="language-switch" id="language-switch" aria-label="Language">
           <optgroup id="language-primary-group" label="Primary languages">
             <option value="ar">AR · العربية</option>
             <option value="en">EN · English</option>
             <option value="ru">RU · Русский</option>
             <option value="tr">TR · Türkçe</option>
+            <option value="tg">TG · Тоҷикӣ</option>
+            <option value="uz">UZ · O‘zbekcha</option>
+            <option value="tt">TT · Татарча</option>
           </optgroup>
           <optgroup id="language-more-group" label="More languages">
             <option value="bs">BS · Bosanski</option>
@@ -187,11 +193,31 @@
         <div><p class="eyebrow" data-copy="journeyEyebrow">One ayah. One complete journey.</p><h2 id="journey-title" data-copy="journeyTitle">More than detecting a mistake. More than displaying a page.</h2></div>
         <p data-copy="journeyLead">ALLIM’s goal is to unite the disciplines that are usually scattered across different apps: listening, recitation, hifz, language, tafsir, reflection and review.</p>
       </div>
-      <div class="journey-grid">
-        <article class="journey-card" data-step="01"><span class="feature-icon"><svg><use href="#i-wave"/></svg></span><p class="card-number">01</p><h3 data-copy="listenTitle">Listen with attention</h3><p data-copy="listenText">Follow a trusted recitation, repeat a selected range and absorb the rhythm before recall.</p><span class="card-line"></span></article>
-        <article class="journey-card is-accent" data-step="02"><span class="feature-icon"><svg><use href="#i-mic"/></svg></span><p class="card-number">02</p><h3 data-copy="reciteTitle">Recite and correct</h3><p data-copy="reciteText">The planned Qur’anic speech engine follows word by word, pauses at an error and resumes only after correction.</p><span class="card-line"></span></article>
-        <article class="journey-card" data-step="03"><span class="feature-icon"><svg><use href="#i-book"/></svg></span><p class="card-number">03</p><h3 data-copy="understandTitle">Understand the ayah</h3><p data-copy="understandText">See vocabulary, roots, structure, translation and source-bound tafsir without losing the reading flow.</p><span class="card-line"></span></article>
-        <article class="journey-card" data-step="04"><span class="feature-icon"><svg><use href="#i-heart"/></svg></span><p class="card-number">04</p><h3 data-copy="liveTitle">Carry it into life</h3><p data-copy="liveText">Turn meaning into a personal reflection, a small action and a review that returns at the right time.</p><span class="card-line"></span></article>
+      <div class="journey-experience">
+        <div class="journey-visual" id="journey-visual" data-active-step="listen" aria-hidden="true">
+          <div class="journey-visual-top"><span>ALLIM · PATH</span><strong><b id="journey-visual-index">01</b> / 04</strong></div>
+          <div class="journey-orbit">
+            <span class="journey-orbit-line journey-orbit-line-one"></span>
+            <span class="journey-orbit-line journey-orbit-line-two"></span>
+            <span class="journey-focus-ring"></span>
+            <span class="journey-focus-icon"><svg><use id="journey-visual-icon" href="#i-wave"/></svg></span>
+            <span class="journey-focus-word" id="journey-visual-word" lang="ar" dir="rtl">اِسْتَمِعْ</span>
+          </div>
+          <p class="journey-visual-ayah" lang="ar" dir="rtl">ذَٰلِكَ ٱلْكِتَـٰبُ لَا رَيْبَ فِيهِ هُدًى لِّلْمُتَّقِينَ</p>
+          <div class="journey-visual-track">
+            <span class="is-active" data-journey-node="listen"><svg><use href="#i-wave"/></svg></span>
+            <span data-journey-node="recite"><svg><use href="#i-mic"/></svg></span>
+            <span data-journey-node="understand"><svg><use href="#i-book"/></svg></span>
+            <span data-journey-node="live"><svg><use href="#i-heart"/></svg></span>
+          </div>
+          <p class="journey-visual-caption" data-copy="journeyEyebrow">One ayah. One complete journey.</p>
+        </div>
+        <div class="journey-grid" role="group" aria-labelledby="journey-title">
+          <button class="journey-card is-active" type="button" data-step="01" data-journey-step="listen" data-journey-word="اِسْتَمِعْ" data-journey-icon="#i-wave" aria-pressed="true"><span class="feature-icon"><svg><use href="#i-wave"/></svg></span><p class="card-number">01</p><h3 data-copy="listenTitle">Listen with attention</h3><p data-copy="listenText">Follow a trusted recitation, repeat a selected range and absorb the rhythm before recall.</p><span class="card-line" aria-hidden="true"></span></button>
+          <button class="journey-card" type="button" data-step="02" data-journey-step="recite" data-journey-word="ٱقْرَأْ" data-journey-icon="#i-mic" aria-pressed="false"><span class="feature-icon"><svg><use href="#i-mic"/></svg></span><p class="card-number">02</p><h3 data-copy="reciteTitle">Recite and correct</h3><p data-copy="reciteText">The planned Qur’anic speech engine follows word by word, pauses at an error and resumes only after correction.</p><span class="card-line" aria-hidden="true"></span></button>
+          <button class="journey-card" type="button" data-step="03" data-journey-step="understand" data-journey-word="ٱفْهَمْ" data-journey-icon="#i-book" aria-pressed="false"><span class="feature-icon"><svg><use href="#i-book"/></svg></span><p class="card-number">03</p><h3 data-copy="understandTitle">Understand the ayah</h3><p data-copy="understandText">See vocabulary, roots, structure, translation and source-bound tafsir without losing the reading flow.</p><span class="card-line" aria-hidden="true"></span></button>
+          <button class="journey-card" type="button" data-step="04" data-journey-step="live" data-journey-word="ٱعْمَلْ" data-journey-icon="#i-heart" aria-pressed="false"><span class="feature-icon"><svg><use href="#i-heart"/></svg></span><p class="card-number">04</p><h3 data-copy="liveTitle">Carry it into life</h3><p data-copy="liveText">Turn meaning into a personal reflection, a small action and a review that returns at the right time.</p><span class="card-line" aria-hidden="true"></span></button>
+        </div>
       </div>
     </section>
 
@@ -354,6 +380,15 @@
           <span class="feature-icon"><svg><use href="#i-shield"/></svg></span>
           <div><strong data-copy="ijazahTitle">Ijazah remains a human trust.</strong><p data-copy="ijazahText">The platform never awards ijazah automatically. A pathway may be completed only through a qualified, authorized teacher and the required recitation, study and evaluation.</p></div>
         </aside>
+        <aside class="academy-referral" aria-labelledby="academy-referral-title">
+          <span class="academy-referral-icon" aria-hidden="true"><svg><use href="#i-ticket"/></svg></span>
+          <div class="academy-referral-copy">
+            <span data-copy="referralLabel">ONE-LEVEL ACADEMY INTRODUCTION</span>
+            <strong id="academy-referral-title" data-copy="referralTitle">A clear discount for a real learner — never for building a network.</strong>
+            <p data-copy="referralText">For eligible paid Academy programs, the inviter and the new learner may each receive 10% off one billing period after the first payment becomes final. No cash, second level, teams or earnings from later invitations.</p>
+          </div>
+          <button class="button button-ghost-light academy-referral-action" type="button" data-share-trigger data-share-context="academy"><span data-copy="referralAction">Invite to the Academy</span><svg><use href="#i-share"/></svg></button>
+        </aside>
       </div>
     </section>
 
@@ -391,6 +426,36 @@
       </div>
     </section>
 
+    <section class="share-benefit section-shell" id="share-benefit" aria-labelledby="share-benefit-title">
+      <div class="share-benefit-copy">
+        <p class="eyebrow" data-copy="shareEyebrow">SHARE THE BENEFIT</p>
+        <h2 id="share-benefit-title" data-copy="shareTitle">A useful path becomes stronger when it reaches someone who needs it.</h2>
+        <p class="share-benefit-lead" data-copy="shareText">Invite a friend or relative to learn, read and understand the Qur’an with ALLIM.</p>
+        <div class="share-faith-note">
+          <span class="feature-icon" aria-hidden="true"><svg><use href="#i-heart"/></svg></span>
+          <p data-copy="shareFaith">We hope for reward from Allah for guiding others to what is beneficial. ALLIM does not promise or count spiritual reward.</p>
+        </div>
+        <div class="share-benefit-actions">
+          <button class="button button-primary button-large" type="button" data-share-trigger data-share-context="allim"><span data-copy="shareAction">Share ALLIM</span><svg><use href="#i-share"/></svg></button>
+          <span class="share-status" data-share-status role="status" aria-live="polite"></span>
+        </div>
+      </div>
+      <div class="share-benefit-rules">
+        <article class="share-benefit-rule">
+          <span class="share-rule-number">01</span>
+          <span class="feature-icon" aria-hidden="true"><svg><use href="#i-share"/></svg></span>
+          <h3 data-copy="shareOpenTitle">Sharing stays open</h3>
+          <p data-copy="shareOpenText">No purchase, fee or paid membership is required to share ALLIM with another learner.</p>
+        </article>
+        <article class="share-benefit-rule">
+          <span class="share-rule-number">02</span>
+          <span class="feature-icon" aria-hidden="true"><svg><use href="#i-ticket"/></svg></span>
+          <h3 data-copy="shareLevelTitle">One invitation. One level.</h3>
+          <p data-copy="shareLevelText">Any Academy discount is tied only to a new learner’s real paid enrolment — never to a chain of later invitations.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="early-access section-shell" id="early-access" aria-labelledby="early-title">
       <div class="early-copy">
         <p class="eyebrow" data-copy="earlyEyebrow">Choose how to begin</p>
@@ -423,9 +488,9 @@
   <footer class="site-footer">
     <div class="footer-brand"><a class="brand" href="#top"><img class="brand-symbol" src="/assets/allimquran/media/allim-brand-icon.png?v=65" alt="" aria-hidden="true"><span class="brand-name">ALLIM<small>QUR’AN</small></span></a><p lang="ar" dir="rtl">اللَّهُمَّ عَلِّمْهُ الْكِتَابَ</p></div>
     <div class="footer-column"><strong data-copy="footerProduct">Product</strong><a href="#journey" data-copy="navJourney">The journey</a><a href="#intelligence" data-copy="navIntelligence">Qur’anic intelligence</a><a href="#method" data-copy="navMethod">Our method</a><a href="/academy" data-academy-link data-copy="studentCabinetAction">Student cabinet</a><a href="/blog" data-blog-link data-copy="navGuides">Guides</a></div>
-    <div class="footer-column"><strong data-copy="footerPrinciples">Principles</strong><a href="#trust" data-copy="navTrust">Trust</a><a href="/learn" data-app-link data-copy="openPrototype">Start learning</a></div>
+    <div class="footer-column"><strong data-copy="footerPrinciples">Principles</strong><a href="#trust" data-copy="navTrust">Trust</a><a href="#share-benefit" data-copy="footerShare">Share the benefit</a><a href="/learn" data-app-link data-copy="openPrototype">Start learning</a></div>
     <div class="footer-note"><span class="preview-label"><span></span><span data-copy="developmentStatus">Product in active development</span></span><p data-copy="footerDisclaimer">AI recitation feedback is a learning aid and must not be presented as a substitute for a qualified Qur’an teacher.</p></div>
     <div class="footer-bottom"><span>© 2026 ALLIM</span><span data-copy="footerMission">Memorize · Understand · Live</span></div>
   </footer>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://allimquran.com/#website","url":"https://allimquran.com/","name":"ALLIM Qur’an","alternateName":["ALLIM Quran","ALLIM Qur’an Companion"],"inLanguage":["ar","en","ru","tr","bs","fr","zh","ja","es","de","ms","id","ur","hi","pt","sw"]},{"@type":"Organization","@id":"https://allimquran.com/#organization","name":"ALLIM Qur’an","url":"https://allimquran.com/","description":"A Qur’an learning platform for recitation practice, memorization, Qur’anic Arabic, source-conscious tafsir and guided learning."}]}</script></div>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://allimquran.com/#website","url":"https://allimquran.com/","name":"ALLIM Qur’an","alternateName":["ALLIM Quran","ALLIM Qur’an Companion"],"inLanguage":["ar","en","ru","tr","tg","uz","tt","bs","fr","zh","ja","es","de","ms","id","ur","hi","pt","sw"]},{"@type":"Organization","@id":"https://allimquran.com/#organization","name":"ALLIM Qur’an","url":"https://allimquran.com/","description":"A Qur’an learning platform for recitation practice, memorization, Qur’anic Arabic, source-conscious tafsir and guided learning."}]}</script></div>
