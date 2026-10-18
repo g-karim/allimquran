@@ -1,0 +1,441 @@
+{
+  "date": "2026-10-18",
+  "status": "deployed",
+  "site": "https://allimquran.com",
+  "runtime_commit": "934ef4ef4643c0adf8941208e5c1e0787e774420",
+  "previous_runtime_commit": "6a9775e064d9d22a0ba6eb224d6e7a3734347979",
+  "authorization": "Owner explicitly requested finishing remaining work and deployment",
+  "versions": {
+    "frappe": "16.51.0",
+    "lms": "2.62.1",
+    "python": "3.14.4",
+    "database": "10.6.23-MariaDB-0ubuntu0.22.04.1"
+  },
+  "local_checks": {
+    "python": {
+      "total": 167,
+      "passed": 166,
+      "historical_opt_in_skipped": 1
+    },
+    "node": {
+      "passed": 81,
+      "failed": 0
+    },
+    "ruff_and_format": "passed",
+    "wheel_and_sdist": "passed"
+  },
+  "restored_target_browser_checks": {
+    "learning": {
+      "chromium": {
+        "version": "155.0.8059.84",
+        "passed_groups": 16,
+        "unhandled_errors": [],
+        "native_read_cancellations": 0,
+        "offline_mode": "browser offline"
+      },
+      "webkit": {
+        "version": "26.5",
+        "passed_groups": 16,
+        "unhandled_errors": [],
+        "native_read_cancellations": 2,
+        "offline_mode": "personal HTTP unavailable; native local Blob reads available"
+      },
+      "firefox": {
+        "version": "153.0",
+        "passed_groups": 16,
+        "unhandled_errors": [],
+        "native_read_cancellations": 0,
+        "offline_mode": "browser offline"
+      }
+    },
+    "storage_chromium_groups": 20,
+    "mushaf_chromium_groups": 7,
+    "native_lms_groups": 7,
+    "full_site_groups": 4,
+    "csrf": {
+      "fresh_six_contexts": "passed",
+      "legacy_session_two_server_processes": "passed",
+      "wrong_or_missing_token": 400
+    }
+  },
+  "live_browser": {
+    "base": "https://allimquran.com",
+    "transport": "production nginx HTTPS over SSH forwarded origin; certificate verification enabled",
+    "engine": "chromium",
+    "version": "155.0.8059.84",
+    "passed": [
+      "HTTPS guest keeps progress locally without a private POST",
+      "Native HTTPS login returns to the reader; guest history stays separate and session cookie is protected",
+      "Account settings, recall plan, bookmark and private synthetic photo receive server acknowledgements",
+      "Clean HTTPS browser restores the same plan, method and exact private photo bytes",
+      "Account B and Guest cannot access account A data, photo or export",
+      "Private HTTPS responses are no-store and cookie neutral; no browser JS errors"
+    ],
+    "private_responses_checked": 27,
+    "unhandled_errors": []
+  },
+  "public_https_auth_probe": {
+    "base": "https://allimquran.com",
+    "transport": "normal public DNS and verified HTTPS from server; no host override",
+    "results": [
+      {
+        "account": "a",
+        "authenticated_pull": 200,
+        "private_no_store": true,
+        "private_cookie_neutral": true,
+        "generic_rest_denied": 403
+      },
+      {
+        "account": "b",
+        "authenticated_pull": 200,
+        "private_no_store": true,
+        "private_cookie_neutral": true,
+        "generic_rest_denied": 403
+      }
+    ],
+    "cross_account_photo_denied": 404
+  },
+  "final_public_http": {
+    "at_utc": "2026-10-18T09:27:52.375453+00:00",
+    "allim_routes": 18,
+    "neighboring_sites": 5,
+    "all_200": true,
+    "tls_verified": true,
+    "routes": [
+      {
+        "url": "https://allimquran.com/",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/learn",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/academy",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/login?redirect-to=%2Flearn",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/ru/blog",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/blog",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/ar/blog",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/tr/blog",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/ru/blog/sistema-povtoreniya-korana",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/academy-trial",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/ru/probnyj-urok",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/ar/academy-trial",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/lms/courses",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/home",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/robots.txt",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/sitemap.xml",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/api/quran-asr/health",
+        "status": 200
+      },
+      {
+        "url": "https://allimquran.com/api/mushaf/page/1?mushaf=1",
+        "status": 200
+      },
+      {
+        "url": "https://reejaal.com/",
+        "status": 200
+      },
+      {
+        "url": "https://sumbeldan.ru/",
+        "status": 200
+      },
+      {
+        "url": "https://yaratu.exp-verse.com/",
+        "status": 200
+      },
+      {
+        "url": "https://jazarion.tech/",
+        "status": 200
+      },
+      {
+        "url": "https://vatan.industries/",
+        "status": 200
+      }
+    ]
+  },
+  "cms": {
+    "managed_records": 69,
+    "repeat_updated": [],
+    "final_preflight_changes": [],
+    "drift_guard_retained": true,
+    "reviewed_live_adoption": true,
+    "obsolete_navbar_search_projection_reviewed": true,
+    "unmanaged": {
+      "unmanaged_web_pages": 13,
+      "all_fields_exact": true,
+      "reviewed_live_snapshot_used": true
+    }
+  },
+  "drafts": {
+    "courses": 3,
+    "chapters": 14,
+    "lessons": 43,
+    "quizzes": 43,
+    "questions": 61,
+    "total_records": 164,
+    "published": false,
+    "title_suffix": " · программа 2026",
+    "repeat_create": 0,
+    "source_records_exact": true,
+    "unanswered_quizzes_incomplete": 43,
+    "original_course_overwritten": false,
+    "omitted_fields": [
+      "LMS Quiz.enable_proctoring"
+    ]
+  },
+  "backup_restore": {
+    "backup_sha256": "60b7e8b1df8ebf68ee55a53e564e4ff6079ed914d2a011d3a11bfb942c45e232",
+    "restored_tables": 346,
+    "preserved": {
+      "User": {
+        "count": 10,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      },
+      "ALLIM Trial Lesson Request": {
+        "count": 1,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      },
+      "LMS Course": {
+        "count": 1,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      },
+      "LMS Enrollment": {
+        "count": 0,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      },
+      "File": {
+        "count": 2,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      },
+      "Course Chapter": {
+        "count": 8,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      },
+      "Course Lesson": {
+        "count": 25,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      },
+      "LMS Quiz": {
+        "count": 1,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      },
+      "LMS Quiz Submission": {
+        "count": 0,
+        "all_content_exact": true,
+        "all_rows_exact": true
+      }
+    },
+    "files_exact": 24,
+    "encryption_key_matches": true,
+    "temporary_database_removed": true,
+    "changes_between_backups": []
+  },
+  "preservation_audit": {
+    "at_utc": "2026-10-18T09:33:24.391003+00:00",
+    "mode": "SQL READ ONLY; rollback",
+    "preserved": {
+      "User": {
+        "original_rows": 10,
+        "original_ids_retained": true,
+        "original_rows_exact": 10,
+        "original_content_unchanged": true,
+        "current_rows": 10,
+        "added_rows": 0
+      },
+      "ALLIM Trial Lesson Request": {
+        "original_rows": 1,
+        "original_ids_retained": true,
+        "original_rows_exact": 1,
+        "original_content_unchanged": true,
+        "current_rows": 1,
+        "added_rows": 0
+      },
+      "LMS Course": {
+        "original_rows": 1,
+        "original_ids_retained": true,
+        "original_rows_exact": 0,
+        "original_content_unchanged": true,
+        "current_rows": 4,
+        "added_rows": 3
+      },
+      "LMS Enrollment": {
+        "original_rows": 0,
+        "original_ids_retained": true,
+        "original_rows_exact": 0,
+        "original_content_unchanged": true,
+        "current_rows": 0,
+        "added_rows": 0
+      },
+      "File": {
+        "original_rows": 2,
+        "original_ids_retained": true,
+        "original_rows_exact": 2,
+        "original_content_unchanged": true,
+        "current_rows": 2,
+        "added_rows": 0
+      },
+      "Course Chapter": {
+        "original_rows": 8,
+        "original_ids_retained": true,
+        "original_rows_exact": 8,
+        "original_content_unchanged": true,
+        "current_rows": 22,
+        "added_rows": 14
+      },
+      "Course Lesson": {
+        "original_rows": 25,
+        "original_ids_retained": true,
+        "original_rows_exact": 25,
+        "original_content_unchanged": true,
+        "current_rows": 68,
+        "added_rows": 43
+      },
+      "LMS Quiz": {
+        "original_rows": 1,
+        "original_ids_retained": true,
+        "original_rows_exact": 1,
+        "original_content_unchanged": true,
+        "current_rows": 44,
+        "added_rows": 43
+      },
+      "LMS Quiz Submission": {
+        "original_rows": 0,
+        "original_ids_retained": true,
+        "original_rows_exact": 0,
+        "original_content_unchanged": true,
+        "current_rows": 0,
+        "added_rows": 0
+      }
+    },
+    "original_row_differences": [
+      {
+        "doctype": "LMS Course",
+        "changed_fields": [
+          "modified"
+        ],
+        "content_unchanged": true
+      }
+    ],
+    "original_files_exact": 24,
+    "apps": {
+      "frappe": {
+        "commit": "6b450a166e076dd842e4db7ea0843f62881e62ac",
+        "original_worktree_preserved": true
+      },
+      "lms": {
+        "commit": "4b73070489ba9ac748f29afa62c9042ff09d005d",
+        "original_worktree_preserved": true
+      },
+      "payments": {
+        "commit": "abcdd7c812731fef6d89f6d0dd38a030d3ae386a",
+        "original_worktree_preserved": true
+      }
+    },
+    "private_doctypes_broad_read_permissions": 0,
+    "served_js_bytes_exact": [
+      "account-storage.js",
+      "learning-progress.js",
+      "learning-journey.js",
+      "lawh-library.js",
+      "account-journal.js",
+      "account-progress.js",
+      "recitation-core.js"
+    ],
+    "common_site_config_unchanged": true,
+    "maintenance_mode": false,
+    "imported_question_count": 61
+  },
+  "rollback_rehearsal": {
+    "rolled_back_pages": 5,
+    "private_tables": 6,
+    "private_rows_unchanged": 42,
+    "private_schema_retained": true,
+    "full_database_rollback_over_new_progress": false
+  },
+  "incident": {
+    "initial_maintenance_seconds": 34.6,
+    "total_outage_seconds": null,
+    "initial_http_probe": "ALLIM HTTP 500; five neighboring sites HTTP 200",
+    "cause": "Root-run Frappe command rotated ALLIM database.log to root ownership",
+    "repair": "Restored frappe:frappe ownership of the single affected log; future Frappe commands run as frappe",
+    "permissions_widened": false,
+    "intermediate_academy_500": true,
+    "final_academy_status": 200,
+    "ssh_interruption": "Owner restored access; cleanup and full final checks completed"
+  },
+  "production_smoke_cleanup": {
+    "temporary_users_deleted": 2,
+    "their_private_records_deleted": true,
+    "their_export_files_deleted": 1,
+    "unrelated_users_deleted": false
+  },
+  "rehearsal_cleanup": {
+    "isolated_database_and_user_removed": true,
+    "isolated_ports_closed": [
+      19731,
+      19732,
+      19743,
+      19744
+    ],
+    "derived_fixture_files_removed": true,
+    "authoritative_backups_retained_and_hash_verified": 4,
+    "temporary_smoke_credentials_removed": true
+  },
+  "limitations": {
+    "physical_iphone_ipad": "not tested",
+    "playwright_webkit_is_physical_safari": false,
+    "public_dns_browser_from_mac": "DNS override prevented normal path; real hostname and verified TLS used over SSH forwarding; normal public DNS verified independently from server"
+  },
+  "private_evidence": "Backups, raw row hashes, configuration and credentials are excluded from Git"
+}

@@ -8,6 +8,14 @@ Do not use an unrelated site's data or change a shared bench's other apps.
 
 From the bench directory, as its owner:
 
+Run every Frappe/Bench Python command as the bench owner, including one-off
+deployment and verification scripts. An SSH root shell must switch user first,
+for example `runuser -u frappe -- /home/frappe/.local/bin/bench --site SITE …`.
+Root-run Frappe commands can rotate site logs to root ownership; web workers then
+fail to open them and return HTTP 500. This occurred during the 18 October release.
+The repair restored only the affected site's `logs/database.log` to its original
+owner; it did not widen permissions. Verify HTTP responses after process reload.
+
 ```sh
 bench --site SITE backup --with-files --compress
 git -C apps/allimquran status --short --branch
@@ -38,6 +46,22 @@ syncing that exact source. Then import the same snapshot normally and deploy the
 asset URL changes through the usual guard. This adopts the reviewed live content
 without overwriting it or resetting drift fingerprints. Keep the snapshot private
 and stop if live source changes again between these steps.
+
+When an upstream Frappe version removes a field, compare the live Frappe document
+projection as well as raw SQL. Frappe 16.51 omits the obsolete
+`Website Settings.navbar_search` even when SQL still stores `"0"`. For the
+18 October release, an exact private overlay adopted the reviewed live pages and
+that document projection through normal `preflight`/`deploy`, followed by the
+candidate source and an empty repeat deployment. The drift guard and its baseline
+were not reset. Preserve this evidence privately; do not add a general bypass.
+
+Exercise the native backup CLI before the release window and restore its output
+into an isolated database. Frappe's old-backup cleanup may fail if
+`private/backups` contains an archive directory rather than a regular backup file.
+Inspect and preserve that directory outside the cleanup-managed backup folder;
+do not delete historical archives to work around the error. Check both InnoDB and
+MyISAM consistency, public/private file bytes and the encryption key. Store backup
+directories with mode 0700 and files/configuration with mode 0600.
 
 The first migration preserves the `ALLIM Trial Lesson Request` table, record names,
 all existing inquiries and permissions. It changes schema ownership from a custom
@@ -96,6 +120,11 @@ manual ALLIM edits in `lms/www/_lms.py` and the ignored built `_lms.html`, first
 back up both files and verify output parity with the app renderer, then remove
 only those exact migrated edits. Never discard unrelated LMS changes or rebuild
 a shared frontend merely to remove them.
+
+The [18 October release report](account-storage/release-2026-10-18.md) records
+the exact deployed versions, draft-course import, verified restore and final
+HTTPS/account-isolation checks. Course import is explicit and separate from
+website deployment; see [the curriculum guide](youth-curriculum-2026-10-17.md).
 
 ## Recovery
 
