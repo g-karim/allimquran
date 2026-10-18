@@ -49,9 +49,10 @@ const options = {headless:true, ...(engine==='chromium'?{channel:'chrome'}:{}), 
   }
   console.log('PASS mobile EN/RU/AR journal and RTL on real Frappe Web Page');
   await page.goto(base+'/login?redirect-to=%2Flearn%3Fview%3Dread',{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>typeof window.login?.call==='function');
   await page.locator('#login_email').fill(credentials.a.user);
   await page.locator('#login_password').fill(credentials.a.password);
-  await Promise.all([page.waitForURL('**/learn?view=read'),page.locator('.btn-login:not(.btn-login-with-email-link)').click()]);
+  await Promise.all([page.waitForURL('**/learn?view=read',{waitUntil:'domcontentloaded'}),page.locator('form.form-login button[type=submit]').click()]);
   await page.evaluate(()=>AllimAccountUI.ready);
   await page.waitForFunction(()=>AllimStorage.state==='account_ready');
   const imports=page.locator('#allim-import-dialog');
