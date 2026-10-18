@@ -13,6 +13,9 @@ const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIAL
 for (const who of ['a','b']) assert.equal(credentials[who].user, `allim-storage-${who}@example.invalid`);
 const fixture = n => ({page:n,...JSON.parse(fs.readFileSync(path.join(__dirname,`../tests/fixtures/mushaf-comfort/page-${n}.json`)))});
 const errors=[],passed=[],posts=[],profiles=[];
+let transportCancellations=0;
+const hostPattern=new URL(base).host.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const canceledRead=new RegExp('^(?:Fetch API cannot load https?:/)?/'+hostPattern+'/api/method/allimquran\\.account_storage\\.(context|scan|pull|image_parts)\\?.* due to access control checks\\.$');
 const wait = ms => new Promise(r=>setTimeout(r,ms));
 const rows = (s,kind) => s.records.filter(r=>r.kind===kind&&!r.deleted);
 const snap = page => page.evaluate(()=>AllimStorage.snapshot());
@@ -23,11 +26,13 @@ async function context(browser){
  // WebKit ephemeral contexts cannot create legacy IndexedDB Blob files.
  if(engine==='webkit'){const profile=fs.mkdtempSync(path.join(artifacts,'webkit-profile-'));profiles.push(profile);ctx=await pw.webkit.launchPersistentContext(profile,{...options,headless:true});}
  else ctx=await browser.newContext(options);
+ await ctx.exposeFunction('learningUnhandled',message=>errors.push('Unhandled rejection: '+message));
  await ctx.addInitScript(origin=>{
   if(location.origin!==origin)return;
   localStorage.setItem('allim-system-intro-seen-v1','1');
   class SpeechFixture{start(){window.speechFixture=this;queueMicrotask(()=>this.onstart?.());}stop(){this.onend?.();}abort(){this.onend?.();}emit(transcript,isFinal=true){const result=[{transcript,confidence:0.99}];result.isFinal=isFinal;this.onresult?.({resultIndex:0,results:[result]});}}
   window.SpeechRecognition=SpeechFixture;window.webkitSpeechRecognition=SpeechFixture;
+  window.addEventListener('unhandledrejection',event=>window.learningUnhandled(String(event.reason)).catch(()=>{}));
  },new URL(base).origin);
  await ctx.route('**/api/mushaf/**',async route=>{
   const url=new URL(route.request().url());let data;
@@ -37,7 +42,9 @@ async function context(browser){
   await route.fulfill({status:data?200:503,json:data||{error:'fixture_unavailable'}});
  });
  ctx.on('page',page=>page.on('pageerror',e=>{
-  if(engine==='webkit'&&/^Fetch API cannot load .*account_storage\.(context|scan|pull|image_parts)\?.* due to access control checks\.$/.test(e.message))return;
+  // WebKit can omit the native Fetch API prefix when serializing this handled
+  // navigation/offline cancellation. JS promise failures are asserted separately.
+  if(engine==='webkit'&&canceledRead.test(e.message)){transportCancellations++;return;}
   errors.push(e.message);
  }));
  ctx.on('request',r=>{if(r.method()==='POST'&&r.url().includes('account_storage.'))posts.push(r.url());});
@@ -193,6 +200,6 @@ async function emitMemory(p,text){await p.waitForFunction(()=>document.querySele
   const deletedImage=rows(await snap(p2),'lawh_photo').find(r=>r.id==='2:2').value.image_id;await p2.evaluate(()=>AllimLawh.remove('2:2'));s=await sync(p2);const deleted=s.canonical.find(r=>r.kind==='lawh_photo'&&r.id==='2:2');assert.ok(deleted.deleted);assert.ok(s.canonical.filter(r=>r.kind==='lawh_image_part'&&r.id.startsWith(deletedImage+'/')).every(r=>r.deleted));
   pass('Deleting a Lawh photo tombstones its content; practice history remains');
   assert.deepEqual(errors,[],'unhandled browser errors');
-  fs.writeFileSync(path.join(artifacts,`${engine}-report.json`),JSON.stringify({engine,version:browser.version(),offline_mode:engine==='webkit'?'personal HTTP unavailable; native local Blob reads available':'browser offline',passed},null,2));
+  fs.writeFileSync(path.join(artifacts,`${engine}-report.json`),JSON.stringify({engine,version:browser.version(),offline_mode:engine==='webkit'?'personal HTTP unavailable; native local Blob reads available':'browser offline',native_read_cancellations:transportCancellations,unhandled_errors:errors,passed},null,2));
  }finally{for(const ctx of contexts)await ctx.close();await browser.close();for(const profile of profiles)fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});
