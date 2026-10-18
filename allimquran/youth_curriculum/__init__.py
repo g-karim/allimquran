@@ -6,7 +6,14 @@ from html import escape
 from pathlib import Path
 
 
-def records(courses, instructor):
+def records(courses, instructor, *, title_suffix=""):
+	if (
+		not isinstance(title_suffix, str)
+		or len(title_suffix) > 80
+		or not all(character.isprintable() for character in title_suffix)
+		or (title_suffix and not title_suffix.strip())
+	):
+		raise ValueError("Draft title suffix must be at most 80 printable characters.")
 	result = []
 	for c in courses:
 		course = "allim-y1-" + c["id"].removeprefix("allim-")
@@ -87,7 +94,7 @@ def records(courses, instructor):
 			dict(
 				doctype="LMS Course",
 				name=course,
-				title=c["title"],
+				title=c["title"] + title_suffix,
 				short_introduction=c["short_introduction"],
 				description=c["description"],
 				tags=c["marker"] + ", ALLIM-YOUTH-V1, ru",
@@ -119,7 +126,7 @@ def matches(actual, expected):
 	return actual == expected
 
 
-def execute(instructor, apply=False):
+def execute(instructor, apply=False, title_suffix=""):
 	import frappe
 	from frappe.utils import cint
 
@@ -130,24 +137,30 @@ def execute(instructor, apply=False):
 	if not user.enabled or not set(frappe.get_roles(instructor)) & {"Course Creator", "Moderator"}:
 		frappe.throw("Instructor must be enabled and have an authoring role.")
 	courses = json.loads((Path(__file__).parent / "courses.json").read_text())
-	specs = records(courses, instructor)
+	specs = records(courses, instructor, title_suffix=title_suffix)
 	# Catch legacy course drafts rather than silently creating a second alphabet course.
 	names = {r["name"] for r in specs if r["doctype"] == "LMS Course"}
-	for c in courses:
-		collisions = frappe.get_all("LMS Course", filters={"title": c["title"]}, pluck="name")
+	for course in (spec for spec in specs if spec["doctype"] == "LMS Course"):
+		collisions = frappe.get_all("LMS Course", filters={"title": course["title"]}, pluck="name")
 		if any(name not in names for name in collisions):
 			frappe.throw(
-				"An existing course has this title. Review its migration before seeding: " + c["title"]
+				"An existing course has this title. Review its migration before seeding: " + course["title"]
 			)
 	legacy = frappe.get_all("LMS Course", filters={"tags": ["like", "%ALLIM-C01%"]}, pluck="name")
 	if any(name not in names for name in legacy):
 		frappe.throw("Legacy ALLIM-C01 draft found; resolve migration explicitly.")
 	existing = []
 	missing = []
+	omitted_fields = set()
 	for spec in specs:
 		meta = frappe.get_meta(spec["doctype"])
-		for field in spec:
+		for field in list(spec):
 			if field not in ("name", "doctype") and not meta.has_field(field):
+				# LMS 2.62 removed this disabled feature; no assessment content is omitted.
+				if (spec["doctype"], field, spec[field]) == ("LMS Quiz", "enable_proctoring", 0):
+					del spec[field]
+					omitted_fields.add("LMS Quiz.enable_proctoring")
+					continue
 				frappe.throw("Installed schema differs: " + spec["doctype"] + "." + field)
 		if frappe.db.exists(spec["doctype"], spec["name"]):
 			doc = frappe.get_doc(spec["doctype"], spec["name"])
@@ -164,7 +177,15 @@ def execute(instructor, apply=False):
 	# Incomplete seed state is not repaired automatically: it may contain teacher edits.
 	if existing and missing:
 		frappe.throw("Partial seed detected. Review before creating additional records.")
-	report = dict(dry_run=not apply, existing=len(existing), create=len(missing), courses=3, published=False)
+	report = dict(
+		dry_run=not apply,
+		existing=len(existing),
+		create=len(missing),
+		courses=3,
+		published=False,
+		title_suffix=title_suffix,
+		omitted_fields=sorted(omitted_fields),
+	)
 	if not apply or not missing:
 		return report
 	frappe.db.savepoint("allim_youth_seed")

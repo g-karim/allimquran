@@ -5,6 +5,8 @@ const path = require('node:path');
 const pw = require(process.env.ALLIM_PLAYWRIGHT || 'playwright');
 const engine = process.env.ALLIM_TEST_BROWSER || 'chromium';
 const base = process.env.ALLIM_TEST_URL || 'http://127.0.0.1:18543';
+const artifacts=process.env.ALLIM_MUSHAF_ARTIFACT_DIR || '/tmp/allim-mushaf-20261017';
+fs.mkdirSync(artifacts,{recursive:true,mode:0o700});
 assert.ok(['chromium','webkit','firefox'].includes(engine));
 assert.ok(['127.0.0.1','localhost'].includes(new URL(base).hostname));
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
@@ -178,7 +180,7 @@ async function reset(page) {
       assert.equal(await account.locator('html').getAttribute('lang'), language);
       assert.ok(await account.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'mobile horizontal overflow');
       const box = await account.locator('#mushaf-size-up').boundingBox(); assert.ok(box.width >= 44 && box.height >= 44);
-      await account.screenshot({path:`/tmp/allim-mushaf-20261017/${engine}-${language}.png`});
+      await account.screenshot({path:path.join(artifacts,`${engine}-${language}.png`)});
     }
     const selected = await account.locator('#verse-reference').innerText();
     await account.route('**/api/mushaf/page/604?*', async route => {

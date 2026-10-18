@@ -5,6 +5,8 @@ const path = require('node:path');
 const pw = require(process.env.ALLIM_PLAYWRIGHT || 'playwright');
 const engine = process.env.ALLIM_TEST_BROWSER || 'chromium';
 const base = process.env.ALLIM_TEST_URL || 'http://127.0.0.1:18643';
+const artifacts=process.env.ALLIM_LEARNING_ARTIFACT_DIR || '/tmp/allim-learning-20261017';
+fs.mkdirSync(artifacts,{recursive:true,mode:0o700});
 assert.ok(['chromium','webkit','firefox'].includes(engine));
 assert.ok(['127.0.0.1','localhost'].includes(new URL(base).hostname));
 const credentials = JSON.parse(fs.readFileSync(process.env.ALLIM_TEST_CREDENTIALS));
@@ -19,7 +21,7 @@ async function context(browser){
  const options={viewport:{width:390,height:844},timezoneId:'UTC',reducedMotion:'reduce',serviceWorkers:'block'};
  let ctx;
  // WebKit ephemeral contexts cannot create legacy IndexedDB Blob files.
- if(engine==='webkit'){const profile=fs.mkdtempSync('/tmp/allim-learning-20261017/webkit-profile-');profiles.push(profile);ctx=await pw.webkit.launchPersistentContext(profile,{...options,headless:true});}
+ if(engine==='webkit'){const profile=fs.mkdtempSync(path.join(artifacts,'webkit-profile-'));profiles.push(profile);ctx=await pw.webkit.launchPersistentContext(profile,{...options,headless:true});}
  else ctx=await browser.newContext(options);
  await ctx.addInitScript(origin=>{
   if(location.origin!==origin)return;
@@ -128,7 +130,7 @@ async function emitMemory(p,text){await p.waitForFunction(()=>document.querySele
   await login(c,'a');await reload(p);assert.equal(rows(await snap(p),'memory_plan').length,0);assert.equal(rows(await snap(p),'lawh_photo').length,0);
   await p.evaluate(()=>AllimImportUI.review());await p.waitForSelector('#allim-import-dialog input[value=learning]');
   const dialog=p.locator('#allim-import-dialog');for(const input of await dialog.locator('input[name=category]').all())await input.uncheck();await dialog.locator('input[value=learning]').check();await dialog.locator('input[value=lawh]').check();await dialog.locator('input[value=settings]').check();await dialog.locator('button[type=submit]').click();
-  s=await sync(p);assert.equal(rows(s,'memory_plan').length,2);assert.ok(rows(s,'lawh_photo').length>=1);fs.writeFileSync('/tmp/allim-learning-20261017/import-diagnostic.json',JSON.stringify(Object.values(s.imports).flatMap(j=>j.results.filter(r=>!['applied','noop'].includes(r.outcome)).map(r=>j.operations.find(o=>o.op_id===r.op_id)))));assert.deepEqual(Object.values(s.imports).flatMap(j=>j.results.filter(r=>!['applied','noop'].includes(r.outcome)).map(r=>({kind:j.operations.find(o=>o.op_id===r.op_id)?.kind,code:r.error?.code}))),[],'import rejections');
+  s=await sync(p);assert.equal(rows(s,'memory_plan').length,2);assert.ok(rows(s,'lawh_photo').length>=1);fs.writeFileSync(path.join(artifacts,'import-diagnostic.json'),JSON.stringify(Object.values(s.imports).flatMap(j=>j.results.filter(r=>!['applied','noop'].includes(r.outcome)).map(r=>j.operations.find(o=>o.op_id===r.op_id)))));assert.deepEqual(Object.values(s.imports).flatMap(j=>j.results.filter(r=>!['applied','noop'].includes(r.outcome)).map(r=>({kind:j.operations.find(o=>o.op_id===r.op_id)?.kind,code:r.error?.code}))),[],'import rejections');
   assert.equal(await p.evaluate(()=>localStorage.getItem('allim-memory-journey-v1')),oldRaw);pass('Sign-in keeps guest work separate; explicit selected import preserves original keys and server receipts');
 
   await p.locator('[data-hifz-method=foundation300]').click();await sync(p);const c2=await context(browser);contexts.push(c2);await login(c2,'a');const p2=await open(c2);assert.ok((await snap(p2)).canonical.some(r=>r.kind==='lawh_image_part'&&r.payload_omitted),'account opens before downloading photo bytes');await quiet(p2);assert.equal((await project(p2)).heartMushaf.linked33Pages[1].verseCounts['1:1'],33);assert.equal((await project(p2)).heartMushaf.turkishWallPages[1].verseCounts['1:7'],1);await p2.locator('[data-hifz-method=mauritanianLawh]').click();
@@ -186,11 +188,11 @@ async function emitMemory(p,text){await p.waitForFunction(()=>document.querySele
   assert.equal(exported.status,200);assert.ok(exported.private);assert.ok(exported.photos>0);assert.equal(exported.missing,0);
   pass('Private server export includes complete photo bytes and remains separate from thin login scans');
 
-  for(const locale of ['ru','en','ar']){await p2.locator('#language-switch').selectOption(locale);await p2.locator('[data-view=memorize]:visible').first().click();assert.ok(await p2.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'mobile overflow '+locale);await p2.screenshot({path:`/tmp/allim-learning-20261017/${engine}-${locale}.png`});}
+  for(const locale of ['ru','en','ar']){await p2.locator('#language-switch').selectOption(locale);await p2.locator('[data-view=memorize]:visible').first().click();assert.ok(await p2.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'mobile overflow '+locale);await p2.screenshot({path:path.join(artifacts,`${engine}-${locale}.png`)});}
   pass('Mobile RU/EN/AR learning screens have no horizontal overflow');
   const deletedImage=rows(await snap(p2),'lawh_photo').find(r=>r.id==='2:2').value.image_id;await p2.evaluate(()=>AllimLawh.remove('2:2'));s=await sync(p2);const deleted=s.canonical.find(r=>r.kind==='lawh_photo'&&r.id==='2:2');assert.ok(deleted.deleted);assert.ok(s.canonical.filter(r=>r.kind==='lawh_image_part'&&r.id.startsWith(deletedImage+'/')).every(r=>r.deleted));
   pass('Deleting a Lawh photo tombstones its content; practice history remains');
   assert.deepEqual(errors,[],'unhandled browser errors');
-  fs.writeFileSync(`/tmp/allim-learning-20261017/${engine}-report.json`,JSON.stringify({engine,version:browser.version(),offline_mode:engine==='webkit'?'personal HTTP unavailable; native local Blob reads available':'browser offline',passed},null,2));
+  fs.writeFileSync(path.join(artifacts,`${engine}-report.json`),JSON.stringify({engine,version:browser.version(),offline_mode:engine==='webkit'?'personal HTTP unavailable; native local Blob reads available':'browser offline',passed},null,2));
  }finally{for(const ctx of contexts)await ctx.close();await browser.close();for(const profile of profiles)fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});

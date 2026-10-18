@@ -55,8 +55,8 @@ async function answer(page, option) {
   const browser = await pw.chromium.launch({headless:true,channel:'chrome'});
   try {
     const {ctx,page} = await session(browser, 'student');
-    await page.getByRole('button', {name:'Start Quiz',exact:true}).waitFor();
-    assert.equal(await page.getByRole('button', {name:'Start Quiz',exact:true}).count(), 1, 'one embedded quiz per lesson');
+    await page.getByRole('button', {name:/^(Start Quiz|Start)$/}).waitFor();
+    assert.equal(await page.getByRole('button', {name:/^(Start Quiz|Start)$/}).count(), 1, 'one embedded quiz per lesson');
     const first = await lesson(page);
     assert.equal(first.name, fixture.fixture_lessons[0]);
     assert.equal(first.instructor_notes, null);
@@ -68,7 +68,7 @@ async function answer(page, option) {
     assert.equal((await lesson(page, 2)).locked, 1);
     passed('ordinary student sees one quiz, no teacher notes; unanswered quiz prevents completion and the next lesson');
 
-    await page.getByRole('button', {name:'Start Quiz',exact:true}).click();
+    await page.getByRole('button', {name:/^(Start Quiz|Start)$/}).click();
     const wrongIndex = (question.answer + 1) % question.options.length;
     const wrong = await answer(page, question.options[wrongIndex]);
     assert.equal(wrong.pass, false);
@@ -77,7 +77,7 @@ async function answer(page, option) {
     passed('wrong answer is saved by the native quiz API and leaves the lesson and next lesson incomplete');
 
     await page.getByRole('button', {name:'Try Again',exact:true}).click();
-    await page.getByRole('button', {name:'Start Quiz',exact:true}).click();
+    await page.getByRole('button', {name:/^(Start Quiz|Start)$/}).click();
     const correct = await answer(page, question.options[question.answer]);
     assert.equal(correct.pass, true);
     assert.ok((await lesson(page)).progress);
@@ -88,12 +88,12 @@ async function answer(page, option) {
     await page.reload({waitUntil:'domcontentloaded'});
     assert.ok((await lesson(page)).progress);
     await page.goto(lessonURL(fixture.fixture_course, '1-2'), {waitUntil:'domcontentloaded'});
-    await page.getByRole('button', {name:'Start Quiz',exact:true}).waitFor();
-    assert.equal(await page.getByRole('button', {name:'Start Quiz',exact:true}).count(), 1);
+    await page.getByRole('button', {name:/^(Start Quiz|Start)$/}).waitFor();
+    assert.equal(await page.getByRole('button', {name:/^(Start Quiz|Start)$/}).count(), 1);
     passed('reload retains server progress and the next lesson renders its own single quiz');
 
     const remote = await session(browser, 'student', 390);
-    await remote.page.getByRole('button', {name:'Start Quiz',exact:true}).waitFor();
+    await remote.page.getByRole('button', {name:/^(Start Quiz|Start)$/}).waitFor();
     assert.ok((await lesson(remote.page)).progress);
     assert.equal((await lesson(remote.page, 2)).name, fixture.fixture_lessons[1]);
     assert.ok(await remote.page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'mobile lesson overflow');
@@ -112,10 +112,10 @@ async function answer(page, option) {
 
     const teacher = await session(browser, 'teacher');
     await teacher.page.goto(lessonURL(fixture.draft_courses[0]), {waitUntil:'domcontentloaded'});
-    await teacher.page.getByRole('button', {name:'Start Quiz',exact:true}).waitFor();
+    await teacher.page.getByRole('button', {name:/^(Start Quiz|Start)$/}).waitFor();
     const preview = await lesson(teacher.page, 1, fixture.draft_courses[0]);
     assert.ok(preview.body.includes('{{ Quiz(') && preview.instructor_notes);
-    assert.equal(await teacher.page.getByRole('button', {name:'Start Quiz',exact:true}).count(), 1);
+    assert.equal(await teacher.page.getByRole('button', {name:/^(Start Quiz|Start)$/}).count(), 1);
     await teacher.page.screenshot({path:path.join(artifacts,'teacher-draft.png'),fullPage:true});
     passed('the instructor can review an unpublished original lesson and its embedded quiz');
 
