@@ -20,6 +20,7 @@
 
   function tokens(text) {
     return raw(text).normalize("NFKC").replace(/[،؛؟.!?\u06DD\u06DE\u06E9\d٠-٩]/g, " ")
+      .replace(/[\u0610-\u061A\u06D6-\u06ED]/g, "")
       .split(/\s+/).filter(function (word) { return /[\p{L}]/u.test(word); });
   }
 
@@ -47,14 +48,14 @@
       .map(function (cluster) { return (cluster.match(/[\u064B-\u0650\u0652]/g) || []).sort().join(""); });
   }
 
-  function compare(expected, heard) {
+  function compare(expected, heard, atStop) {
     var a = letters(expected), b = letters(heard);
     // Only documented orthographic equivalence. Never collapse different consonants
     // (ة/ه, ؤ/و, ئ/ي), nor use edit distance to accept a word.
     var same = a && b && (a === b || letters(expected, true) === letters(heard, true));
     if (same) {
       var av = vowelClusters(expected), bv = vowelClusters(heard);
-      if (av.length === bv.length && av.some(function (vowel, i) { return vowel && bv[i] && vowel !== bv[i]; })) {
+      if (av.length === bv.length && av.some(function (vowel, i) { return vowel && bv[i] && vowel !== bv[i] && !(atStop && i === av.length - 1 && bv[i] === "ْ"); })) {
         return "warning"; // Contradictory ASR diacritics, not proof of a spoken vowel error.
       }
       return "recognized"; // Word spelling only; missing diacritics never prove pronunciation.
@@ -74,7 +75,8 @@
       outcome: complete ? "matched" : (isFinal && (errors || extras) ? "mismatch" : "uncertain") };
   }
 
-  function align(expectedWords, transcript, isFinal) {
+  function align(expectedWords, transcript, isFinal, options) {
+    options = options || {};
     var expected = expectedWords.map(raw), heard = tokens(transcript);
     // Bound untrusted recognizer output before allocating a quadratic table.
     if (!heard.length || expected.length > 256 || heard.length > 512) {
@@ -83,7 +85,7 @@
     var rows = expected.length + 1, columns = heard.length + 1;
     var costs = Array.from({ length: rows }, function () { return Array(columns).fill(Infinity); });
     var moves = Array.from({ length: rows }, function () { return Array(columns).fill(null); });
-    var comparisons = expected.map(function (word) { return heard.map(function (token) { return compare(word, token); }); });
+    var comparisons = expected.map(function (word) { return heard.map(function (token, index) { return compare(word, token, (options.stops || []).indexOf(index) >= 0); }); });
     var i, j;
     costs[0][0] = 0;
     for (i = 1; i < rows; i += 1) { costs[i][0] = i; moves[i][0] = ["delete", 1]; }
@@ -124,6 +126,13 @@
     var statuses = expected.map(function () { return "pending"; });
     var extras = 0, repeats = 0, corrections = 0;
     i = expected.length; j = heard.length;
+    // A provider-final result ends an utterance, not necessarily the ayah.
+    // Align only through the best reached position; the unread tail stays pending.
+    if (options.partial) {
+      for (var end = expected.length - 1; end >= 0; end -= 1) {
+        if (costs[end][j] < costs[i][j]) i = end;
+      }
+    }
     while (i > 0 || j > 0) {
       var move = moves[i][j];
       if (move[0] === "repeat") { repeats += move[1]; j -= move[1]; }
@@ -151,8 +160,9 @@
     return { transcript: texts.join(" ").trim(), isFinal: finalResult };
   }
 
-  function alignCorrection(expected, transcript, previous, isFinal, requireFullVerse) {
-    var full = align(expected, transcript, isFinal);
+  function alignCorrection(expected, transcript, previous, isFinal, requireFullVerse, partial) {
+    var options = {partial: Boolean(partial), stops: [tokens(transcript).length - 1]};
+    var full = align(expected, transcript, isFinal, options);
     if (full.complete || requireFullVerse) return full;
     var start = previous.findIndex(function (status) { return status !== "recognized"; });
     if (start < 0) return full;
@@ -162,7 +172,8 @@
     if (start > 0 && heard.length > start && expected.slice(0, start).every(function (word, i) {
       return compare(word, heard[i]) === "recognized";
     })) heard = heard.slice(start);
-    var tail = align(expected.slice(start), heard.join(" "), isFinal);
+    options.stops = [heard.length - 1];
+    var tail = align(expected.slice(start), heard.join(" "), isFinal, options);
     return summarize(previous.slice(0, start).concat(tail.statuses), tail.extras,
       isFinal, tail.repeats, tail.corrections);
   }

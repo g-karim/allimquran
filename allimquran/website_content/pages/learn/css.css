@@ -1944,6 +1944,25 @@ body.page-recall-mode .mushaf-page-toolbar { padding-inline-end: 86px; }
 .audio-download .tertiary-button { min-width: 150px; white-space: normal; line-height: 1.2; }
 .reciter-field select { min-width: 0; text-overflow: ellipsis; }
 
+.audio-practice, .audio-practice-status { grid-column: 1 / -1; min-width: 0; }
+.audio-practice { padding-inline: 14px; border: 1px solid rgba(255,255,255,.24); border-radius: 14px; background: rgba(255,255,255,.06); }
+.audio-practice summary { display: list-item; min-height: 44px; padding-block: 12px; cursor: pointer; font-weight: 750; }
+.audio-practice summary svg { display: inline-block; width: 16px; height: 16px; margin-inline: 4px 7px; vertical-align: -.15em; }
+.audio-practice summary:focus-visible, .audio-practice select:focus-visible, .audio-practice button:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
+.audio-practice-form { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); align-items: end; gap: 12px; padding-block: 4px 14px; }
+.audio-practice-form label { display: grid; gap: 5px; min-width: 0; color: rgba(255,255,255,.87); font-size: 13px; }
+.audio-practice-form select { width: 100%; min-width: 0; min-height: 44px; padding-inline: 10px; border: 1px solid rgba(255,255,255,.24); border-radius: 10px; color: white; background: #1d3732; font: inherit; }
+.audio-practice-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+.audio-practice-actions button { min-height: 44px; white-space: normal; text-align: center; }
+.audio-practice-actions button[hidden] { display: none; }
+.audio-practice-help, .audio-practice-status { margin: 0; line-height: 1.45; font-size: 13px; }
+.audio-practice-help { grid-column: 1 / -1; color: rgba(255,255,255,.87); }
+.audio-practice-status { margin-block-start: -8px; color: var(--gold-soft); }
+.audio-practice-status:empty, .audio-practice-help:empty { display: none; }
+@media (max-width: 615px) {
+  .audio-practice-form { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
 /* Audio is a focused listening surface and must fit without a long preamble. */
 body.audio-view #view-read > .page-intro { display: none; }
 body.audio-view .reader-layout { grid-template-columns: minmax(0,1fr); align-items: start; }
@@ -3134,3 +3153,118 @@ body.mushaf-view .mushaf-page-error button { min-height: 44px; padding: 8px 20px
 
 
 #correction-gate.is-uncertain { color: #66716d; border-color: #c8cfcb; background: #f2f4f3; }
+
+/* Reading order belongs to the Mushaf, independently of the UI language. */
+body.mushaf-view .mushaf-page-toolbar { direction: ltr; }
+body.mushaf-view #mushaf-next-page svg { transform: rotate(180deg); }
+body.mushaf-view #mushaf-prev-page svg { transform: none; }
+body.mushaf-view #mushaf-page-number { direction: ltr; unicode-bidi: isolate; }
+#mushaf-reading-dock { display: none; }
+body.mushaf-view #mushaf-reading-dock {
+  position: fixed; z-index: 80; inset: auto 0 0; display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: center; gap: 8px 12px;
+  padding: 8px max(10px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  background: var(--surface, #fffef9); border-top: 1px solid var(--line);
+  max-height: 45dvh; overflow: auto;
+}
+body.mushaf-view #mushaf-reading-dock .recitation-panel {
+  position: static; inset: auto; transform: none; margin: 0; flex: 1 1 380px;
+  width: auto; max-width: 620px; box-shadow: none;
+}
+body.mushaf-view #mushaf-reading-dock #allim-journal-summary {
+  flex: 1 1 300px; min-width: 0; margin: 0; padding: 6px 10px; font-size: 12px;
+}
+body.mushaf-view #mushaf-reading-dock #allim-storage-panel {
+  position: static; inset: auto; flex: 0 1 auto; margin: 0; box-shadow: none;
+  flex-wrap: wrap; min-width: 0; font-size: 12px;
+}
+body.mushaf-view #allim-storage-panel details > div {
+  position: fixed; inset: auto 12px calc(var(--mushaf-dock-height) + 8px) auto;
+  max-height: max(120px, calc(100dvh - var(--mushaf-dock-height) - 80px));
+}
+body.mushaf-view #mushaf-reading-dock .recitation-actions { flex-wrap: wrap; }
+body.mushaf-view #mushaf-reading-dock #skip-recitation-check:not([hidden]) { display: inline-flex; width: auto; max-width: 180px; font-size: 12px; white-space: normal; }
+body.mushaf-view #mushaf-reading-dock #skip-recitation-check[hidden] { display: none; }
+@media (max-width: 760px) {
+  body.mushaf-view #mushaf-reading-dock { gap: 6px; }
+  body.mushaf-view #mushaf-reading-dock .recitation-panel { display: grid; flex-basis: 100%; min-height: 48px; padding: 4px; }
+  body.mushaf-view #mushaf-reading-dock .mobile-recognition-fab { display: none; }
+  body.mushaf-view #mushaf-reading-dock #allim-journal-summary { flex: 1 1 140px; border: 0; padding: 0; }
+  body.mushaf-view #allim-journal-summary > strong, body.mushaf-view #allim-journal-summary > span { display: none; }
+  body.mushaf-view #mushaf-reading-dock #allim-storage-panel { flex: 0 1 55%; gap: 4px; padding: 4px; }
+  body.mushaf-view #allim-storage-panel > span { max-width: 100%; overflow-wrap: anywhere; }
+}
+body.mushaf-view.page-recall-mode #mushaf-reading-dock .recitation-panel { display: none; }
+body.mushaf-view #allim-storage-panel summary { display: flex; align-items: center; min-height: 44px; }
+
+.quiet-recall-entry { padding: 0 18px 14px; }
+body.mushaf-view .quiet-recall-entry,
+.teacher-assessment-mode [data-quiet-recall-open] { display: none; }
+.quiet-recall-queue { margin-block-start: 12px; }
+#quiet-recall-dialog {
+  width: min(570px, calc(100% - 24px));
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+#quiet-recall-dialog [hidden],
+[data-quiet-recall-open][hidden] { display: none !important; }
+.quiet-recall-heading {
+  align-items: center;
+  border-block-end: 1px solid var(--line);
+  padding: 16px clamp(16px, 4vw, 28px);
+}
+.quiet-recall-heading h2 { margin: 0; font-size: clamp(22px, 4vw, 30px); }
+.quiet-recall-heading .icon-button { flex: 0 0 44px; min-height: 44px; font-size: 24px; }
+.quiet-recall-body { padding: clamp(16px, 4vw, 28px); }
+.quiet-recall-body form,
+.quiet-recall-body section { display: grid; gap: 14px; }
+.quiet-recall-body :is(p, h3, dl) { margin: 0; }
+.quiet-recall-body p { color: var(--ink-soft); line-height: 1.55; overflow-wrap: anywhere; }
+.quiet-recall-body label { display: grid; gap: 6px; }
+.quiet-recall-body select {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding-inline: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+.quiet-recall-position { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.quiet-recall-position h3 { min-width: 0; overflow-wrap: anywhere; }
+.quiet-recall-position output { flex: none; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.quiet-recall-body progress { width: 100%; height: 6px; accent-color: var(--forest-2); }
+.quiet-recall-page {
+  display: grid;
+  min-height: 112px;
+  place-items: center;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-2);
+  text-align: center;
+}
+#quiet-recall-text {
+  color: var(--ink);
+  font-family: "Uthmanic Hafs", "Noto Naskh Arabic", "Geeza Pro", serif;
+  font-size: clamp(24px, var(--arabic-size, 32px), 48px);
+  line-height: 1.8;
+}
+.quiet-recall-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.quiet-recall-body button { min-height: 44px; white-space: normal; }
+.quiet-recall-body :focus-visible,
+.quiet-recall-heading :focus-visible { outline: 2px solid var(--forest-2); outline-offset: 3px; }
+#quiet-recall-status:not(:empty) { margin-block-start: 12px; }
+#quiet-recall-summary dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding-block: 7px;
+  border-block-end: 1px solid var(--line);
+}
+#quiet-recall-summary dd { margin: 0; font-weight: 750; }
+
+@media (max-width: 480px) {
+  .quiet-recall-actions > button { flex: 1 1 135px; }
+}

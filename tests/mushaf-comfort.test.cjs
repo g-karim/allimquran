@@ -70,10 +70,10 @@ test('vertical gestures, pinch zoom and adaptive scrolling never turn pages', ()
   events.touchstart({touches:[touch(200,100)]}); events.touchend({touches:[],changedTouches:[touch(100,100)]});
   assert.equal(moves.length, 0);
   c.window.visualViewport.scale = 1;
-  events.touchstart({touches:[touch(200,100)]}); events.touchend({touches:[],changedTouches:[touch(100,100)]});
+  events.touchstart({touches:[touch(100,100)]}); events.touchend({touches:[],changedTouches:[touch(200,100)]});
   assert.deepEqual(moves, [1]);
   c.getMushafReadingPreferences = () => ({layout:'adaptive'});
-  events.touchstart({touches:[touch(200,100)]}); events.touchend({touches:[],changedTouches:[touch(100,100)]});
+  events.touchstart({touches:[touch(100,100)]}); events.touchend({touches:[],changedTouches:[touch(200,100)]});
   assert.deepEqual(moves, [1]);
 });
 test('Enter followed by blur loads a page once, preserving a subsequent size-change anchor', () => {

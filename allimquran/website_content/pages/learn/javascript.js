@@ -1893,6 +1893,60 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   Object.assign(translations.en, {lawhMore: "Show more pages", lawhPhotoUnavailable: "This photo is only in your account for now. Connect to load it.", lawhStorageUnavailable: "Photo unavailable on this device. Check your connection and reopen the page.", lawhStorageIdle: "Choose a photo and confirm saving the page."});
   Object.assign(translations.ar, {lawhMore: "عرض صفحات أخرى", lawhPhotoUnavailable: "الصورة في الحساب فقط حاليًا. اتصل لتحميلها.", lawhStorageUnavailable: "الصورة غير متاحة على الجهاز. تحقق من الاتصال وافتح الصفحة مجددًا.", lawhStorageIdle: "اختر صورة وأكد حفظ الصفحة."});
 
+  var audioPracticeTranslations = {
+    ru: {
+      audioPracticeTitle: "Прослушивание отрывка",
+      audioPracticeFrom: "С аята",
+      audioPracticeTo: "По аят",
+      audioPracticeRepeats: "Повторов на аят",
+      audioPracticeSpeed: "Скорость",
+      audioPracticeStart: "Воспроизвести отрывок",
+      audioPracticeChapter: "Для отрывка выберите чтеца с поаятной записью.",
+      audioPracticeUnsupported: "Этот браузер не поддерживает воспроизведение MP3.",
+      audioPracticeInvalid: "Выберите первый и последний аяты в порядке чтения.",
+      audioPracticeActive: "Аят {ayah} · повтор {repeat} из {total}",
+      audioPracticeComplete: "Отрывок прослушан.",
+      audioPracticeStopped: "Прослушивание отрывка остановлено.",
+      audioPracticeError: "Запись аята {ayah} не воспроизвелась. Проверьте соединение или выберите другого чтеца.",
+      audioPracticeSurah: "Сура {surah}"
+    },
+    en: {
+      audioPracticeTitle: "Listen to a passage",
+      audioPracticeFrom: "Start ayah",
+      audioPracticeTo: "End ayah",
+      audioPracticeRepeats: "Plays per ayah",
+      audioPracticeSpeed: "Speed",
+      audioPracticeStart: "Play passage",
+      audioPracticeChapter: "Choose a reciter with individual ayah recordings to play a passage.",
+      audioPracticeUnsupported: "This browser cannot play MP3 audio.",
+      audioPracticeInvalid: "Choose the first and last ayahs in reading order.",
+      audioPracticeActive: "Ayah {ayah} · play {repeat} of {total}",
+      audioPracticeComplete: "Passage complete.",
+      audioPracticeStopped: "Passage playback stopped.",
+      audioPracticeError: "Ayah {ayah} could not play. Check your connection or choose another reciter.",
+      audioPracticeSurah: "Selected surah: {surah}"
+    },
+    ar: {
+      audioPracticeTitle: "الاستماع إلى مقطع",
+      audioPracticeFrom: "من الآية",
+      audioPracticeTo: "إلى الآية",
+      audioPracticeRepeats: "مرات تشغيل كل آية",
+      audioPracticeSpeed: "سرعة التشغيل",
+      audioPracticeStart: "تشغيل المقطع",
+      audioPracticeChapter: "اختر قارئًا تتوفر تلاوته آيةً آية لتشغيل المقطع.",
+      audioPracticeUnsupported: "هذا المتصفح لا يدعم تشغيل ملفات MP3.",
+      audioPracticeInvalid: "حدّد أول آية وآخر آية بالترتيب.",
+      audioPracticeActive: "الآية {ayah} · التشغيل {repeat} من {total}",
+      audioPracticeComplete: "انتهى تشغيل المقطع.",
+      audioPracticeStopped: "توقف تشغيل المقطع.",
+      audioPracticeError: "تعذّر تشغيل الآية {ayah}. تحقّق من الاتصال أو اختر قارئًا آخر.",
+      audioPracticeSurah: "السورة المختارة: {surah}"
+    },
+  };
+  Object.keys(audioPracticeTranslations).forEach(function (language) {
+    Object.assign(translations[language], audioPracticeTranslations[language]);
+  });
+
   var reciters = [
     { id: "husary", path: "Husary_128kbps", names: { ru: "Махмуд Халиль аль-Хусари", en: "Mahmoud Khalil Al-Husary", ar: "محمود خليل الحصري" } },
     { id: "alafasy", path: "Alafasy_128kbps", names: { ru: "Мишари Рашид аль-Афаси", en: "Mishari Rashid al-Afasy", ar: "مشاري راشد العفاسي" } },
@@ -2037,6 +2091,9 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   });
 
   var fawaidData = window.QuranCompanionFawaid || { entries: {} };
+  Object.assign(translations.ru, {readingPaused: "Можно продолжать чтение", readingPausedSub: "Пауза не считается ошибкой. Продолжайте с места остановки.", skipRecitationCheck: "Далее без зачёта"});
+  Object.assign(translations.en, {readingPaused: "Ready to continue", readingPausedSub: "A pause is not a mistake. Continue where you stopped.", skipRecitationCheck: "Continue without credit"});
+  Object.assign(translations.ar, {readingPaused: "يمكنك متابعة القراءة", readingPausedSub: "لا تُحتسب الوقفة خطأً. تابع من حيث توقفت.", skipRecitationCheck: "متابعة دون احتساب"});
   var state = loadState();
   var launchParams = new URLSearchParams(window.location.search);
   var teacherAssessmentRequested = launchParams.get("assessment") === "teacher";
@@ -2082,6 +2139,9 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   var userStoppedRecognition = false;
   var recognitionHadError = false;
   var lastTranscript = "";
+  var readingCommittedAlignment = null;
+  var readingSegments = [];
+  var readingSegmentBase = [];
   var lastMatchedCount = 0;
   var recognitionSessionCounted = false;
   var recognitionTitleKey = "micReady";
@@ -2204,6 +2264,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   var verseAudioPaused = false;
   var activeAudioObjectUrl = "";
   var audioSourceRequest = 0;
+  var audioAdvanceTimer = null;
+  var audioPractice = null;
+  var audioPracticeResult = null;
+  var audioPracticeOptionsKey = "";
   var audioCacheName = "allim-quran-audio-v1";
   var selectedWordIndex = 0;
 
@@ -2218,6 +2282,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   };
 
   var personalBridge = null;
+  var quietRecall = null;
   var personalInitializing = true;
   var readAttemptId = null;
   var memoryAttemptId = null;
@@ -2524,7 +2589,11 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     }
     clearAutoAdvance();
     if (view !== "memorize") stopMemoryRecognition(true);
-    if (view !== "read") document.body.classList.remove("audio-view");
+    if (view !== "read") {
+      if (audioPractice) stopVerseAudio(false);
+      window.clearTimeout(audioAdvanceTimer);
+      document.body.classList.remove("audio-view");
+    }
     document.querySelectorAll(".view").forEach(function (item) { item.classList.remove("is-active"); });
     panel.classList.add("is-active");
     document.body.classList.toggle("read-view-active", view === "read");
@@ -2741,10 +2810,44 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function getVerseByKey(key) {
-    var parts = String(key || "").split(":");
-    var surah = getSurah(Number(parts[0]));
-    var verse = getVerse(surah, Number(parts[1]));
-    return surah && verse && getVerseKey(surah, verse) === key ? { surah: surah, verse: verse } : null;
+    if (!Object.hasOwn(window.AllimAccountUI.catalogue, key)) return null;
+    var parts = key.split(":").map(Number);
+    var surah = getLocalSurahExact(parts[0]);
+    return {
+      surahId: parts[0],
+      ayah: parts[1],
+      names: getChapterNames(mushafChapterNames[parts[0]], surah || { id: parts[0] }),
+      verse: getLocalVerseExact(surah, parts[1])
+    };
+  }
+
+  async function getQuietRecallVerse(key) {
+    var location = getVerseByKey(key);
+    if (!location) throw new Error("verse-unavailable");
+    var text = location.verse && location.verse.text;
+    if (!text) {
+      var wordPages = window.AllimAccountUI.catalogue[key];
+      var page = await fetchHeartPageData(wordPages[0]);
+      var verse = (page.verses || []).find(function (item) { return item.verse_key === key; });
+      var words = verse && (verse.words || []).filter(function (word) { return word.char_type_name === "word"; });
+      if (!words || words.length !== wordPages.length || words.some(function (word) { return !word.text_qpc_hafs; })) {
+        throw new Error("verse-incomplete");
+      }
+      text = words.map(function (word) { return word.text_qpc_hafs; }).join(" ");
+    }
+    var tokens = splitVerseWords(text);
+    return { text: text, first: tokens.length > 1 ? tokens[0] : "" };
+  }
+
+  function getQuietRecallPassage() {
+    if (!currentSurah || !currentVerse) return [];
+    var keys = [];
+    for (var offset = 0; offset < 5; offset++) {
+      var key = currentSurah.id + ":" + (currentVerse.ayah + offset);
+      if (!Object.hasOwn(window.AllimAccountUI.catalogue, key)) break;
+      keys.push(key);
+    }
+    return keys;
   }
 
   function hasVerse(list, key) {
@@ -2808,11 +2911,9 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function loadVerseKey(key, destination) {
     var location = getVerseByKey(key);
     if (!location) return;
-    state.selectedSurah = location.surah.id;
-    state.selectedAyah = location.verse.ayah;
-    populateVerseSelectors();
-    renderSelectedVerse(true);
-    navigate(destination || "read");
+    selectVerseByReference(location.surahId, location.ayah, { navigate: false }).then(function (ok) {
+      if (ok) navigate(destination || "read");
+    });
   }
 
   function renderVerseList(containerId, keys, emptyKey, destination) {
@@ -2837,12 +2938,16 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       var excerpt = document.createElement("small");
       var arrow = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-      title.textContent = location.surah.names[state.language] + " · " + key;
-      excerpt.textContent = location.verse.text;
+      title.textContent = location.names[state.language] + " · " + key;
+      if (location.verse) {
+        excerpt.lang = "ar";
+        excerpt.dir = "rtl";
+        excerpt.textContent = location.verse.text;
+      }
       use.setAttribute("href", "#i-chevron");
       arrow.appendChild(use);
       copy.appendChild(title);
-      copy.appendChild(excerpt);
+      if (location.verse) copy.appendChild(excerpt);
       button.appendChild(copy);
       button.appendChild(arrow);
       button.addEventListener("click", function () { loadVerseKey(key, destination); });
@@ -2853,6 +2958,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function renderLibraries() {
     renderVerseList("review-queue-list", state.reviewQueue, "emptyReview", "memorize");
     renderVerseList("saved-verses-list", state.savedVerses, "emptySaved", "read");
+    if (quietRecall) quietRecall.refresh();
   }
 
   function dateKey(date) {
@@ -5377,20 +5483,16 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     return String(value).padStart(3, "0");
   }
 
-  function getCurrentAudioKey() {
-    if (!currentSurah || !currentVerse) return "";
-    var reciter = getSelectedReciter();
-    return reciter.id + ":" + currentSurah.id + (reciter.provider === "chapter" ? ":surah" : ":" + currentVerse.ayah);
+  function getVerseAudioUrl(reciter, surahId, ayah) {
+    if (reciter.provider === "chapter") {
+      if (reciter.availableSurahs && reciter.availableSurahs.indexOf(surahId) < 0) return "";
+      return reciter.chapterBase + padAudioIndex(surahId) + ".mp3";
+    }
+    return "https://everyayah.com/data/" + reciter.path + "/" + padAudioIndex(surahId) + padAudioIndex(ayah) + ".mp3";
   }
 
   function getCurrentVerseAudioUrl() {
-    if (!currentSurah || !currentVerse) return "";
-    var reciter = getSelectedReciter();
-    if (reciter.provider === "chapter") {
-      if (reciter.availableSurahs && reciter.availableSurahs.indexOf(currentSurah.id) < 0) return "";
-      return reciter.chapterBase + padAudioIndex(currentSurah.id) + ".mp3";
-    }
-    return "https://everyayah.com/data/" + reciter.path + "/" + padAudioIndex(currentSurah.id) + padAudioIndex(currentVerse.ayah) + ".mp3";
+    return currentSurah && currentVerse ? getVerseAudioUrl(getSelectedReciter(), currentSurah.id, currentVerse.ayah) : "";
   }
 
   function revokeActiveAudioObjectUrl() {
@@ -5405,11 +5507,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       return cache.match(url);
     }).then(function (response) {
       if (!response) return url;
-      return response.blob().then(function (blob) {
-        revokeActiveAudioObjectUrl();
-        activeAudioObjectUrl = window.URL.createObjectURL(blob);
-        return activeAudioObjectUrl;
-      });
+      return response.blob();
     }).catch(function () { return url; });
   }
 
@@ -5508,6 +5606,86 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     duration.textContent = formatAudioTime(audio.duration);
   }
 
+  function renderAudioPractice() {
+    var form = document.getElementById("audio-practice-form");
+    if (!form) return;
+    var start = document.getElementById("audio-practice-from");
+    var end = document.getElementById("audio-practice-to");
+    var catalogCount = currentSurah && Number(mushafChapterNames[currentSurah.id]?.verses_count);
+    var count = Number.isInteger(catalogCount) && catalogCount >= 1 && catalogCount <= 286 ? catalogCount : 0;
+    var ayah = currentVerse && Number(currentVerse.ayah);
+    var local = currentSurah && getLocalSurahExact(currentSurah.id);
+    // The local library may contain only selected verses of a surah.
+    var max = count || (local ? Math.max(ayah, ...local.verses.map(function (verse) { return verse.ayah; })) : ayah);
+    var selection = currentSurah && ayah ? currentSurah.id + ":" + ayah : "";
+    var optionsKey = selection + ":" + max + ":" + state.language;
+    if (optionsKey !== audioPracticeOptionsKey) {
+      var sameVerse = audioPracticeOptionsKey.startsWith(selection + ":");
+      var first = sameVerse && Number(start.value) || ayah;
+      var last = sameVerse && Number(end.value) || Math.min(ayah + 2, max);
+      [start, end].forEach(function (select) {
+        var options = document.createDocumentFragment();
+        for (var number = 1; number <= max; number += 1) options.append(new Option(formatMetric(number), number));
+        select.replaceChildren(options);
+      });
+      start.value = String(Math.min(first, max));
+      end.value = String(Math.min(last, max));
+      var numberFormat = new Intl.NumberFormat(state.language);
+      var repeats = document.getElementById("audio-practice-repeats");
+      var speed = document.getElementById("audio-practice-speed");
+      Array.from(repeats.options).forEach(function (option) { option.textContent = numberFormat.format(Number(option.value)); });
+      Array.from(speed.options).forEach(function (option) { option.textContent = numberFormat.format(Number(option.value)) + "×"; });
+      audioPracticeOptionsKey = optionsKey;
+    }
+    var chapterOnly = getSelectedReciter().provider === "chapter";
+    var audio = document.getElementById("verse-audio");
+    var unsupported = !audio || !audio.canPlayType("audio/mpeg");
+    var unavailable = !selection || chapterOnly || unsupported;
+    form.querySelectorAll("select").forEach(function (control) { control.disabled = unavailable || Boolean(audioPractice); });
+    var play = document.getElementById("audio-practice-start");
+    play.disabled = unavailable;
+    play.querySelector("span").textContent = t(audioPractice ? (verseAudioPaused ? "resumeAudio" : "pauseAudio") : "audioPracticeStart");
+    document.getElementById("audio-practice-stop").hidden = !audioPractice;
+    var help = document.getElementById("audio-practice-help");
+    var helpText = chapterOnly ? t("audioPracticeChapter") : unsupported ? t("audioPracticeUnsupported") :
+      selection ? formatText("audioPracticeSurah", { surah: currentSurah.names[state.language] }) : "";
+    if (help.textContent !== helpText) help.textContent = helpText;
+    var result = document.getElementById("audio-practice-status");
+    var resultText = audioPractice ? formatText("audioPracticeActive", {
+      ayah: formatMetric(audioPractice.ayah),
+      repeat: formatMetric(audioPractice.play),
+      total: formatMetric(audioPractice.repeats)
+    }) : audioPracticeResult ? formatText(audioPracticeResult.key, audioPracticeResult.values || {}) : "";
+    if (result.textContent !== resultText) result.textContent = resultText;
+  }
+
+  function startAudioPractice(event) {
+    event.preventDefault();
+    if (audioPractice) {
+      playVerseAudio();
+      return;
+    }
+    if (!currentSurah || !currentVerse || getSelectedReciter().provider === "chapter") return;
+    var start = Number(document.getElementById("audio-practice-from").value);
+    var end = Number(document.getElementById("audio-practice-to").value);
+    var repeats = Number(document.getElementById("audio-practice-repeats").value);
+    var speed = Number(document.getElementById("audio-practice-speed").value);
+    var max = document.getElementById("audio-practice-to").options.length;
+    if (start < 1 || end < start || end > max) {
+      audioPracticeResult = { key: "audioPracticeInvalid" };
+      renderAudioPractice();
+      document.getElementById("audio-practice-to").focus();
+      return;
+    }
+    cancelStructuredAdvance();
+    memorySeriesActive = false;
+    stopMemoryRecognition(true);
+    stopRecognitionImmediately();
+    stopVerseAudio(false);
+    audioPractice = { surah: currentSurah.id, ayah: start, end: end, play: 1, repeats: repeats, speed: speed };
+    playVerseAudio();
+  }
+
   function updateAudioControls() {
     var toolbarButton = document.getElementById("play-demo-audio");
     var mushafAudioButton = document.getElementById("mushaf-play-audio");
@@ -5530,20 +5708,25 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var mushafPanel = document.querySelector(".mushaf-panel");
     if (mushafPanel) mushafPanel.classList.toggle("is-audio-playing", verseAudioPlaying && !verseAudioPaused);
     if (repeatButton) {
-      repeatButton.classList.toggle("is-active", state.audioRepeat);
-      repeatButton.setAttribute("aria-pressed", String(state.audioRepeat));
+      repeatButton.disabled = Boolean(audioPractice);
+      repeatButton.classList.toggle("is-active", !audioPractice && state.audioRepeat);
+      repeatButton.setAttribute("aria-pressed", String(!audioPractice && state.audioRepeat));
     }
     if (nextButton) {
-      nextButton.disabled = getSelectedReciter().provider === "chapter";
+      nextButton.disabled = Boolean(audioPractice) || getSelectedReciter().provider === "chapter";
       nextButton.title = getSelectedReciter().provider === "chapter" ? t("chapterAudioScope") : "";
     }
+    renderAudioPractice();
     updateReciterIdentity();
     updateAudioTimeline();
   }
 
-  function stopVerseAudio(showNotice) {
+  function stopVerseAudio(showNotice, practiceResult) {
     var audio = document.getElementById("verse-audio");
+    window.clearTimeout(audioAdvanceTimer);
     audioSourceRequest += 1;
+    audioPracticeResult = practiceResult || (audioPractice && showNotice ? { key: "audioPracticeStopped" } : null);
+    audioPractice = null;
     verseAudioPlaying = false;
     verseAudioPaused = false;
     if (audio) {
@@ -5551,6 +5734,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       audio.removeAttribute("src");
       audio.removeAttribute("data-verse-key");
       audio.load();
+      audio.playbackRate = 1;
     }
     revokeActiveAudioObjectUrl();
     setAudioMeta();
@@ -5561,6 +5745,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function handleVerseAudioError() {
     var audio = document.getElementById("verse-audio");
     if (!audio || !audio.getAttribute("src")) return;
+    if (audioPractice) {
+      stopVerseAudio(false, { key: "audioPracticeError", values: { ayah: formatMetric(audioPractice.ayah) } });
+      return;
+    }
     verseAudioPlaying = false;
     verseAudioPaused = false;
     setAudioMeta("audioUnavailable");
@@ -5570,17 +5758,31 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
 
   function handleVerseAudioEnded() {
     var audio = document.getElementById("verse-audio");
-    if (!verseAudioPlaying) return;
+    if (!verseAudioPlaying || verseAudioPaused) return;
+    if (audioPractice) {
+      if (audioPractice.play < audioPractice.repeats) {
+        audioPractice.play += 1;
+        audio.currentTime = 0;
+      } else if (audioPractice.ayah < audioPractice.end) {
+        audioPractice.ayah += 1;
+        audioPractice.play = 1;
+      } else {
+        stopVerseAudio(false, { key: "audioPracticeComplete" });
+        return;
+      }
+      startVerseAudioTrack(audio);
+      return;
+    }
     if (state.audioRepeat && audio) {
       audio.currentTime = 0;
-      audio.play().catch(handleVerseAudioError);
+      startVerseAudioTrack(audio);
       return;
     }
     verseAudioPlaying = false;
     verseAudioPaused = false;
     updateAudioControls();
     if (getSelectedReciter().provider === "chapter") return;
-    if (state.autoAdvance && goToNextVerse("audio")) window.setTimeout(playVerseAudio, 180);
+    if (state.autoAdvance) goToNextVerse("audio");
   }
 
   function playVerseAudio() {
@@ -5589,41 +5791,59 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       showToast(t("audioUnavailable"));
       return;
     }
+    window.clearTimeout(audioAdvanceTimer);
     document.getElementById("audio-panel").hidden = false;
     if (verseAudioPlaying && !verseAudioPaused) {
+      audioSourceRequest += 1;
       audio.pause();
       verseAudioPaused = true;
       updateAudioControls();
       return;
     }
-    var audioKey = getCurrentAudioKey();
-    var sourceUrl = getCurrentVerseAudioUrl();
+    startVerseAudioTrack(audio);
+  }
+
+  async function startVerseAudioTrack(audio) {
+    var reciter = getSelectedReciter();
+    var surahId = audioPractice ? audioPractice.surah : currentSurah.id;
+    var ayah = audioPractice ? audioPractice.ayah : currentVerse.ayah;
+    var speed = audioPractice ? audioPractice.speed : 1;
+    var audioKey = reciter.id + ":" + surahId + ":" + (reciter.provider === "chapter" ? "surah" : ayah);
+    var sourceUrl = getVerseAudioUrl(reciter, surahId, ayah);
     if (!sourceUrl) {
       handleVerseAudioError();
       showToast(t("audioUnavailable"));
       return;
     }
     var sourceRequest = ++audioSourceRequest;
+    if (!audioPractice) audioPracticeResult = null;
     verseAudioPlaying = true;
     verseAudioPaused = false;
     updateAudioControls();
-    if (audio.getAttribute("data-verse-key") === audioKey && audio.getAttribute("src")) {
-      audio.play().catch(handleVerseAudioError);
-      return;
-    }
-    setAudioMeta("audioLoading");
-    resolveVerseAudioSource(sourceUrl).then(function (source) {
-      if (sourceRequest !== audioSourceRequest || !verseAudioPlaying) return;
-      audio.src = source;
-      audio.setAttribute("data-verse-key", audioKey);
-      audio.load();
-      return audio.play();
-    }).then(function () {
-      if (getSelectedReciter().provider === "chapter") {
+    try {
+      if (audio.getAttribute("data-verse-key") !== audioKey || !audio.getAttribute("src")) {
+        setAudioMeta("audioLoading");
+        var source = await resolveVerseAudioSource(sourceUrl);
+        if (sourceRequest !== audioSourceRequest) return;
+        revokeActiveAudioObjectUrl();
+        if (source instanceof Blob) {
+          activeAudioObjectUrl = window.URL.createObjectURL(source);
+          source = activeAudioObjectUrl;
+        }
+        audio.src = source;
+        audio.setAttribute("data-verse-key", audioKey);
+        audio.load();
+      }
+      audio.playbackRate = speed;
+      await audio.play();
+      if (sourceRequest !== audioSourceRequest) return;
+      if (reciter.provider === "chapter") {
         setAudioMeta("chapterRecitationSource");
         showToast(t("chapterAudioScope"));
       }
-    }).catch(handleVerseAudioError);
+    } catch (error) {
+      if (sourceRequest === audioSourceRequest) handleVerseAudioError();
+    }
   }
 
   function activateAudioMode() {
@@ -5711,6 +5931,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       document.getElementById("correction-gate-text").textContent = t("correctionResolvedSub");
       return;
     }
+    document.getElementById("skip-recitation-check").hidden = !correctionLocked;
     gate.hidden = !correctionLocked;
     if (!correctionLocked) return;
     var word = currentWords[correctionIndex] ? currentWords[correctionIndex].ar : "";
@@ -5722,6 +5943,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
 
   function clearCorrectionLock() {
     correctionLocked = false;
+    document.getElementById("skip-recitation-check").hidden = true;
     correctionIndex = -1;
     correctionStatuses = [];
     correctionRequiresFullVerse = false;
@@ -5734,7 +5956,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function activateCorrectionLock(alignment) {
-    if (!state.strictCorrection || !alignment || alignment.complete) return false;
+    if (!state.strictCorrection || !alignment || alignment.complete || !(alignment.errors || alignment.warnings || alignment.extras)) return false;
     correctionRequiresFullVerse = alignment.extras > 0;
     var targetIndex = correctionRequiresFullVerse ? 0 : findCorrectionIndex(alignment.statuses, 0);
     if (targetIndex < 0) return false;
@@ -5860,21 +6082,30 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     }
     var resumeContinuous = continuousResumePending && state.recitationFlow === "continuous" && continuousSessionActive && !userStoppedRecognition;
     continuousResumePending = false;
+    var resumeAudio = preserveMode === "audio";
+    var audioAdvanceRequest = audioSourceRequest;
     if (next.mushafVerse) {
       activateMushafVerse(next.mushafVerse, true);
+      if (resumeAudio) audioAdvanceTimer = window.setTimeout(playVerseAudio, 120);
       if (resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 90);
       return true;
     }
     if (next.mushafNextPage) {
       loadMushafPage(next.mushafNextPage, false).then(function (loaded) {
-        if (!loaded || mushafPageNumber !== next.mushafNextPage) return;
-        if (mushafPageVerses[0]) activateMushafVerse(mushafPageVerses[0], true);
+        if (!loaded || mushafPageNumber !== next.mushafNextPage || !mushafPageVerses[0]) return;
+        var playNext = resumeAudio && audioAdvanceRequest === audioSourceRequest;
+        activateMushafVerse(mushafPageVerses[0], true);
+        if (playNext) audioAdvanceTimer = window.setTimeout(playVerseAudio, 120);
         if (resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 90);
       });
       return true;
     }
     if (next.remoteSurah) {
-      selectVerseByReference(next.remoteSurah, next.remoteAyah, { navigate: false, forceRemote: true }).then(function (selected) {
+      selectVerseByReference(next.remoteSurah, next.remoteAyah, {
+        navigate: false,
+        forceRemote: true,
+        audioAdvanceRequest: resumeAudio ? audioAdvanceRequest : null
+      }).then(function (selected) {
         if (selected && state.recitationFlow === "continuous" && preserveMode !== "audio") {
           setMushafMode(true);
           selectReaderMode("mushaf");
@@ -5887,6 +6118,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     state.selectedAyah = next.verse.ayah;
     populateVerseSelectors();
     renderSelectedVerse(true);
+    if (resumeAudio) audioAdvanceTimer = window.setTimeout(playVerseAudio, 120);
     if (state.recitationFlow === "continuous" && preserveMode !== "audio") {
       setMushafMode(true);
       selectReaderMode("mushaf");
@@ -5915,6 +6147,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     document.getElementById("surah-seal").textContent = state.language === "ar" ? arabicNumber(currentSurah.id) : String(currentSurah.id);
     document.getElementById("reader-surah-name").textContent = currentSurah.names[state.language];
     document.getElementById("reader-surah-arabic").textContent = state.language === "ar" ? arabicNumber(currentSurah.id) + ":" + arabicNumber(currentVerse.ayah) : currentSurah.names.ar;
+    renderAudioPractice();
   }
 
   function updateMatchIndicator(matched) {
@@ -6195,16 +6428,26 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     document.getElementById("mushaf-size-down").addEventListener("click", function () { changeMushafReadingPreferences("adaptive", -2); });
     document.getElementById("mushaf-size-up").addEventListener("click", function () { changeMushafReadingPreferences("adaptive", 2); });
     applyMushafReadingLayout(document.getElementById("mushaf-page"));
-    var storagePanel = document.getElementById("allim-storage-panel");
-    if (storagePanel) {
-      var reserveStorageSpace = function () {
-        var clearance = Math.max(86, window.innerHeight - storagePanel.getBoundingClientRect().top + 16);
-        document.documentElement.style.setProperty("--mushaf-storage-clearance", clearance + "px");
-      };
-      if (window.ResizeObserver) new window.ResizeObserver(reserveStorageSpace).observe(storagePanel);
-      window.addEventListener("resize", reserveStorageSpace);
-      reserveStorageSpace();
+    var dock = document.getElementById("mushaf-reading-dock");
+    var dockNodes = [document.getElementById("recitation-panel"), document.getElementById("mobile-recognition-toggle"),
+      document.getElementById("allim-journal-summary"), document.getElementById("allim-storage-panel")].filter(Boolean);
+    var homes = dockNodes.map(function (node) {
+      var marker = document.createComment("reading-control"); node.before(marker);
+      return {node: node, marker: marker};
+    });
+    function syncDock() {
+      var active = document.body.classList.contains("mushaf-view");
+      homes.forEach(function (home) {
+        if (active && home.node.parentNode !== dock) dock.appendChild(home.node);
+        else if (!active && home.node.parentNode === dock) home.marker.after(home.node);
+      });
+      if (active) document.body.style.setProperty("--mushaf-dock-height", Math.ceil(dock.getBoundingClientRect().height + 12) + "px");
+      else document.body.style.removeProperty("--mushaf-dock-height");
     }
+    new MutationObserver(syncDock).observe(document.body, {attributes: true, attributeFilter: ["class"]});
+    if (window.ResizeObserver) new window.ResizeObserver(syncDock).observe(dock);
+    window.addEventListener("resize", syncDock);
+    syncDock();
   }
 /* ALLIM_MUSHAF_COMFORT_END */
 
@@ -6580,6 +6823,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       showToast(t("searchNoResults"));
       return Promise.resolve(false);
     }
+    if (audioPractice) stopVerseAudio(false);
     if (opts.navigate !== false) navigate("read");
     state.selectedSurah = id;
     state.selectedAyah = ayah;
@@ -6621,11 +6865,13 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
           document.getElementById("mushaf-next-page").disabled = mushafPageNumber >= 604;
           renderMushafPage(data, fontInfo);
         }
+        var playNext = opts.audioAdvanceRequest === audioSourceRequest;
         activateMushafVerse(verseData, true);
         state.selectedSurah = id;
         state.selectedAyah = ayah;
         populateVerseSelectors();
         saveState();
+        if (playNext) audioAdvanceTimer = window.setTimeout(playVerseAudio, 120);
         return true;
       });
     }).catch(function () {
@@ -7429,7 +7675,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       if (data.verse_key !== verseKey) throw new Error("stale-asr-verse");
       var result = window.AllimRecitation.parseResponse(data);
       if (result.issue) {
-        continuousFailureCount += 1;
+        if (result.issue !== "no-speech") continuousFailureCount += 1;
         if (result.issue === "no-speech") handleRecognitionError("no-speech");
         else {
           setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
@@ -7441,8 +7687,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       alignmentResult = correctionLocked ? applyCorrectionTranscript(result.transcript, true) : applyTranscript(result.transcript, true);
       if (alignmentResult.complete) recordRecognitionSession(alignmentResult.matched);
       if (!alignmentResult.complete && !(state.strictCorrection && correctionLocked)) {
-        setRecognitionStatus(alignmentResult.outcome === "uncertain" ? "recognitionUncertain" : "recognitionStopped",
-          alignmentResult.outcome === "uncertain" ? "recognitionUncertainSub" : "recognitionStoppedSub", false);
+        setRecognitionStatus("readingPaused", "readingPausedSub", false);
       }
     }).catch(function (error) {
       if (!isCurrent() || (error && error.name === "AbortError" && !timedOut)) return;
@@ -7567,6 +7812,9 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     recognitionHadError = false;
     recognitionSessionCounted = false;
     lastTranscript = "";
+    readingCommittedAlignment = null;
+    readingSegments = [];
+    readingSegmentBase = [];
     lastMatchedCount = 0;
     lastAlignment = null;
     lastAlignmentFinal = false;
@@ -7712,12 +7960,21 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function applyTranscript(transcript, isFinal) {
     lastTranscript = String(transcript || "").trim();
     document.getElementById("live-transcript-text").textContent = lastTranscript || t("waitingSpeech");
-    var alignment = alignRecognizedWords(lastTranscript, isFinal);
+    var segments = readingSegmentBase.concat(lastTranscript ? [lastTranscript] : []);
+    var count = 0, stops = [];
+    segments.forEach(function (segment) {
+      count += window.AllimRecitation.tokens(segment).length;
+      stops.push(count - 1);
+    });
+    var alignment = window.AllimRecitation.align(currentWords, segments.join(" "), isFinal,
+      {partial: true, stops: stops});
+    if (!isFinal && readingCommittedAlignment) return readingCommittedAlignment;
+    if (isFinal && lastTranscript) { readingSegments = segments; readingCommittedAlignment = alignment; }
     renderRecognitionAlignment(alignment, isFinal);
     if (isFinal && alignment.complete) completeRecognizedVerse(alignment);
     else if (isFinal && !alignment.complete && !activateCorrectionLock(alignment)) {
       if (alignment.outcome === "mismatch") playErrorCue();
-      else setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
+      else setRecognitionStatus("readingPaused", "readingPausedSub", false);
     }
     return alignment;
   }
@@ -7727,14 +7984,24 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     lastTranscript = String(transcript || "").trim();
     document.getElementById("live-transcript-text").textContent = lastTranscript || t("waitingSpeech");
     var alignment = window.AllimRecitation.alignCorrection(currentWords, lastTranscript,
-      correctionStatuses, isFinal, correctionRequiresFullVerse);
+      correctionStatuses, isFinal, correctionRequiresFullVerse, true);
     renderRecognitionAlignment(alignment, isFinal);
     if (!isFinal) return alignment;
     if (alignment.complete) {
       completeRecognizedVerse(alignment);
       return alignment;
     }
-    activateCorrectionLock(alignment);
+    if (!(alignment.errors || alignment.warnings || alignment.extras)) {
+      clearCorrectionLock();
+      readingCommittedAlignment = alignment;
+      // Carry only the already confirmed contiguous prefix into the next capture.
+      var end = alignment.statuses.indexOf("pending");
+      readingSegments = [currentWords.slice(0, end < 0 ? currentWords.length : end).map(function (word) {
+        return typeof word === "string" ? word : word.ar;
+      }).join(" ")];
+      readingSegmentBase = readingSegments.slice();
+      setRecognitionStatus("readingPaused", "readingPausedSub", false);
+    } else activateCorrectionLock(alignment);
     return alignment;
   }
 
@@ -7777,7 +8044,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       stopContinuousSession();
       setRecognitionStatus("micRequestTimeout", "micRequestTimeoutSub", true);
     } else if (errorCode === "no-speech") {
-      setRecognitionStatus("noSpeech", "noSpeechSub", true);
+      setRecognitionStatus("readingPaused", "readingPausedSub", false);
     } else if (errorCode === "network") {
       setRecognitionStatus("recognitionNetwork", "recognitionNetworkSub", true);
     } else if (errorCode === "audio-capture") {
@@ -7825,7 +8092,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     };
     instance.onerror = function (event) {
       if (recognition !== instance) return;
-      if (event.error !== "aborted") continuousFailureCount += 1;
+      if (event.error !== "aborted" && event.error !== "no-speech") continuousFailureCount += 1;
       handleRecognitionError(event.error);
     };
     instance.onend = function () {
@@ -7854,11 +8121,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
         queueContinuousRestart(320);
         return;
       }
-      if (!(state.strictCorrection && correctionLocked)) setRecognitionStatus("recognitionStopped", "recognitionStoppedSub", false);
+      if (!(state.strictCorrection && correctionLocked)) setRecognitionStatus("readingPaused", "readingPausedSub", false);
       if (state.recitationFlow === "continuous" && continuousSessionActive && !userStoppedRecognition) {
-        if (!lastTranscript) {
-          continuousFailureCount += 1;
-        }
         queueContinuousRestart(lastTranscript ? 420 : 620);
       }
     };
@@ -7930,6 +8194,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       stopRecognitionImmediately();
       return;
     }
+    if (audioPractice) stopVerseAudio(false);
     primeCueAudio();
     recognitionHadError = false;
     userStoppedRecognition = false;
@@ -7943,10 +8208,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     } else {
       stopContinuousSession();
     }
-    if (!correctionLocked) recognitionSessionCounted = false;
+    if (!correctionLocked && (!readingSegments.length || (lastAlignment && lastAlignment.complete))) resetRecognitionView();
+    readingSegmentBase = readingSegments.slice();
     lastTranscript = "";
-    lastMatchedCount = 0;
-    if (!correctionLocked) resetRecognitionView();
+    lastAlignmentFinal = false;
     if (getEffectiveRecognitionMode() === "quran") {
       startQuranRecognition();
       return;
@@ -8789,6 +9054,11 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       }
       renderTafsirAnswer("", question);
     });
+    document.getElementById("skip-recitation-check").addEventListener("click", function () {
+      stopRecognitionImmediately();
+      clearCorrectionLock();
+      goToNextVerse();
+    });
     document.getElementById("next-ayah").addEventListener("click", goToNextVerse);
     document.getElementById("start-recognition").addEventListener("click", function () { startRecognition(false); });
     document.getElementById("mobile-recognition-toggle").addEventListener("click", toggleMobileRecognition);
@@ -8820,6 +9090,11 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     document.getElementById("mushaf-play-audio").addEventListener("click", function () {
       playVerseAudio();
     });
+    document.getElementById("audio-practice-form").addEventListener("submit", startAudioPractice);
+    document.getElementById("audio-practice-stop").addEventListener("click", function () {
+      stopVerseAudio(true);
+      document.getElementById("audio-practice-start").focus();
+    });
     document.getElementById("audio-play-toggle").addEventListener("click", playVerseAudio);
     document.getElementById("audio-stop").addEventListener("click", function () { stopVerseAudio(true); });
     document.getElementById("download-surah-audio").addEventListener("click", downloadCurrentSurahAudio);
@@ -8830,18 +9105,18 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       showToast(t(state.audioRepeat ? "repeatAudioOn" : "repeatAudioOff"));
     });
     document.getElementById("audio-next").addEventListener("click", function () {
-      if (goToNextVerse("audio")) window.setTimeout(playVerseAudio, 120);
+      goToNextVerse("audio");
     });
     document.getElementById("reciter-select").addEventListener("change", function (event) {
       var requestedReciter = event.target.value;
-      var shouldResume = verseAudioPlaying && !verseAudioPaused;
+      var shouldResume = !audioPractice && verseAudioPlaying && !verseAudioPaused;
       state.selectedReciter = reciters.some(function (reciter) { return reciter.id === requestedReciter; }) ? requestedReciter : "husary";
       saveState();
       stopVerseAudio(false);
       updateAudioControls();
       showToast(formatText("reciterChanged", { name: getSelectedReciter().names[state.language] || getSelectedReciter().names.en }));
       if (getSelectedReciter().provider === "chapter") showToast(t("chapterAudioScope"));
-      if (shouldResume) window.setTimeout(playVerseAudio, 120);
+      if (shouldResume) audioAdvanceTimer = window.setTimeout(playVerseAudio, 120);
     });
     document.getElementById("audio-seek").addEventListener("input", function (event) {
       var audio = document.getElementById("verse-audio");
@@ -8856,14 +9131,14 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     verseAudioElement.addEventListener("waiting", function () { if (verseAudioPlaying) setAudioMeta("audioLoading"); });
     verseAudioElement.addEventListener("canplay", function () { setAudioMeta(); });
     verseAudioElement.addEventListener("play", function () {
-      verseAudioPlaying = true;
+      if (!verseAudioPlaying || verseAudioElement.paused) return;
       verseAudioPaused = false;
       setAudioMeta();
       updateAudioControls();
-      if (verseAudioElement.currentTime < .25) showToast(t(getSelectedReciter().provider === "chapter" ? "chapterAudioStarted" : "audioPlaying"));
+      if (!audioPractice && verseAudioElement.currentTime < .25) showToast(t(getSelectedReciter().provider === "chapter" ? "chapterAudioStarted" : "audioPlaying"));
     });
     verseAudioElement.addEventListener("pause", function () {
-      if (!verseAudioPlaying || verseAudioElement.ended) return;
+      if (!verseAudioPlaying || !verseAudioElement.paused || verseAudioElement.ended || !verseAudioElement.getAttribute("src")) return;
       verseAudioPaused = true;
       updateAudioControls();
     });
@@ -8983,7 +9258,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       var deltaY = event.changedTouches[0].clientY - mushafSwipeStart.y;
       mushafSwipeStart = null;
       if (Math.abs(deltaX) < 56 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.2) return;
-      navigateMushafPage(deltaX < 0 ? 1 : -1);
+      navigateMushafPage(deltaX > 0 ? 1 : -1);
     }, { passive: true });
     mushafPage.addEventListener("touchcancel", function () { mushafSwipeStart = null; }, { passive: true });
     document.getElementById("mushaf-font-select").addEventListener("change", function (event) {
@@ -9120,6 +9395,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     document.addEventListener("keydown", function (event) {
       var target = event.target;
       var typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT" || target.isContentEditable);
+      if (document.getElementById("quiet-recall-dialog").open) return;
       if (event.key === "/" && !typing && document.getElementById("view-read").classList.contains("is-active")) {
         event.preventDefault();
         openQuranSearch();
@@ -9154,6 +9430,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     window.__allimLearnInitialized = true;
     window.AllimAccountUI.requiresInitialization = true;
     personalBridge = new window.AllimAccountUI.LearnBridge(defaultState, applyPersonalState, function () {
+      if (quietRecall) quietRecall.close();
       stopRecognitionImmediately(); pauseMemoryRecognition(); stopVerseAudio(false);
       cancelStructuredAdvance(); lawhLibraryLimit = 12;
       linkedPageSession = null; linked33Session = null; pageRecallSession = null; readAttemptId = null; memoryAttemptId = null;
@@ -9173,6 +9450,29 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (["ru", "en", "ar"].indexOf(launchLanguage) >= 0) state.language = launchLanguage;
     applyMushafAppearance();
     initializeEvents();
+    if (window.AllimQuietRecall) quietRecall = window.AllimQuietRecall.mount({
+      passage: getQuietRecallPassage,
+      queue: function () { return state.reviewQueue; },
+      verse: getQuietRecallVerse,
+      reference: function (key) {
+        var location = getVerseByKey(key);
+        return location ? getVerseLabel({ id: location.surahId, names: location.names }, { ayah: location.ayah }) : key;
+      },
+      stop: function () {
+        clearAutoAdvance();
+        cancelStructuredAdvance();
+        stopContinuousSession();
+        stopRecognitionImmediately();
+        pauseMemoryRecognition();
+        stopVerseAudio(false);
+      },
+      saveReview: async function (key, add) {
+        await window.AllimStorage.mutate(add
+          ? { kind: "review_item", id: key, action: "set", value: { position: -Date.now() } }
+          : { kind: "review_item", id: key, action: "delete" });
+        await personalBridge.refresh();
+      }
+    });
     if (contribution) contribution.mount();
     if (window.ALLIMJourney) await window.ALLIMJourney.init({
       stop: function () { cancelStructuredAdvance(); memorySeriesActive = false; stopMemoryRecognition(true); },
@@ -9209,6 +9509,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       var localInitial = getLocalVerseExact(getLocalSurahExact(initialSelectedSurah), initialSelectedAyah);
       if (!localInitial) selectVerseByReference(initialSelectedSurah, initialSelectedAyah, { navigate: false, forceRemote: true });
       else updateNextButton();
+      renderAudioPractice();
     });
     setMeaningVisibility(state.showMeaning);
     selectSidePanelTab("ai");

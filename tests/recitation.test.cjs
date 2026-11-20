@@ -265,3 +265,48 @@ test('processing failure never becomes no-speech', async () => {
   assert.ok(h.errors.includes('quran-asr-unavailable'));
   assert.ok(!h.errors.includes('no-speech'));
 });
+
+const pauseWords='بسم الله الرحمن الرحيم'.split(' ');
+const partial=(words,text,stops=[])=>core.align(words,text,true,{partial:true,stops});
+test('an utterance end leaves the unread tail pending; interior omissions still fail',()=>{
+ assert.deepEqual(partial(pauseWords,'بسم الله').statuses,['recognized','recognized','pending','pending']);
+ assert.equal(partial(pauseWords,'بسم الرحمن الرحيم').errors,1);
+ assert.equal(partial(pauseWords,'بسم الله').complete,false);
+ assert.equal(partial(pauseWords,'').errors,0);
+});
+test('Quran pause annotations are not spoken words or extras',()=>{
+ for(const mark of ['ۚ','ۛ','ۖ','ۗ','ۘ','ۙ','ۜ']) assert.equal(partial(pauseWords,`بسم الله ${mark} الرحمن الرحيم`).complete,true);
+});
+test('terminal sukun at a captured stop is spelling evidence only; internal vowels stay checked',()=>{
+ const words=['الرَّحْمَٰنِ','الرَّحِيمِ'];
+ assert.equal(partial(words,'الرَّحْمَانْ الرَّحِيمْ',[0,1]).complete,true);
+ assert.equal(partial(words,'الرَّحْمَانْ الرَّحِيمْ',[]).complete,false);
+ assert.equal(partial(['أَنْعَمْتَ'],'أَنْعَمْتُ',[0]).complete,false);
+ assert.equal(partial(['نَسْتَعِينُ'],'نُسْتَعِينْ',[0]).complete,false);
+ assert.equal(partial(words,'الرَّحْمَانْ الرَّحِيمْ',[0,1]).pronunciationVerified,false);
+});
+test('tail corrections can themselves pause without flagging the unread words',()=>{
+ const result=core.alignCorrection(pauseWords,'الله',['recognized','warning','pending','pending'],true,false,true);
+ assert.deepEqual(result.statuses,['recognized','recognized','pending','pending']);
+ assert.equal(result.errors,0); assert.equal(result.complete,false);
+});
+function pauseHarness(){
+ let locks=0,completed=0;
+ const element={textContent:'',classList:{add(){},remove(){}}};
+ const c=load(['applyTranscript'],{currentWords:pauseWords,readingCommittedAlignment:null,readingSegments:[],readingSegmentBase:[],lastAlignment:null,lastAlignmentFinal:false,
+ document:{getElementById:()=>element},t:x=>x,renderRecognitionAlignment:(a,final)=>{c.lastAlignment=a;c.lastAlignmentFinal=final;},
+ completeRecognizedVerse:()=>completed++,activateCorrectionLock:a=>{if(a.errors||a.warnings||a.extras)locks++;return false;},
+ playErrorCue(){},setRecognitionStatus(){}});
+ return {c,counts:()=>({locks,completed}),newSegment(){c.readingSegmentBase=c.readingSegments.slice();c.lastAlignmentFinal=false;}};
+}
+test('multiple pause/restart cycles accumulate actual words and complete only at the ayah end',()=>{
+ const h=pauseHarness();let a=h.c.applyTranscript('بسم',true);assert.equal(a.matched,1);assert.equal(a.errors,0);
+ h.newSegment();a=h.c.applyTranscript('الله',true);assert.equal(a.matched,2);assert.equal(a.errors,0);
+ h.newSegment();a=h.c.applyTranscript('الله الرحمن',true);assert.equal(a.matched,3);assert.equal(a.errors,0);
+ h.newSegment();a=h.c.applyTranscript('الرحيم',false);assert.equal(a.complete,false);assert.equal(a.matched,3);assert.equal(h.counts().completed,0);
+ a=h.c.applyTranscript('الرحيم',true);assert.equal(a.complete,true);assert.deepEqual(h.counts(),{locks:0,completed:1});
+});
+test('provider snapshots replace their own segment, never duplicate it',()=>{
+ const h=pauseHarness();h.c.applyTranscript('بسم',true);const a=h.c.applyTranscript('بسم الله',true);
+ assert.equal(a.matched,2);assert.equal(a.repeats,0);assert.equal(a.errors,0);
+});

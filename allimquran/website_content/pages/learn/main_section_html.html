@@ -2,6 +2,7 @@
 <script src="/assets/allimquran/js/account-storage.js?v=4"></script>
 <script src="/assets/allimquran/js/learning-progress.js?v=1"></script>
 <script src="/assets/allimquran/js/learning-journey.js?v=1"></script>
+<script src="/assets/allimquran/js/quiet-recall.js?v=1"></script>
 <script src="/assets/allimquran/js/lawh-library.js?v=1"></script>
 <script src="/assets/allimquran/js/account-progress.js?v=3"></script>
 <script src="/assets/allimquran/js/account-import.js?v=4"></script>
@@ -9,7 +10,7 @@
 <script src="/assets/allimquran/js/account-journal.js?v=1"></script>
 <script src="/assets/allimquran/js/account-storage-ui.js?v=4"></script>
 <script src="/assets/allimquran/js/account-journal-ui.js?v=1"></script>
-<script src="/assets/allimquran/js/recitation-core.js?v=1"></script>
+<script src="/assets/allimquran/js/recitation-core.js?v=2"></script>
 <script src="/assets/allimquran/js/recitation-consent.js?v=1"></script>
 <link rel="stylesheet" href="/assets/allimquran/css/recitation-consent.css?v=1">
 <link rel="icon" href="/assets/allimquran/media/allim-brand-icon.png?v=81" type="image/png"><link rel="apple-touch-icon" href="/assets/allimquran/media/allim-brand-icon.png?v=81"><div class="allim-web-root" data-allim-release="81-fawaid-scholars"><a class="skip-link" href="#main-content" data-i18n="skip">К содержанию</a>
@@ -168,8 +169,8 @@
                 <button class="primary-button" type="button" data-go="read">
                   <span data-i18n="continueLesson">Продолжить занятие</span><svg><use href="#i-arrow"/></svg>
                 </button>
-                <button class="secondary-button" type="button" data-go="memorize">
-                  <span data-i18n="quickTest">Быстрая проверка</span><svg><use href="#i-brain"/></svg>
+                <button class="secondary-button" type="button" data-quiet-recall-open="current" aria-haspopup="dialog" hidden>
+                  <span data-quiet-label="open">Тренировка по памяти</span><svg><use href="#i-brain"/></svg>
                 </button>
               </div>
             </div>
@@ -269,9 +270,9 @@
                   <button class="icon-button" id="play-demo-audio" type="button" aria-pressed="false" aria-label="Озвучить выбранный аят системным арабским голосом" data-i18n-aria="audioDemo"><svg><use href="#i-volume"/></svg></button>
                 </div>
                 <div class="mushaf-page-toolbar" id="mushaf-page-toolbar" hidden>
-                  <button class="icon-button" id="mushaf-prev-page" type="button" aria-label="Предыдущая страница" data-i18n-aria="previousMushafPage"><svg><use href="#i-arrow"/></svg></button>
-                  <label for="mushaf-page-number"><span data-i18n="mushafPage">Страница</span><input id="mushaf-page-number" type="number" aria-label="Страница" data-i18n-aria="mushafPage" min="1" max="604" value="1" inputmode="numeric"><small>/ 604</small></label>
                   <button class="icon-button" id="mushaf-next-page" type="button" aria-label="Следующая страница" data-i18n-aria="nextMushafPage"><svg><use href="#i-arrow"/></svg></button>
+                  <label for="mushaf-page-number"><span data-i18n="mushafPage">Страница</span><input id="mushaf-page-number" type="number" aria-label="Страница" data-i18n-aria="mushafPage" min="1" max="604" value="1" inputmode="numeric"><small>/ 604</small></label>
+                  <button class="icon-button" id="mushaf-prev-page" type="button" aria-label="Предыдущая страница" data-i18n-aria="previousMushafPage"><svg><use href="#i-arrow"/></svg></button>
                   <button class="icon-button mushaf-inline-audio" id="mushaf-play-audio" type="button" aria-pressed="false" aria-label="Слушать выбранный аят" data-i18n-aria="audioDemo"><svg><use href="#i-volume"/></svg></button>
                   <details class="mushaf-appearance-picker">
                     <summary data-i18n="mushafAppearance">Вид страницы</summary>
@@ -361,11 +362,11 @@
                 </aside>
               </div>
 
-              <div class="audio-panel" id="audio-panel" hidden aria-live="polite">
+              <div class="audio-panel" id="audio-panel" hidden>
                 <div class="audio-player-copy">
                   <div class="audio-identity">
                     <span class="audio-orbit" aria-hidden="true"><svg><use href="#i-volume"/></svg></span>
-                    <div><span class="audio-eyebrow" data-i18n="recitationLibrary">Библиотека чтецов</span><strong id="audio-reciter-name">Махмуд Халиль аль-Хусари</strong><small id="audio-reciter-meta" data-i18n="recitationSource">Профессиональная поаятная запись · EveryAyah</small></div>
+                    <div><span class="audio-eyebrow" data-i18n="recitationLibrary">Библиотека чтецов</span><strong id="audio-reciter-name">Махмуд Халиль аль-Хусари</strong><small id="audio-reciter-meta" role="status" data-i18n="recitationSource">Профессиональная поаятная запись · EveryAyah</small></div>
                   </div>
                   <div class="audio-timeline">
                     <time id="audio-current-time">0:00</time>
@@ -388,6 +389,21 @@
                   </div>
                   <small class="audio-attribution"><span data-i18n="audioOpenSource">Открытое аудио:</span> <a href="https://everyayah.com/data/" target="_blank" rel="noopener noreferrer">EveryAyah</a> · <a href="https://quranicaudio.com/" target="_blank" rel="noopener noreferrer">QuranicAudio</a></small>
                 </div>
+                <details class="audio-practice" id="audio-practice">
+                  <summary><svg aria-hidden="true"><use href="#i-reset"/></svg><span data-i18n="audioPracticeTitle">Прослушивание отрывка</span></summary>
+                  <form class="audio-practice-form" id="audio-practice-form" aria-describedby="audio-practice-help">
+                    <label><span data-i18n="audioPracticeFrom">С аята</span><select id="audio-practice-from" required></select></label>
+                    <label><span data-i18n="audioPracticeTo">По аят</span><select id="audio-practice-to" required></select></label>
+                    <label><span data-i18n="audioPracticeRepeats">Повторов на аят</span><select id="audio-practice-repeats"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="5">5</option><option value="10">10</option></select></label>
+                    <label><span data-i18n="audioPracticeSpeed">Скорость</span><select id="audio-practice-speed"><option value="0.75">0,75×</option><option value="0.9">0,9×</option><option value="1" selected>1×</option><option value="1.15">1,15×</option></select></label>
+                    <div class="audio-practice-actions">
+                      <button type="submit" class="primary-button compact" id="audio-practice-start" disabled><span data-i18n="audioPracticeStart">Воспроизвести отрывок</span></button>
+                      <button type="button" class="secondary-button compact" id="audio-practice-stop" hidden><span data-i18n="stopAudio">Остановить</span></button>
+                    </div>
+                    <p id="audio-practice-help" class="audio-practice-help"></p>
+                  </form>
+                </details>
+                <p class="audio-practice-status" id="audio-practice-status" role="status"></p>
                 <audio id="verse-audio" preload="metadata"></audio>
               </div>
 
@@ -401,6 +417,9 @@
                 <a class="tertiary-button compact" href="/academy?panel=teacher"><span data-i18n="teacherAssessmentBack">К преподавателю</span><svg><use href="#i-arrow"/></svg></a>
               </section>
 
+              <div class="quiet-recall-entry">
+                <button class="secondary-button compact" type="button" data-quiet-recall-open="current" aria-haspopup="dialog" hidden><svg aria-hidden="true"><use href="#i-brain"/></svg><span data-quiet-label="open">Тренировка по памяти</span></button>
+              </div>
               <div class="recitation-flow-picker">
                 <div><strong data-i18n="recitationFlowTitle">Как вы хотите читать?</strong><small data-i18n="recitationFlowText">Один аят вручную или непрерывно по суре.</small></div>
                 <div class="recitation-flow-options" role="group" aria-label="Сценарий чтения" data-i18n-aria="recitationFlowGroup">
@@ -415,6 +434,7 @@
             <div><strong id="recitation-title" data-i18n="micReady">Микрофон готов</strong><small id="recitation-subtitle" data-i18n="micDisclosure">Проверяем последовательность слов, не таджвид. Аудио не сохраняется постоянно.</small></div>
                 </div>
                 <div class="recitation-actions">
+                  <button class="secondary-button compact" id="skip-recitation-check" type="button" hidden data-i18n="skipRecitationCheck">Далее без зачёта</button>
                   <button class="secondary-button compact" id="next-ayah" type="button"><span data-i18n="nextAyah">Следующий аят</span><svg><use href="#i-arrow"/></svg></button>
                   <button class="primary-button compact" id="start-recognition" type="button" aria-label="Начать чтение"><span data-i18n="startListening">Начать чтение</span><svg><use href="#i-mic"/></svg></button>
                 </div>
@@ -749,7 +769,7 @@
             </div>
           </section>
           <div class="study-library">
-            <article class="library-card"><div class="library-heading"><span><svg><use href="#i-target"/></svg></span><div><strong data-i18n="reviewQueue">Очередь повторения</strong><small data-i18n="reviewQueueText">Аяты, добавленные вами или отмеченные после чтения</small></div></div><div class="verse-list" id="review-queue-list"></div></article>
+            <article class="library-card"><div class="library-heading"><span><svg><use href="#i-target"/></svg></span><div><strong data-i18n="reviewQueue">Очередь повторения</strong><small data-i18n="reviewQueueText">Аяты, добавленные вами или отмеченные после чтения</small></div></div><div class="verse-list" id="review-queue-list"></div><button class="secondary-button compact quiet-recall-queue" type="button" data-quiet-recall-open="queue" aria-haspopup="dialog" hidden><span data-quiet-label="openQueue">Повторить аяты из очереди</span></button></article>
             <article class="library-card"><div class="library-heading"><span><svg><use href="#i-bookmark"/></svg></span><div><strong data-i18n="savedVerses">Сохранённые аяты</strong><small data-i18n="savedVersesText">Личная локальная коллекция без аккаунта</small></div></div><div class="verse-list" id="saved-verses-list"></div></article>
           </div>
         </section>
@@ -905,6 +925,48 @@
       </button>
     </div>
   </div>
+
+  <dialog id="quiet-recall-dialog" aria-labelledby="quiet-recall-title">
+    <div class="dialog-heading quiet-recall-heading">
+      <h2 id="quiet-recall-title" data-quiet-label="open">Тренировка по памяти</h2>
+      <button class="icon-button" type="button" id="quiet-recall-close" aria-label="Закрыть">×</button>
+    </div>
+    <div class="quiet-recall-body">
+      <form id="quiet-recall-setup">
+        <p data-quiet-label="intro">Вспомните аят, откройте текст и оцените себя. Микрофон не нужен.</p>
+        <p id="quiet-recall-origin"></p>
+        <label for="quiet-recall-length"><span data-quiet-label="length">Сколько аятов</span>
+          <select id="quiet-recall-length"></select>
+        </label>
+        <button class="primary-button" type="submit" id="quiet-recall-start" data-quiet-label="start">Начать</button>
+      </form>
+      <section id="quiet-recall-card" aria-labelledby="quiet-recall-reference" hidden>
+        <div class="quiet-recall-position">
+          <h3 id="quiet-recall-reference" tabindex="-1"></h3>
+          <output id="quiet-recall-step"></output>
+        </div>
+        <progress id="quiet-recall-progress" max="1" value="0"></progress>
+        <div class="quiet-recall-page">
+          <p id="quiet-recall-text" lang="ar" dir="rtl" tabindex="-1" hidden></p>
+          <p id="quiet-recall-prompt" data-quiet-label="prompt">Вспомните аят целиком, затем сверьте с текстом.</p>
+        </div>
+        <div class="quiet-recall-actions">
+          <button class="secondary-button" type="button" id="quiet-recall-hint" data-quiet-label="hint">Первое слово</button>
+          <button class="primary-button" type="button" id="quiet-recall-reveal" data-quiet-label="reveal">Открыть аят</button>
+          <button class="secondary-button" type="button" id="quiet-recall-retry" data-quiet-label="retry" hidden>Загрузить снова</button>
+          <button class="primary-button" type="button" id="quiet-recall-remembered" hidden>Вспомнил</button>
+          <button class="secondary-button" type="button" id="quiet-recall-again" data-quiet-label="again" hidden>Добавить к повторению</button>
+          <button class="tertiary-button" type="button" id="quiet-recall-skip" data-quiet-label="skip">Пропустить</button>
+        </div>
+      </section>
+      <section id="quiet-recall-summary" aria-labelledby="quiet-recall-summary-title" hidden>
+        <h3 id="quiet-recall-summary-title" data-quiet-label="summary" tabindex="-1">Итог тренировки</h3>
+        <dl></dl>
+        <button class="primary-button" type="button" id="quiet-recall-done" data-quiet-label="done">Готово</button>
+      </section>
+      <p id="quiet-recall-status" role="status" aria-live="polite"></p>
+    </div>
+  </dialog>
 
   <dialog id="quran-search-dialog" class="quran-search-dialog" aria-labelledby="quran-search-title">
     <div class="dialog-heading quran-search-heading">
@@ -1096,3 +1158,4 @@
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div></div>
+<div id="mushaf-reading-dock"></div>
