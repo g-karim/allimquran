@@ -107,7 +107,7 @@
     }
     if (root.AllimImportUI) root.AllimImportUI.render(detailNode, status, snapshot).catch(() => {});
     // Keep existing badges truthful without coupling storage to LMS enrollment requests.
-    root.document.querySelectorAll('[data-i18n="localMode"], [data-copy="deviceProgress"]').forEach(item => { item.textContent = label; });
+    root.document.querySelectorAll('[data-i18n="localMode"], [data-copy="deviceProgress"]').forEach(item => { item.textContent = label; item.title = label; item.dataset.storageState = status.state; });
   }
   function photoPreview(value, label, parent, records) {
     if (!value || !root.AllimLawh) return;
@@ -121,6 +121,19 @@
     panel = node("aside", undefined, root.document.body); panel.id = "allim-storage-panel";
     statusNode = node("span", t("opening"), panel); statusNode.setAttribute("role", "status"); statusNode.setAttribute("aria-live", "polite");
     const details = node("details", undefined, panel); node("summary", t("details"), details); detailNode = node("div", undefined, details);
+    const badges = root.document.querySelectorAll('[data-i18n="localMode"], [data-copy="deviceProgress"]');
+    if (badges.length) {
+      panel.classList.add("has-header-trigger");
+      badges.forEach(badge => {
+        badge.setAttribute("role", "button"); badge.tabIndex = 0;
+        badge.setAttribute("aria-controls", panel.id); badge.setAttribute("aria-expanded", "false");
+        const open = () => { details.open = !details.open; if (details.open) details.querySelector("summary").focus(); };
+        badge.addEventListener("click", open);
+        badge.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } });
+      });
+      details.addEventListener("toggle", () => badges.forEach(badge => badge.setAttribute("aria-expanded", String(details.open))));
+      panel.addEventListener("keydown", event => { if (event.key === "Escape") { details.open = false; badges[0].focus(); event.stopPropagation(); } });
+    }
     block(true);
     storage.subscribe(() => render());
     new MutationObserver(() => render()).observe(root.document.documentElement, {attributes: true, attributeFilter: ["lang", "dir"]});

@@ -32,3 +32,18 @@
 .allim-journal-range { direction: ltr; unicode-bidi: isolate; overflow-wrap: anywhere; max-height: 100px; overflow: auto; }
 .allim-personal-dialog [hidden] { display: none !important; }
 .allim-data-photo { display: block; max-width: 100%; max-height: 240px; object-fit: contain; margin: 8px 0 16px; }
+
+#allim-storage-panel.has-header-trigger:not(:has(details[open])) { display:none; }
+body.mushaf-view .mushaf-appearance-popover #allim-storage-panel.has-header-trigger { display:flex; }
+#allim-storage-panel.has-header-trigger:has(details[open]) { top:76px; bottom:auto; }
+#allim-storage-panel.has-header-trigger details > div { top:calc(100% + 8px); bottom:auto; max-height:calc(100dvh - 160px); }
+[data-i18n="localMode"][role="button"], [data-copy="deviceProgress"][role="button"] { cursor:pointer; border-radius:6px; }
+[data-i18n="localMode"][role="button"]:focus-visible, [data-copy="deviceProgress"][role="button"]:focus-visible { outline:2px solid #237858; outline-offset:4px; }
+
+@media (max-width:780px) {
+ .sync-status:has([role="button"]), .offline-indicator:has([role="button"]) { display:inline-flex !important; gap:0; }
+ .sync-status:has([role="button"]) > i, .offline-indicator:has([role="button"]) > span:first-child { display:none; }
+ [data-i18n="localMode"][role="button"], [data-copy="deviceProgress"][role="button"] { display:inline-flex; align-items:center; justify-content:center; width:36px; min-height:44px; font-size:0; }
+ [data-i18n="localMode"][role="button"]::before, [data-copy="deviceProgress"][role="button"]::before { content:""; width:20px; height:20px; background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23173e33' stroke-width='1.6'%3E%3Cellipse cx='12' cy='5' rx='8' ry='3'/%3E%3Cpath d='M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0'/%3E%3C/svg%3E"); }
+ [data-storage-state="needs_choice"][role="button"]::after, [data-storage-state="storage_error"][role="button"]::after { content:"!"; font-size:12px; font-weight:700; color:#a14325; }
+}

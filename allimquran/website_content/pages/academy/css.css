@@ -151,3 +151,13 @@ body:has(.allim-academy-root) { margin: 0 !important; background: #f4f2ec !impor
 .strict-assessment-card.is-feature-target{animation:featureReveal .8s ease both;box-shadow:0 0 0 4px rgba(185,142,61,.18),var(--shadow)}
 @media(max-width:1040px){.strict-assessment-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:780px){.strict-assessment-card{gap:14px;padding:16px 14px;border-radius:18px}.strict-assessment-head{grid-template-columns:44px minmax(0,1fr)}.strict-assessment-mark{width:44px;height:44px;border-radius:14px}.strict-assessment-head .access-pill{grid-column:1/-1;justify-content:center}.strict-assessment-head h3{font:600 23px/1.08 var(--sans);letter-spacing:-.025em}.strict-assessment-flow{grid-template-columns:1fr}.strict-assessment-flow>span{min-height:67px}.strict-assessment-foot{display:grid}.strict-assessment-foot .primary-button{width:100%}}
+
+.academy-plan-actions { display:flex; flex-wrap:wrap; gap:8px; }
+#academy-route-dialog { width:min(880px,calc(100% - 24px)); max-height:calc(100dvh - 24px); overflow:auto; }
+#academy-route-dialog .academy-entry-card { grid-template-columns:minmax(0,1fr); margin:0; border:0; box-shadow:none; }
+#academy-route-dialog .academy-entry-steps { display:none; }
+#academy-route-dialog .route-dialog-close { display:flex; justify-content:flex-end; padding:8px 12px 0; }
+#academy-route-dialog .academy-route-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.welcome-row h2 { font-size:clamp(30px,3vw,44px); line-height:1.18; overflow-wrap:anywhere; }
+.academy-plan-actions { flex:0 0 auto; }
+@media (max-width:620px) { .academy-plan-actions { width:100%; } .academy-plan-actions > button { flex:1 1 150px; } }

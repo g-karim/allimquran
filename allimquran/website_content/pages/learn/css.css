@@ -743,7 +743,7 @@ body.mushaf-view .mushaf-ribbon small { color: #7b6b4c; font-size: 9px; }
 body.mushaf-view .mushaf-page-toolbar { position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 420px; margin: -8px auto 22px; }
 body.mushaf-view .mushaf-page-toolbar label { display: flex; align-items: center; gap: 7px; color: #6e5a34; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 body.mushaf-view .mushaf-page-toolbar input { width: 66px; min-height: 40px; padding: 7px 8px; border: 1px solid rgba(139,104,45,.3); border-radius: 12px; background: rgba(255,253,246,.9); color: var(--forest); font: 800 14px/1 var(--sans); text-align: center; }
-body.mushaf-view #mushaf-prev-page svg { transform: rotate(180deg); }
+
 body.mushaf-view .passage-header { grid-template-columns: auto minmax(0,1fr); max-width: 720px; margin-bottom: 34px; padding: 14px 18px; border: 2px solid rgba(153,117,54,.36); outline: 1px solid rgba(153,117,54,.17); outline-offset: 4px; background: rgba(255,252,242,.74); }
 body.mushaf-view .passage-copy { text-align: center; }
 body.mushaf-view .passage-names { justify-content: center; }
@@ -1040,7 +1040,6 @@ body.mushaf-view .mushaf-page { position: relative; z-index: 2; display: grid; m
 .heart-page-plan blockquote { position: relative; z-index: 1; margin: 19px 0 0; color: #8a672d; font-family: "SF Arabic","Geeza Pro",serif; font-size: clamp(20px,2vw,27px); line-height: 1.65; text-align: center; }
 .heart-ayah-reference { position: relative; z-index: 1; padding-bottom: 14px; border-bottom: 1px solid rgba(139,104,45,.18); color: var(--ink-soft); font-size: 10px; font-weight: 780; text-align: end; }
 .heart-ayah-ink { position: relative; z-index: 1; align-self: center; margin: 18px 0; background: linear-gradient(to left,var(--forest) 0,var(--forest) var(--heart-reveal),#d8dcd7 var(--heart-reveal),#d8dcd7 100%); background-clip: text; -webkit-background-clip: text; color: transparent; font-family: "SF Arabic","Geeza Pro",serif; font-size: clamp(31px,3.4vw,48px); line-height: 1.85; text-align: center; transition: filter .6s,opacity .6s; }
-.heart-book.is-dormant .heart-ayah-ink { filter: saturate(.42); opacity: .72; }
 .heart-book.is-complete { box-shadow: 0 20px 48px rgba(64,52,30,.18),0 0 0 3px rgba(42,151,113,.07),inset 0 0 0 5px rgba(255,255,255,.3); }
 .heart-page-progress { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; border-top: 1px solid rgba(139,104,45,.18); color: var(--ink-soft); font-size: 10px; }
 .heart-page-progress strong { color: var(--forest); font-family: Georgia,serif; font-size: 17px; font-weight: 500; }
@@ -3154,114 +3153,49 @@ body.mushaf-view .mushaf-page-error button { min-height: 44px; padding: 8px 20px
 
 #correction-gate.is-uncertain { color: #66716d; border-color: #c8cfcb; background: #f2f4f3; }
 
-/* ALLIM_READING_WORKSPACE_START */
-.mushaf-command-bar, .mushaf-session-bar { display: none; }
-body.mushaf-view .mushaf-panel { display: flex; flex-direction: column; gap: 0; padding: 0; }
-body.mushaf-view .mushaf-mobile-nav { display: none !important; }
-body.mushaf-view .mushaf-command-bar { display: flex; flex: 0 0 auto; direction: ltr; align-items: center; justify-content: center; gap: 8px; min-width: 0; padding: max(5px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) 5px max(8px,env(safe-area-inset-left)); border-bottom: 1px solid var(--line); color: var(--forest); background: var(--surface,#fffef9); }
-.mushaf-command-bar > button { display: inline-flex; flex: 0 0 44px; width: 44px; height: 44px; min-width: 44px; padding: 0; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 12px; color: inherit; background: transparent; cursor: pointer; }
-.mushaf-command-bar svg { width: 21px; height: 21px; }
-.mushaf-command-bar #mushaf-exit { width: auto; flex-basis: auto; padding-inline: 12px; margin-inline-end: auto; }
-.mushaf-command-bar #mushaf-settings-open { margin-inline-start: auto; }
-.mushaf-command-bar #open-quran-search span { display: none; }
-.mushaf-command-bar label { display: flex; align-items: center; gap: 5px; direction: ltr; unicode-bidi: isolate; color: var(--muted); }
-.mushaf-command-bar label > span { display: none; }
-.mushaf-command-bar input { width: 60px; min-height: 44px; padding: 4px; text-align: center; font: 700 16px var(--sans); border: 1px solid var(--line); border-radius: 12px; background: var(--surface,#fffef9); color: var(--forest); appearance: textfield; }
-.mushaf-command-bar input::-webkit-inner-spin-button { appearance: none; }
-.mushaf-command-bar label small { font-size: 12px; }
-body.mushaf-view .ayah-wrap { flex: 1 1 0; display: flex; height: auto; min-height: 0; padding: 16px max(8px,env(safe-area-inset-right)) 24px max(8px,env(safe-area-inset-left)); scroll-padding-block: 16px; }
-body.mushaf-view .mushaf-page { width: min(100%,900px); flex: 0 0 auto; margin-inline: auto; height: auto; min-height: 0; aspect-ratio: 2 / 3; padding: 22px 26px 14px; }
-body.mushaf-view .mushaf-page[data-reading-layout="adaptive"] { width: min(100%,900px); min-height: 100%; padding: 20px 28px; line-height: 2; }
-#mushaf-page[data-reading-layout="page"] .mushaf-glyph { font-size: var(--mushaf-uniform-size,36px); }
-body.mushaf-view .mushaf-session-bar { display: block; flex: 0 0 auto; padding: 4px max(8px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left)); background: var(--surface,#fffef9); border-top: 1px solid var(--line); }
-body.mushaf-view .mushaf-session-bar .recitation-panel,
-body.mushaf-view.page-recall-mode .mushaf-session-bar .page-recall-dock { position: static; inset: auto; transform: none; width: min(100%,900px); min-height: 52px; margin: 0 auto; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
-body.mushaf-view .mushaf-session-bar .mic-disc { display: none; }
-body.mushaf-view .recitation-state strong { white-space: normal; }
-body.mushaf-view .recitation-state small { white-space: normal; max-width: none; }
-body.mushaf-view .mushaf-session-bar .page-recall-dock { grid-template-columns: minmax(0,1fr) auto auto auto; }
-body.mushaf-view .page-recall-dock-icon { display: none; }
-.mushaf-settings { position: fixed; inset-block: 0; inset-inline: auto 0; width: min(360px,100%); max-width: 100%; height: 100dvh; max-height: 100dvh; box-sizing: border-box; margin: 0; padding: max(16px,env(safe-area-inset-top)) 16px max(20px,env(safe-area-inset-bottom)); overflow: auto; border: 0; border-inline-start: 1px solid var(--line); background: #fffef9; color: var(--forest); font-family: var(--sans); box-shadow: -12px 0 50px #163d3526; }
-.mushaf-settings::backdrop { background: #102e2855; }
-.mushaf-settings > header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
-.mushaf-settings h2 { margin: 0; font: 750 20px/1.3 var(--sans); }
-.mushaf-settings button, .mushaf-settings summary, .mushaf-settings select { min-height: 44px; }
-.mushaf-settings-close { width: 44px; flex: 0 0 44px; font-size: 27px; border: 1px solid var(--line); border-radius: 12px; background: white; color: var(--forest); cursor: pointer; }
-.mushaf-settings :focus-visible, .mushaf-command-bar :focus-visible { outline: 3px solid #237c65; outline-offset: 2px; }
-body.mushaf-view .mushaf-settings .mushaf-reading-controls { display: grid; gap: 14px; padding: 0 0 18px; border: 0; }
-.mushaf-settings .mushaf-layout-choices { display: grid; grid-template-columns: 1fr 1fr; }
-.mushaf-settings .mushaf-size-choices { justify-content: center; }
-body.mushaf-view .mushaf-settings .mushaf-appearance-popover { position: static; inset: auto; width: 100%; min-width: 0; max-height: none; padding: 12px 0; box-shadow: none; border: 0; background: transparent; }
-body.mushaf-view .mushaf-settings .mushaf-appearance-picker { display: block; width: 100%; }
-.mushaf-settings .mushaf-appearance-picker > summary { display: flex; align-items: center; cursor: pointer; font-weight: 700; }
-body.mushaf-view .mushaf-settings .mushaf-toolbar { display: grid; grid-template-columns: minmax(0,1fr); gap: 14px; padding: 18px 0; margin: 12px 0; border-block: 1px solid var(--line); }
-body.mushaf-view .mushaf-settings .verse-pickers { display: grid; grid-template-columns: minmax(0,1fr) 92px; gap: 8px; width: 100%; }
-body.mushaf-view .mushaf-settings .verse-pickers label { display: block !important; min-width: 0; }
-body.mushaf-view .mushaf-settings .verse-pickers select { width: 100%; max-width: 100%; font-size: 14px; }
-body.mushaf-view .mushaf-settings .reader-tools { display: flex !important; }
-body.mushaf-view .mushaf-settings .mushaf-page-toolbar { display: flex; justify-content: start; flex-wrap: wrap; width: 100%; }
-body.mushaf-view .mushaf-settings .reader-mode-picker { display: block; }
-body.mushaf-view .mushaf-settings .reader-mode-picker > summary { width: auto; padding-inline: 12px; }
-body.mushaf-view .mushaf-settings .reader-mode-picker summary span { display: inline; }
-body.mushaf-view .mushaf-settings .reader-mode-popover { position: static; width: 100%; box-shadow: none; }
-body.mushaf-view .mushaf-settings #allim-storage-panel,
-body.mushaf-view .mushaf-settings #allim-journal-progress { position: static !important; inset: auto !important; transform: none !important; display: flex; flex-direction: column; align-items: stretch; gap: 12px; width: 100%; max-width: 100%; max-height: none; margin: 18px 0 0; padding: 16px 0; box-shadow: none; border: 0; border-top: 1px solid var(--line); border-radius: 0; overflow-wrap: anywhere; }
-body.mushaf-view .mushaf-settings #allim-storage-panel details { width: 100%; }
-body.mushaf-view .mushaf-settings #allim-storage-panel details > div { max-height: none; overflow: visible; }
-@media (max-width:620px) {
-  body.mushaf-view .mushaf-command-bar { gap: 4px; padding-inline: max(4px,env(safe-area-inset-left)) max(4px,env(safe-area-inset-right)); }
-  .mushaf-command-bar #mushaf-exit { width: 44px; padding: 0; }
-  .mushaf-command-bar #mushaf-exit span { display: none; }
-  .mushaf-command-bar label { gap: 2px; }
-  .mushaf-command-bar input { width: 48px; }
-  .mushaf-command-bar label small { font-size: 10px; }
-  body.mushaf-view .ayah-wrap { padding: 6px 3px 18px; }
-  body.mushaf-view .mushaf-page { padding: 14px 5px 10px; }
-  body.mushaf-view .mushaf-page[data-reading-layout="adaptive"] { padding: 14px 12px; }
-  body.mushaf-view .recitation-state small { font-size: 10px; }
+/* Reading order belongs to the Mushaf, independently of the UI language. */
+body.mushaf-view .mushaf-page-toolbar { direction: ltr; }
+
+
+body.mushaf-view #mushaf-page-number { direction: ltr; unicode-bidi: isolate; }
+#mushaf-reading-dock { display: none; }
+body.mushaf-view #mushaf-reading-dock {
+  position: fixed; z-index: 80; inset: auto 0 0; display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: center; gap: 8px 12px;
+  padding: 8px max(10px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  background: var(--surface, #fffef9); border-top: 1px solid var(--line);
+  max-height: 45dvh; overflow: auto;
 }
-@media(max-width:359px) { .mushaf-command-bar label small { display:none; } }
-/* ALLIM_READING_WORKSPACE_END */
-/* Keep one microphone control and its status in the reserved bottom row. */
-body.mushaf-view.read-view-active:not(.page-recall-mode) .mushaf-session-bar .recitation-panel { display: grid; }
-body.mushaf-view .mobile-recognition-fab { display: none !important; }
-body.mushaf-view .mushaf-settings .mushaf-appearance-picker > summary { width: 100%; font-size: 14px; justify-content: flex-start; padding: 0; }
-body.mushaf-view .mushaf-settings .mushaf-appearance-picker > summary::before { display: none; }
-body.mushaf-view .mushaf-settings .verse-pickers { grid-template-columns: minmax(0,1fr); }
-body.mushaf-view .mushaf-settings .mushaf-font-field select { max-width: 100%; font-size: 14px; }
-body.mushaf-view .mushaf-page[data-reading-layout="adaptive"] .mushaf-page-footer { font: 600 13px/2 var(--sans); }
-.mushaf-settings { border-radius: 0; }
-body.mushaf-view .mushaf-settings #ayah-select { width: 100% !important; min-width: 0; }
-body.mushaf-view .mushaf-settings #allim-storage-panel details > div { position: static; inset: auto; width: 100%; max-width: 100%; padding: 12px 0; border: 0; border-radius: 0; box-shadow: none; }
-body.mushaf-view .mushaf-page-loading { font: 500 15px/1.6 var(--sans); }
-body.mushaf-view .mushaf-page-loading strong { font-size: inherit; }
-.mushaf-command-bar #mushaf-next-page svg { transform: rotate(180deg); }
-.mushaf-command-bar #mushaf-prev-page svg { transform: none; }
-body.mushaf-view .mushaf-panel > .mode-switch,
-body.mushaf-view .mushaf-panel > .mushaf-mobile-nav { display: none; }
-body.mushaf-view .mushaf-settings #allim-journal-summary {
-  margin: 12px 0;
-  padding: 10px;
-  max-width: 100%;
+body.mushaf-view #mushaf-reading-dock .recitation-panel {
+  position: static; inset: auto; transform: none; margin: 0; flex: 1 1 380px;
+  width: auto; max-width: 620px; box-shadow: none;
 }
-body.mushaf-view .mushaf-session-bar {
-  max-height: 40dvh;
-  overflow-y: auto;
+body.mushaf-view #mushaf-reading-dock #allim-journal-summary {
+  flex: 1 1 300px; min-width: 0; margin: 0; padding: 6px 10px; font-size: 12px;
 }
-body.mushaf-view .mushaf-session-bar .recitation-actions { display: flex; flex-wrap: wrap; }
-body.mushaf-view .mushaf-session-bar .recitation-state { display: flex; min-width: 0; }
-body.mushaf-view .mushaf-session-bar .correction-gate,
-body.mushaf-view .mushaf-session-bar .auto-advance-notice {
-  position: static;
-  width: min(100%, 900px);
-  margin: 0 auto 4px;
+body.mushaf-view #mushaf-reading-dock #allim-storage-panel {
+  position: static; inset: auto; flex: 0 1 auto; margin: 0; box-shadow: none;
+  flex-wrap: wrap; min-width: 0; font-size: 12px;
 }
-body.mushaf-view.page-recall-mode .mushaf-session-bar .recitation-panel { display: none; }
-body.mushaf-view .mushaf-session-bar #skip-recitation-check:not([hidden]) {
-  display: inline-flex;
-  max-width: 180px;
-  white-space: normal;
+body.mushaf-view #allim-storage-panel details > div {
+  position: fixed; inset: auto 12px calc(var(--mushaf-dock-height) + 8px) auto;
+  max-height: max(120px, calc(100dvh - var(--mushaf-dock-height) - 80px));
 }
+body.mushaf-view #mushaf-reading-dock .recitation-actions { flex-wrap: wrap; }
+body.mushaf-view #mushaf-reading-dock #skip-recitation-check:not([hidden]) { display: inline-flex; width: auto; max-width: 180px; font-size: 12px; white-space: normal; }
+body.mushaf-view #mushaf-reading-dock #skip-recitation-check[hidden] { display: none; }
+@media (max-width: 760px) {
+  body.mushaf-view #mushaf-reading-dock { gap: 6px; }
+  body.mushaf-view #mushaf-reading-dock .recitation-panel { display: grid; flex-basis: 100%; min-height: 48px; padding: 4px; }
+  body.mushaf-view #mushaf-reading-dock .mobile-recognition-fab { display: none; }
+  body.mushaf-view #mushaf-reading-dock #allim-journal-summary { flex: 1 1 140px; border: 0; padding: 0; }
+  body.mushaf-view #allim-journal-summary > strong, body.mushaf-view #allim-journal-summary > span { display: none; }
+  body.mushaf-view #mushaf-reading-dock #allim-storage-panel { flex: 0 1 55%; gap: 4px; padding: 4px; }
+  body.mushaf-view #allim-storage-panel > span { max-width: 100%; overflow-wrap: anywhere; }
+}
+body.mushaf-view.page-recall-mode #mushaf-reading-dock .recitation-panel { display: none; }
+body.mushaf-view #allim-storage-panel summary { display: flex; align-items: center; min-height: 44px; }
+
 .quiet-recall-entry { padding: 0 18px 14px; }
 body.mushaf-view .quiet-recall-entry,
 .teacher-assessment-mode [data-quiet-recall-open] { display: none; }
@@ -3333,3 +3267,101 @@ body.mushaf-view .quiet-recall-entry,
 @media (max-width: 480px) {
   .quiet-recall-actions > button { flex: 1 1 135px; }
 }
+
+/* Flexible controls retain readable labels at narrow widths and text zoom. */
+:is(.primary-button, .secondary-button, .tertiary-button) { min-height: 44px; height: auto; white-space: normal; text-align: center; justify-content: center; overflow-wrap: anywhere; }
+:is(.primary-button, .secondary-button, .tertiary-button) > span { min-width: 0; }
+:is(.primary-button, .secondary-button, .tertiary-button) svg { flex-shrink: 0; }
+.dialog-heading > :first-child { min-width: 0; overflow-wrap: anywhere; }
+.dialog-heading > .icon-button { flex-shrink: 0; }
+.quiet-recall-guide { margin: 0; padding-inline-start: 1.5em; display: grid; gap: 8px; line-height: 1.5; }
+.quiet-recall-guide li::marker { color: var(--forest-2); font-weight: 700; }
+.quiet-recall-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#quiet-recall-skip { grid-column: 1 / -1; justify-self: center; }
+#quiet-recall-summary dd { font-variant-numeric: tabular-nums; min-inline-size: 2ch; text-align: end; }
+@media (max-width: 400px) { .quiet-recall-actions { grid-template-columns: minmax(0, 1fr); } }
+
+/* Physical book directions remain the same in every interface language. */
+body.mushaf-view :is(#mushaf-next-page, #mushaf-prev-page) svg { transform: none !important; rotate: none; scale: none; }
+@media (max-width: 600px) and (pointer: coarse) {
+  body.mushaf-view :is(#mushaf-next-page, #mushaf-prev-page):not(:focus-visible) {
+    position: absolute; inline-size: 1px; block-size: 1px; min-height: 0;
+    padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%);
+  }
+}
+
+/* Consistent intrinsic sizing across translated controls and metric cards. */
+.setting-row .toggle { flex: none; width: 54px; height: 30px; min-height: 30px; }
+.setting-row > span:first-child { min-width: 0; }
+#life-today-title { white-space: normal; overflow: visible; text-overflow: clip; height: auto; line-height: 1.45; }
+#view-memorize.is-active .heart-page-launch { min-width: 0; }
+#view-memorize.is-active .heart-page-launch-action { min-width: 0; white-space: normal; }
+#view-memorize.is-active .heart-page-launch-copy > :is(strong, span) { white-space: normal; overflow-wrap: anywhere; }
+.heart-page-launch::after { display: none; }
+:is(.progress-card strong, .summary-metrics strong, .hifz-coach-metrics b, .lawh-practice-metrics b) { font-family: var(--sans); font-variant-numeric: tabular-nums; line-height: 1.25; }
+:is(.progress-card,.summary-metrics > span,.hifz-coach-metrics > span,.lawh-practice-metrics > span) { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 1000px) {
+  .heart-page-workspace { grid-template-columns: minmax(0,1fr); }
+  .heart-page-workspace > * { min-width: 0; max-width: 100%; }
+}
+
+body.mushaf-view #mushaf-page-number { width: 52px; height: 40px; min-height: 40px; padding: 4px; font: 600 16px/1.25 var(--sans); text-align: center; }
+body.mushaf-view .mushaf-page[data-reading-layout="page"] { max-width: none; flex-shrink: 0; }
+body.mushaf-view .ayah-wrap:has(.mushaf-page[data-reading-layout="page"]) { padding-block: 8px; }
+@media (max-height: 500px) {
+ body.mushaf-view #mushaf-reading-dock :is(#allim-journal-summary,#allim-storage-panel) { display: none; }
+ body.mushaf-view #mushaf-reading-dock .recitation-panel { flex-basis: 100%; min-height: 44px; }
+ body.mushaf-view .mushaf-reading-controls { padding-block: 0; }
+}
+
+.hifz-tools { display: flex; justify-content: flex-end; margin-block-end: 12px; }
+.hifz-plan-drawer { width: min(100%, 440px); }
+.hifz-plan-drawer > summary, .hifz-method-disclosure > summary { padding: 16px 20px; min-height: 48px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); cursor: pointer; font-weight: 700; }
+.hifz-method-disclosure { margin-block-end: 20px; }
+#hifz-selected-method { display: inline-block; margin-inline-start: 12px; font-weight: 500; color: var(--ink-soft); }
+.hifz-method-disclosure[open] > summary { margin-block-end: 14px; }
+.hifz-plan-drawer .memory-journey { margin: 8px 0 0; }
+:is(.hifz-plan-drawer,.hifz-method-disclosure) > summary:focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; }
+
+#hifz-settings-dialog { width: min(760px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: auto; }
+.hifz-settings-body { padding: 0 20px 20px; }
+#hifz-settings-open { order: 3; flex: none; }
+#hifz-settings-dialog .hifz-tools, #hifz-settings-dialog .hifz-plan-drawer { width: 100%; }
+#hifz-settings-dialog .hifz-method-picker { display: grid; grid-template-columns: minmax(0,1fr); }
+#allim-recall summary { cursor: pointer; min-height: 44px; font-weight: 700; padding-block: 10px; }
+@media (min-width: 1100px) { #view-memorize.is-active .heart-mushaf { width: 100%; max-width: none; } }
+
+/* Page zoom preserves the printed line layout; scrolling is intentional above 100%. */
+body.mushaf-view .ayah-wrap { overflow-x: auto; }
+body.mushaf-view .mushaf-page[data-reading-layout="page"] { max-width: none; padding-inline: 12px; }
+.mushaf-size-choices output { min-width: 5ch; }
+.mushaf-reading-controls { flex-wrap: wrap; }
+
+#memory-reference { scroll-margin-top: 130px; }
+.memory-stage { padding: clamp(20px, 3vw, 36px); }
+.memory-prompt { margin-top: 18px; }
+.memory-session-count strong { font-family: var(--sans); }
+
+/* Keep the reading surface focused; secondary tools remain in the appearance menu. */
+body.mushaf-view .mushaf-panel { padding-block-start: 0; }
+body.mushaf-view .mushaf-mobile-nav { width: auto; inset-inline: 0 auto; border: 0; background: transparent; }
+body.mushaf-view .mushaf-toolbar { display: flex; justify-content: center; align-items: center; padding-inline: 175px 12px; min-height: 58px; gap: 8px; }
+body.mushaf-view .verse-pickers { display: flex; flex: 0 0 auto; width: auto; }
+body.mushaf-view .reader-tools { display: contents; }
+body.mushaf-view .mushaf-page-toolbar { display: flex; align-items: center; gap: 6px; width: auto; }
+body.mushaf-view .mushaf-appearance-popover { display: grid; gap: 12px; width: min(380px, calc(100vw - 24px)); max-height: calc(100dvh - 80px); overflow: auto; }
+body.mushaf-view .mushaf-appearance-popover > :is(label,button,small,.mushaf-reading-controls) { width: 100%; min-width: 0; }
+body.mushaf-view .mushaf-appearance-popover select { width: 100%; min-height: 44px; }
+body.mushaf-view .mushaf-appearance-popover .mushaf-reading-controls { padding: 8px 0; }
+body.mushaf-view .mushaf-appearance-popover :is(#allim-journal-summary,#allim-storage-panel) { position: static !important; width: 100%; max-width: none; box-shadow: none; }
+body.mushaf-view .mushaf-appearance-popover .mushaf-home-button { width: 44px; }
+body.mushaf-view #mushaf-reading-dock { justify-content: center; }
+body.mushaf-view #mushaf-reading-dock .recitation-panel { flex: 1 1 auto; width: min(100%, 760px); max-width: 760px; }
+@media (max-width: 620px) {
+ body.mushaf-view .mushaf-exit-button { width: 44px; padding: 0; }
+ body.mushaf-view .mushaf-exit-button span { display: none; }
+ body.mushaf-view .mushaf-toolbar { padding-inline: 62px 8px; gap: 6px; justify-content: flex-end; }
+ body.mushaf-view .mushaf-page-toolbar { gap: 4px; }
+ body.mushaf-view .mushaf-appearance-popover { inset: 60px 8px auto; width: auto; }
+}
+.mushaf-appearance-picker:not([open]) > .mushaf-appearance-popover { display: none; }

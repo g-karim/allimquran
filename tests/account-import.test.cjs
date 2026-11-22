@@ -59,3 +59,17 @@ test('canonical digest has an order independent representation', async () => {
  assert.equal(await migration.hash({b:2,a:'Аят'}),await migration.hash({a:'Аят',b:2}));
 });
 module.exports={fixture};
+
+test('heart reviews and devotional plan survive explicit guest import with remapped cycle identities',async()=>{
+ const cycle='a8aca75a-1879-4214-89b7-775b10199dd8';
+ const source={legacy:{},records:[
+  {kind:'reading_cycle',id:cycle,value:{dataset_id:'hafs-madinah-604-v1'}},
+  {kind:'devotional_plan',id:'current',value:{hafiz:true,review_start:'2026-11-22',review_days:30,khatm_mode:'month',khatm_start:'2026-11-22',ramadan_days:30,cycle_ids:[cycle]}},
+  {kind:'heart_review',id:'e27133ca-fda7-4dfd-a060-6efce034e576',value:{verse_key:'1:1',recorded_at:'2026-11-22T12:00:00.000Z',local_date:'2026-11-22',evidence:'self_reported'}}
+ ]};
+ const result=await migration.compile(source,sourceId,digest,['journal','learning'],catalogue);
+ const imported=result.operations.find(r=>r.kind==='reading_cycle');
+ assert.deepEqual(result.operations.find(r=>r.kind==='devotional_plan').value.cycle_ids,[imported.id]);
+ assert.match(result.operations.find(r=>r.kind==='heart_review').id,/^import:/);
+ assert.equal((await migration.compile(source,sourceId,digest,['bookmarks'],catalogue)).operations.length,0);
+});

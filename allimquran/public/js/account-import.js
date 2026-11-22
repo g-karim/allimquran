@@ -12,11 +12,11 @@
   const canonical = value => JSON.stringify(sort(value));
   function sort(value) { return Array.isArray(value) ? value.map(sort) : object(value) ? Object.fromEntries(Object.keys(value).sort().map(key => [key, sort(value[key])])) : value; }
   async function hash(value) { return Array.from(new Uint8Array(await root.crypto.subtle.digest("SHA-256", new TextEncoder().encode(canonical(value))))).map(byte => byte.toString(16).padStart(2, "0")).join(""); }
-  const categories = {settings: ["preference", "daily_goal", "reading_position", "academy_plan", "academy_diagnostic"], bookmarks: ["bookmark", "review_item"], notes: ["reflection"], history: ["activity_baseline", "activity_day_baseline", "hifz_unit_baseline", "hifz_day_baseline", "hifz_page_baseline", "learning_event"], journal: ["reading_cycle", "reading_plan", "reading_past", "reading_entry"]};
+  const categories = {settings: ["preference", "daily_goal", "reading_position", "academy_plan", "academy_diagnostic"], bookmarks: ["bookmark", "review_item"], notes: ["reflection"], history: ["activity_baseline", "activity_day_baseline", "hifz_unit_baseline", "hifz_day_baseline", "hifz_page_baseline", "learning_event"], journal: ["devotional_plan", "reading_cycle", "reading_plan", "reading_past", "reading_entry"]};
   const category = kind => Object.keys(categories).find(key => categories[key].includes(kind));
-  categories.learning = ["hifz_method_baseline", "hifz_coach_baseline", "lawh_unit_baseline", "hifz_credit", "hifz_signal", "lawh_practice", "lawh_verification", "memory_plan", "recall_attempt", "recall_flag"];
+  categories.learning = ["heart_review", "hifz_method_baseline", "hifz_coach_baseline", "lawh_unit_baseline", "hifz_credit", "hifz_signal", "lawh_practice", "lawh_verification", "memory_plan", "recall_attempt", "recall_flag"];
   categories.lawh = ["lawh_image_part", "lawh_photo"];
-  const entities = ["reflection", "reading_entry", "reading_cycle", "memory_plan", "recall_attempt"];
+  const entities = ["heart_review", "reflection", "reading_entry", "reading_cycle", "memory_plan", "recall_attempt"];
   const facts = ["learning_event", "hifz_credit", "hifz_signal", "lawh_practice"];
   const pref = {language: "language", arabicSize: "arabic_size", showMeaning: "show_meaning", selectedReciter: "selected_reciter", audioRepeat: "audio_repeat", showInterlinear: "show_interlinear", mushafFont: "mushaf_font", mushafPaper: "mushaf_paper", mushafInk: "mushaf_ink", mushafLayout: "mushaf_layout", mushafTextSize: "mushaf_text_size", autoAdvance: "auto_advance", soundCues: "sound_cues", strictCorrection: "strict_correction"};
   const noteFields = {verseKey: "verse_key", reference: "reference", reflection: "reflection", action: "action", completed: "completed", fawaidId: "fawaid_id", fawaidScholar: "fawaid_scholar", fawaidBenefit: "fawaid_benefit", fawaidSourceUrl: "fawaid_source_url", trigger: "trigger", reviewAt: "review_at", completedAt: "completed_at", createdAt: "authored_at", updatedAt: "edited_at"};
@@ -133,6 +133,7 @@
       const value = clone(item.value);
       let id = entities.includes(item.kind) ? item.import_item_id : item.id;
       if (item.kind === "recall_flag") { const split = item.id.lastIndexOf("/"); id = (ids.get("recall_attempt/" + item.id.slice(0, split)) || item.id.slice(0, split)) + item.id.slice(split); }
+      if (value.cycle_ids) value.cycle_ids = value.cycle_ids.map(id => ids.get("reading_cycle/" + id) || id);
       if (value.cycle_id) value.cycle_id = ids.get("reading_cycle/" + value.cycle_id) || value.cycle_id;
       if (item.kind.endsWith("_baseline") || item.kind === "reading_past") value.provenance = {source_id: sourceId, source_digest: digest, mapping_version: 1, legacy_key: item.source_key.legacy_key};
       operations.push({op_id: root.crypto.randomUUID(), action: facts.includes(item.kind) ? "create" : "import_item", kind: item.kind, id, base_version: 0, value,

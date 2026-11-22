@@ -29,3 +29,36 @@ frappe.web_form.after_load = function () {
 };
 window.setTimeout(apply_allim_return_action, 0);
 /* ALLIM_RETURN_ACTION_END */
+
+/* Reuse the signed-in learner's contact details; guests retain the standard form. */
+(function () {
+  var previous = frappe.web_form.after_load;
+  var pending = false;
+  function prefillContact() {
+    if (pending || !frappe.web_form.fields_dict || !frappe.web_form.fields_dict.full_name) return;
+    pending = true;
+    window.fetch('/api/method/allimquran.academy_trial.contact', {credentials:'same-origin', cache:'no-store'})
+      .then(function(response) { if (!response.ok) return null; return response.json(); })
+      .then(function(data) {
+        var contact = data && data.message;
+        if (!contact) return;
+        var hidden = [];
+        ['full_name','email'].forEach(function(field) {
+          var control = frappe.web_form.fields_dict[field];
+          if (!control || !contact[field] || frappe.web_form.get_value(field)) return;
+          frappe.web_form.set_value(field, contact[field]);
+          control.df.hidden = 1; control.refresh(); hidden.push(field);
+        });
+        if (!hidden.length) return;
+        var first = frappe.web_form.fields_dict[hidden[0]];
+        var node = document.createElement('div'); node.className = 'allim-account-contact';
+        var title = document.createElement('strong'); title.textContent = 'Contact details from your account';
+        var details = document.createElement('p'); details.textContent = hidden.map(function(field){return contact[field]}).join(' · ');
+        var edit = document.createElement('button'); edit.type = 'button'; edit.className = 'btn btn-default'; edit.textContent = 'Change contact details';
+        edit.addEventListener('click',function(){hidden.forEach(function(field){var control=frappe.web_form.fields_dict[field];control.df.hidden=0;control.refresh()});node.remove()});
+        node.append(title,details,edit); first.$wrapper[0].before(node);
+      }).catch(function(){ /* Keep editable required fields when account lookup is unavailable. */ });
+  }
+  frappe.web_form.after_load = function(){if(typeof previous==='function')previous();prefillContact()};
+  window.setTimeout(prefillContact,0);
+}());

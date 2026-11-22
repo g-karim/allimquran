@@ -267,10 +267,17 @@
   function language(){var value=document.documentElement.lang;return copy[value]?value:"ru"}
   function text(){return copy[language()]}
   function read(){return diagnosticValue}
+  Object.assign(copy.ru,{routeSettings:"Уровень и маршрут",eyebrow:"НАСТРОЙКА ОБУЧЕНИЯ",title:"Ваш уровень и цель",lead:"Уточните маршрут, когда это нужно. Можно сразу продолжать занятия по плану.",privacy:"Ответы сохраняются вместе с вашим учебным планом. Пробный урок с преподавателем — отдельная возможность, а не условие продолжения."});
+  Object.assign(copy.en,{routeSettings:"Level and route",eyebrow:"LEARNING SETTINGS",title:"Your level and goal",lead:"Adjust your route when needed. You can continue your planned practice at any time.",privacy:"Answers are saved with your learning plan. A trial lesson is an optional next step, not a requirement to continue."});
+  Object.assign(copy.ar,{routeSettings:"المستوى والمسار",eyebrow:"إعدادات التعلم",title:"مستواك وهدفك",lead:"عدّل مسارك عند الحاجة. يمكنك متابعة التدريب وفق خطتك في أي وقت.",privacy:"تُحفظ إجاباتك مع خطة تعلمك. الدرس التجريبي مع المعلم خيار إضافي وليس شرطًا لمواصلة التعلم."});
+  var routeDialog=document.getElementById("academy-route-dialog");
+  document.getElementById("open-academy-route").addEventListener("click",function(){routeDialog.showModal()});
+  routeDialog.addEventListener("click",function(event){if(event.target===routeDialog)routeDialog.close()});
   async function write(value){await window.AllimStorage.mutate({kind:"academy_diagnostic",id:"current",base_version:diagnosticEditVersion,value:{level:value.level,goal:value.goal,minutes:value.minutes,answered_at:value.createdAt,route:value.route}});diagnosticValue=value}
   function interpolate(value,minutes){return String(value).replace("{minutes}",String(minutes))}
   function routeFor(values){if(values.level==="letters")return"foundation";if(values.goal==="hifz")return"hifz";if(values.goal==="tajwid")return"tajwid";return"reading"}
   function openDialog(){
+    routeDialog.close();
     diagnosticEditVersion=diagnosticVersion;
     var saved=read();
     if(saved){
@@ -319,6 +326,7 @@
     try{await write(saved)}catch(error){window.AllimStorage.setError(error);return}
     closeDialog();
     renderResult(saved);
+    routeDialog.showModal();
     result.focus({preventScroll:true});
     result.scrollIntoView({behavior:"smooth",block:"nearest"});
   });

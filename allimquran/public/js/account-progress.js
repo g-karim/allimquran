@@ -140,6 +140,7 @@
     if (state.dailyGoal !== undefined && ![1, 2, 3, 5].includes(state.dailyGoal)) state.dailyGoal = defaults.dailyGoal;
     if (state.selectedSurah !== undefined && !validVerse(state.selectedSurah + ":" + state.selectedAyah)) { state.selectedSurah = defaults.selectedSurah; state.selectedAyah = defaults.selectedAyah; }
     if (typeof globalThis.AllimLearning === "object") globalThis.AllimLearning.apply(state, snapshot, catalogue);
+    if (globalThis.AllimHeartReview) state.heartFreshness = globalThis.AllimHeartReview.project(snapshot.records, catalogue, state.heartMushaf);
     return state;
   }
   function diff(before, after) {

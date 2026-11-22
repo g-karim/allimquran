@@ -20,3 +20,6 @@ body { background:#f4f2ec; color:#17352e; }
 .success-footer .allim-return-button:focus-visible { outline:3px solid rgba(36,79,69,.28); outline-offset:3px; }
 .success-footer .new-btn { min-height:46px; padding-inline:20px; border-radius:999px; }
 /* ALLIM_RETURN_BUTTON_END */
+
+.allim-account-contact { padding:16px; margin-block:12px; border:1px solid #d4ded8; border-radius:14px; overflow-wrap:anywhere; }
+.allim-account-contact p { margin-block:8px; }

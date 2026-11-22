@@ -23,8 +23,10 @@ from allimquran.storage.validation import (
 
 METHODS = ("foundation300", "linked33", "turkishWall33", "mauritanianLawh")
 BASELINES = {"hifz_method_baseline", "hifz_coach_baseline", "lawh_unit_baseline"}
-FACTS = {"hifz_credit", "hifz_signal", "lawh_practice", "recall_attempt", "lawh_image_part"}
-KINDS = BASELINES | FACTS | {"lawh_verification", "lawh_photo", "memory_plan", "recall_flag"}
+FACTS = {"hifz_credit", "hifz_signal", "lawh_practice", "recall_attempt", "lawh_image_part", "heart_review"}
+KINDS = (
+	BASELINES | FACTS | {"lawh_verification", "lawh_photo", "memory_plan", "recall_flag", "devotional_plan"}
+)
 PART_SIZE = 32768  # base64 characters; bounded by the existing value/request limits.
 MAX_PHOTO = 8 * 1024 * 1024
 MIMES = ("image/jpeg", "image/png", "image/webp")
@@ -82,7 +84,45 @@ def validate(kind, key, value, importing):
 			entity_id(key)
 	if kind in {"lawh_unit_baseline", "lawh_verification", "lawh_photo"}:
 		verse(key)
-	if kind == "memory_plan":
+	if kind == "devotional_plan":
+		require(key == "current")
+		fields(
+			value,
+			(
+				"hafiz",
+				"review_start",
+				"review_days",
+				"khatm_mode",
+				"khatm_start",
+				"ramadan_days",
+				"cycle_ids",
+			),
+		)
+		require(type(value["hafiz"]) is bool)
+		day(value["review_start"])
+		day(value["khatm_start"])
+		integer(value["review_days"], 7, 30)
+		require(value["review_days"] in (7, 15, 30))
+		require(value["khatm_mode"] in ("month", "ramadan"))
+		integer(value["ramadan_days"], 29, 30)
+		ids = value["cycle_ids"]
+		require(isinstance(ids, list) and len(ids) == (2 if value["khatm_mode"] == "ramadan" else 1))
+		for cycle in ids:
+			entity_id(cycle)
+		require(len(set(ids)) == len(ids))
+	elif kind == "heart_review":
+		fields(value, ("recorded_at", "local_date", "evidence"), ("verse_key", "first_page", "last_page"))
+		instant(value["recorded_at"])
+		day(value["local_date"])
+		require(value["evidence"] == "self_reported")
+		if "verse_key" in value:
+			require("first_page" not in value and "last_page" not in value)
+			verse(value["verse_key"])
+		else:
+			require("first_page" in value and "last_page" in value)
+			integer(value["first_page"], 1, 604)
+			integer(value["last_page"], value["first_page"], 604)
+	elif kind == "memory_plan":
 		fields(value, ("action", "verse_keys", "portion", "created_on", "deadline"))
 		require(value["action"] in ("read", "memorize", "review"))
 		keys = value["verse_keys"]

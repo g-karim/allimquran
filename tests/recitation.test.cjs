@@ -138,8 +138,10 @@ test('different consonants are not merged by spelling normalization', () => {
     assert.equal(align(expected, heard).complete, false, expected);
   }
 });
-test('an unverified final vowel or stop is uncertain, not a pronunciation verdict', () => {
-  assert.equal(align('الرَّحِيمِ', 'الرَّحِيمْ').outcome, 'uncertain');
+test('a finalized terminal stop matches spelling without claiming pronunciation verification', () => {
+  const result=align('الرَّحِيمِ', 'الرَّحِيمْ');
+  assert.equal(result.complete, true);
+  assert.equal(result.pronunciationVerified, false);
 });
 test('hostile long hypotheses are bounded and never credited', () => {
   assert.equal(align('بسم الله', 'الله '.repeat(600)).complete, false);
@@ -309,4 +311,97 @@ test('multiple pause/restart cycles accumulate actual words and complete only at
 test('provider snapshots replace their own segment, never duplicate it',()=>{
  const h=pauseHarness();h.c.applyTranscript('بسم',true);const a=h.c.applyTranscript('بسم الله',true);
  assert.equal(a.matched,2);assert.equal(a.repeats,0);assert.equal(a.errors,0);
+});
+
+// Regression: Mushaf orthography and two ayahs in one finalized utterance.
+test('Ash-Shams dagger alif matches ordinary ASR spelling without merging distinct letters', () => {
+  assert.equal(core.align(['وَٱلشَّمۡسِ','وَضُحَىٰهَا'], 'والشمس وضحاها', true).complete, true);
+  assert.equal(core.align(['وَٱلۡقَمَرِ','إِذَا','تَلَىٰهَا'], 'والقمر إذا تلاها', true).complete, true);
+  assert.notEqual(core.compare('عَلَى', 'علا'), 'recognized');
+  assert.notEqual(core.compare('وَضُحَىٰهَا', 'وضحاهم'), 'recognized');
+});
+test('continuous ayah boundary retains the heard next ayah without inventing credit', () => {
+  const first=['وَٱلشَّمۡسِ','وَضُحَىٰهَا'], next=['وَٱلۡقَمَرِ','إِذَا','تَلَىٰهَا'];
+  const split=core.splitContinuation(first, 'والشمس وضحاها والقمر إذا تلاها', next);
+  assert.equal(split.alignment.complete,true);
+  assert.equal(split.remainder,'والقمر إذا تلاها');
+  assert.equal(core.align(next,split.remainder,true).complete,true);
+  assert.equal(core.splitContinuation(first,'والشمس والقمر إذا تلاها',next),null);
+  assert.equal(core.splitContinuation(first,'والشمس وضحاها زيادة',next),null);
+  const partial=core.splitContinuation(first,'والشمس وضحاها والقمر',next);
+  assert.equal(core.align(next,partial.remainder,true,{partial:true}).complete,false);
+});
+
+test('ayah endings: final stop, missing final word, wrong consonant and interim',()=>{
+ for(const [expected,heard] of [['أَحَدٌ','أَحَدْ'],['الصَّمَدُ','الصَّمَدْ'],['الرَّحِيمِ','الرَّحِيمْ'],['الْفَلَقِ','الْفَلَقْ'],['النَّاسِ','النَّاسْ'],['نَسْتَعِينُ','نَسْتَعِينْ']]) {
+  assert.equal(align(expected,heard).complete,true,expected);
+  assert.equal(align(expected,heard,false).complete,false,expected);
+  assert.equal(align(expected,'').complete,false,expected);
+ }
+ assert.equal(align('أَحَدٌ','أَخَدْ').complete,false);
+ assert.equal(align('قُلْ هُوَ اللَّهُ أَحَدٌ','قل هو الله').complete,false);
+ assert.equal(align('قُلْ هُوَ اللَّهُ أَحَدٌ','قل هو الله أحد').complete,true);
+});
+function memoryHarness(promptCount=0) {
+ const words=['قُلْ','هُوَ','اللَّهُ','أَحَدٌ'];
+ const elements=words.slice(promptCount).map(textContent=>({textContent,classList:{contains:()=>false,toggle(){},add(){},remove(){}}}));
+ let finished=0,fullCredit=false;
+ const c=load(['alignExpectedWords','applyMemoryTranscript'],{
+  currentVerse:{text:words.join(' ')},currentSurah:{id:112},splitVerseWords:s=>s.split(' '),
+  memoryPromptCount:promptCount,memoryRevealedCount:0,memorySessionCounted:false,memoryFullVerseMatched:false,
+  memoryConfirmedStatuses:[],memoryRequiresFullVerse:false,
+  getRemainingMemoryWords:()=>elements.slice(c.memoryRevealedCount).map(x=>x.textContent),
+  getMemoryWordElements:()=>elements,document:{getElementById:()=>({})},
+  revealMemoryWord:()=>{c.memoryRevealedCount++;if(c.memoryRevealedCount===elements.length){finished++;fullCredit=c.memoryFullVerseMatched;c.memorySessionCounted=true;}return true;},
+  setMemoryStatus(){},playErrorCue(){},
+ });
+ return {c,result:()=>({finished,fullCredit})};
+}
+for(const prompt of [0,2])test('hidden-memory final-word retry retains confirmed prefix, prompt='+prompt,()=>{
+ const {c,result}=memoryHarness(prompt);
+ c.applyMemoryTranscript('قل هو الله',true);
+ assert.equal(c.memoryRevealedCount,3-prompt);
+ c.applyMemoryTranscript('أَحَدْ',false);assert.equal(result().finished,0);
+ c.applyMemoryTranscript('أَحَدْ',true);assert.deepEqual(result(),{finished:1,fullCredit:true});
+});
+test('memory correction and pause do not credit a wrong or missing last word',()=>{
+ const {c,result}=memoryHarness();
+ c.applyMemoryTranscript('قل هو الله أخد',true);assert.equal(result().finished,0);
+ c.applyMemoryTranscript('أحد',true);assert.deepEqual(result(),{finished:1,fullCredit:true});
+});
+test('an answer-only completion cannot claim that the visible prompt was recited',()=>{
+ const {c,result}=memoryHarness(2);c.applyMemoryTranscript('الله أحد',true);
+ assert.deepEqual(result(),{finished:1,fullCredit:false});
+});
+test('capture restart preserves attempt while a completed-cycle restart clears it',()=>{
+ let resets=0,starts=0,timer;
+ const c=load(['queueMemoryRestart'],{memorySeriesActive:true,clearMemoryRestartTimer(){},setMemorySeriesPhase(){},setMemoryButton(){},
+  prepareMemoryAttempt:()=>resets++,startMemoryRecognition:()=>starts++,window:{setTimeout:fn=>{timer=fn;return 1;}}});
+ c.queueMemoryRestart(520,'uncertain',true);timer();assert.equal(resets,0);assert.equal(starts,1);
+ c.queueMemoryRestart(760,false);timer();assert.equal(resets,1);assert.equal(starts,2);
+});
+
+test('remote verse selection refreshes the hidden exercise; late reply cannot replace local selection',async()=>{
+ let resolveRemote,activated=0,rendered=0,loading=false;
+ const c=load(['selectVerseByReference'],{
+  state:{selectedSurah:112,selectedAyah:1,mushafFont:'classic'},mushafChapterNames:{3:{verses_count:200}},
+  getLocalSurahExact:id=>id===112?{id,verses:[{ayah:1}]}:null,
+  getLocalVerseExact:(s,a)=>s&&s.verses.find(v=>v.ayah===a),
+  quranSearchRequest:0,cancelStructuredAdvance(){},stopMemoryRecognition(){},audioPractice:false,
+  populateVerseSelectors(){},renderSelectedVerse(){rendered++;},setVerseLoading:v=>{loading=v;},
+  document:{body:{classList:{contains:()=>false}}},showToast(){},t:x=>x,saveState(){},navigate(){},
+  window:{fetch:()=>new Promise(resolve=>{resolveRemote=resolve;})},
+  activateMushafVerse(){activated++;},renderMemoryVerse(){rendered++;},
+  heartPageCache:{},heartVersePageCache:{},getHeartPageVerseKeys:()=>[],audioSourceRequest:1,
+ });
+ const pending=c.selectVerseByReference(3,1,{navigate:false});assert.equal(loading,true);
+ await c.selectVerseByReference(112,1,{navigate:false});assert.equal(loading,false);
+ resolveRemote({ok:true,json:async()=>({page:50})});
+ // Resolve the page request created by the old search; the generation check rejects it.
+ await new Promise(r=>setImmediate(r));
+ resolveRemote({ok:true,json:async()=>({page:50,verses:[{verse_key:'3:1'}]})});
+ assert.equal(await pending,false);assert.equal(activated,0);assert.equal(c.state.selectedSurah,112);
+ c.window.fetch=async url=>({ok:true,json:async()=>url.includes('/locate/')?{page:50}:{page:50,verses:[{verse_key:'3:1'}]}});
+ assert.equal(await c.selectVerseByReference(3,1,{navigate:false}),true);
+ assert.equal(activated,1);assert.equal(rendered,2,'both local and remote selection refresh memory');
 });

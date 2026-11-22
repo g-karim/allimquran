@@ -1339,7 +1339,7 @@
     mushafFont: "classic",
     mushafPaper: "ivory",
     mushafInk: "charcoal",
-    mushafLayout: window.innerWidth <= 620 ? "adaptive" : "page",
+    mushafLayout: "page",
     mushafTextSize: 36,
     recitationFlow: "continuous",
     recitationFlowExplicit: false,
@@ -1358,6 +1358,7 @@
 
   var translations = {
     ru: {
+      openingStudyGroup: "Учите вместе: {range}. Одно повторение засчитывается после всех аятов связки.",
       skip: "К содержанию", prototype: "Companion · прототип", workingPrototype: "Рабочий прототип",
       mainNav: "Основная навигация", mobileNav: "Мобильная навигация", changeLanguage: "Сменить язык", lessonSteps: "Этапы занятия", toggleTranslation: "Показать или скрыть перевод", audioDemo: "Озвучить выбранный аят системным арабским голосом", displayMode: "Режим отображения", ayahLabel: "Сура Аль-Бакара, аят 2", ayahNumberLabel: "Аят 2", close: "Закрыть", openGuide: "Как работает приложение", todayReality: "Реальные показатели на сегодня", verseActions: "Быстрые действия с аятом", activityLabel: "Активность за последние пять недель", assistantTabs: "Помощник чтения",
       navToday: "Сегодня", navRead: "Читать", navMemorize: "Хифз", navLearn: "Изучать", navProgress: "Прогресс", navAcademy: "Академия", navSettings: "Настройки",
@@ -1400,6 +1401,7 @@
       dataPresentTitle: "Локальный прогресс обновлён", dataPresentText: "Показатели выше отражают только действия в этом прототипе.", confirmClear: "Очистить локальный прогресс прототипа?", verseSaved: "Аят сохранён на устройстве.", verseUnsaved: "Аят удалён из сохранённых.", reviewAdded: "Аят добавлен в очередь повторения.", reviewRemoved: "Аят убран из очереди повторения."
     },
     en: {
+      openingStudyGroup: "Learn together: {range}. One repetition is counted after every ayah in the group.",
       skip: "Skip to content", prototype: "Companion · prototype", workingPrototype: "Working prototype",
       mainNav: "Main navigation", mobileNav: "Mobile navigation", changeLanguage: "Change language", lessonSteps: "Lesson steps", toggleTranslation: "Show or hide translation", audioDemo: "Voice the selected verse with the system Arabic voice", displayMode: "Display mode", ayahLabel: "Surah Al-Baqarah, verse 2", ayahNumberLabel: "Verse 2", close: "Close", openGuide: "How the app works", todayReality: "Real metrics for today", verseActions: "Quick verse actions", activityLabel: "Activity over the last five weeks", assistantTabs: "Reading assistant",
       navToday: "Today", navRead: "Read", navMemorize: "Hifz", navLearn: "Learn", navProgress: "Progress", navAcademy: "Academy", navSettings: "Settings",
@@ -1442,6 +1444,7 @@
       dataPresentTitle: "Local progress updated", dataPresentText: "The figures above reflect actions in this prototype only.", confirmClear: "Clear the prototype’s local progress?", verseSaved: "Verse saved on this device.", verseUnsaved: "Verse removed from saved.", reviewAdded: "Verse added to the review queue.", reviewRemoved: "Verse removed from the review queue."
     },
     ar: {
+      openingStudyGroup: "احفظ الآيات معًا: {range}. تُحتسب التكرارة بعد إتمام جميع آيات المقطع.",
       skip: "الانتقال إلى المحتوى", prototype: "رفيق · نموذج أولي", workingPrototype: "نموذج أولي عملي",
       mainNav: "التنقل الرئيسي", mobileNav: "التنقل على الهاتف", changeLanguage: "تغيير اللغة", lessonSteps: "مراحل الدرس", toggleTranslation: "إظهار الترجمة أو إخفاؤها", audioDemo: "تشغيل نص الآية المختارة بالصوت العربي للنظام", displayMode: "وضع العرض", ayahLabel: "سورة البقرة، الآية ٢", ayahNumberLabel: "الآية ٢", close: "إغلاق", openGuide: "كيفية عمل التطبيق", todayReality: "المؤشرات الفعلية لليوم", verseActions: "إجراءات سريعة للآية", activityLabel: "النشاط خلال الأسابيع الخمسة الأخيرة", assistantTabs: "مساعد التلاوة",
       navToday: "اليوم", navRead: "التلاوة", navMemorize: "الحفظ", navLearn: "التعلّم", navProgress: "التقدّم", navAcademy: "الأكاديمية", navSettings: "الإعدادات",
@@ -1647,27 +1650,27 @@
   });
 
   Object.assign(translations.ru, {
-    openHeartPage: "Открыть страницу сердца", heartRepeats: "Повторения", heartPageEyebrow: "СТРАНИЦА В СЕРДЦЕ", heartPageTitle: "Соберите страницу целиком", heartAyatCollected: "Аятов собрано", heartPageBuilding: "Собирается", heartPageReady: "Готова к связному чтению", heartPagePermanent: "Сохранена навсегда", heartPageGuidance: "Каждый аят проявляется после 300 правильных чтений. Затем прочитайте всю страницу без разрыва, чтобы связать аяты.", heartConnectedTitle: "Связное чтение страницы", heartConnectedLocked: "Откроется, когда каждый аят достигнет 300 повторений.", heartConnectedReady: "Все аяты собраны. Прочитайте страницу по порядку без подсказок.", heartConnectedActive: "Читайте по порядку: следующий аят откроется автоматически.", heartConnectedPermanent: "Страница прочитана связно и больше не исчезнет.", heartContinueAyat: "Продолжить собирать аяты", heartStartConnected: "Начать связное чтение", heartOpenPermanent: "Открыть сохранённую страницу", heartPageLoading: "Загружаю состав страницы…", heartPageLoadError: "Не удалось загрузить состав страницы. Повторите ещё раз.", heartReadCredit: "Правильное чтение засчитано: {count} из 300.", heartLinkedStarted: "Связное чтение началось. Читайте страницу по порядку.", heartLinkedProgress: "Связано {done} из {total} аятов.", heartLinkedRestarted: "Порядок изменился. Связное чтение начато заново с этого аята.", heartPageSealed: "Страница собрана и сохранена навсегда.", heartPermanent: "Сохранён навсегда", heartVersePermanent: "Аят собран", heartVerseBuilding: "повторений"
+    openHeartPage: "Открыть страницу сердца", heartRepeats: "Повторения", heartPageEyebrow: "СТРАНИЦА В СЕРДЦЕ", heartPageTitle: "Соберите страницу целиком", heartAyatCollected: "Аятов собрано", heartPageBuilding: "Собирается", heartPageReady: "Готова к связному чтению", heartPagePermanent: "Достижение сохранено", heartPageGuidance: "Каждый аят проявляется после 300 правильных чтений. Затем прочитайте всю страницу без разрыва, чтобы связать аяты.", heartConnectedTitle: "Связное чтение страницы", heartConnectedLocked: "Откроется, когда каждый аят достигнет 300 повторений.", heartConnectedReady: "Все аяты собраны. Прочитайте страницу по порядку без подсказок.", heartConnectedActive: "Читайте по порядку: следующий аят откроется автоматически.", heartConnectedPermanent: "Страница собрана. Регулярное повторение поддерживает её проявленность.", heartContinueAyat: "Продолжить собирать аяты", heartStartConnected: "Начать связное чтение", heartOpenPermanent: "Открыть сохранённую страницу", heartPageLoading: "Загружаю состав страницы…", heartPageLoadError: "Не удалось загрузить состав страницы. Повторите ещё раз.", heartReadCredit: "Правильное чтение засчитано: {count} из 300.", heartLinkedStarted: "Связное чтение началось. Читайте страницу по порядку.", heartLinkedProgress: "Связано {done} из {total} аятов.", heartLinkedRestarted: "Порядок изменился. Связное чтение начато заново с этого аята.", heartPageSealed: "Страница собрана. Достижение и история сохранены.", heartPermanent: "Аят собран", heartVersePermanent: "Аят собран", heartVerseBuilding: "повторений"
   });
 
   Object.assign(translations.en, {
-    openHeartPage: "Open the page in your heart", heartRepeats: "Repetitions", heartPageEyebrow: "A PAGE IN THE HEART", heartPageTitle: "Build the whole page", heartAyatCollected: "Verses collected", heartPageBuilding: "In progress", heartPageReady: "Ready for connected recitation", heartPagePermanent: "Saved permanently", heartPageGuidance: "Each verse is revealed after 300 correct recitations. Then recite the whole page without a break to connect its verses.", heartConnectedTitle: "Connected page recitation", heartConnectedLocked: "Unlocks when every verse reaches 300 repetitions.", heartConnectedReady: "Every verse is collected. Recite the page in order without hints.", heartConnectedActive: "Recite in order: the next verse opens automatically.", heartConnectedPermanent: "The page was recited continuously and will never fade.", heartContinueAyat: "Continue collecting verses", heartStartConnected: "Start connected recitation", heartOpenPermanent: "Open saved page", heartPageLoading: "Loading the page structure…", heartPageLoadError: "The page structure could not be loaded. Please try again.", heartReadCredit: "Correct recitation counted: {count} of 300.", heartLinkedStarted: "Connected recitation started. Recite the page in order.", heartLinkedProgress: "Connected {done} of {total} verses.", heartLinkedRestarted: "The order changed. Connected recitation restarted from this verse.", heartPageSealed: "The page is complete and saved permanently.", heartPermanent: "Saved permanently", heartVersePermanent: "Verse collected", heartVerseBuilding: "repetitions"
+    openHeartPage: "Open the page in your heart", heartRepeats: "Repetitions", heartPageEyebrow: "A PAGE IN THE HEART", heartPageTitle: "Build the whole page", heartAyatCollected: "Verses collected", heartPageBuilding: "In progress", heartPageReady: "Ready for connected recitation", heartPagePermanent: "Achievement saved", heartPageGuidance: "Each verse is revealed after 300 correct recitations. Then recite the whole page without a break to connect its verses.", heartConnectedTitle: "Connected page recitation", heartConnectedLocked: "Unlocks when every verse reaches 300 repetitions.", heartConnectedReady: "Every verse is collected. Recite the page in order without hints.", heartConnectedActive: "Recite in order: the next verse opens automatically.", heartConnectedPermanent: "Page collected. Regular review maintains its visibility.", heartContinueAyat: "Continue collecting verses", heartStartConnected: "Start connected recitation", heartOpenPermanent: "Open saved page", heartPageLoading: "Loading the page structure…", heartPageLoadError: "The page structure could not be loaded. Please try again.", heartReadCredit: "Correct recitation counted: {count} of 300.", heartLinkedStarted: "Connected recitation started. Recite the page in order.", heartLinkedProgress: "Connected {done} of {total} verses.", heartLinkedRestarted: "The order changed. Connected recitation restarted from this verse.", heartPageSealed: "Page collected. Your achievement and history are saved.", heartPermanent: "Achievement saved", heartVersePermanent: "Verse collected", heartVerseBuilding: "repetitions"
   });
 
   Object.assign(translations.ar, {
-    openHeartPage: "افتح صفحة القلب", heartRepeats: "التكرار", heartPageEyebrow: "صَفْحَةٌ فِي القَلْب", heartPageTitle: "اجمع الصفحة كاملة", heartAyatCollected: "الآيات المكتملة", heartPageBuilding: "قيد الجمع", heartPageReady: "جاهزة للتلاوة المتصلة", heartPagePermanent: "محفوظة دائمًا", heartPageGuidance: "تظهر كل آية بعد ٣٠٠ تلاوة صحيحة، ثم تُقرأ الصفحة كاملة بلا انقطاع لربط آياتها.", heartConnectedTitle: "تلاوة الصفحة متصلة", heartConnectedLocked: "تُفتح بعد بلوغ كل آية ٣٠٠ تكرار.", heartConnectedReady: "اكتملت الآيات كلها. اقرأ الصفحة بالترتيب دون تلميح.", heartConnectedActive: "اقرأ بالترتيب، وستفتح الآية التالية تلقائيًا.", heartConnectedPermanent: "قُرئت الصفحة متصلة ولن تختفي بعد اليوم.", heartContinueAyat: "تابع جمع الآيات", heartStartConnected: "ابدأ التلاوة المتصلة", heartOpenPermanent: "افتح الصفحة المحفوظة", heartPageLoading: "جارٍ تحميل بنية الصفحة…", heartPageLoadError: "تعذر تحميل بنية الصفحة. حاول مرة أخرى.", heartReadCredit: "احتُسبت التلاوة الصحيحة: {count} من ٣٠٠.", heartLinkedStarted: "بدأت التلاوة المتصلة. اقرأ الصفحة بالترتيب.", heartLinkedProgress: "رُبطت {done} من {total} آية.", heartLinkedRestarted: "تغيّر الترتيب، فبدأت التلاوة المتصلة من هذه الآية.", heartPageSealed: "اكتملت الصفحة وحُفظت دائمًا.", heartPermanent: "محفوظة دائمًا", heartVersePermanent: "اكتملت الآية", heartVerseBuilding: "تكرار"
+    openHeartPage: "افتح صفحة القلب", heartRepeats: "التكرار", heartPageEyebrow: "صَفْحَةٌ فِي القَلْب", heartPageTitle: "اجمع الصفحة كاملة", heartAyatCollected: "الآيات المكتملة", heartPageBuilding: "قيد الجمع", heartPageReady: "جاهزة للتلاوة المتصلة", heartPagePermanent: "الإنجاز محفوظ", heartPageGuidance: "تظهر كل آية بعد ٣٠٠ تلاوة صحيحة، ثم تُقرأ الصفحة كاملة بلا انقطاع لربط آياتها.", heartConnectedTitle: "تلاوة الصفحة متصلة", heartConnectedLocked: "تُفتح بعد بلوغ كل آية ٣٠٠ تكرار.", heartConnectedReady: "اكتملت الآيات كلها. اقرأ الصفحة بالترتيب دون تلميح.", heartConnectedActive: "اقرأ بالترتيب، وستفتح الآية التالية تلقائيًا.", heartConnectedPermanent: "اكتملت الصفحة. تحافظ المراجعة المنتظمة على وضوحها.", heartContinueAyat: "تابع جمع الآيات", heartStartConnected: "ابدأ التلاوة المتصلة", heartOpenPermanent: "افتح الصفحة المحفوظة", heartPageLoading: "جارٍ تحميل بنية الصفحة…", heartPageLoadError: "تعذر تحميل بنية الصفحة. حاول مرة أخرى.", heartReadCredit: "احتُسبت التلاوة الصحيحة: {count} من ٣٠٠.", heartLinkedStarted: "بدأت التلاوة المتصلة. اقرأ الصفحة بالترتيب.", heartLinkedProgress: "رُبطت {done} من {total} آية.", heartLinkedRestarted: "تغيّر الترتيب، فبدأت التلاوة المتصلة من هذه الآية.", heartPageSealed: "اكتملت الصفحة وحُفظ إنجازك وسجلك.", heartPermanent: "الإنجاز محفوظ", heartVersePermanent: "اكتملت الآية", heartVerseBuilding: "تكرار"
   });
 
   Object.assign(translations.ru, {
-    heartContinueConnected: "Продолжить связное чтение", heartNextActions: "Следующие действия", heartNextStep: "СЛЕДУЮЩИЙ ШАГ", heartNextCollect: "Соберите оставшиеся аяты", heartNextConnect: "Свяжите всю страницу одним чтением", heartNextSaved: "Страница сохранена — её можно повторить", heartLinkedUnavailable: "Недоступно до завершения первого этапа", heartCollectProgress: "Текущий этап · собрано {collected} из {total}", heartLinkedLockedProgress: "Недоступно · собрано {collected} из {total}", heartLinkedReadyProgress: "Доступно · все {total} аятов собраны", heartLinkedActiveProgress: "Идёт чтение · связано {done} из {total}", heartLinkedSavedProgress: "Страница сохранена навсегда"
+    heartContinueConnected: "Продолжить связное чтение", heartNextActions: "Следующие действия", heartNextStep: "СЛЕДУЮЩИЙ ШАГ", heartNextCollect: "Соберите оставшиеся аяты", heartNextConnect: "Свяжите всю страницу одним чтением", heartNextSaved: "Страница сохранена — её можно повторить", heartLinkedUnavailable: "Недоступно до завершения первого этапа", heartCollectProgress: "Текущий этап · собрано {collected} из {total}", heartLinkedLockedProgress: "Недоступно · собрано {collected} из {total}", heartLinkedReadyProgress: "Доступно · все {total} аятов собраны", heartLinkedActiveProgress: "Идёт чтение · связано {done} из {total}", heartLinkedSavedProgress: "Страница собрана · продолжайте повторение"
   });
 
   Object.assign(translations.en, {
-    heartContinueConnected: "Continue connected recitation", heartNextActions: "Next actions", heartNextStep: "NEXT STEP", heartNextCollect: "Collect the remaining verses", heartNextConnect: "Connect the whole page in one recitation", heartNextSaved: "The page is saved — you can review it", heartLinkedUnavailable: "Unavailable until the first stage is complete", heartCollectProgress: "Current stage · {collected} of {total} collected", heartLinkedLockedProgress: "Unavailable · {collected} of {total} collected", heartLinkedReadyProgress: "Available · all {total} verses collected", heartLinkedActiveProgress: "In progress · {done} of {total} connected", heartLinkedSavedProgress: "Page saved permanently"
+    heartContinueConnected: "Continue connected recitation", heartNextActions: "Next actions", heartNextStep: "NEXT STEP", heartNextCollect: "Collect the remaining verses", heartNextConnect: "Connect the whole page in one recitation", heartNextSaved: "The page is saved — you can review it", heartLinkedUnavailable: "Unavailable until the first stage is complete", heartCollectProgress: "Current stage · {collected} of {total} collected", heartLinkedLockedProgress: "Unavailable · {collected} of {total} collected", heartLinkedReadyProgress: "Available · all {total} verses collected", heartLinkedActiveProgress: "In progress · {done} of {total} connected", heartLinkedSavedProgress: "Page collected · keep reviewing"
   });
 
   Object.assign(translations.ar, {
-    heartContinueConnected: "واصل التلاوة المتصلة", heartNextActions: "الإجراءات التالية", heartNextStep: "الخطوة التالية", heartNextCollect: "أكمل جمع الآيات المتبقية", heartNextConnect: "اربط الصفحة كاملة في تلاوة واحدة", heartNextSaved: "الصفحة محفوظة ويمكنك مراجعتها", heartLinkedUnavailable: "غير متاح حتى اكتمال المرحلة الأولى", heartCollectProgress: "المرحلة الحالية · جُمعت {collected} من {total}", heartLinkedLockedProgress: "غير متاح · جُمعت {collected} من {total}", heartLinkedReadyProgress: "متاح · جُمعت الآيات الـ {total} كلها", heartLinkedActiveProgress: "التلاوة جارية · رُبطت {done} من {total}", heartLinkedSavedProgress: "الصفحة محفوظة دائمًا"
+    heartContinueConnected: "واصل التلاوة المتصلة", heartNextActions: "الإجراءات التالية", heartNextStep: "الخطوة التالية", heartNextCollect: "أكمل جمع الآيات المتبقية", heartNextConnect: "اربط الصفحة كاملة في تلاوة واحدة", heartNextSaved: "الصفحة محفوظة ويمكنك مراجعتها", heartLinkedUnavailable: "غير متاح حتى اكتمال المرحلة الأولى", heartCollectProgress: "المرحلة الحالية · جُمعت {collected} من {total}", heartLinkedLockedProgress: "غير متاح · جُمعت {collected} من {total}", heartLinkedReadyProgress: "متاح · جُمعت الآيات الـ {total} كلها", heartLinkedActiveProgress: "التلاوة جارية · رُبطت {done} من {total}", heartLinkedSavedProgress: "الصفحة الإنجاز محفوظ"
   });
 
   Object.assign(translations.ru, {
@@ -2234,6 +2237,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   var memoryLastTranscript = "";
   var memoryLastOutcome = "uncertain";
   var memoryFullVerseMatched = false;
+  var memoryConfirmedStatuses = [];
+  var memoryRequiresFullVerse = false;
   var autoAdvanceTimer = null;
   var autoAdvanceInterval = null;
   var autoAdvanceContext = null;
@@ -2281,6 +2286,9 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     settings: "settingsTitle"
   };
 
+  Object.assign(translations.ru, {heartDailyReview: "Возвращайтесь каждый день", heartStrength: "Проявленность", heartNeedsReview: "Пора повторить · достижения сохранены"});
+  Object.assign(translations.en, {heartDailyReview: "Return every day", heartStrength: "Visibility", heartNeedsReview: "Time to review · achievements saved"});
+  Object.assign(translations.ar, {heartDailyReview: "تعاهد القرآن كل يوم", heartStrength: "وضوح النص", heartNeedsReview: "حان وقت المراجعة · إنجازاتك محفوظة"});
   var personalBridge = null;
   var quietRecall = null;
   var personalInitializing = true;
@@ -3550,6 +3558,43 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     return state.heartMushaf.linked33Pages[key];
   }
 
+  function getOpeningStudyGroup(pageData, selectedKey) {
+    var verses = pageData && pageData.verses || [];
+    var starts = ["الم", "المص", "كهيعص", "طه", "طسم", "يس", "حم", "عسق"];
+    function letters(verse) {
+      var key = String(verse.verse_key || "").split(":");
+      var text = getMushafVerseText(verse).replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\s]/g, "");
+      return Number(key[1]) <= 2 && starts.indexOf(text) >= 0;
+    }
+    for (var i = 0; i < verses.length; i += 1) {
+      if (!letters(verses[i])) continue;
+      var group = [String(verses[i].verse_key)];
+      var j = i;
+      while (j + 1 < verses.length) {
+        var previous = String(verses[j].verse_key).split(":");
+        var next = String(verses[j + 1].verse_key).split(":");
+        if (previous[0] !== next[0] || Number(next[1]) !== Number(previous[1]) + 1) break;
+        j += 1; group.push(String(verses[j].verse_key));
+        if (!letters(verses[j])) {
+          if (group.indexOf(String(selectedKey)) >= 0) return group;
+          break;
+        }
+      }
+      i = j;
+    }
+    return null;
+  }
+
+  function openingGroupCount(keys, method, pageNumber) {
+    return Math.min.apply(Math, keys.map(function (key) {
+      return method === "foundation300" ? getHeartFoundationTotal(getHeartUnit(key)) : Number(getLinked33PageUnit(pageNumber).verseCounts[key]) || 0;
+    }));
+  }
+
+  function startOpeningStudyGroup(pageData, keys) {
+    startLinked33Segment(pageData, {type: "segment", key: keys[0], keys: keys, openingGroup: true});
+  }
+
   function getLinked33PageSummary(pageData) {
     var keys = getHeartPageVerseKeys(pageData);
     var page = getLinked33PageUnit(pageData && pageData.page);
@@ -3564,7 +3609,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       verseTotal += verseCount;
       if (verseCount >= LINKED_33_TARGET) collected += 1;
       if (!currentTask && verseCount < LINKED_33_TARGET) {
-        currentTask = { type: "verse", index: index, key: key, keys: [key], count: verseCount };
+        var openingKeys = getOpeningStudyGroup(pageData, key);
+        currentTask = openingKeys ? {type: "segment", index: index, key: openingKeys[0], keys: openingKeys, count: openingGroupCount(openingKeys, "linked33", pageData.page), openingGroup: true} : { type: "verse", index: index, key: key, keys: [key], count: verseCount };
       }
       if (index > 0 || (keys.length === 1 && index === 0)) {
         var segmentKey = keys.length === 1 ? "__page__" : key;
@@ -3718,25 +3764,21 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     return formatText("heartOverdueDays", { days: formatMetric(Math.abs(days)) });
   }
 
+  function getHeartFreshness(key, earned, target) {
+    var known = state.heartFreshness && state.heartFreshness.verses[key];
+    var unit = state.heartMushaf && state.heartMushaf.units && state.heartMushaf.units[key];
+    var last = known && known.at;
+    if (unit && unit.lastAcceptedAt && (!last || Date.parse(unit.lastAcceptedAt) > Date.parse(last))) last = unit.lastAcceptedAt;
+    return window.AllimHeartReview.freshness(earned, target, last);
+  }
+
   function getHeartPresentation(unit) {
     var total = getHeartFoundationTotal(unit);
-    var now = new Date();
-    var lastAccepted = unit.lastAcceptedAt ? new Date(unit.lastAcceptedAt) : null;
-    var inactiveDays = lastAccepted && Number.isFinite(lastAccepted.getTime()) ? heartDaysBetween(lastAccepted, now) : 0;
-    var dueDate = unit.nextReviewAt ? new Date(unit.nextReviewAt) : null;
-    var overdueDays = dueDate && Number.isFinite(dueDate.getTime()) ? Math.max(0, heartDaysBetween(dueDate, now)) : 0;
-    var reveal = Math.round(total / HEART_FOUNDATION_TOTAL * 100);
-    var statusKey = total ? "heartBuilding" : "heartNotStarted";
-    var dormant = total > 0 && total < HEART_FOUNDATION_TOTAL && inactiveDays >= 7;
-    var protectedPage = unit.permanent || total >= HEART_FOUNDATION_TOTAL;
-    if (protectedPage) {
-      unit.permanent = true;
-      reveal = 100;
-      dormant = false;
-      statusKey = "heartPermanent";
-    } else if (dormant || overdueDays > 0) statusKey = "heartNeedsReview";
-    if (!protectedPage && dormant) reveal = Math.max(12, Math.round(reveal * 0.45));
-    return { total: total, reveal: reveal, statusKey: statusKey, dormant: dormant, protectedPage: protectedPage, overdueDays: overdueDays };
+    var fresh = getHeartFreshness(getVerseKey(currentSurah, currentVerse), total, HEART_FOUNDATION_TOTAL);
+    return { total: total, reveal: Math.round(fresh.reveal * 100),
+      statusKey: fresh.due ? "heartNeedsReview" : total >= HEART_FOUNDATION_TOTAL ? "heartPermanent" : total ? "heartBuilding" : "heartNotStarted",
+      dormant: fresh.factor < 1, protectedPage: unit.permanent || total >= HEART_FOUNDATION_TOTAL,
+      overdueDays: fresh.days === null ? 0 : Math.max(0, fresh.days - 7), unknown: fresh.unknown };
   }
 
   function populateHeartSelectors() {
@@ -3839,7 +3881,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var summary = pageData ? getStructuredPageSummary(pageData, method) : null;
     var pageUnit = summary ? summary.page : null;
     var verseCount = pageUnit ? Math.max(0, Number(pageUnit.verseCounts[key]) || 0) : 0;
-    var reveal = Math.round(verseCount / LINKED_33_TARGET * 100);
+    var fresh = getHeartFreshness(key, verseCount, LINKED_33_TARGET);
+    var reveal = Math.round(fresh.reveal * 100);
     var task = summary && summary.currentTask;
     var todayCount = getLinked33TodayCount(summary);
     document.getElementById("heart-ayah-reference").textContent = currentSurah.names[state.language] + " · " + key;
@@ -3849,12 +3892,13 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var taskStage = turkish ? (task && task.type === "segment" ? 3 : (task && task.role === "gap" ? 2 : 1)) : (task && task.type === "segment" ? (task.isPage ? 3 : 2) : 1);
     document.getElementById("heart-current-stage").textContent = formatMetric(summary && summary.complete ? 3 : taskStage) + " / " + formatMetric(3);
     document.getElementById("heart-next-review").textContent = summary ? getStructuredTaskText(summary, method) : t(turkish ? "heartPagePendingTurkish" : "heartPagePending33");
-    document.getElementById("heart-strength").textContent = formatMetric(summary ? summary.percent : 0) + "%";
+    document.getElementById("heart-strength").textContent = formatMetric(reveal) + "%";
     var status = document.getElementById("heart-status");
     if (status) {
       status.textContent = summary ? getStructuredTaskText(summary, method) : t("heartPageLoading");
       status.classList.toggle("is-protected", Boolean(summary && summary.complete));
-      status.classList.remove("is-due");
+      status.classList.toggle("is-due", fresh.due);
+      if (fresh.due) status.textContent = t("heartNeedsReview");
     }
     var memoryCount = document.getElementById("memory-heart-count");
     var memoryProgress = document.getElementById("memory-heart-progress-bar");
@@ -3893,7 +3937,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var startButton = document.getElementById("heart-start-practice");
     if (startButton) startButton.disabled = Boolean(summary && summary.complete);
     book.style.setProperty("--heart-reveal", reveal + "%");
-    book.classList.remove("is-dormant");
+    book.classList.toggle("is-dormant", fresh.factor < 1);
     book.classList.toggle("is-complete", verseCount >= LINKED_33_TARGET);
     if (summary) renderHeartPageLaunch(pageData);
   }
@@ -3902,6 +3946,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var book = document.getElementById("heart-book");
     if (!book || !currentSurah || !currentVerse) return;
     updateMemorizationMethodUi();
+    var openingNote = document.getElementById("opening-study-note");
+    var openingKeys = ["foundation300", "linked33"].indexOf(state.memorizationMethod) >= 0 ? getOpeningStudyGroup(heartCurrentPageData, getVerseKey(currentSurah, currentVerse)) : null;
+    openingNote.hidden = !openingKeys;
+    openingNote.textContent = openingKeys ? formatText("openingStudyGroup", {range: "\u2066" + openingKeys[0] + " – " + openingKeys[openingKeys.length - 1] + "\u2069"}) : "";
     if (state.memorizationMethod === "mauritanianLawh") return;
     populateHeartSelectors();
     if (isStructured33Method(state.memorizationMethod)) {
@@ -3923,7 +3971,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     document.getElementById("heart-today-count").textContent = formatMetric(todayCount);
     document.getElementById("heart-current-stage").textContent = formatMetric(presentation.total >= HEART_FOUNDATION_TOTAL ? 3 : stageIndex + 1) + " / " + formatMetric(3);
     document.getElementById("heart-strength").textContent = formatMetric(presentation.reveal) + "%";
-    document.getElementById("heart-next-review").textContent = presentation.total >= HEART_FOUNDATION_TOTAL ? formatHeartReviewDate(unit.nextReviewAt) : t("heartNotScheduled");
+    document.getElementById("heart-next-review").textContent = presentation.total ? t(presentation.dormant || presentation.unknown ? "heartNeedsReview" : "heartDailyReview") : t("heartNotScheduled");
     document.getElementById("heart-status").textContent = t(presentation.statusKey);
     document.getElementById("heart-status").classList.toggle("is-protected", presentation.protectedPage);
     document.getElementById("heart-status").classList.toggle("is-due", presentation.dormant || presentation.overdueDays > 0);
@@ -3937,7 +3985,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       }
     });
     book.style.setProperty("--heart-reveal", presentation.reveal + "%");
-    book.classList.toggle("is-dormant", !presentation.protectedPage && (presentation.dormant || presentation.overdueDays > 0));
+    book.classList.toggle("is-dormant", presentation.dormant || presentation.overdueDays > 0);
     book.classList.toggle("is-complete", presentation.total >= HEART_FOUNDATION_TOTAL);
     var startButton = document.getElementById("heart-start-practice");
     var startLabel = startButton && startButton.querySelector("span");
@@ -4064,7 +4112,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     activateMushafVerse(verse, true);
     renderMemoryVerse();
     navigate("memorize");
-    var stage = document.querySelector(".memory-stage");
+    var stage = document.getElementById("memory-reference");
+    document.getElementById("hifz-practice-panel").open = true;
     if (stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
     if (startNow) window.setTimeout(function () { startMemoryRecognition(false); }, 180);
     return true;
@@ -4074,7 +4123,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (!pageData || !task || task.type !== "segment" || !task.keys.length) return;
     var pageNumber = Number(pageData.page);
     var sameSession = linked33Session && linked33Session.method === state.memorizationMethod && linked33Session.pageNumber === pageNumber && linked33Session.key === task.key;
-    if (!sameSession) linked33Session = { method: state.memorizationMethod, pageNumber: pageNumber, key: task.key, keys: task.keys.slice(), nextIndex: 0, isPage: Boolean(task.isPage) };
+    if (!sameSession) linked33Session = { method: state.memorizationMethod, pageNumber: pageNumber, key: task.key, keys: task.keys.slice(), nextIndex: 0, isPage: Boolean(task.isPage), openingGroup: Boolean(task.openingGroup) };
     memoryPracticeContext = null;
     state.recitationFlow = "continuous";
     state.recitationFlowExplicit = true;
@@ -4087,7 +4136,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     navigate("read");
     setMushafMode(true, true);
     selectReaderMode("mushaf");
-    showToast(t(state.memorizationMethod === "turkishWall33" ? "turkishJoinStarted" : "linked33JoinStarted"));
+    showToast(task.openingGroup ? formatText("openingStudyGroup", {range: "\u2066" + task.keys[0] + " – " + task.keys[task.keys.length - 1] + "\u2069"}) : t(state.memorizationMethod === "turkishWall33" ? "turkishJoinStarted" : "linked33JoinStarted"));
     loadMushafPage(pageNumber, false).then(function () {
       if (!linked33Session || linked33Session.pageNumber !== pageNumber) return;
       var expectedKey = linked33Session.keys[linked33Session.nextIndex] || linked33Session.keys[0];
@@ -4135,16 +4184,23 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function startActiveMemorizationStep() {
+    if (document.body.classList.contains("is-loading-verse") || !currentSurah || !currentVerse || Number(currentSurah.id) !== Number(state.selectedSurah) || Number(currentVerse.ayah) !== Number(state.selectedAyah)) {
+      showToast(t("verseLoading")); return;
+    }
+    document.getElementById("hifz-practice-panel").open = true;
     cancelStructuredAdvance();
     if (window.ALLIMJourney && window.ALLIMJourney.isCheck(getVerseKey(currentSurah, currentVerse))) { startMemoryRecognition(false); return; }
     if (!isStructured33Method(state.memorizationMethod)) {
-      var stage = document.querySelector(".memory-stage");
+      var stage = document.getElementById("memory-reference");
       if (stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
       showToast(t("heartPracticeScroll"));
       startMemoryRecognition(false);
       return;
     }
-    loadHeartPageContextForCurrentVerse().then(startLinked33CurrentStep).catch(function () { showToast(t("heartPageLoadError")); });
+    var generation = memoryFlowGeneration, key = getVerseKey(currentSurah, currentVerse), method = state.memorizationMethod;
+    loadHeartPageContextForCurrentVerse().then(function (data) {
+      if (generation === memoryFlowGeneration && key === getVerseKey(currentSurah, currentVerse) && method === state.memorizationMethod) startLinked33CurrentStep(data);
+    }).catch(function () { showToast(t("heartPageLoadError")); });
   }
 
   function selectMemorizationMethod(method, announce) {
@@ -4172,7 +4228,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     var key = String(verseKey || "");
     var expected = linked33Session.keys[linked33Session.nextIndex];
     if (key !== expected) {
-      linked33Session.nextIndex = key === linked33Session.keys[0] ? 1 : 0;
+      linked33Session.pending = {};
+      linked33Session.nextIndex = 0;
       showToast(t("heartLinkedRestarted"));
       return { active: true, cycleComplete: false };
     }
@@ -4180,6 +4237,40 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (linked33Session.nextIndex < linked33Session.keys.length) {
       showToast(formatText(linked33Session.method === "turkishWall33" ? "turkishJoinProgress" : "linked33JoinProgress", { done: formatMetric(linked33Session.nextIndex), total: formatMetric(linked33Session.keys.length) }));
       return { active: true, cycleComplete: false };
+    }
+    if (linked33Session.openingGroup) {
+      var groupSession = linked33Session;
+      var groupData = heartPageCache[groupSession.pageNumber] || heartCurrentPageData;
+      var foundation = groupSession.method === "foundation300";
+      var limit = foundation ? HEART_FOUNDATION_TOTAL : LINKED_33_TARGET;
+      if (!groupSession.keys.every(function (item) { return groupSession.pending && groupSession.pending[item]; })) {
+        groupSession.nextIndex = 0; groupSession.pending = {};
+        return {active: true, cycleComplete: true, restart: true, methodComplete: false};
+      }
+      groupSession.keys.forEach(function (item) {
+        var event = groupSession.pending[item];
+        saveLearningEvent("verse_completed", event);
+        state.sessions += 1; state.wordsReviewed += event.matched_words; logActivity();
+      });
+      groupSession.pending = {};
+      groupSession.keys.forEach(function (item) {
+        if (foundation) {
+          if (getHeartFoundationTotal(getHeartUnit(item)) < limit) recordHeartRecitation(item);
+        } else {
+          var groupPage = getLinked33PageUnit(groupSession.pageNumber);
+          if ((Number(groupPage.verseCounts[item]) || 0) < limit) {
+            groupPage.verseCounts[item] = (Number(groupPage.verseCounts[item]) || 0) + 1;
+            recordStructuredCredit(groupSession.method, groupSession.pageNumber, {type: "verse", key: item, keys: [item]}, crypto.randomUUID());
+          }
+        }
+      });
+      var groupCount = openingGroupCount(groupSession.keys, groupSession.method, groupSession.pageNumber);
+      var repeatGroup = groupCount < limit;
+      groupSession.nextIndex = 0;
+      saveState(); renderHeartMushaf(); renderHeartReadCounter();
+      showToast(groupSession.keys[0] + " – " + groupSession.keys[groupSession.keys.length - 1] + " · " + formatMetric(groupCount) + " / " + formatMetric(limit));
+      if (!repeatGroup) linked33Session = null;
+      return {active: true, cycleComplete: true, restart: repeatGroup, stepComplete: !repeatGroup, methodComplete: foundation ? !repeatGroup : getLinked33PageSummary(groupData).complete};
     }
     var pageData = heartPageCache[linked33Session.pageNumber] || heartCurrentPageData;
     var turkish = linked33Session.method === "turkishWall33";
@@ -4393,7 +4484,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
           var structured = isStructured33Method(state.memorizationMethod);
           var target = structured ? LINKED_33_TARGET : HEART_FOUNDATION_TOTAL;
           var total = structured ? Math.max(0, Number(summary.page.verseCounts[key]) || 0) : getHeartFoundationTotal(getHeartUnit(key));
-          var reveal = summary.permanent ? 1 : Math.min(1, .065 + .935 * total / target);
+          var freshness = getHeartFreshness(key, total, target);
+          var reveal = .065 + .935 * freshness.reveal;
           var glyphButton = document.createElement("button");
           glyphButton.type = "button";
           glyphButton.className = "mushaf-glyph heart-mushaf-glyph" + (word.char_type_name === "end" ? " is-ayah-end" : "") + (total >= target ? " is-heart-collected" : "") + (summary.permanent ? " is-heart-sealed" : "");
@@ -5358,6 +5450,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     memoryHadError = false;
     memoryLastTranscript = "";
     memoryFullVerseMatched = false;
+    memoryConfirmedStatuses = [];
+    memoryRequiresFullVerse = false;
     document.getElementById("memory-reference").textContent = currentSurah.names[state.language] + " · " + getVerseKey(currentSurah, currentVerse);
     document.getElementById("memory-prompt").textContent = prompt.join(" ");
     var answerBox = document.getElementById("memory-answer");
@@ -6019,7 +6113,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (state.recitationFlow !== "continuous" || !continuousSessionActive || userStoppedRecognition || quranSubmitting) return false;
     if (continuousFailureCount >= 4) {
       stopContinuousSession();
-      if (recognitionTitleKey !== "readingPaused") setRecognitionStatus("recognitionError", "recognitionErrorSub", true);
+      setRecognitionStatus("recognitionError", "recognitionErrorSub", true);
       return false;
     }
     continuousRestartTimer = window.setTimeout(function () {
@@ -6039,7 +6133,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     });
   }
 
-  function scheduleAutoAdvance(context) {
+  function scheduleAutoAdvance(context, continuation) {
     clearAutoAdvance();
     if ((!state.autoAdvance && state.recitationFlow !== "continuous") || !getNextVerseLocation()) {
       continuousResumePending = false;
@@ -6049,7 +6143,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (autoAdvanceContext === "read" && state.recitationFlow === "continuous" && continuousSessionActive) {
       autoAdvanceTimer = window.setTimeout(function () {
         clearAutoAdvance();
-        goToNextVerse();
+        goToNextVerse(undefined, continuation);
       }, 80);
       return true;
     }
@@ -6067,7 +6161,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     return true;
   }
 
-  function goToNextVerse(preserveMode) {
+  function goToNextVerse(preserveMode, continuation) {
     clearAutoAdvance();
     if (state.strictCorrection && correctionLocked) {
       playErrorCue();
@@ -6087,7 +6181,15 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (next.mushafVerse) {
       activateMushafVerse(next.mushafVerse, true);
       if (resumeAudio) audioAdvanceTimer = window.setTimeout(playVerseAudio, 120);
-      if (resumeContinuous) window.setTimeout(function () { startRecognition(true); }, 90);
+      var resumeRequestId = recognitionRequestId;
+      if (resumeContinuous) window.setTimeout(function () {
+        if (!continuousSessionActive || userStoppedRecognition || recognitionRequestId !== resumeRequestId || mushafSelectedVerseKey !== next.mushafVerse.verse_key) return;
+        if (continuation && continuation.verseKey === mushafSelectedVerseKey) {
+          var continued = applyTranscript(continuation.transcript, true);
+          if (continued && continued.complete) return;
+        }
+        startRecognition(true);
+      }, 90);
       return true;
     }
     if (next.mushafNextPage) {
@@ -6256,7 +6358,6 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       updateRecitationFlowUi();
     }
     document.body.classList.toggle("mushaf-view", enabled);
-    syncMushafWorkspace(enabled);
     if (enabled) document.body.classList.remove("audio-view");
     var page = document.getElementById("mushaf-page");
     var toolbar = document.getElementById("mushaf-page-toolbar");
@@ -6366,13 +6467,8 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
 /* ALLIM_MUSHAF_COMFORT_START */
-  if (translations.en) Object.assign(translations.en, {"mushafSettings": "Reading settings", "mushafCloseSettings": "Close settings"});
-  if (translations.ru) Object.assign(translations.ru, {"mushafSettings": "Настройки чтения", "mushafCloseSettings": "Закрыть настройки"});
-  if (translations.ar) Object.assign(translations.ar, {"mushafSettings": "إعدادات القراءة", "mushafCloseSettings": "إغلاق الإعدادات"});
-  if (translations.tr) Object.assign(translations.tr, {"mushafSettings": "Okuma ayarları", "mushafCloseSettings": "Ayarları kapat"});
-  if (translations.tg) Object.assign(translations.tg, {"mushafSettings": "Танзимоти хониш", "mushafCloseSettings": "Пӯшидани танзимот"});
-  if (translations.uz) Object.assign(translations.uz, {"mushafSettings": "O‘qish sozlamalari", "mushafCloseSettings": "Sozlamalarni yopish"});
-  if (translations.tt) Object.assign(translations.tt, {"mushafSettings": "Уку көйләүләре", "mushafCloseSettings": "Көйләүләрне ябу"});
+  var mushafPageZoom = 100;
+
   function getMushafReadingPreferences() {
     return {
       layout: state.mushafLayout,
@@ -6394,14 +6490,12 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     document.querySelectorAll("[data-mushaf-layout]").forEach(function (button) {
       button.setAttribute("aria-pressed", String(button.getAttribute("data-mushaf-layout") === preferences.layout));
     });
-    var fontSelect = document.getElementById("mushaf-font-select");
-    if (fontSelect) fontSelect.disabled = adaptive;
     var down = document.getElementById("mushaf-size-down");
     var up = document.getElementById("mushaf-size-up");
     var value = document.getElementById("mushaf-size-value");
-    if (down) down.disabled = adaptive && preferences.size <= 28;
-    if (up) up.disabled = adaptive && preferences.size >= 52;
-    if (value) value.textContent = adaptive ? formatMetric(preferences.size) : "—";
+    if (down) down.disabled = adaptive ? preferences.size <= 28 : mushafPageZoom <= 100;
+    if (up) up.disabled = adaptive ? preferences.size >= 52 : mushafPageZoom >= 250;
+    if (value) value.textContent = adaptive ? formatMetric(preferences.size) : formatMetric(mushafPageZoom) + "%";
     return adaptive;
   }
 
@@ -6426,144 +6520,107 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function changeMushafReadingPreferences(layout, delta) {
     if (["page", "adaptive"].indexOf(layout) < 0) return;
     state.mushafLayout = layout;
-    state.mushafTextSize = Math.max(28, Math.min(52, state.mushafTextSize + delta));
+    if (layout === "page") mushafPageZoom = Math.max(100, Math.min(250, mushafPageZoom + delta * 5));
+    else state.mushafTextSize = Math.max(28, Math.min(52, state.mushafTextSize + delta));
     saveState();
     refreshMushafReadingLayout();
   }
 
   function initMushafReadingControls() {
+    var methodPicker = document.getElementById("hifz-method-picker");
+    var methodLabel = document.getElementById("hifz-selected-method");
+    function syncMethodLabel() {
+      var selected = methodPicker.querySelector('[aria-pressed="true"] strong');
+      if (selected) methodLabel.textContent = selected.textContent;
+    }
+    new MutationObserver(syncMethodLabel).observe(methodPicker, {subtree: true, attributes: true, attributeFilter: ["aria-pressed"], childList: true, characterData: true});
+    methodPicker.addEventListener("click", function (event) {
+      if (!event.target.closest("[data-hifz-method]")) return;
+      var panel = methodPicker.closest("details");
+      panel.open = false;
+      panel.querySelector("summary").focus();
+    });
+    syncMethodLabel();
+
+    var settingsDialog = document.getElementById("hifz-settings-dialog");
+    var settingsOpener = document.getElementById("hifz-settings-open");
+    settingsOpener.addEventListener("click", function () { settingsDialog.showModal(); });
+    document.getElementById("hifz-settings-close").addEventListener("click", function () { settingsDialog.close(); });
+    settingsDialog.addEventListener("close", function () { settingsOpener.focus(); });
+
     document.querySelectorAll("[data-mushaf-layout]").forEach(function (button) {
       button.addEventListener("click", function () { changeMushafReadingPreferences(button.getAttribute("data-mushaf-layout"), 0); });
     });
-    document.getElementById("mushaf-size-down").addEventListener("click", function () { changeMushafReadingPreferences("adaptive", -2); });
-    document.getElementById("mushaf-size-up").addEventListener("click", function () { changeMushafReadingPreferences("adaptive", 2); });
+    document.getElementById("mushaf-size-down").addEventListener("click", function () { changeMushafReadingPreferences(state.mushafLayout, -2); });
+    document.getElementById("mushaf-size-up").addEventListener("click", function () { changeMushafReadingPreferences(state.mushafLayout, 2); });
     applyMushafReadingLayout(document.getElementById("mushaf-page"));
-    initMushafWorkspace();
+    var dock = document.getElementById("mushaf-reading-dock");
+    var readingSettings = document.querySelector(".mushaf-appearance-popover");
+    var dockNodes = [document.getElementById("recitation-panel"), document.getElementById("mobile-recognition-toggle")].filter(Boolean);
+    var settingsNodes = [document.getElementById("allim-journal-summary"), document.getElementById("allim-storage-panel"), document.getElementById("mushaf-reading-controls"), document.querySelector(".mushaf-home-button")]
+      .concat(Array.prototype.slice.call(document.querySelectorAll(".verse-pickers > label, .verse-pickers > small, .reader-tools > button"))).filter(Boolean);
+    var homes = dockNodes.concat(settingsNodes).map(function (node) {
+      var marker = document.createComment("reading-control"); node.before(marker);
+      return {node: node, marker: marker, target: dockNodes.indexOf(node) >= 0 ? dock : readingSettings};
+    });
+    function syncDock() {
+      var active = document.body.classList.contains("mushaf-view");
+      homes.forEach(function (home) {
+        if (active && home.node.parentNode !== home.target) home.target.appendChild(home.node);
+        else if (!active && home.node.parentNode === home.target) home.marker.after(home.node);
+      });
+      if (active) document.body.style.setProperty("--mushaf-dock-height", Math.ceil(dock.getBoundingClientRect().height + 12) + "px");
+      else document.body.style.removeProperty("--mushaf-dock-height");
+      if (active) fitMushafLines(document.getElementById("mushaf-page"));
+    }
+    new MutationObserver(syncDock).observe(document.body, {attributes: true, attributeFilter: ["class"]});
+    if (window.ResizeObserver) new window.ResizeObserver(syncDock).observe(dock);
+    window.addEventListener("resize", syncDock);
+    syncDock();
   }
 /* ALLIM_MUSHAF_COMFORT_END */
-
-  var mushafWorkspace;
-  function initMushafWorkspace() {
-    if (mushafWorkspace) return;
-    var panel = document.querySelector('.mushaf-panel');
-    if (!panel) return;
-    var header = document.createElement('nav');
-    header.className = 'mushaf-command-bar';
-    header.setAttribute('data-i18n-aria', 'mushafNavigation');
-    header.setAttribute('aria-label', t('mushafNavigation'));
-    var trigger = document.createElement('button');
-    trigger.type = 'button'; trigger.id = 'mushaf-settings-open';
-    trigger.setAttribute('data-i18n-aria', 'mushafSettings');
-    trigger.setAttribute('aria-label', t('mushafSettings'));
-    trigger.setAttribute('aria-haspopup', 'dialog'); trigger.setAttribute('aria-controls', 'mushaf-settings');
-    trigger.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
-    header.appendChild(trigger);
-    var drawer = document.createElement('dialog');
-    drawer.id = 'mushaf-settings'; drawer.className = 'mushaf-settings';
-    drawer.setAttribute('aria-labelledby', 'mushaf-settings-title');
-    drawer.innerHTML = '<header><h2 id="mushaf-settings-title" data-i18n="mushafSettings"></h2><button type="button" class="mushaf-settings-close" data-i18n-aria="mushafCloseSettings">×</button></header><div class="mushaf-settings-reading"></div><div class="mushaf-settings-navigation"></div><div class="mushaf-settings-account"></div>';
-    drawer.querySelector('h2').textContent = t('mushafSettings');
-    drawer.querySelector('button').setAttribute('aria-label', t('mushafCloseSettings'));
-    var footer = document.createElement('div'); footer.className = 'mushaf-session-bar';
-    panel.prepend(header); panel.appendChild(footer); document.body.appendChild(drawer);
-    mushafWorkspace = { header: header, trigger: trigger, drawer: drawer, footer: footer, moved: [], active: false };
-    trigger.addEventListener('click', function () { drawer.showModal(); });
-    drawer.querySelector('button').addEventListener('click', function () { drawer.close(); });
-    drawer.addEventListener('click', function (event) { if (event.target === drawer) { var r = drawer.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) drawer.close(); } });
-    drawer.addEventListener('close', function () { if (mushafWorkspace.active) trigger.focus(); });
-    drawer.addEventListener('click', function (event) {
-      if (event.target.closest('[data-reader-mode], #open-heart-page, #mushaf-play-audio')) drawer.close();
-    });
-    // Panels can mount after the reader. Keep their existing listeners and data ownership.
-    new MutationObserver(function () { if (mushafWorkspace.active) syncMushafAccountPanels(); }).observe(document.body, { childList: true });
-    if (document.fonts) document.fonts.addEventListener('loadingdone', function () {
-      if (mushafWorkspace.active) fitMushafLines(document.getElementById('mushaf-page'));
-    });
-    if (window.ResizeObserver) new window.ResizeObserver(function () {
-      if (mushafWorkspace.active) fitMushafLines(document.getElementById('mushaf-page'));
-    }).observe(document.getElementById('ayah-wrap'));
-  }
-
-  function moveMushafControl(node, target, before) {
-    if (!node || node.parentNode === target) return;
-    if (!mushafWorkspace.moved.some(function (item) { return item.node === node; })) {
-      var marker = document.createComment('reader-control-home'); node.before(marker);
-      mushafWorkspace.moved.push({ node: node, marker: marker });
-    }
-    target.insertBefore(node, before || null);
-  }
-
-  function syncMushafAccountPanels() {
-    var work = mushafWorkspace;
-    if (!work || !work.active) return;
-    var account = work.drawer.querySelector('.mushaf-settings-account');
-    ['allim-storage-panel', 'allim-journal-summary'].forEach(function (id) {
-      var node = document.getElementById(id);
-      if (!node) return;
-      moveMushafControl(node, account);
-      if (id === 'allim-storage-panel' && !node.hasAttribute('data-reader-observed')) {
-        node.setAttribute('data-reader-observed', 'true');
-        var alertStorage = function () {
-          if (!work.active) return;
-          var needsAttention = ['account_locked', 'needs_choice', 'storage_error', 'upgrade_required'].indexOf(node.dataset.state) >= 0 || Boolean(document.querySelector('.allim-web-root[inert]'));
-          if (needsAttention && !work.drawer.open) work.drawer.showModal();
-        };
-        new MutationObserver(alertStorage).observe(node, { attributes: true, attributeFilter: ['data-state'] });
-        alertStorage();
-      }
-    });
-  }
-
-  function syncMushafWorkspace(enabled) {
-    initMushafWorkspace();
-    var work = mushafWorkspace;
-    if (!work || work.active === enabled) return;
-    work.active = enabled;
-    if (enabled) {
-      var navigation = work.drawer.querySelector('.mushaf-settings-navigation');
-      var reading = work.drawer.querySelector('.mushaf-settings-reading');
-      ['mushaf-exit', 'open-quran-search', 'mushaf-next-page'].forEach(function (id) {
-        moveMushafControl(document.getElementById(id), work.header, work.trigger);
-      });
-      moveMushafControl(document.querySelector('label[for="mushaf-page-number"]'), work.header, work.trigger);
-      moveMushafControl(document.getElementById('mushaf-prev-page'), work.header, work.trigger);
-      moveMushafControl(document.getElementById('mushaf-reading-controls'), reading);
-      moveMushafControl(document.querySelector('.mushaf-appearance-picker'), reading);
-      moveMushafControl(document.querySelector('.mushaf-toolbar'), navigation);
-      moveMushafControl(document.getElementById('mushaf-page-toolbar'), navigation);
-      moveMushafControl(document.querySelector('#view-read [data-quiet-recall-open="current"]'), navigation);
-      moveMushafControl(document.querySelector('.mushaf-home-button'), navigation);
-      ['correction-gate', 'read-auto-advance', 'recitation-panel', 'page-recall-dock'].forEach(function (id) {
-        moveMushafControl(document.getElementById(id), work.footer);
-      });
-      syncMushafAccountPanels();
-    } else {
-      if (work.drawer.open) work.drawer.close();
-      work.moved.slice().reverse().forEach(function (item) { if (item.marker.parentNode) item.marker.replaceWith(item.node); });
-      work.moved = [];
-    }
-  }
-
 
 
   function fitMushafLines(container) {
     if (!container) return;
-    window.cancelAnimationFrame(mushafFitFrame);
+    if (mushafFitFrame) window.cancelAnimationFrame(mushafFitFrame);
     mushafFitFrame = null;
+    container.style.zoom = "";
+    container.style.removeProperty("width");
+    container.style.removeProperty("height");
     if (applyMushafReadingLayout(container)) return;
-    var base = 48;
-    var lines = Array.from(container.querySelectorAll(".mushaf-line"));
-    container.style.setProperty("--mushaf-uniform-size", base + "px");
+    if (document.body.classList.contains("mushaf-view")) {
+      container.style.width = "660px";
+      container.style.height = "990px";
+    }
+    var viewportHeight = window.visualViewport && window.visualViewport.height ? window.visualViewport.height : window.innerHeight;
+    var compactViewport = window.innerWidth <= 620;
+    var minimumSize = 12;
+    var baseSize = 39;
+    var lines = Array.prototype.slice.call(container.querySelectorAll(".mushaf-line"));
+    lines.forEach(function (line) { line.style.setProperty("--mushaf-line-font-size", baseSize + "px"); });
     mushafFitFrame = window.requestAnimationFrame(function () {
-      var scale = 1;
       lines.forEach(function (line) {
-        if (!line.clientWidth) return;
-        var width = Array.from(line.children).reduce(function (total, glyph) {
+        var classicCompact = false;
+        var available = Math.max(1, line.clientWidth - (classicCompact ? 18 : 4));
+        var glyphWidth = Array.prototype.slice.call(line.children).reduce(function (total, glyph) {
           return total + Math.max(glyph.offsetWidth, glyph.scrollWidth);
         }, 0);
-        scale = Math.min(scale, (line.clientWidth - 8) / Math.max(1, width + 8));
+        var safetyScale = state.mushafFont === "classic" ? 1.05 : 1.02;
+        var needed = Math.max(1, line.scrollWidth, (glyphWidth + 4) * safetyScale);
+        if (needed > available) {
+          line.style.setProperty("--mushaf-line-font-size", Math.max(minimumSize, Math.floor(baseSize * available / needed)) + "px");
+        }
       });
-      container.style.setProperty("--mushaf-uniform-size", Math.max(1, Math.floor(base * scale * 10) / 10) + "px");
+      if (document.body.classList.contains("mushaf-view")) {
+        var wrap = document.getElementById("ayah-wrap");
+        var dock = document.getElementById("mushaf-reading-dock");
+        var top = wrap.getBoundingClientRect().top;
+        var bottom = Math.min(viewportHeight, dock.getBoundingClientRect().top);
+        var scale = Math.min(1, Math.max(1, bottom - top - 16) / Math.max(990, container.scrollHeight), (wrap.clientWidth - 16) / 660);
+        container.style.zoom = String(scale * mushafPageZoom / 100);
+        wrap.scrollTop = 0;
+      }
       mushafFitFrame = null;
     });
   }
@@ -6613,13 +6670,6 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (!container || !data || !Array.isArray(data.verses)) return;
     var resolvedFont = fontInfo && fontInfo.name ? fontInfo.name : "Uthmanic Hafs";
     var resolvedVersion = fontInfo && fontInfo.loaded ? fontInfo.version : "readable";
-    var codeField = resolvedVersion === "v1" ? "code_v1" : "code_v2";
-    if (resolvedVersion !== "readable" && data.verses.some(function (verse) {
-      return (verse.words || []).some(function (word) { return !word[codeField]; });
-    })) {
-      resolvedVersion = "readable";
-      resolvedFont = "Uthmanic Hafs";
-    }
     container.textContent = "";
     mushafPageVerses = data.verses.slice();
     heartCurrentPageData = data;
@@ -6629,6 +6679,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     data.verses.forEach(function (verse) {
       var words = Array.isArray(verse.words) ? verse.words : [];
       words.forEach(function (word, index) {
+        if (word.page_number && Number(word.page_number) !== Number(data.page)) return;
         var lineNumber = Number(word.line_number) || 1;
         if (!lines.has(lineNumber)) lines.set(lineNumber, { words: [], headers: [] });
         var line = lines.get(lineNumber);
@@ -6871,6 +6922,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       showToast(t("correctionBlocked"));
       return false;
     }
+    clearAutoAdvance();
     var targetPage = Math.max(1, Math.min(604, mushafPageNumber + direction));
     if (targetPage === mushafPageNumber) return false;
     loadMushafPage(targetPage, true).then(function (loaded) {
@@ -6884,7 +6936,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function loadMushafForCurrentVerse() {
     if (!currentSurah || !currentVerse) return Promise.resolve(false);
     var requestId = ++mushafPageRequest;
-    return window.fetch("/api/mushaf/locate/" + currentSurah.id + "/" + currentVerse.ayah, { headers: { "X-Requested-With": "QuranCompanion" } }).then(function (response) {
+    return window.fetch("/api/mushaf/locate/" + currentSurah.id + "/" + currentVerse.ayah + "?mushaf=" + (state.mushafFont === "classic" ? 2 : 1), { headers: { "X-Requested-With": "QuranCompanion" } }).then(function (response) {
       if (!response.ok) throw new Error("mushaf-location-unavailable");
       return response.json();
     }).then(function (data) {
@@ -6918,21 +6970,25 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       showToast(t("searchNoResults"));
       return Promise.resolve(false);
     }
+    var requestId = ++quranSearchRequest;
+    cancelStructuredAdvance();
+    memorySeriesActive = false;
+    stopMemoryRecognition(true);
     if (audioPractice) stopVerseAudio(false);
     if (opts.navigate !== false) navigate("read");
     state.selectedSurah = id;
     state.selectedAyah = ayah;
     populateVerseSelectors();
     if (localVerse && opts.forceRemote !== true) {
+      setVerseLoading(false);
       renderSelectedVerse(true);
       if (document.body.classList.contains("mushaf-view")) return loadMushafForCurrentVerse().then(function () { return true; });
       return Promise.resolve(true);
     }
-    var requestId = ++quranSearchRequest;
     setVerseLoading(true);
     showToast(t("verseLoading"));
     var mushafId = state.mushafFont === "classic" ? 2 : 1;
-    return window.fetch("/api/mushaf/locate/" + id + "/" + ayah, { headers: { "X-Requested-With": "QuranCompanion" } }).then(function (response) {
+    return window.fetch("/api/mushaf/locate/" + id + "/" + ayah + "?mushaf=" + mushafId, { headers: { "X-Requested-With": "QuranCompanion" } }).then(function (response) {
       if (!response.ok) throw new Error("quran-location-unavailable");
       return response.json();
     }).then(function (location) {
@@ -6962,6 +7018,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
         }
         var playNext = opts.audioAdvanceRequest === audioSourceRequest;
         activateMushafVerse(verseData, true);
+        renderMemoryVerse();
         state.selectedSurah = id;
         state.selectedAyah = ayah;
         populateVerseSelectors();
@@ -7320,7 +7377,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       option.textContent = item.id + ". " + (names[state.language] || names.en);
       surahSelect.appendChild(option);
     });
-    var selectedChapter = usingCatalog ? mushafChapterNames[state.selectedSurah] : null;
+    var selectedChapter = mushafChapterNames[state.selectedSurah] || null;
     var selectedLocalSurah = getLocalSurahExact(state.selectedSurah);
     if (!selectedChapter && !selectedLocalSurah) {
       state.selectedSurah = usingCatalog ? chapters[0].id : corpus[0].id;
@@ -7334,6 +7391,10 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       for (var ayahNumber = 1; ayahNumber <= Number(selectedChapter.verses_count); ayahNumber += 1) ayahNumbers.push(ayahNumber);
     } else if (selectedLocalSurah) {
       ayahNumbers = selectedLocalSurah.verses.map(function (verse) { return verse.ayah; });
+    }
+    if (currentSurah && currentVerse && Number(currentSurah.id) === Number(state.selectedSurah) && Number(currentVerse.ayah) === Number(state.selectedAyah) && ayahNumbers.indexOf(Number(state.selectedAyah)) < 0) {
+      ayahNumbers.push(Number(state.selectedAyah));
+      ayahNumbers.sort(function (a, b) { return a - b; });
     }
     if (ayahNumbers.indexOf(Number(state.selectedAyah)) < 0) state.selectedAyah = ayahNumbers[0] || 1;
     ayahNumbers.forEach(function (ayahNumber) {
@@ -7480,7 +7541,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function alignExpectedWords(expectedWords, transcript, isFinal) {
-    return window.AllimRecitation.align(expectedWords, transcript, isFinal);
+    return window.AllimRecitation.align(expectedWords, transcript, isFinal, {partial: true, stops: isFinal ? [window.AllimRecitation.tokens(transcript).length - 1] : []});
   }
 
   function alignRecognizedWords(transcript, isFinal) {
@@ -7770,7 +7831,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       if (data.verse_key !== verseKey) throw new Error("stale-asr-verse");
       var result = window.AllimRecitation.parseResponse(data);
       if (result.issue) {
-        continuousFailureCount += 1;
+        if (result.issue !== "no-speech") continuousFailureCount += 1;
         if (result.issue === "no-speech") handleRecognitionError("no-speech");
         else {
           setRecognitionStatus("recognitionUncertain", "recognitionUncertainSub", false);
@@ -7937,6 +7998,11 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
 
   function recordRecognitionSession(matchedWords) {
     if (recognitionSessionCounted || !lastTranscript.trim() || !lastAlignmentFinal || !lastAlignment || !lastAlignment.complete) return;
+    if (linked33Session && linked33Session.openingGroup) {
+      var pending = linked33Session.pending || (linked33Session.pending = {});
+      pending[getVerseKey(currentSurah, currentVerse)] = {attempt_id: readAttemptId || (readAttemptId = crypto.randomUUID()), verse_key: getVerseKey(currentSurah, currentVerse), mode: "read", matched_words: matchedWords, hints_used: 0, full_verse: true, alignment_complete: true, evidence: "client_alignment", ruleset: "current-300-v1", hifz_method: state.memorizationMethod};
+      return;
+    }
     recognitionSessionCounted = true;
     saveLearningEvent("verse_completed", { attempt_id: readAttemptId || (readAttemptId = crypto.randomUUID()),
       verse_key: getVerseKey(currentSurah, currentVerse), mode: "read", matched_words: matchedWords,
@@ -7982,7 +8048,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     updateAiMentor("reading");
   }
 
-  function completeRecognizedVerse(alignment) {
+  function completeRecognizedVerse(alignment, continuation) {
     if (!alignment || !alignment.complete || !lastAlignmentFinal) return;
     continuousFailureCount = 0;
     var shouldCredit = !recognitionSessionCounted;
@@ -8002,8 +8068,9 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     if (shouldCredit) {
       if (window.ALLIMJourney) window.ALLIMJourney.completed("read", getVerseKey(currentSurah, currentVerse));
       recordRecognitionSession(alignment.matched);
+      if (linked33Session && linked33Session.openingGroup) recognitionSessionCounted = true;
       var verseKey = getVerseKey(currentSurah, currentVerse);
-      if (isStructured33Method(state.memorizationMethod) && linked33Session) linked33Result = registerLinked33SegmentVerse(verseKey);
+      if (linked33Session && (isStructured33Method(state.memorizationMethod) || linked33Session.openingGroup)) linked33Result = registerLinked33SegmentVerse(verseKey);
       else if (state.memorizationMethod === "foundation300") {
         heartResult = recordHeartRecitation(verseKey);
         recordHifzLearningSignal("clean", "verse", 0);
@@ -8049,7 +8116,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       clearAutoAdvance();
       return;
     }
-    scheduleAutoAdvance("read");
+    scheduleAutoAdvance("read", continuation);
   }
 
   function applyTranscript(transcript, isFinal) {
@@ -8065,8 +8132,24 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       {partial: true, stops: stops});
     if (!isFinal && readingCommittedAlignment) return readingCommittedAlignment;
     if (isFinal && lastTranscript) { readingSegments = segments; readingCommittedAlignment = alignment; }
+    var continuation = null;
+    if (isFinal && !alignment.complete && state.recitationFlow === "continuous" && continuousSessionActive) {
+      var next = getNextVerseLocation();
+      var nextVerse = next && next.mushafVerse;
+      if (nextVerse) {
+        var nextWords = (nextVerse.words || []).filter(function (word) { return word.char_type_name !== "end"; }).map(function (word) { return word.text_qpc_hafs || ""; }).filter(Boolean);
+        var split = window.AllimRecitation.splitContinuation(currentWords, segments.join(" "), nextWords);
+        if (split) {
+          alignment = split.alignment;
+          lastTranscript = split.transcript;
+          readingSegments = [split.transcript];
+          readingCommittedAlignment = alignment;
+          continuation = {verseKey: nextVerse.verse_key, transcript: split.remainder};
+        }
+      }
+    }
     renderRecognitionAlignment(alignment, isFinal);
-    if (isFinal && alignment.complete) completeRecognizedVerse(alignment);
+    if (isFinal && alignment.complete) completeRecognizedVerse(alignment, continuation);
     else if (isFinal && !alignment.complete && !activateCorrectionLock(alignment)) {
       if (alignment.outcome === "mismatch") playErrorCue();
       else setRecognitionStatus("readingPaused", "readingPausedSub", false);
@@ -8187,7 +8270,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     };
     instance.onerror = function (event) {
       if (recognition !== instance) return;
-      if (event.error !== "aborted") continuousFailureCount += 1;
+      if (event.error !== "aborted" && event.error !== "no-speech") continuousFailureCount += 1;
       handleRecognitionError(event.error);
     };
     instance.onend = function () {
@@ -8218,7 +8301,6 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       }
       if (!(state.strictCorrection && correctionLocked)) setRecognitionStatus("readingPaused", "readingPausedSub", false);
       if (state.recitationFlow === "continuous" && continuousSessionActive && !userStoppedRecognition) {
-        if (!lastTranscript) continuousFailureCount += 1;
         queueContinuousRestart(lastTranscript ? 420 : 620);
       }
     };
@@ -8543,12 +8625,14 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     memoryHadError = false;
     memoryLastTranscript = "";
     memoryFullVerseMatched = false;
+    memoryConfirmedStatuses = [];
+    memoryRequiresFullVerse = false;
     document.getElementById("reveal-word").disabled = false;
     document.getElementById("memory-transcript-text").textContent = t("memoryWaiting");
     updateMemoryProgress();
   }
 
-  function queueMemoryRestart(delay, afterError) {
+  function queueMemoryRestart(delay, afterError, preserveAttempt) {
     clearMemoryRestartTimer();
     if (!memorySeriesActive) {
       setMemoryButton(false);
@@ -8561,7 +8645,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     memoryRestartTimer = window.setTimeout(function () {
       memoryRestartTimer = null;
       if (!memorySeriesActive) return;
-      prepareMemoryAttempt();
+      if (!preserveAttempt) prepareMemoryAttempt();
       startMemoryRecognition(true);
     }, Math.max(450, Number(delay) || 750));
     setMemoryButton(false);
@@ -8640,20 +8724,28 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   function applyMemoryTranscript(transcript, isFinal) {
     var cleanTranscript = String(transcript || "").trim();
     if (!cleanTranscript) return null;
+    var expected = splitVerseWords(currentVerse.text);
+    var previous = memoryConfirmedStatuses.length === expected.length ? memoryConfirmedStatuses : expected.map(function () { return "pending"; });
+    var fullAlignment = window.AllimRecitation.alignCorrection(expected, cleanTranscript, previous, Boolean(isFinal), memoryRequiresFullVerse, true);
     if (window.ALLIMJourney && !memorySessionCounted) {
-      var journeyAlignment = alignExpectedWords(splitVerseWords(currentVerse.text), cleanTranscript, Boolean(isFinal));
-      window.ALLIMJourney.observe("memory", getVerseKey(currentSurah, currentVerse), journeyAlignment, isFinal);
+      window.ALLIMJourney.observe("memory", getVerseKey(currentSurah, currentVerse), fullAlignment, isFinal);
     }
     memoryLastTranscript = cleanTranscript;
     document.getElementById("memory-transcript-text").textContent = cleanTranscript;
-    var fullAlignment = alignExpectedWords(splitVerseWords(currentVerse.text), cleanTranscript, Boolean(isFinal));
-    if (isFinal && fullAlignment.complete) memoryFullVerseMatched = true;
+    if (isFinal) {
+      if (fullAlignment.complete) { memoryFullVerseMatched = true; memoryRequiresFullVerse = false; }
+      if (fullAlignment.extras > 0) memoryRequiresFullVerse = true;
+      else memoryConfirmedStatuses = fullAlignment.statuses.slice();
+    }
     var remainingWords = getRemainingMemoryWords();
     if (!remainingWords.length) return null;
     var alignment = alignExpectedWords(remainingWords, cleanTranscript, Boolean(isFinal));
+    var offset = memoryPromptCount + memoryRevealedCount;
+    if (!fullAlignment.extras && fullAlignment.statuses[offset] === "recognized") {
+      alignment = window.AllimRecitation.summarize(fullAlignment.statuses.slice(offset), 0, isFinal);
+    }
     memoryLastOutcome = alignment.outcome;
     if (!isFinal) return alignment;
-    if (fullAlignment.complete) alignment = window.AllimRecitation.summarize(remainingWords.map(function () { return "recognized"; }), 0, true);
     if (alignment.extras > 0) {
       setMemoryStatus("memoryWordRetry", "recognitionExtrasSub", true);
       return alignment;
@@ -8712,11 +8804,11 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       setMemoryStatus("memoryUnsupported", "memoryUnsupportedSub", true);
       setMemorySeriesPhase("error", "memorySeriesTimeout", "memorySeriesTimeoutSub");
     } else if (errorCode === "no-speech") {
-      setMemoryStatus("memoryNoSpeech", "memoryNoSpeechSub", true);
-      queueMemoryRestart(850, true);
+      setMemoryStatus("memoryPaused", "memoryPausedSub", false);
+      queueMemoryRestart(850, "uncertain", true);
     } else {
       setMemoryStatus("memoryUnsupported", "memoryUnsupportedSub", true);
-      queueMemoryRestart(1050, true);
+      queueMemoryRestart(1050, true, true);
     }
     setMemoryButton(false);
   }
@@ -8764,7 +8856,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
       if (!memorySessionCounted && memorySeriesActive) {
         var needsCorrection = Boolean(document.querySelector(".memory-stage.has-memory-error")) || !memoryLastTranscript;
         if (!needsCorrection) setMemoryStatus("memoryPaused", "memoryPausedSub", false);
-        queueMemoryRestart(needsCorrection ? 900 : 520, memoryLastOutcome === "uncertain" ? "uncertain" : needsCorrection);
+        queueMemoryRestart(needsCorrection ? 900 : 520, memoryLastOutcome === "uncertain" ? "uncertain" : needsCorrection, true);
       }
     };
     return instance;
@@ -8798,14 +8890,14 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
         if (result.issue === "no-speech") handleMemoryRecognitionError("no-speech");
         else {
           setMemoryStatus("recognitionUncertain", "recognitionUncertainSub", false);
-          queueMemoryRestart(900, "uncertain");
+          queueMemoryRestart(900, "uncertain", true);
         }
         return;
       }
       applyMemoryTranscript(result.transcript, true);
       if (!memorySessionCounted && memorySeriesActive) {
         var needsCorrection = Boolean(document.querySelector(".memory-stage.has-memory-error"));
-        queueMemoryRestart(needsCorrection ? 900 : 620, memoryLastOutcome === "uncertain" ? "uncertain" : needsCorrection);
+        queueMemoryRestart(needsCorrection ? 900 : 620, memoryLastOutcome === "uncertain" ? "uncertain" : needsCorrection, true);
       }
     }).catch(function (error) {
       if (!memorySeriesActive || submitToken !== memoryRequestId) return;
@@ -8823,6 +8915,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
   }
 
   function startMemoryQuranRecognition(consentChecked) {
+    document.getElementById("hifz-practice-panel").open = true;
     if (contribution && !consentChecked) {
       var pendingId = memoryRequestId;
       contribution.beforeStart(function () { if (pendingId === memoryRequestId && memorySeriesActive) startMemoryQuranRecognition(true); });
@@ -8923,19 +9016,32 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     showToast(t("memoryStoppedSaved"));
   }
 
-  function startMemoryRecognition(internalRestart) {
+  function startMemoryRecognition(internalRestart, openingChecked) {
+    if (!internalRestart && !openingChecked && (state.memorizationMethod === "foundation300" || state.memorizationMethod === "linked33") && !(window.ALLIMJourney && window.ALLIMJourney.isChecking())) {
+      var openingKey = getVerseKey(currentSurah, currentVerse);
+      var openingMethod = state.memorizationMethod;
+      var generation = memoryFlowGeneration;
+      loadHeartPageContextForCurrentVerse().then(function (data) {
+        if (generation !== memoryFlowGeneration || openingMethod !== state.memorizationMethod || openingKey !== getVerseKey(currentSurah, currentVerse)) return;
+        var keys = getOpeningStudyGroup(data, openingKey);
+        if (keys) startOpeningStudyGroup(data, keys);
+        else if (/^(الم|المص|كهيعص|طه|طسم|يس|حم|عسق)$/.test(String(currentVerse.text || "").replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\s]/g, ""))) showToast(t("heartPageLoadError"));
+        else startMemoryRecognition(false, true);
+      }).catch(function () { showToast(t("heartPageLoadError")); });
+      return;
+    }
+    document.getElementById("hifz-practice-panel").open = true;
     if (window.ALLIMJourney && window.ALLIMJourney.isCheckComplete()) return;
     if (memoryStartPending || memoryIsListening || memorySubmitPending) return;
     if (!checkMemoryRecognitionSupport()) return;
     if (!internalRestart) {
       memorySeriesActive = true;
-      if (memorySessionCounted || memoryRevealedCount > 0) prepareMemoryAttempt();
+      if (memorySessionCounted) prepareMemoryAttempt();
     }
     if (!memorySeriesActive) return;
     primeCueAudio();
     memoryHadError = false;
     memoryLastTranscript = "";
-    memoryFullVerseMatched = false;
     document.getElementById("memory-transcript-text").textContent = t("memoryWaiting");
     getMemoryWordElements().forEach(function (word) { word.classList.remove("is-incorrect"); });
     if (getEffectiveRecognitionMode() === "quran") {
@@ -9345,11 +9451,13 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     });
     var mushafPage = document.getElementById("mushaf-page");
     mushafPage.addEventListener("touchstart", function (event) {
-      if (event.touches.length !== 1 || (window.visualViewport && window.visualViewport.scale > 1.01) || getMushafReadingPreferences().layout === "adaptive") { mushafSwipeStart = null; return; }
-      mushafSwipeStart = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+      if (getMushafReadingPreferences().layout !== "page" || mushafPageZoom > 100 || event.touches.length !== 1 || (window.visualViewport && window.visualViewport.scale > 1.01)) { mushafSwipeStart = null; return; }
+      if (event.target.closest("button, input, select, textarea, a") || document.querySelector("dialog[open]")) { mushafSwipeStart = null; return; }
+      mushafSwipeStart = { x: event.touches[0].clientX, y: event.touches[0].clientY, time: Date.now() };
     }, { passive: true });
     mushafPage.addEventListener("touchend", function (event) {
       if (!mushafSwipeStart || !event.changedTouches.length || event.touches.length || (window.visualViewport && window.visualViewport.scale > 1.01)) { mushafSwipeStart = null; return; }
+      if (Date.now() - mushafSwipeStart.time > 900 || (window.getSelection && !window.getSelection().isCollapsed)) { mushafSwipeStart = null; return; }
       var deltaX = event.changedTouches[0].clientX - mushafSwipeStart.x;
       var deltaY = event.changedTouches[0].clientY - mushafSwipeStart.y;
       mushafSwipeStart = null;
@@ -9491,7 +9599,7 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
     document.addEventListener("keydown", function (event) {
       var target = event.target;
       var typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT" || target.isContentEditable);
-      if (event.defaultPrevented || document.querySelector("dialog[open]")) return;
+      if (document.getElementById("quiet-recall-dialog").open) return;
       if (event.key === "/" && !typing && document.getElementById("view-read").classList.contains("is-active")) {
         event.preventDefault();
         openQuranSearch();
@@ -9563,11 +9671,30 @@ Object.assign(translations.ar, {"mushafNavigation": "التنقل في المص�
         stopVerseAudio(false);
       },
       stamp: function () { return window.AllimStorage.stamp(); },
-      saveReview: async function (key, add, stamp) {
-        await window.AllimStorage.mutateMany([add
-          ? { kind: "review_item", id: key, action: "set", value: { position: -Date.now() } }
-          : { kind: "review_item", id: key, action: "delete" }], stamp);
+      saveReview: async function (key, add, stamp, clean, remove) {
+        var intents = [];
+        if (add) intents.push({ kind: "review_item", id: key, action: "set", value: { position: -Date.now() } });
+        if (remove) intents.push({ kind: "review_item", id: key, action: "delete" });
+        if (clean) intents.push({kind: "heart_review", id: crypto.randomUUID(), value: {verse_key: key, recorded_at: new Date().toISOString(), local_date: window.AllimHeartReview.localDay(), evidence: "self_reported"}});
+        await window.AllimStorage.mutateMany(intents, stamp);
         await personalBridge.refresh();
+      }
+    });
+    window.AllimDailyPractice.mount({
+      state: function () { return state; },
+      catalogue: function () { return window.AllimAccountUI.catalogue; },
+      reference: function (key) { var item = getVerseByKey(key); return item ? getVerseLabel({id:item.surahId,names:item.names}, {ayah:item.ayah}) : key; },
+      open: async function (value, page) {
+        cancelStructuredAdvance(); stopMemoryRecognition(true); stopRecognitionImmediately(); stopVerseAudio(false);
+        if (page) {
+          navigate("read"); selectReaderMode("mushaf"); setStudioMode(false); setMushafMode(true);
+          await loadMushafPage(value, true);
+        } else {
+          var parts = value.split(":");
+          if (!await selectVerseByReference(Number(parts[0]), Number(parts[1]), {navigate:false})) throw Error("verse_unavailable");
+          navigate("memorize");
+          if (quietRecall) quietRecall.openCurrent(document.getElementById("heart-start-practice"));
+        }
       }
     });
     if (contribution) contribution.mount();

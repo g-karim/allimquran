@@ -1,0 +1,4 @@
+.allim-program-cover{overflow:hidden;border-radius:18px!important;padding:0 0 18px!important;transition:border-color .18s ease,box-shadow .18s ease}
+.allim-program-cover::before{content:"";display:block;width:100%;aspect-ratio:2/1;background:var(--allim-program-art) center/cover no-repeat;margin-bottom:18px}
+.allim-program-cover>div{margin-inline:18px}.allim-program-cover:hover{box-shadow:0 10px 28px #12372b18}.allim-program-cover:focus-visible{outline:3px solid #9d773d;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.allim-program-cover{transition:none}}

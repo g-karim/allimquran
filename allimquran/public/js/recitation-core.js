@@ -12,6 +12,7 @@
   function letters(word, expandSmallAlif) {
     return raw(word).normalize("NFKC")
       .replace(/\u0640/g, "")
+      .replace(/ى\u0670/g, expandSmallAlif ? "ا" : "ى")
       .replace(/\u0670/g, expandSmallAlif ? "ا" : "")
       .replace(/[\u0610-\u061A\u064B-\u065F\u06D6-\u06ED]/g, "")
       .replace(/ٱ/g, "ا")
@@ -78,6 +79,12 @@
   function align(expectedWords, transcript, isFinal, options) {
     options = options || {};
     var expected = expectedWords.map(raw), heard = tokens(transcript);
+    // Accept fully spelled letter names only for a complete isolated opening.
+    var opening = expected.length === 1 ? letters(expected[0]) : "";
+    var openings = ["الم", "المص", "كهيعص", "طه", "طسم", "يس", "حم", "عسق"];
+    var names = {ا:["الف","ألف"],ل:["لام"],م:["ميم"],ص:["صاد"],ك:["كاف"],ه:["ها","هاء"],ي:["يا","ياء"],ع:["عين"],ط:["طا","طاء"],س:["سين"],ح:["حا","حاء"],ق:["قاف"]};
+    if (openings.indexOf(opening) >= 0 && heard.length === opening.length && Array.from(opening).every(function (letter, index) { return names[letter].indexOf(letters(heard[index])) >= 0; })) heard = [expected[0]];
+
     // Bound untrusted recognizer output before allocating a quadratic table.
     if (!heard.length || expected.length > 256 || heard.length > 512) {
       return summarize(expected.map(function () { return "pending"; }), 0, false);
@@ -178,6 +185,20 @@
       isFinal, tail.repeats, tail.corrections);
   }
 
+  // Split only a finalized, fully matched ayah followed by the next ayah's
+  // exact first word. Unrelated trailing speech remains an ordinary mismatch.
+  function splitContinuation(expected, transcript, nextWords) {
+    var heard = tokens(transcript);
+    if (!nextWords.length || heard.length > 512) return null;
+    for (var end = 1; end < heard.length; end += 1) {
+      if (compare(nextWords[0], heard[end]) !== "recognized") continue;
+      var prefix = heard.slice(0, end).join(" ");
+      var result = align(expected, prefix, true, {stops: [end - 1]});
+      if (result.complete) return {transcript: prefix, alignment: result, remainder: heard.slice(end).join(" ")};
+    }
+    return null;
+  }
+
   function parseResponse(data) {
     if (!data || typeof data.transcript !== "string") throw new Error("invalid-asr-response");
     if (data.status === "no_speech") return { transcript: "", issue: "no-speech" };
@@ -191,6 +212,6 @@
     return { transcript: data.transcript.trim(), issue: null };
   }
 
-  return { align: align, alignCorrection: alignCorrection, compare: compare, summarize: summarize, tokens: tokens,
+  return { splitContinuation: splitContinuation, align: align, alignCorrection: alignCorrection, compare: compare, summarize: summarize, tokens: tokens,
     chooseTranscript: chooseTranscript, parseResponse: parseResponse };
 }));

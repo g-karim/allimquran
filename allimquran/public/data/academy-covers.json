@@ -1,0 +1,368 @@
+{
+  "version": 1,
+  "covers": [
+    {
+      "id": "aq01",
+      "title": "Диагностика и личный маршрут",
+      "family": "children",
+      "file": "aq01.jpg",
+      "course": "03uqg55u39"
+    },
+    {
+      "id": "aq02",
+      "title": "Муаллим авваль — вводный маршрут",
+      "family": "children",
+      "file": "aq02.jpg",
+      "course": "27268tbd0l"
+    },
+    {
+      "id": "aq03",
+      "title": "Муаллим сани — чтение Корана с нуля",
+      "family": "children",
+      "file": "aq03.jpg",
+      "course": "30b1dtih6c"
+    },
+    {
+      "id": "aq04",
+      "title": "Каида ан нурания — альтернативная азбука",
+      "family": "children",
+      "file": "aq04.jpg",
+      "course": "35a597ed3k"
+    },
+    {
+      "id": "aq05",
+      "title": "От слова к самостоятельному чтению мусхафа",
+      "family": "children",
+      "file": "aq05.jpg",
+      "course": "36ks5lvmor"
+    },
+    {
+      "id": "aq06",
+      "title": "Шифахия — арабский язык первая ступень",
+      "family": "tajwid",
+      "file": "aq06.jpg",
+      "course": "37p2gmvlr1"
+    },
+    {
+      "id": "aq07",
+      "title": "Шифахия — арабский язык вторая ступень",
+      "family": "tajwid",
+      "file": "aq07.jpg",
+      "course": "39cgfq7oui"
+    },
+    {
+      "id": "aq08",
+      "title": "Арабийя байна ядайк — общий арабский",
+      "family": "tajwid",
+      "file": "aq08.jpg",
+      "course": "3c3hajmpjc"
+    },
+    {
+      "id": "aq09",
+      "title": "Таджвид первая ступень — основные правила",
+      "family": "tajwid",
+      "file": "aq09.jpg",
+      "course": "3dkul8qhcj"
+    },
+    {
+      "id": "aq10",
+      "title": "Махраджи и сифаты — постановка звуков",
+      "family": "tajwid",
+      "file": "aq10.jpg",
+      "course": "3f4jp7e08l"
+    },
+    {
+      "id": "aq11",
+      "title": "Таджвид вторая ступень — точность чтения",
+      "family": "tajwid",
+      "file": "aq11.jpg",
+      "course": "3gnjfgo3rm"
+    },
+    {
+      "id": "aq12",
+      "title": "Тухфат аль атфаль — понимание и применение",
+      "family": "tajwid",
+      "file": "aq12.jpg",
+      "course": "3i4d9d8q41"
+    },
+    {
+      "id": "aq13",
+      "title": "Джазарийя — углублённый таджвид",
+      "family": "tajwid",
+      "file": "aq13.jpg",
+      "course": "3jgavfv200"
+    },
+    {
+      "id": "aq14",
+      "title": "Вакф и ибтида — осмысленная остановка",
+      "family": "tajwid",
+      "file": "aq14.jpg",
+      "course": "3md9kvhioj"
+    },
+    {
+      "id": "aq15",
+      "title": "Первый хатм с преподавателем",
+      "family": "tajwid",
+      "file": "aq15.jpg",
+      "course": "3nnmeilncp"
+    },
+    {
+      "id": "aq16",
+      "title": "Хифз — джуз Амма",
+      "family": "hifz",
+      "file": "aq16.jpg",
+      "course": "3p184acisu"
+    },
+    {
+      "id": "aq17",
+      "title": "Хифз — джуз Табарак",
+      "family": "hifz",
+      "file": "aq17.jpg",
+      "course": "3qh83kekov"
+    },
+    {
+      "id": "aq18",
+      "title": "Любимые суры — чтение смысл и запоминание",
+      "family": "hifz",
+      "file": "aq18.jpg",
+      "course": "3s0ptvgvhd"
+    },
+    {
+      "id": "aq19",
+      "title": "Хифз — первые пять джузов",
+      "family": "hifz",
+      "file": "aq19.jpg",
+      "course": "3tfdqqdiv6"
+    },
+    {
+      "id": "aq20",
+      "title": "Хифз — десять джузов",
+      "family": "hifz",
+      "file": "aq20.jpg",
+      "course": "402llaca5a"
+    },
+    {
+      "id": "aq21",
+      "title": "Полный хифз — путь к тридцати джузам",
+      "family": "hifz",
+      "file": "aq21.jpg",
+      "course": "41l99f7u82"
+    },
+    {
+      "id": "aq22",
+      "title": "Мураджаа — восстановление и сохранение хифза",
+      "family": "hifz",
+      "file": "aq22.jpg",
+      "course": "42vf9e4rdh"
+    },
+    {
+      "id": "aq23",
+      "title": "Муташабихат — похожие аяты без путаницы",
+      "family": "hifz",
+      "file": "aq23.jpg",
+      "course": "44b5c378vu"
+    },
+    {
+      "id": "aq24",
+      "title": "Подготовка к иджазе по Хафсу",
+      "family": "hifz",
+      "file": "aq24.jpg",
+      "course": "45kt1l8uin"
+    },
+    {
+      "id": "aq25",
+      "title": "Кирааты — введение и карта дальнейшего обучения",
+      "family": "tajwid",
+      "file": "aq25.jpg",
+      "course": "46u335nsbe"
+    },
+    {
+      "id": "aq26",
+      "title": "Кирааты — индивидуальная специализация",
+      "family": "tajwid",
+      "file": "aq26.jpg",
+      "course": "4a8kkfe4ov"
+    },
+    {
+      "id": "aq27",
+      "title": "Усуль тафсир — по книге шейха Ибн Усаймина",
+      "family": "tafsir",
+      "file": "aq27.jpg",
+      "course": "4brcbtr8bd"
+    },
+    {
+      "id": "aq28",
+      "title": "Улюм аль Коран — основы коранических наук",
+      "family": "tafsir",
+      "file": "aq28.jpg",
+      "course": "4dgvr6cvl5"
+    },
+    {
+      "id": "aq29",
+      "title": "Аль Фатиха и короткие суры — понимание",
+      "family": "tafsir",
+      "file": "aq29.jpg",
+      "course": "4etk86c9bp"
+    },
+    {
+      "id": "aq30",
+      "title": "Тафсир джуза Амма",
+      "family": "tafsir",
+      "file": "aq30.jpg",
+      "course": "4g88s1ti7u"
+    },
+    {
+      "id": "aq31",
+      "title": "Коран и сердце — тематическое изучение",
+      "family": "tafsir",
+      "file": "aq31.jpg",
+      "course": "4hhr52astq"
+    },
+    {
+      "id": "aq32",
+      "title": "Школы тафсира — чтение и сравнение",
+      "family": "tafsir",
+      "file": "aq32.jpg",
+      "course": "4jvqsu6lel"
+    },
+    {
+      "id": "aq33",
+      "title": "Коранический арабский — лексика в контексте",
+      "family": "tafsir",
+      "file": "aq33.jpg",
+      "course": "4l8i52t318"
+    },
+    {
+      "id": "aq34",
+      "title": "Нахв и сарф для изучения Корана",
+      "family": "tafsir",
+      "file": "aq34.jpg",
+      "course": "4mjk6p4bdh"
+    },
+    {
+      "id": "aq35",
+      "title": "Дети 5–7 лет — первые шаги с Кораном",
+      "family": "children",
+      "file": "aq35.jpg",
+      "course": "5-7"
+    },
+    {
+      "id": "aq36",
+      "title": "Дети 8–12 лет — чтение хифз и смысл",
+      "family": "children",
+      "file": "aq36.jpg",
+      "course": "8-12"
+    },
+    {
+      "id": "aq37",
+      "title": "Подростки — Коран и осмысленная практика",
+      "family": "children",
+      "file": "aq37.jpg",
+      "course": "4qgvsmabpk"
+    },
+    {
+      "id": "aq38",
+      "title": "Коран для начинающих взрослых и новых мусульман",
+      "family": "children",
+      "file": "aq38.jpg",
+      "course": "4tkd3j4kmm"
+    },
+    {
+      "id": "aq39",
+      "title": "Преподаватель Корана — методика и практика",
+      "family": "tajwid",
+      "file": "aq39.jpg",
+      "course": "4uruflcv36"
+    },
+    {
+      "id": "aq40",
+      "title": "Куратор халакы — семья и учебное сообщество",
+      "family": "tajwid",
+      "file": "aq40.jpg",
+      "course": "50224i4p8d"
+    },
+    {
+      "id": "aq41",
+      "title": "Рамадан — чтение понимание и повторение",
+      "family": "hifz",
+      "file": "aq41.jpg",
+      "course": "51candcmld"
+    },
+    {
+      "id": "aq42",
+      "title": "Тафсир всего Корана — последовательный маршрут",
+      "family": "tafsir",
+      "file": "aq42.jpg",
+      "course": "52npheeuct"
+    },
+    {
+      "id": "path1",
+      "title": "От первых букв к чтению Корана",
+      "family": "children",
+      "file": "path1.jpg"
+    },
+    {
+      "id": "path2",
+      "title": "Арабский язык через Шифахию",
+      "family": "tajwid",
+      "file": "path2.jpg"
+    },
+    {
+      "id": "path3",
+      "title": "Уверенный чтец — полный таджвид",
+      "family": "tajwid",
+      "file": "path3.jpg"
+    },
+    {
+      "id": "path4",
+      "title": "Хафиз — полный путь запоминания",
+      "family": "hifz",
+      "file": "path4.jpg"
+    },
+    {
+      "id": "path5",
+      "title": "Понимание Корана и основы тафсира",
+      "family": "tafsir",
+      "file": "path5.jpg"
+    },
+    {
+      "id": "path6",
+      "title": "Подготовка преподавателя и наставника",
+      "family": "tajwid",
+      "file": "path6.jpg"
+    },
+    {
+      "id": "path7",
+      "title": "Академическая программа коранических наук",
+      "family": "tafsir",
+      "file": "path7.jpg"
+    },
+    {
+      "id": "path8",
+      "title": "Коран для всей семьи",
+      "family": "children",
+      "file": "path8.jpg"
+    },
+    {
+      "id": "foundation1",
+      "title": "Буквы Корана: первый шаг",
+      "family": "children",
+      "file": "foundation1.jpg",
+      "match_title": true
+    },
+    {
+      "id": "foundation2",
+      "title": "От огласовки к слову",
+      "family": "children",
+      "file": "foundation2.jpg",
+      "match_title": true
+    },
+    {
+      "id": "foundation3",
+      "title": "От огласовки к слову · программа 2026",
+      "family": "children",
+      "file": "foundation3.jpg",
+      "match_title": true
+    }
+  ]
+}

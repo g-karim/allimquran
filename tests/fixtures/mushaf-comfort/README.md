@@ -6,3 +6,9 @@ Received in GRAISS issue #4 package, commit `976fa92384b9e70e12b1423c2be98258239
 <https://github.com/g-karim/allimquran/issues/4>.
 Package ZIP SHA-256: `1f89d63062b965f42b1e85b00eb7c7a1e620fa802b45ea959e2487dbbae2c26f`.
 Retain the existing Quran Foundation attribution and content licensing requirements.
+
+Page 595 was fetched on 2026-11-22 from the same public endpoint with
+`words=true&word_fields=code_v1,text_qpc_hafs,v1_page,v2_page,line_v1,line_v2&per_page=all&mushaf=2`.
+Its display page/line fields are normalized from explicit V1 metadata, matching
+the classic edition. It covers Ash-Shams and the beginning of Al-Layl and guards
+against mixed edition line ordering. It is test data only.

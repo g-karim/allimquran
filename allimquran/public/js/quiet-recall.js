@@ -3,14 +3,15 @@
 
   const messages = {
     en: {
+      recallStep: "Recite from memory", checkStep: "Reveal and compare", rateStep: "Mark your result",
       open: "Practice from memory", openQueue: "Practice queued ayahs", close: "Close",
-      intro: "Recall each ayah, reveal the text and assess yourself. No microphone needed.",
+      intro: "Recite aloud or silently. No typing or microphone is needed. This is a self-check.",
       length: "Number of ayahs", current: "Starting at {verse}", queue: "Ayahs from your review queue",
       empty: "Your review queue is empty. Add an ayah from the reader or during a practice.",
       start: "Start practice", prompt: "Try to recall the whole ayah, then reveal it to check.",
       hint: "First word", reveal: "Reveal ayah", retry: "Try loading again",
       remembered: "I remembered it", remove: "I remembered it · remove from queue",
-      assisted: "Continue with hint recorded", again: "Add to review", keep: "Keep for review",
+      assisted: "Recalled with a hint", again: "Add to review", keep: "Keep for review",
       skip: "Skip", summary: "Practice summary", done: "Done", cleanTotal: "Recalled without a hint",
       assistedTotal: "Recalled with a hint", againTotal: "Left for review", skippedTotal: "Skipped",
       loading: "Loading the ayah…", loadError: "The ayah could not be loaded. Try again or skip it.",
@@ -18,14 +19,15 @@
       step: "{index} of {total}", noVerse: "Choose an ayah in the reader first."
     },
     ar: {
+      recallStep: "سمّع من حفظك", checkStep: "أظهر النص وقارن", rateStep: "اختر نتيجة المراجعة",
       open: "تدرّب على التسميع", openQueue: "راجع الآيات في قائمتك", close: "إغلاق",
-      intro: "سمّع الآية من حفظك، ثم أظهر نصها وقيّم أداءك بنفسك. لا حاجة إلى الميكروفون.",
+      intro: "سمّع بصوتك أو راجع في نفسك. لا تحتاج إلى الكتابة أو الميكروفون. التقييم ذاتي.",
       length: "عدد الآيات", current: "البداية من {verse}", queue: "آيات من قائمة المراجعة",
       empty: "قائمة المراجعة فارغة. يمكنك إضافة آية من المصحف أو أثناء التدريب.",
       start: "ابدأ التدريب", prompt: "حاول تسميع الآية كاملة، ثم أظهر نصها لتراجعه.",
       hint: "الكلمة الأولى", reveal: "أظهر الآية", retry: "أعد تحميل الآية",
       remembered: "تذكّرتها", remove: "تذكّرتها · أزلها من القائمة",
-      assisted: "تابع مع تسجيل التلميح", again: "أضفها للمراجعة", keep: "أبقها للمراجعة",
+      assisted: "تذكّرتها مع تلميح", again: "أضفها للمراجعة", keep: "أبقها للمراجعة",
       skip: "تجاوز", summary: "ملخّص التدريب", done: "تم", cleanTotal: "تسميع دون تلميح",
       assistedTotal: "تسميع مع تلميح", againTotal: "آيات للمراجعة", skippedTotal: "آيات متجاوزة",
       loading: "جارٍ تحميل الآية…", loadError: "تعذّر تحميل الآية. أعد المحاولة أو تجاوزها.",
@@ -33,14 +35,15 @@
       step: "{index} من {total}", noVerse: "اختر آية في المصحف أولًا."
     },
     ru: {
+      recallStep: "Произнесите по памяти", checkStep: "Откройте текст и сравните", rateStep: "Отметьте результат",
       open: "Тренировка по памяти", openQueue: "Повторить аяты из очереди", close: "Закрыть",
-      intro: "Вспомните аят, откройте текст и оцените себя. Микрофон не нужен.",
-      length: "Сколько аятов", current: "Начало с {verse}", queue: "Аяты из очереди повторения",
+      intro: "Произнесите аят вслух или про себя. Печатать и включать микрофон не нужно. Результат оцениваете вы.",
+      length: "Сколько аятов", current: "Первый аят: {verse}", queue: "Аяты из очереди повторения",
       empty: "Очередь пуста. Добавьте аят в режиме чтения или во время тренировки.",
       start: "Начать", prompt: "Вспомните аят целиком, затем сверьте с текстом.",
       hint: "Первое слово", reveal: "Открыть аят", retry: "Загрузить снова",
       remembered: "Вспомнил", remove: "Вспомнил · убрать из очереди",
-      assisted: "Далее с учётом подсказки", again: "Добавить к повторению", keep: "Оставить для повторения",
+      assisted: "Вспомнил с подсказкой", again: "Добавить к повторению", keep: "Оставить для повторения",
       skip: "Пропустить", summary: "Итог тренировки", done: "Готово", cleanTotal: "Вспомнили без подсказки",
       assistedTotal: "Вспомнили с подсказкой", againTotal: "Оставили для повторения", skippedTotal: "Пропустили",
       loading: "Загружаем аят…", loadError: "Аят не загрузился. Попробуйте ещё раз или пропустите его.",
@@ -78,9 +81,9 @@
       node("status").textContent = key ? tr(key) : "";
     }
 
-    function open(button) {
+    function open(button, returnFocus = button) {
       if (dialog.open) return;
-      opener = button;
+      opener = returnFocus;
       const mode = button.dataset.quietRecallOpen;
       const available = mode === "queue" ? bridge.queue().slice(0, 5) : bridge.passage();
       session = { mode, available, stamp: bridge.stamp(), keys: [], index: 0, totals: { cleanTotal: 0, assistedTotal: 0, againTotal: 0, skippedTotal: 0 } };
@@ -96,7 +99,7 @@
       setStatus(available.length ? "" : mode === "queue" ? "empty" : "noVerse");
       bridge.stop();
       dialog.showModal();
-      (node("start").hidden ? node("close") : length.closest("label").hidden ? node("start") : length).focus();
+      (node("start").hidden ? node("close") : length.closest("label").hidden ? node("start") : node("start")).focus();
     }
 
     function renderCard() {
@@ -173,12 +176,12 @@
       const key = current.keys[current.index];
       const shouldAdd = again && !bridge.queue().includes(key);
       const shouldRemove = !again && !current.hint && current.mode === "queue" && bridge.queue().includes(key);
-      if (shouldAdd || shouldRemove) {
+      if (shouldAdd || shouldRemove || !again && !current.hint) {
         current.busy = true;
         setStatus("saving");
         renderCard();
         try {
-          await bridge.saveReview(key, shouldAdd, current.stamp);
+          await bridge.saveReview(key, shouldAdd, current.stamp, !again && !current.hint, shouldRemove);
         } catch (_) {
           if (session !== current || !dialog.open) return;
           current.busy = false;
@@ -220,6 +223,7 @@
       if (dialog.open) return;
       session = null;
       node("text").textContent = "";
+      if (opener && !opener.hidden) opener.focus();
       if (opener?.hidden) {
         const queue = document.getElementById("review-queue-list");
         queue.tabIndex = -1;
@@ -227,7 +231,7 @@
       }
       opener = null;
     });
-    return { refresh, close: () => { if (dialog.open) dialog.close(); } };
+    return { refresh, openCurrent: focus => open(Array.from(openers).find(button => button.dataset.quietRecallOpen === "current"), focus), close: () => { if (dialog.open) dialog.close(); } };
   }
 
   root.AllimQuietRecall = { mount };

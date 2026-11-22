@@ -161,6 +161,10 @@ class Service:
 		raise StorageError("unknown_action")
 
 	def references(self, kind, value, key=None):
+		if kind == "devotional_plan":
+			for cycle_id in value["cycle_ids"]:
+				cycle = self.repo.record("reading_cycle", cycle_id)
+				require(cycle and not cycle["deleted"], "cycle_not_found")
 		if kind == "lawh_photo":
 			verify_photo(self.repo, value)
 		if kind == "recall_flag":
@@ -182,6 +186,9 @@ class Service:
 		if record["kind"] == "lawh_image_part":
 			require(not self.image_used(record["id"].split("/")[0]), "image_in_use", 409)
 		if record["kind"] == "reading_cycle":
+			for plan in self.repo.records("devotional_plan"):
+				if not plan["deleted"]:
+					require(record["id"] not in plan["value"]["cycle_ids"], "cycle_in_use", 409)
 			for row in self.repo.records("reading_entry") + self.repo.records("reading_plan"):
 				if not row["deleted"] and row["kind"] in {"reading_entry", "reading_plan"}:
 					require(row["value"]["cycle_id"] != record["id"], "cycle_in_use", 409)
@@ -318,7 +325,14 @@ class Service:
 		previous = self.repo.record("import_receipt", item_id)
 		if previous:
 			return {"outcome": "noop", "import_result": previous["value"]}
-		if kind in {"reading_cycle", "reading_entry", "reflection", "memory_plan", "recall_attempt"}:
+		if kind in {
+			"reading_cycle",
+			"reading_entry",
+			"reflection",
+			"memory_plan",
+			"recall_attempt",
+			"heart_review",
+		}:
 			require(key == item_id, "invalid_import_id")
 		validate_record(kind, key, value, importing=True)
 		if "provenance" in value:

@@ -1,11 +1,11 @@
-<link rel="stylesheet" href="/assets/allimquran/css/account-storage.css?v=4">
+<link rel="stylesheet" href="/assets/allimquran/css/account-storage.css?v=5">
 <script src="/assets/allimquran/js/account-storage.js?v=4"></script>
 <script src="/assets/allimquran/js/learning-progress.js?v=1"></script>
 <script src="/assets/allimquran/js/lawh-library.js?v=1"></script>
 <script src="/assets/allimquran/js/account-progress.js?v=3"></script>
 <script src="/assets/allimquran/js/account-import.js?v=4"></script>
 <script src="/assets/allimquran/js/account-import-ui.js?v=2"></script>
-<script src="/assets/allimquran/js/account-storage-ui.js?v=4"></script>
+<script src="/assets/allimquran/js/account-storage-ui.js?v=5"></script>
 <div class="allim-academy-root"><a class="skip-link" href="#academy-main" data-copy="skip">К содержанию</a>
 
   <svg class="icon-sprite" aria-hidden="true">
@@ -63,35 +63,11 @@
               <h2><span data-copy="salam">Ас-саляму ‘аляйкум</span><span id="student-name"></span></h2>
               <p data-copy="welcomeText">Сегодня достаточно одного ясного шага: прочитать, вспомнить, понять и вернуться вовремя.</p>
             </div>
-            <button class="secondary-button" id="edit-plan" type="button"><svg><use href="#i-settings"/></svg><span data-copy="editPlan">Настроить план</span></button>
+            <div class="academy-plan-actions"><button class="secondary-button" id="open-academy-route" type="button" aria-haspopup="dialog"><span data-diagnostic-copy="routeSettings">Уровень и маршрут</span></button>
+            <button class="secondary-button" id="edit-plan" type="button"><svg><use href="#i-settings"/></svg><span data-copy="editPlan">Настроить план</span></button></div>
           </div>
 
-          <section class="academy-entry-card" id="academy-entry-card" aria-labelledby="academy-entry-title">
-            <div class="academy-entry-copy">
-              <span class="eyebrow" data-diagnostic-copy="eyebrow">ПЕРВЫЙ ВХОД В ACADEMY</span>
-              <h3 id="academy-entry-title" data-diagnostic-copy="title">Сначала определим вашу точку старта.</h3>
-              <p data-diagnostic-copy="lead">Короткая диагностика займёт около двух минут. После неё вы получите понятный маршрут и сможете записаться на пробный урок.</p>
-            </div>
-            <ol class="academy-entry-steps" aria-label="Путь начала обучения" data-diagnostic-aria="stepsLabel">
-              <li class="is-active" data-entry-step="diagnostic"><span>01</span><div><strong data-diagnostic-copy="stepDiagnostic">Диагностика</strong><small data-diagnostic-copy="stepDiagnosticHint">Уровень и цель</small></div></li>
-              <li data-entry-step="route"><span>02</span><div><strong data-diagnostic-copy="stepRoute">Личный маршрут</strong><small data-diagnostic-copy="stepRouteHint">Темп и программа</small></div></li>
-              <li data-entry-step="trial"><span>03</span><div><strong data-diagnostic-copy="stepTrial">Пробный урок</strong><small data-diagnostic-copy="stepTrialHint">Живое знакомство</small></div></li>
-              <li data-entry-step="learning"><span>04</span><div><strong data-diagnostic-copy="stepLearning">Обучение</strong><small data-diagnostic-copy="stepLearningHint">План и сопровождение</small></div></li>
-            </ol>
-            <div class="academy-entry-actions" id="academy-entry-actions">
-              <button class="primary-button" id="start-diagnostic" type="button"><span data-diagnostic-copy="startDiagnostic">Пройти диагностику</span><svg><use href="#i-arrow"/></svg></button>
-              <small data-diagnostic-copy="privacy">Без аккаунта ответы остаются на устройстве, после входа — сохраняются в аккаунте. Заявка на урок отправляется отдельно.</small>
-            </div>
-            <article class="academy-route-result" id="academy-route-result" hidden tabindex="-1" aria-live="polite">
-              <div class="academy-route-result-head"><span class="route-symbol" aria-hidden="true"><svg><use href="#i-spark"/></svg></span><div><span class="eyebrow" data-diagnostic-copy="routeReady">ВАШ МАРШРУТ ГОТОВ</span><h4 id="diagnostic-route-title"></h4></div></div>
-              <p id="diagnostic-route-summary"></p>
-              <div class="academy-route-modules" id="diagnostic-route-modules"></div>
-              <div class="academy-route-actions">
-                <a class="primary-button" id="book-trial-lesson" href="/academy-trial/new"><span data-diagnostic-copy="bookTrial">Записаться на пробный урок</span><svg><use href="#i-arrow"/></svg></a>
-                <button class="secondary-button" id="retake-diagnostic" type="button" data-diagnostic-copy="retake">Пройти заново</button>
-              </div>
-            </article>
-          </section>
+
 
           <div class="overview-grid">
             <article class="today-plan-card">
@@ -205,6 +181,35 @@
     </div>
   </div>
 
+  <dialog id="academy-route-dialog" aria-labelledby="academy-entry-title">
+    <form method="dialog" class="route-dialog-close"><button class="close-button" data-diagnostic-aria="close" aria-label="Close">×</button></form>
+          <section class="academy-entry-card" id="academy-entry-card" aria-labelledby="academy-entry-title">
+            <div class="academy-entry-copy">
+              <span class="eyebrow" data-diagnostic-copy="eyebrow">ПЕРВЫЙ ВХОД В ACADEMY</span>
+              <h3 id="academy-entry-title" data-diagnostic-copy="title">Сначала определим вашу точку старта.</h3>
+              <p data-diagnostic-copy="lead">Короткая диагностика займёт около двух минут. После неё вы получите понятный маршрут и сможете записаться на пробный урок.</p>
+            </div>
+            <ol class="academy-entry-steps" aria-label="Путь начала обучения" data-diagnostic-aria="stepsLabel">
+              <li class="is-active" data-entry-step="diagnostic"><span>01</span><div><strong data-diagnostic-copy="stepDiagnostic">Диагностика</strong><small data-diagnostic-copy="stepDiagnosticHint">Уровень и цель</small></div></li>
+              <li data-entry-step="route"><span>02</span><div><strong data-diagnostic-copy="stepRoute">Личный маршрут</strong><small data-diagnostic-copy="stepRouteHint">Темп и программа</small></div></li>
+              <li data-entry-step="trial"><span>03</span><div><strong data-diagnostic-copy="stepTrial">Пробный урок</strong><small data-diagnostic-copy="stepTrialHint">Живое знакомство</small></div></li>
+              <li data-entry-step="learning"><span>04</span><div><strong data-diagnostic-copy="stepLearning">Обучение</strong><small data-diagnostic-copy="stepLearningHint">План и сопровождение</small></div></li>
+            </ol>
+            <div class="academy-entry-actions" id="academy-entry-actions">
+              <button class="primary-button" id="start-diagnostic" type="button"><span data-diagnostic-copy="startDiagnostic">Пройти диагностику</span><svg><use href="#i-arrow"/></svg></button>
+              <small data-diagnostic-copy="privacy">Без аккаунта ответы остаются на устройстве, после входа — сохраняются в аккаунте. Заявка на урок отправляется отдельно.</small>
+            </div>
+            <article class="academy-route-result" id="academy-route-result" hidden tabindex="-1" aria-live="polite">
+              <div class="academy-route-result-head"><span class="route-symbol" aria-hidden="true"><svg><use href="#i-spark"/></svg></span><div><span class="eyebrow" data-diagnostic-copy="routeReady">ВАШ МАРШРУТ ГОТОВ</span><h4 id="diagnostic-route-title"></h4></div></div>
+              <p id="diagnostic-route-summary"></p>
+              <div class="academy-route-modules" id="diagnostic-route-modules"></div>
+              <div class="academy-route-actions">
+                <a class="primary-button" id="book-trial-lesson" href="/academy-trial/new"><span data-diagnostic-copy="bookTrial">Записаться на пробный урок</span><svg><use href="#i-arrow"/></svg></a>
+                <button class="secondary-button" id="retake-diagnostic" type="button" data-diagnostic-copy="retake">Пройти заново</button>
+              </div>
+            </article>
+          </section>
+  </dialog>
   <dialog id="plan-dialog" aria-labelledby="plan-dialog-title">
     <form method="dialog" id="plan-form">
       <div class="dialog-head"><div><span class="eyebrow" data-copy="personalPlan">ЛИЧНЫЙ ПЛАН</span><h2 id="plan-dialog-title" data-copy="planDialogTitle">Настройте ритм обучения</h2></div><button class="close-button" value="cancel" type="submit" aria-label="Закрыть">×</button></div>

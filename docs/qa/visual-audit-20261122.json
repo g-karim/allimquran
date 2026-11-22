@@ -1,0 +1,1106 @@
+[
+  {
+    "lang": "en",
+    "width": 1440,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 1440,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 1440,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 1440,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 1440,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 1440,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 1440,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 560,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 591.375
+  },
+  {
+    "lang": "en",
+    "width": 780,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 462.1875
+  },
+  {
+    "lang": "en",
+    "width": 900,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 860
+  },
+  {
+    "lang": "en",
+    "width": 570,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 440.59375
+  },
+  {
+    "lang": "en",
+    "width": 920,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "en",
+    "width": 1080,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 850
+  },
+  {
+    "lang": "en",
+    "width": 768,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 768,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 768,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 768,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 768,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 768,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 768,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 560,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 591.375
+  },
+  {
+    "lang": "en",
+    "width": 730,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 462.1875
+  },
+  {
+    "lang": "en",
+    "width": 730,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 848
+  },
+  {
+    "lang": "en",
+    "width": 570,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 440.59375
+  },
+  {
+    "lang": "en",
+    "width": 730,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "en",
+    "width": 730,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 352,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 642.5625
+  },
+  {
+    "lang": "en",
+    "width": 352,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 849.25
+  },
+  {
+    "lang": "en",
+    "width": 352,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 990
+  },
+  {
+    "lang": "en",
+    "width": 352,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 416.59375
+  },
+  {
+    "lang": "en",
+    "width": 352,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 990
+  },
+  {
+    "lang": "en",
+    "width": 352,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 988
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "en",
+    "width": 282,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 530
+  },
+  {
+    "lang": "en",
+    "width": 282,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 530
+  },
+  {
+    "lang": "en",
+    "width": 282,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 558
+  },
+  {
+    "lang": "en",
+    "width": 282,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 447.390625
+  },
+  {
+    "lang": "en",
+    "width": 282,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 558
+  },
+  {
+    "lang": "en",
+    "width": 282,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 556
+  },
+  {
+    "lang": "en",
+    "errors": []
+  },
+  {
+    "lang": "ar",
+    "width": 1440,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 1440,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 1440,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 1440,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 1440,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 1440,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 1440,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 560,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 571.78125
+  },
+  {
+    "lang": "ar",
+    "width": 780,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 442.59375
+  },
+  {
+    "lang": "ar",
+    "width": 900,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 860
+  },
+  {
+    "lang": "ar",
+    "width": 570,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 418.796875
+  },
+  {
+    "lang": "ar",
+    "width": 920,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "ar",
+    "width": 1080,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 860
+  },
+  {
+    "lang": "ar",
+    "width": 768,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 768,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 768,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 768,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 768,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 768,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 768,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 560,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 571.78125
+  },
+  {
+    "lang": "ar",
+    "width": 730,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 442.59375
+  },
+  {
+    "lang": "ar",
+    "width": 730,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 855
+  },
+  {
+    "lang": "ar",
+    "width": 570,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 418.796875
+  },
+  {
+    "lang": "ar",
+    "width": 730,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "ar",
+    "width": 730,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "ar",
+    "width": 390,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 390,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 390,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 390,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 390,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 390,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 390,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 352,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 622.96875
+  },
+  {
+    "lang": "ar",
+    "width": 352,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 808.40625
+  },
+  {
+    "lang": "ar",
+    "width": 352,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 990
+  },
+  {
+    "lang": "ar",
+    "width": 352,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 419.59375
+  },
+  {
+    "lang": "ar",
+    "width": 352,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 990
+  },
+  {
+    "lang": "ar",
+    "width": 352,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 988
+  },
+  {
+    "lang": "ar",
+    "width": 320,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 320,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 320,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 320,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 320,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 320,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 320,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ar",
+    "width": 282,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 530
+  },
+  {
+    "lang": "ar",
+    "width": 282,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 530
+  },
+  {
+    "lang": "ar",
+    "width": 282,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 558
+  },
+  {
+    "lang": "ar",
+    "width": 282,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 419.59375
+  },
+  {
+    "lang": "ar",
+    "width": 282,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 558
+  },
+  {
+    "lang": "ar",
+    "width": 282,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 556
+  },
+  {
+    "lang": "ar",
+    "errors": []
+  },
+  {
+    "lang": "ru",
+    "width": 1440,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 1440,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 1440,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 1440,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 1440,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 1440,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 1440,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 560,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 591.375
+  },
+  {
+    "lang": "ru",
+    "width": 780,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 462.1875
+  },
+  {
+    "lang": "ru",
+    "width": 900,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 860
+  },
+  {
+    "lang": "ru",
+    "width": 570,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 440.59375
+  },
+  {
+    "lang": "ru",
+    "width": 920,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "ru",
+    "width": 1080,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 850
+  },
+  {
+    "lang": "ru",
+    "width": 768,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 768,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 768,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 768,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 768,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 768,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 768,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 560,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 591.375
+  },
+  {
+    "lang": "ru",
+    "width": 730,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 470.4375
+  },
+  {
+    "lang": "ru",
+    "width": 730,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 848
+  },
+  {
+    "lang": "ru",
+    "width": 570,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 440.59375
+  },
+  {
+    "lang": "ru",
+    "width": 730,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "ru",
+    "width": 730,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 900
+  },
+  {
+    "lang": "ru",
+    "width": 390,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 390,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 390,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 390,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 390,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 390,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 390,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 352,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 669.5625
+  },
+  {
+    "lang": "ru",
+    "width": 352,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 849.25
+  },
+  {
+    "lang": "ru",
+    "width": 352,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 990
+  },
+  {
+    "lang": "ru",
+    "width": 352,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 441.390625
+  },
+  {
+    "lang": "ru",
+    "width": 352,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 990
+  },
+  {
+    "lang": "ru",
+    "width": 352,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 988
+  },
+  {
+    "lang": "ru",
+    "width": 320,
+    "view": "today",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 320,
+    "view": "read",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 320,
+    "view": "memorize",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 320,
+    "view": "learn",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 320,
+    "view": "tafsir",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 320,
+    "view": "progress",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 320,
+    "view": "settings",
+    "overflow": false,
+    "issues": []
+  },
+  {
+    "lang": "ru",
+    "width": 282,
+    "dialog": "source-dialog",
+    "overflow": false,
+    "height": 530
+  },
+  {
+    "lang": "ru",
+    "width": 282,
+    "dialog": "guide-dialog",
+    "overflow": false,
+    "height": 530
+  },
+  {
+    "lang": "ru",
+    "width": 282,
+    "dialog": "quran-search-dialog",
+    "overflow": false,
+    "height": 558
+  },
+  {
+    "lang": "ru",
+    "width": 282,
+    "dialog": "quiet-recall-dialog",
+    "overflow": false,
+    "height": 472.1875
+  },
+  {
+    "lang": "ru",
+    "width": 282,
+    "dialog": "life-practice-dialog",
+    "overflow": false,
+    "height": 558
+  },
+  {
+    "lang": "ru",
+    "width": 282,
+    "dialog": "heart-page-dialog",
+    "overflow": false,
+    "height": 556
+  },
+  {
+    "lang": "ru",
+    "errors": []
+  }
+]

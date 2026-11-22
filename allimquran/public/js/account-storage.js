@@ -406,7 +406,7 @@
         const visible = new Map(canonical.map(row => [key(row), privateRow(row)]));
         for (const row of pending) {
           // Rejected drafts are exposed separately, never counted as accepted learning facts.
-          if (row.status === "needs_choice" && (["learning_event", "hifz_credit", "hifz_signal", "lawh_practice", "recall_attempt", "recall_flag", "lawh_image_part", "lawh_photo"].includes(row.kind) || row.kind.startsWith("reading_"))) continue;
+          if (row.status === "needs_choice" && (["heart_review", "devotional_plan", "learning_event", "hifz_credit", "hifz_signal", "lawh_practice", "recall_attempt", "recall_flag", "lawh_image_part", "lawh_photo"].includes(row.kind) || row.kind.startsWith("reading_"))) continue;
           visible.set(key(row), {kind: row.kind, id: row.id, value: row.intent.value, deleted: row.intent.action === "delete", version: row.base_version, pending: true});
         }
         const meta = await request(stores.scopes.get(stamp.scope));

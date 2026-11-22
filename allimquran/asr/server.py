@@ -351,14 +351,27 @@ async def mushaf_page(page_number: int, mushaf: int = 1):
 		raise HTTPException(status_code=404, detail="Mushaf page must be between 1 and 604")
 	if mushaf not in {1, 2}:
 		raise HTTPException(status_code=422, detail="Supported Mushaf values are 1 and 2")
-	url = (
-		f"{QURAN_CONTENT_API}/verses/by_page/{page_number}"
-		"?words=true&word_fields=code_v1,code_v2,text_qpc_hafs,line_number,page_number"
-		f"&per_page=all&mushaf={mushaf}"
-	)
-	data = await run_in_threadpool(_cached_quran_json, f"page-fonts-m{mushaf}-{page_number:03d}.json", url)
-	verses = data.get("verses")
-	if not isinstance(verses, list):
+	# The legacy endpoint selects verses by V1 page even when V2 glyphs are requested.
+	# Read adjacent source pages for V2, then use explicit edition metadata.
+	version = "v1" if mushaf == 2 else "v2"
+	source_pages = [page_number] if version == "v1" else range(max(1, page_number - 1), min(604, page_number + 1) + 1)
+	by_key = {}
+	for source_page in source_pages:
+		url = (
+			f"{QURAN_CONTENT_API}/verses/by_page/{source_page}"
+			f"?words=true&word_fields=code_{version},text_qpc_hafs,v1_page,v2_page,line_v1,line_v2"
+			f"&per_page=all&mushaf={mushaf}"
+		)
+		data = await run_in_threadpool(_cached_quran_json, f"page-edition-v3-m{mushaf}-{source_page:03d}.json", url)
+		if not isinstance(data.get("verses"), list):
+			raise HTTPException(status_code=502, detail="Mushaf page data is unavailable")
+		for verse in data["verses"]:
+			words = [{**word, "page_number": word.get(f"{version}_page", word.get("page_number")),
+				"line_number": word.get(f"line_{version}", word.get("line_number"))} for word in verse.get("words", [])]
+			if any(word["page_number"] == page_number for word in words):
+				by_key[verse["verse_key"]] = {**verse, "words": words}
+	verses = sorted(by_key.values(), key=lambda verse: tuple(int(part) for part in verse["verse_key"].split(":")))
+	if not verses:
 		raise HTTPException(status_code=502, detail="Mushaf page data is unavailable")
 	return JSONResponse(
 		{"page": page_number, "mushaf": mushaf, "verses": verses, "source": "Quran Foundation Content API"}
@@ -366,16 +379,18 @@ async def mushaf_page(page_number: int, mushaf: int = 1):
 
 
 @app.get("/api/mushaf/locate/{surah_number}/{ayah_number}")
-async def locate_mushaf_verse(surah_number: int, ayah_number: int):
+async def locate_mushaf_verse(surah_number: int, ayah_number: int, mushaf: int = 1):
 	if surah_number < 1 or surah_number > 114 or ayah_number < 1 or ayah_number > 286:
 		raise HTTPException(status_code=404, detail="Invalid verse")
+	if mushaf not in {1, 2}:
+		raise HTTPException(status_code=422, detail="Supported Mushaf values are 1 and 2")
 	verse_key = f"{surah_number}:{ayah_number}"
-	url = f"{QURAN_CONTENT_API}/verses/by_key/{verse_key}?fields=page_number"
+	url = f"{QURAN_CONTENT_API}/verses/by_key/{verse_key}?fields=page_number,v1_page,v2_page"
 	data = await run_in_threadpool(
-		_cached_quran_json, f"verse-{surah_number:03d}-{ayah_number:03d}.json", url
+		_cached_quran_json, f"verse-editions-{surah_number:03d}-{ayah_number:03d}.json", url
 	)
 	verse = data.get("verse") if isinstance(data, dict) else None
-	page_number = verse.get("page_number") if isinstance(verse, dict) else None
+	page_number = verse.get("v1_page" if mushaf == 2 else "v2_page", verse.get("page_number")) if isinstance(verse, dict) else None
 	if not isinstance(page_number, int) or page_number < 1 or page_number > 604:
 		raise HTTPException(status_code=502, detail="Mushaf page location is unavailable")
 	return JSONResponse({"verse_key": verse_key, "page": page_number})
